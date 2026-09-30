@@ -1,0 +1,120 @@
+@reference "../../../index.css";
+
+.dashboard-wrapper {
+  @apply max-w-7xl mx-auto space-y-8 font-sans;
+}
+.dashboard-title {
+  @apply text-3xl lg:text-4xl font-black text-black uppercase tracking-tight border-b-4 border-black inline-block pb-2 mb-4;
+}
+.dashboard-grid-2 {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-8;
+}
+
+/* Trợ lý: Cột Task màu Cam nổi bật */
+.task-column {
+  @apply md:col-span-2 bg-[#FF5C00] border-4 border-black p-6 lg:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+.income-column {
+  @apply bg-white border-4 border-black p-6 lg:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.card-title {
+  @apply text-2xl font-black uppercase mb-2 border-b-2 border-black inline-block pb-1 text-black;
+}
+.task-column .card-title {
+  @apply text-white border-white;
+}
+
+.card-desc {
+  @apply text-gray-800 font-bold mt-4 mb-6 text-sm lg:text-base;
+}
+.task-column .card-desc {
+  @apply text-black;
+}
+
+.placeholder-box {
+  @apply border-4 border-dashed border-black bg-white h-40 flex items-center justify-center text-black font-black uppercase tracking-wider hover:bg-[#FFD000] transition-colors cursor-pointer;
+}
+
+.income-amount {
+  @apply text-4xl lg:text-5xl font-black text-[#23A094] my-6 drop-shadow-[2px_2px_0px_rgba(0,0,0,1)];
+}
+.income-status {
+  @apply inline-block bg-yellow-200 border-2 border-black px-3 py-1 text-xs font-black uppercase text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* THÀNH PHẦN MỚI CHO TASK LIST */
+.task-column-header,
+.income-column-header {
+  @apply flex justify-between items-start;
+}
+
+.view-all-link {
+  @apply bg-black text-white hover:bg-white hover:text-black border-2 border-black px-3 py-1 text-xs font-black uppercase transition-all shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 active:translate-y-[3px];
+}
+
+.view-all-link-teal {
+  @apply bg-[#23A094] text-white hover:bg-black border-2 border-black px-3 py-1 text-xs font-black uppercase transition-all shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 active:translate-y-[3px];
+}
+
+.task-loading-box,
+.income-loading-box {
+  @apply border-4 border-dashed border-black bg-white/50 p-8 text-center font-bold text-black;
+}
+
+.empty-tasks-box {
+  @apply border-4 border-dashed border-black bg-white p-8 text-center text-black font-bold flex flex-col items-center gap-4 shadow-[4px_4px_0px_rgba(0,0,0,1)];
+}
+
+.btn-go-tasks {
+  @apply bg-[#FFD000] text-black border-2 border-black px-4 py-2 font-black uppercase transition-all shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px];
+}
+
+.dashboard-task-list {
+  @apply flex flex-col gap-4;
+}
+
+.dashboard-task-item {
+  @apply bg-white border-4 border-black p-4 shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] transition-all;
+}
+
+.task-item-top {
+  @apply flex justify-between items-center mb-2;
+}
+
+.task-item-badge {
+  @apply border-2 border-black px-2 py-0.5 text-xs font-black uppercase shadow-[2px_2px_0px_rgba(0,0,0,1)];
+}
+
+.task-item-price {
+  @apply font-black text-teal-700 text-sm md:text-base;
+}
+
+.task-item-title {
+  @apply text-lg font-black text-black uppercase mb-1;
+}
+
+.task-item-meta {
+  @apply text-gray-700 text-xs md:text-sm font-bold mb-3;
+}
+
+.task-item-footer {
+  @apply flex justify-between items-center border-t-2 border-black pt-3 text-xs md:text-sm font-bold text-gray-800;
+}
+
+.btn-action-task {
+  @apply bg-black text-white hover:bg-[#FFD000] hover:text-black border-2 border-black px-3 py-1 text-xs font-black uppercase transition-all shadow-[2px_2px_0px_rgba(0,0,0,1)];
+}
+
+/* THÀNH PHẦN MỚI CHO THỐNG KÊ THU NHẬP */
+.income-stats-box {
+  @apply flex flex-col;
+}
+
+.income-detail-rows {
+  @apply flex flex-col gap-2 mt-2 bg-gray-50 border-2 border-black p-4 shadow-[3px_3px_0px_rgba(0,0,0,1)];
+}
+
+.income-detail-row {
+  @apply flex justify-between items-center text-sm font-bold text-black;
+}

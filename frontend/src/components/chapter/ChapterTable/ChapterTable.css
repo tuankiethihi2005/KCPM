@@ -1,0 +1,93 @@
+@reference "../../../index.css";
+
+.table-wrapper {
+  @apply bg-white border-4 border-black overflow-x-auto shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+.empty-state {
+  @apply bg-[#FF90E8] border-4 border-black p-12 text-center text-black font-black uppercase shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+.empty-icon {
+  @apply text-5xl block mb-4;
+}
+.empty-state h3 {
+  @apply m-0 mb-2 text-2xl tracking-widest;
+}
+.empty-state p {
+  @apply m-0 text-sm font-bold tracking-wider bg-white inline-block px-4 py-2 border-2 border-black;
+}
+
+.custom-table {
+  @apply w-full border-collapse text-left;
+}
+.custom-table th {
+  @apply bg-[#FFD000] p-4 border-b-4 border-black text-black font-black text-sm uppercase tracking-widest whitespace-nowrap;
+}
+.custom-table td {
+  @apply p-4 border-b-4 border-black align-middle bg-white;
+}
+.table-row {
+  @apply transition-colors hover:bg-[#F4F4F0];
+}
+.table-row:last-child td {
+  @apply border-b-0;
+}
+
+.chapter-number-badge {
+  @apply font-black text-black text-lg bg-[#23A094] text-white px-3 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap;
+}
+.chapter-title {
+  @apply font-black text-black text-base uppercase;
+}
+
+.status-badge {
+  @apply px-3 py-1 border-2 border-black font-black text-xs uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap inline-block;
+}
+.status-draft {
+  @apply bg-white text-black;
+}
+.status-in-production {
+  @apply bg-[#FF90E8] text-black;
+}
+.status-waiting-review {
+  @apply bg-[#FF5C00] text-white;
+}
+.status-approved {
+  @apply bg-[#23A094] text-white;
+}
+.status-published {
+  @apply bg-[#D1D5DB] text-black;
+}
+
+.action-links {
+  @apply flex gap-3 flex-wrap;
+}
+.action-links a {
+  @apply no-underline text-xs font-black uppercase px-4 py-2 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:translate-x-1 active:translate-y-1 active:shadow-none whitespace-nowrap;
+}
+.link-mod4 {
+  @apply bg-[#FFD000] text-black hover:bg-white;
+}
+.link-mod10 {
+  @apply bg-[#FF5C00] text-white hover:bg-black;
+}
+
+.btn-delete-chapter {
+  @apply bg-[#FF4545] text-black font-black uppercase text-xs px-4 py-2 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:translate-x-1 active:translate-y-1 active:shadow-none whitespace-nowrap cursor-pointer hover:bg-white;
+}
+
+.view-toggle-container {
+  @apply flex flex-wrap gap-4 mb-6;
+}
+.view-toggle-btn {
+  @apply flex items-center gap-2 px-6 py-3 font-black uppercase text-sm border-4 border-black transition-all bg-white text-black hover:bg-gray-100 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] cursor-pointer;
+}
+.view-toggle-btn.active-view {
+  @apply bg-[#FFD000] hover:bg-[#FFD000] translate-x-[4px] translate-y-[4px] shadow-none;
+}
+.view-toggle-btn.trash-view {
+  @apply bg-[#FF90E8] hover:bg-[#FF90E8] translate-x-[4px] translate-y-[4px] shadow-none;
+}
+
+.btn-restore-chapter {
+  @apply flex items-center justify-center gap-1.5 bg-[#00E599] text-black font-black uppercase text-xs px-4 py-2 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all active:translate-x-1 active:translate-y-1 active:shadow-none whitespace-nowrap cursor-pointer hover:bg-white;
+}

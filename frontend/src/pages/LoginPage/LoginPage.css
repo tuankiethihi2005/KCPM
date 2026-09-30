@@ -1,0 +1,100 @@
+@reference "../../index.css";
+
+/* Nền tảng với hoạ tiết Halftone Pattern */
+.login-wrapper {
+  @apply min-h-screen grid place-items-center p-6 font-sans bg-[#F4F4F0];
+  background-image: radial-gradient(#000000 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Khối Form cực cháy với bóng đổ to */
+.login-card {
+  @apply w-full max-w-[420px] bg-white border-4 border-black p-8 lg:p-10 shadow-[16px_16px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* Phần Tiêu đề */
+.login-header {
+  @apply mb-8 border-b-4 border-black pb-6;
+}
+
+.login-subtitle {
+  @apply text-xs tracking-widest uppercase text-black font-black mb-3 inline-block bg-[#FFD000] px-2 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.login-title {
+  @apply m-0 text-4xl lg:text-5xl font-black text-black uppercase tracking-tight;
+}
+
+.login-desc {
+  @apply m-0 mt-3 text-sm font-bold text-gray-800;
+}
+
+/* Label & Input Email chung */
+.login-label {
+  @apply block mb-6 text-black;
+}
+
+.login-label span {
+  @apply block mb-2 font-black uppercase text-sm tracking-widest;
+}
+
+.login-input {
+  @apply w-full p-4 rounded-none border-4 border-black bg-[#F4F4F0] font-bold text-base outline-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all;
+}
+
+.login-input:focus {
+  @apply bg-white shadow-[6px_6px_0px_0px_rgba(35,160,148,1)];
+}
+
+/* =========================================
+   THIẾT KẾ RIÊNG CHO Ô NHẬP MẬT KHẨU
+========================================= */
+.password-wrapper {
+  @apply flex w-full border-4 border-black bg-[#F4F4F0] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all focus-within:bg-white focus-within:shadow-[6px_6px_0px_0px_rgba(35,160,148,1)];
+}
+
+.password-input {
+  @apply flex-1 p-4 bg-transparent font-bold text-base outline-none border-none;
+}
+
+/* Nút ẩn/hiện mật khẩu liền khối (Không vạch chia, không màu nền) */
+.toggle-password-btn {
+  @apply bg-[#E8F0FE] px-4 flex items-center justify-center text-xl cursor-pointer transition-transform duration-200 outline-none border-none;
+}
+
+/* Hiệu ứng phóng to nhẹ khi đưa chuột vào thay vì đổi màu */
+.toggle-password-btn:hover {
+  @apply bg-transparent;
+}
+
+.toggle-password-btn div {
+  @apply transition-transform duration-200;
+}
+
+/* Bỏ dấu + đi, chỉ dùng khoảng trắng để chọn thẻ con */
+.toggle-password-btn:hover div {
+  @apply scale-125; /* Dùng 125 cho to rõ ràng, hoặc 110 tuỳ bạn */
+}
+
+/* Thêm hiệu ứng lún xuống khi click */
+.toggle-password-btn:active div {
+  @apply scale-95;
+}
+
+/* Nút Submit */
+.login-btn {
+  @apply w-full mt-2 p-4 border-4 border-black bg-[#FF90E8] text-black font-black uppercase tracking-widest text-lg shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer;
+}
+
+.login-btn:hover:not(:disabled) {
+  @apply bg-[#FFD000] -translate-y-1 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.login-btn:active:not(:disabled) {
+  @apply translate-x-[4px] translate-y-[4px] shadow-none;
+}
+
+/* Trạng thái bị khóa (Đang load) */
+.login-btn:disabled {
+  @apply bg-[#D1D5DB] text-gray-600 cursor-not-allowed shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform-none;
+}

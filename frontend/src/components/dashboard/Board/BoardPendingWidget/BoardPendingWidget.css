@@ -1,0 +1,42 @@
+@reference "../../../../index.css";
+
+/* Khối bao ngoài Widget */
+.widget-card-pending {
+  @apply bg-[#F4F4F0] border-4 border-black p-5 lg:p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col h-full;
+}
+
+/* Phần Header */
+.widget-header {
+  @apply flex justify-between items-center mb-6 border-b-4 border-black pb-4;
+}
+
+/* Tiêu đề được thiết kế như Sticker */
+.widget-title {
+  @apply text-xl lg:text-2xl font-black text-black uppercase tracking-tight m-0 bg-white px-3 py-1.5 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* Badge Cần Xử Lý */
+.badge-info {
+  @apply text-black bg-[#FFD000] px-3 py-1.5 border-4 border-black font-black text-xs uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* Từng dòng Item chờ duyệt */
+.list-item-pending {
+  /* Bỏ hover đổi màu nền, thay bằng hiệu ứng khối nổi lên */
+  @apply bg-white border-4 border-black p-4 mb-4 flex justify-between items-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all;
+}
+
+/* Nút Action bên trong Item */
+.btn-action-primary {
+  @apply inline-block px-4 py-2 border-4 border-black font-black uppercase text-xs lg:text-sm tracking-wider bg-[#00E599] text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#FFD000] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer whitespace-nowrap shrink-0;
+}
+
+/* Nút Block khổng lồ dưới cùng */
+.btn-block-primary {
+  @apply block mt-auto bg-black text-white text-center font-black uppercase text-base lg:text-lg border-4 border-black py-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:bg-[#FFD000] hover:text-black hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all;
+}
+
+/* Trạng thái trống / Loading */
+.empty-box {
+  @apply p-6 border-4 border-dashed border-black font-black uppercase text-center bg-white text-gray-500 flex-1 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}

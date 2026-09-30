@@ -1,0 +1,69 @@
+@reference "../../index.css";
+
+.history-wrapper {
+  @apply bg-[#F4F4F0] p-6 min-h-screen flex flex-col;
+}
+
+.history-header {
+  @apply flex justify-between items-center bg-white border-4 border-black p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-6;
+}
+
+.history-title {
+  @apply text-2xl font-black uppercase tracking-tight m-0 text-black;
+}
+
+.btn-back {
+  @apply bg-black text-white font-black uppercase px-6 py-3 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#FFD000] hover:text-black hover:-translate-y-1 transition-all;
+}
+
+.history-body {
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-6 flex-grow;
+}
+
+.preview-panel {
+  @apply lg:col-span-2 bg-white border-4 border-black p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center relative bg-gray-200 overflow-hidden;
+}
+
+.active-version-badge {
+  @apply absolute top-4 left-4 bg-[#FF90E8] border-4 border-black px-4 py-2 font-black text-lg text-black z-10 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.history-img {
+  @apply max-h-[80vh] w-full object-contain bg-white border-4 border-black;
+}
+
+.timeline-panel {
+  @apply bg-white border-4 border-black p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-4 overflow-y-auto max-h-[85vh];
+}
+
+.timeline-title {
+  @apply font-black text-xl uppercase tracking-widest border-b-4 border-black pb-2 text-black;
+}
+
+.version-card {
+  @apply border-4 border-black p-3 bg-white cursor-pointer transition-all hover:translate-x-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.version-card-active {
+  @apply bg-[#FFD000] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] translate-x-1;
+}
+
+.version-info {
+  @apply flex justify-between items-center mb-2;
+}
+
+.version-badge {
+  @apply bg-black text-white font-black px-2 py-1 text-xs uppercase;
+}
+
+.version-author {
+  @apply bg-white border-2 border-black px-2 py-0.5 text-[10px] font-black uppercase tracking-wider;
+}
+
+.version-date {
+  @apply text-xs font-bold text-gray-600;
+}
+
+.version-note {
+  @apply text-sm font-bold bg-[#F4F4F0] p-2 border-2 border-black text-gray-800;
+}

@@ -1,0 +1,129 @@
+@reference "../../../index.css";
+
+/* ============================================
+   CREATE ISSUE PANEL - Option 1: Accented Header
+   ============================================ */
+
+/* --- Panel wrapper: remove default padding so header bleeds edge-to-edge --- */
+.cip-panel {
+  @apply bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col overflow-hidden;
+}
+
+/* --- Panel header: full-width yellow strip --- */
+.cip-title {
+  @apply flex items-center gap-3 font-black text-xl md:text-2xl uppercase tracking-tight text-black bg-[#FFD000] border-b-4 border-black px-6 py-5 md:px-8;
+}
+
+.cip-title h2 {
+  @apply m-0;
+}
+
+/* --- Form body: restore padding --- */
+.cip-form {
+  @apply flex flex-col gap-5 px-6 pt-5 pb-6 md:px-8 md:pb-8;
+}
+
+.cip-form-group {
+  @apply flex flex-col gap-2;
+}
+
+.cip-grid-2 {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-5;
+}
+
+/* --- Labels --- */
+.cip-label {
+  @apply font-black text-xs uppercase tracking-widest text-black bg-[#F4F4F0] border-2 border-black inline-block px-2 py-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] w-fit;
+}
+
+/* Label cho "Danh sách Truyện" dùng màu hồng (#FF90E8) theo mockup */
+.cip-label--manga {
+  @apply font-black text-xs uppercase tracking-widest text-black bg-[#FF90E8] border-2 border-black inline-block px-2 py-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] w-fit;
+}
+
+.cip-label-row {
+  @apply flex justify-between items-center;
+}
+
+.cip-label-count {
+  @apply font-black text-xs text-white bg-[#23A094] border-2 border-black px-2 py-0.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* --- Inputs --- */
+.cip-input,
+.cip-select {
+  @apply w-full px-4 py-3 border-4 border-black font-bold text-sm bg-[#FAFAFA] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:bg-white focus:shadow-[6px_6px_0px_0px_rgba(35,160,148,1)] outline-none transition-all;
+}
+
+/* --- Multi-select trigger --- */
+.cip-multiselect-trigger {
+  @apply w-full px-4 py-3 border-4 border-black font-bold text-sm bg-[#FAFAFA] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex justify-between items-center cursor-pointer select-none min-h-[52px] h-auto transition-all hover:bg-white;
+}
+
+.cip-multiselect-trigger:focus-within {
+  @apply shadow-[6px_6px_0px_0px_rgba(35,160,148,1)];
+}
+
+.cip-chevron {
+  @apply transition-transform duration-200 shrink-0 text-black;
+}
+
+.cip-chevron--open {
+  @apply rotate-180;
+}
+
+/* --- Tags preview --- */
+.cip-tags-wrap {
+  @apply flex flex-wrap gap-1.5 items-center flex-1 overflow-hidden pr-3;
+}
+
+.cip-tag-empty {
+  @apply text-gray-400 font-bold text-sm italic;
+}
+
+.cip-tag {
+  @apply bg-[#FFD000] border-2 border-black px-2 py-0.5 text-xs font-black uppercase tracking-wide truncate max-w-[130px] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.cip-tag-more {
+  @apply bg-[#23A094] text-white border-2 border-black px-2 py-0.5 text-xs font-black uppercase tracking-wide shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* --- Dropdown list --- */
+.cip-dropdown-overlay {
+  @apply fixed inset-0 z-10;
+}
+
+.cip-dropdown-menu {
+  @apply absolute z-20 w-full mt-1 bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] max-h-56 overflow-y-auto;
+}
+
+.cip-dropdown-inner {
+  @apply p-2 flex flex-col gap-1;
+}
+
+.cip-select-all-btn {
+  @apply w-full text-left px-3 py-2.5 font-black text-xs uppercase tracking-widest border-2 border-black border-l-4 border-l-[#23A094] bg-[#FFD000] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#f5c800] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer mb-1 sticky top-0 z-10;
+}
+
+.cip-dropdown-empty {
+  @apply p-4 text-center text-gray-500 font-bold uppercase text-sm tracking-widest;
+}
+
+.cip-checkbox-row {
+  @apply flex items-center gap-3 p-3 border-2 border-transparent hover:border-[#23A094] hover:bg-[#E0F7F4] cursor-pointer transition-all font-bold text-sm select-none;
+}
+
+.cip-checkbox-row input[type="checkbox"] {
+  @apply w-4 h-4 border-2 border-black accent-[#23A094] cursor-pointer shrink-0;
+}
+
+/* --- Submit button --- */
+.cip-btn-submit {
+  @apply inline-flex items-center justify-center gap-2 w-full px-6 py-4 bg-[#23A094] text-white font-black uppercase text-sm tracking-widest border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:bg-[#1a7f75] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all disabled:bg-[#D1D5DB] disabled:text-gray-600 disabled:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] disabled:cursor-not-allowed disabled:transform-none;
+}
+
+/* --- Multi-select container (relative) --- */
+.cip-multiselect-wrap {
+  @apply relative;
+}

@@ -1,0 +1,284 @@
+@reference "../../index.css";
+
+.atp-container {
+  @apply max-w-6xl mx-auto p-4;
+}
+
+.atp-header {
+  @apply mb-8 pb-6 border-b-4 border-black;
+}
+
+.atp-title {
+  @apply text-4xl font-black uppercase tracking-tight text-black m-0;
+}
+
+.atp-subtitle {
+  @apply text-sm font-bold text-gray-700 m-0 mt-2;
+}
+
+/* FILTER BAR */
+.atp-filter-bar {
+  @apply flex flex-wrap items-center gap-4 mb-8 bg-white border-4 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.atp-filter-label {
+  @apply font-black uppercase tracking-widest text-xs;
+}
+
+.atp-filter-options {
+  @apply flex flex-wrap gap-2;
+}
+
+.atp-filter-btn {
+  @apply px-3 py-1.5 border-2 border-black font-black text-xs uppercase bg-[#F4F4F0] cursor-pointer transition-all;
+}
+
+.atp-filter-btn:hover {
+  @apply bg-[#FFD000] -translate-y-0.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.atp-filter-btn.active {
+  @apply bg-[#23A094] text-white -translate-y-0.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* LAYOUT */
+.atp-layout {
+  @apply grid grid-cols-1 md:grid-cols-12 gap-8 items-start;
+}
+
+.atp-list-section {
+  @apply md:col-span-5;
+}
+
+.atp-detail-section {
+  @apply md:col-span-7 sticky top-4;
+}
+
+/* CARDS */
+.atp-list {
+  @apply flex flex-col gap-4;
+}
+
+.atp-card {
+  @apply bg-white border-4 border-black p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer;
+}
+
+.atp-card:hover {
+  @apply -translate-y-1 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.atp-card.selected {
+  @apply border-[#23A094] bg-[#F9FDFB] -translate-y-1 shadow-[8px_8px_0px_0px_rgba(35,160,148,1)];
+}
+
+.atp-card.overdue {
+  @apply bg-red-50 border-red-500 shadow-[4px_4px_0px_0px_rgba(239,68,68,1)];
+}
+
+.atp-card.near-deadline {
+  @apply bg-orange-50 border-orange-500 shadow-[4px_4px_0px_0px_rgba(249,115,22,1)];
+}
+
+.atp-warning-icon {
+  @apply text-2xl;
+}
+
+.atp-card-header {
+  @apply flex items-center justify-between mb-3;
+}
+
+.atp-badge {
+  @apply px-2.5 py-1 border-2 border-black text-[10px] font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.atp-badge-small {
+  @apply px-2 py-0.5 border-2 border-black text-[9px] font-black uppercase tracking-wider;
+}
+
+.atp-card-price {
+  @apply font-black text-sm;
+}
+
+.atp-card-tasktype {
+  @apply text-lg font-black m-0 mb-2 uppercase tracking-wide text-black;
+}
+
+.atp-card-meta {
+  @apply text-xs font-bold text-gray-800 m-0 leading-relaxed mb-3;
+}
+
+.atp-card-footer {
+  @apply text-[10px] font-black text-gray-500 border-t-2 border-dashed border-gray-300 pt-2 flex justify-between;
+}
+
+/* DETAIL PANEL */
+.atp-detail-placeholder {
+  @apply bg-white border-4 border-black p-10 text-center shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.placeholder-icon {
+  @apply text-5xl block mb-4;
+}
+
+.atp-detail-placeholder h3 {
+  @apply text-xl font-black uppercase m-0 mb-2;
+}
+
+.atp-detail-placeholder p {
+  @apply text-sm text-gray-600 font-bold m-0 max-w-xs mx-auto;
+}
+
+.atp-detail-card {
+  @apply bg-white border-4 border-black p-6 lg:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.atp-detail-header {
+  @apply flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b-4 border-black;
+}
+
+.atp-detail-header h2 {
+  @apply text-2xl font-black uppercase tracking-wide m-0;
+}
+
+.atp-detail-info-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 bg-[#F4F4F0] border-2 border-black p-4 text-xs font-bold;
+}
+
+.atp-detail-desc {
+  @apply mb-6;
+}
+
+.atp-detail-desc h3 {
+  @apply text-sm font-black uppercase tracking-wide mb-2;
+}
+
+.atp-detail-desc p {
+  @apply text-sm text-gray-800 bg-[#FFFEEB] border-2 border-black p-3 m-0 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* DOWNLOAD RESOURCES */
+.atp-detail-resources {
+  @apply mb-8 border-t-4 border-dashed border-black pt-6;
+}
+
+.atp-detail-resources h3 {
+  @apply text-sm font-black uppercase tracking-wide mb-3;
+}
+
+.atp-resource-buttons {
+  @apply flex flex-wrap gap-4;
+}
+
+.atp-download-btn {
+  @apply inline-flex items-center justify-center px-4 py-2 border-2 border-black font-black text-xs uppercase bg-[#FFD000] text-black no-underline shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer;
+}
+
+.atp-download-btn:hover {
+  @apply -translate-y-0.5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-[#FF90E8];
+}
+
+.atp-download-btn.resource {
+  @apply bg-[#23A094] text-white;
+}
+
+.atp-download-btn.resource:hover {
+  @apply bg-[#FF5C00];
+}
+
+.atp-no-resource {
+  @apply text-xs font-bold text-gray-500 italic flex items-center;
+}
+
+/* SUBMIT FORM */
+.atp-submit-form {
+  @apply border-4 border-black p-5 bg-[#FFF0FD] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-8;
+}
+
+.atp-submit-form h3 {
+  @apply text-base font-black uppercase tracking-wide m-0 mb-4 pb-2 border-b-2 border-black;
+}
+
+.form-group {
+  @apply mb-4;
+}
+
+.form-group label {
+  @apply block font-black uppercase text-xs tracking-wider mb-1.5;
+}
+
+.file-upload-label {
+  @apply block border-2 border-dashed border-black bg-white p-4 text-center cursor-pointer font-black text-xs uppercase hover:bg-pink-50 transition-colors;
+}
+
+.file-upload-input {
+  @apply hidden;
+}
+
+.file-name-indicator {
+  @apply text-xs font-bold text-teal-800 m-0 mt-2 bg-teal-50 border border-teal-200 p-2;
+}
+
+.form-textarea {
+  @apply w-full p-3 border-2 border-black bg-white rounded-none font-bold text-sm outline-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus:bg-white;
+}
+
+.atp-submit-btn {
+  @apply w-full py-3 bg-[#FF90E8] border-2 border-black font-black uppercase tracking-widest text-sm shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-black;
+}
+
+.atp-submit-btn:hover:not(:disabled) {
+  @apply bg-[#FFD000] -translate-y-0.5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.atp-submit-btn:active:not(:disabled) {
+  @apply translate-x-0.5 translate-y-0.5 shadow-none;
+}
+
+/* HISTORY SUBMISSIONS */
+.atp-history-section {
+  @apply border-t-4 border-dashed border-black pt-6;
+}
+
+.atp-history-section h3 {
+  @apply text-sm font-black uppercase tracking-wide mb-4;
+}
+
+.atp-history-list {
+  @apply flex flex-col gap-4;
+}
+
+.atp-history-item {
+  @apply bg-[#F4F4F0] border-2 border-black p-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.atp-history-header {
+  @apply flex items-center justify-between mb-2;
+}
+
+.atp-history-date {
+  @apply text-[10px] font-black uppercase text-gray-600;
+}
+
+.atp-history-note {
+  @apply text-xs text-gray-800 m-0 mb-3 leading-relaxed;
+}
+
+.atp-history-file-container {
+  @apply flex;
+}
+
+.atp-history-file-link {
+  @apply text-xs font-black text-[#23A094] hover:text-[#FF5C00] transition-colors no-underline;
+}
+
+.atp-empty-state {
+  @apply bg-white border-4 border-black p-8 text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.atp-empty-state h3 {
+  @apply font-black text-lg m-0 mb-2 uppercase;
+}
+
+.atp-empty-state p {
+  @apply text-sm font-bold text-gray-600 m-0;
+}

@@ -1,0 +1,557 @@
+/* PageWorkspacePage.css */
+
+.ws-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 80px);
+  gap: 1.5rem;
+}
+
+.shadow-brutal {
+  border: 4px solid #000;
+  box-shadow: 4px 4px 0px 0px #000;
+}
+
+/* ── HEADER ──────────────────────────────────── */
+.ws-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 1.25rem 2rem;
+  border-radius: 4px;
+}
+
+.ws-back-link {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #000;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  text-decoration: none;
+}
+
+.ws-back-link:hover {
+  text-decoration: underline;
+}
+
+.ws-title {
+  font-size: 1.5rem;
+  font-weight: 950;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.ws-subtitle {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0.25rem 0 0 0;
+}
+
+.ws-mode-controls {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.ws-mode-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  border: 2px solid #000;
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #000;
+  transition: all 0.15s ease;
+}
+
+.ws-mode-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px #000;
+}
+
+.ws-mode-btn.active {
+  transform: translate(1px, 1px);
+  box-shadow: 0px 0px 0px #000;
+}
+
+/* ── LAYOUT ──────────────────────────────────── */
+.ws-layout {
+  display: flex;
+  flex: 1;
+  gap: 1.5rem;
+  min-height: 0;
+}
+
+/* ── CANVAS ──────────────────────────────────── */
+.ws-canvas-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1.5;
+  background-color: #fcfcfc;
+  padding: 1.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto;
+  border-radius: 4px;
+}
+
+.ws-canvas-wrapper {
+  position: relative;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0px rgba(0,0,0,0.15);
+  display: inline-block;
+  cursor: crosshair;
+  max-width: 100%;
+}
+
+.ws-canvas-wrapper.view {
+  cursor: default;
+}
+
+.ws-canvas-wrapper.add_pin {
+  cursor: cell;
+}
+
+.ws-manga-image {
+  display: block;
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+.ws-mode-banner {
+  width: 100%;
+  text-align: center;
+  border-radius: 2px;
+  font-size: 0.9rem;
+}
+
+/* ── REGIONS ─────────────────────────────────── */
+.ws-canvas-region {
+  position: absolute;
+  border: 2px dashed #23A094;
+  background-color: rgba(35, 160, 148, 0.15);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.ws-canvas-region:hover,
+.ws-canvas-region.selected {
+  border-style: solid;
+  border-width: 3px;
+  background-color: rgba(35, 160, 148, 0.25);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+.ws-canvas-region.drawing {
+  background-color: rgba(255, 208, 0, 0.2);
+  border: 2px dashed #ffc000;
+  pointer-events: none;
+}
+
+.ws-region-badge {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-color: #000;
+  color: #fff;
+  font-size: 8px;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 1px 4px;
+}
+
+.ws-region-task-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background-color: #fff;
+  border: 1px solid #000;
+  color: #000;
+  font-size: 8px;
+  font-weight: 900;
+  padding: 1px 3px;
+  text-transform: uppercase;
+}
+
+/* ── ANNOTATION PINS ─────────────────────────── */
+.ws-canvas-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2.5px solid #000;
+  background-color: #FF90E8;
+  color: #000;
+  font-weight: 900;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #000;
+  transition: all 0.15s ease;
+  z-index: 10;
+  /* Đảm bảo tooltip không bị cắt */
+  overflow: visible;
+}
+
+.ws-canvas-pin:hover,
+.ws-canvas-pin.selected {
+  transform: translate(-50%, -50%) scale(1.2);
+  box-shadow: 3px 3px 0px #000;
+  background-color: #ff50d5;
+  z-index: 20;
+}
+
+.ws-canvas-pin.resolved {
+  background-color: #23A094;
+  color: #fff;
+}
+
+.ws-canvas-pin.resolved:hover {
+  background-color: #1a7a70;
+}
+
+/* Ghim tạm (chưa submit) */
+.ws-canvas-pin.temp {
+  background-color: #fff;
+  color: #FF5C00;
+  border: 2.5px dashed #FF5C00;
+  animation: pin-pulse 1.2s infinite;
+  z-index: 15;
+}
+
+/* Ghim tạm khi modal đang mở */
+.ws-canvas-pin.temp-active {
+  background-color: #FF5C00;
+  color: #fff;
+  border: 2.5px solid #000;
+  animation: pin-pulse 0.8s infinite;
+  z-index: 15;
+}
+
+@keyframes pin-pulse {
+  0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* ── PIN TOOLTIP ─────────────────────────────── */
+.ws-pin-tooltip {
+  visibility: hidden;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 140px;
+  max-width: 220px;
+  background-color: #111;
+  color: #fff;
+  text-align: left;
+  padding: 6px 10px;
+  border-radius: 3px;
+  border: 2px solid #fff;
+  z-index: 30;
+  opacity: 0;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.5);
+  pointer-events: none;
+  /* Arrow */
+  white-space: normal;
+  word-break: break-word;
+}
+
+.ws-pin-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #111;
+}
+
+.ws-canvas-pin:hover .ws-pin-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.ws-pin-tooltip-number {
+  display: block;
+  font-size: 9px;
+  font-weight: 900;
+  color: #FF90E8;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ws-pin-tooltip-content {
+  display: block;
+  font-size: 11px;
+  line-height: 1.4;
+  max-height: 60px;
+  overflow: hidden;
+}
+
+.ws-pin-tooltip-category {
+  display: block;
+  font-size: 9px;
+  color: #aaa;
+  margin-top: 2px;
+  font-style: italic;
+}
+
+/* ── SIDEBAR ─────────────────────────────────── */
+.ws-sidebar {
+  flex: 0.9;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  max-height: 100%;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.ws-sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.ws-section-title {
+  font-size: 0.9rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem 0;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ws-sidebar-list {
+  display: flex;
+  flex-direction: column;
+  max-height: 220px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd #fff;
+}
+
+.ws-list-item {
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.ws-list-item:hover {
+  background-color: #f7f7f7;
+}
+
+.ws-list-item.selected {
+  background-color: #fff9fe;
+}
+
+/* ── STATUS BADGE ────────────────────────────── */
+.ann-status-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  font-size: 9px;
+  font-weight: 900;
+  border-radius: 2px;
+  letter-spacing: 0.3px;
+}
+
+/* ── FORMS ───────────────────────────────────── */
+.ws-select,
+.ws-input,
+.ws-textarea {
+  background-color: #fff;
+  border: 2px solid #000;
+  padding: 0.4rem;
+  font-family: inherit;
+  font-weight: bold;
+  border-radius: 2px;
+}
+
+.ws-select:focus,
+.ws-input:focus,
+.ws-textarea:focus {
+  outline: none;
+  background-color: #fbfbfb;
+  border-color: #FF5C00;
+}
+
+.ws-side-submit-btn {
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #000;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #000;
+  transition: all 0.15s ease;
+}
+
+.ws-side-submit-btn:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px #000;
+}
+
+.ws-btn-small {
+  cursor: pointer;
+  transition: all 0.1s ease;
+  font-family: inherit;
+  border-radius: 2px;
+}
+
+.ws-btn-small:hover {
+  transform: translate(-1px, -1px);
+}
+
+.ws-comment-text {
+  line-height: 1.5;
+}
+
+/* ── MODAL OVERLAY ───────────────────────────── */
+.ws-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+/* ── TASK MODAL ──────────────────────────────── */
+.ws-modal {
+  width: 90%;
+  max-width: 600px;
+  border-radius: 4px;
+  animation: modal-in 0.2s ease;
+}
+
+.ws-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.ws-btn {
+  border: 2px solid #000;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.ws-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px #000;
+}
+
+/* ── PIN MODAL ───────────────────────────────── */
+.ws-pin-modal {
+  width: 90%;
+  max-width: 440px;
+  border-radius: 4px;
+  animation: modal-in 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+.ws-pin-modal-header {
+  /* styles applied inline via Tailwind */
+}
+
+.ws-pin-submit-btn {
+  background-color: #FF5C00;
+  color: #fff;
+  border: 2.5px solid #000;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px #000;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  border-radius: 2px;
+}
+
+.ws-pin-submit-btn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px #000;
+  background-color: #e04f00;
+}
+
+.ws-pin-submit-btn:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #000;
+}
+
+.ws-pin-cancel-btn {
+  background-color: #fff;
+  color: #000;
+  border: 2.5px solid #000;
+  font-weight: 800;
+  font-size: 0.875rem;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #000;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  border-radius: 2px;
+}
+
+.ws-pin-cancel-btn:hover {
+  background-color: #f0f0f0;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px #000;
+}
+
+/* ── ANIMATION ───────────────────────────────── */
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── DETAIL BOX ──────────────────────────────── */
+.ws-detail-box {
+  border-radius: 2px;
+  animation: slide-in 0.15s ease;
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

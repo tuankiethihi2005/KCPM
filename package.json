@@ -1,0 +1,44 @@
+{
+  "name": "project_cnpm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm run test:admin",
+    "test:admin": "npx playwright test --config=test/playwright.config.js --project=admin",
+    "test:admin:headed": "npx playwright test --config=test/playwright.config.js --project=admin --headed",
+    "test:admin:debug": "npx playwright test --config=test/playwright.config.js --project=admin --debug",
+    "test:mangaka": "npx playwright test --config=test/playwright.config.js --project=mangaka",
+    "test:mangaka:headed": "npx playwright test --config=test/playwright.config.js --project=mangaka --headed",
+    "test:mangaka:debug": "npx playwright test --config=test/playwright.config.js --project=mangaka --debug",
+    "test:assistant": "npx playwright test --config=test/playwright.config.js --project=assistant",
+    "test:assistant:headed": "npx playwright test --config=test/playwright.config.js --project=assistant --headed",
+    "test:assistant:debug": "npx playwright test --config=test/playwright.config.js --project=assistant --debug",
+    "test:report": "npx playwright show-report test/playwright-report",
+    "test:install": "npx playwright install chromium",
+    "seed:admin": "node backend/scripts/seedAuthUser.js",
+    "seed:mangaka": "node backend/scripts/seedMangakaUser.js",
+    "seed:assistant": "node backend/scripts/seedAssistantUser.js",
+    "seed:tasks": "node backend/scripts/seedTasksDemo.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DQPdak/Project_CNPM.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/DQPdak/Project_CNPM/issues"
+  },
+  "homepage": "https://github.com/DQPdak/Project_CNPM#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1"
+  }
+}

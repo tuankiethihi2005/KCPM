@@ -1,0 +1,96 @@
+@reference "../../index.css";
+
+.pmp-wrapper {
+  @apply max-w-[1200px] mx-auto space-y-8 font-sans px-4 lg:px-8 pb-12;
+}
+.pmp-header-area {
+  @apply mb-8;
+}
+
+.pmp-back-btn {
+  @apply inline-block mb-4 text-black font-black uppercase tracking-wider border-2 border-black bg-white px-4 py-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:bg-[#23A094] hover:text-white transition-all;
+}
+
+.pmp-header-main {
+  @apply flex flex-col md:flex-row justify-between md:items-end gap-6 border-b-4 border-black pb-6;
+}
+.pmp-title {
+  @apply text-3xl lg:text-4xl font-black text-black uppercase tracking-tight m-0;
+}
+.pmp-subtitle {
+  @apply text-black font-bold mt-3 text-sm lg:text-base uppercase tracking-wider flex items-center gap-2;
+}
+
+.pmp-status-badge {
+  @apply px-3 py-1 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-black text-sm transition-colors duration-300;
+}
+
+.pmp-control-box {
+  @apply bg-[#FFD000] p-4 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)];
+}
+.pmp-control-label {
+  @apply block text-xs font-black text-black uppercase tracking-widest mb-3 bg-white border-2 border-black px-2 py-0.5 inline-block shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* THẺ SELECT */
+.pmp-select {
+  @apply appearance-none px-4 py-2 border-4 border-black font-black outline-none uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:ring-0 cursor-pointer transition-colors duration-300;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1.2em 1.2em;
+  padding-right: 2.5rem;
+}
+.pmp-select option {
+  @apply font-black text-black bg-white;
+}
+/* KHẮC PHỤC LỖI DISABLED MỜ ẢO (MÀU XÁM) */
+.pmp-select:disabled {
+  @apply bg-[#D1D5DB] text-gray-600 cursor-not-allowed opacity-100 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+  background-image: none;
+}
+
+/* NÚT CẬP NHẬT */
+.pmp-action-btn {
+  @apply bg-black text-white font-black uppercase px-6 py-2 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.5)] transition-all cursor-pointer active:translate-x-1 active:translate-y-1 active:shadow-none;
+}
+/* KHẮC PHỤC LỖI DISABLED MỜ ẢO (MÀU XÁM) */
+.pmp-action-btn:disabled {
+  @apply bg-[#D1D5DB] text-gray-600 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] opacity-100 cursor-not-allowed transform-none;
+}
+
+.pmp-gallery-container {
+  @apply bg-white border-4 border-black p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* BẢNG MÀU TRẠNG THÁI CHUẨN NEO-BRUTALISM */
+.status-bg-draft {
+  @apply bg-white text-black;
+}
+.status-bg-in-production {
+  @apply bg-[#FF90E8] text-black;
+}
+.status-bg-waiting-review {
+  @apply bg-[#FF5C00] text-white;
+}
+.status-bg-approved {
+  @apply bg-[#23A094] text-white;
+}
+.status-bg-published {
+  @apply bg-[#D1D5DB] text-black;
+} /* Đã đổi màu xám */
+.pmp-view-toggle-container {
+  @apply flex gap-4 mb-6 mt-4;
+}
+
+.pmp-view-toggle-btn {
+  @apply flex items-center gap-2 px-6 py-3 font-black uppercase text-sm border-4 border-black transition-all bg-white text-black hover:bg-gray-100 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.pmp-view-toggle-btn.active-view {
+  @apply bg-[#FFD000] hover:bg-[#FFD000] translate-x-1 translate-y-1 shadow-none;
+}
+
+.pmp-view-toggle-btn.trash-view {
+  @apply bg-[#FF90E8] hover:bg-[#FF90E8] translate-x-1 translate-y-1 shadow-none;
+}

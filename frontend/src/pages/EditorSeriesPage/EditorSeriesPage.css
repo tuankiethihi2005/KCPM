@@ -1,0 +1,171 @@
+@reference "../../index.css";
+
+.editor-series-wrapper {
+  @apply max-w-6xl mx-auto space-y-6 font-sans text-black;
+}
+
+.editor-series-header {
+  @apply flex flex-col gap-4 border-b-4 border-black pb-5 md:flex-row md:items-end md:justify-between;
+}
+
+.editor-series-eyebrow {
+  @apply mb-2 inline-block bg-[#FFD000] border-2 border-black px-3 py-1 text-xs font-black uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.editor-series-title {
+  @apply m-0 text-3xl md:text-4xl font-black uppercase tracking-tight;
+}
+
+.editor-series-desc {
+  @apply mt-3 max-w-2xl text-sm font-bold text-gray-800;
+}
+
+.editor-series-progress-link {
+  @apply inline-flex items-center justify-center border-4 border-black bg-[#23A094] px-4 py-2 font-black uppercase text-white shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] transition-all hover:-translate-y-0.5 hover:shadow-[7px_7px_0px_0px_rgba(0,0,0,1)];
+}
+
+.editor-series-stats {
+  @apply grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4;
+}
+
+.editor-series-stat {
+  @apply border-4 border-black bg-white p-4 shadow-[5px_5px_0px_0px_rgba(0,0,0,1)];
+}
+
+.editor-series-stat span {
+  @apply block text-xs font-black uppercase tracking-widest text-gray-600;
+}
+
+.editor-series-stat strong {
+  @apply mt-2 block text-3xl font-black;
+}
+
+.editor-series-toolbar {
+  @apply space-y-4 border-4 border-black bg-white p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.editor-series-search {
+  @apply w-full border-4 border-black bg-[#F4F4F0] px-4 py-2.5 font-bold text-black placeholder:text-gray-500 focus:outline-none focus:ring-4 focus:ring-[#FFD000];
+}
+
+.editor-series-filter-group {
+  @apply space-y-2;
+}
+
+.editor-series-filter-group > span {
+  @apply block text-xs font-black uppercase tracking-widest;
+}
+
+.editor-series-chips {
+  @apply flex flex-wrap gap-2;
+}
+
+.editor-series-chip {
+  @apply border-2 border-black bg-white px-3 py-1.5 text-xs font-black uppercase tracking-wide transition-colors hover:bg-[#FFD000];
+}
+
+.editor-series-chip-active {
+  @apply bg-black text-white hover:bg-black;
+}
+
+.editor-series-empty {
+  @apply border-4 border-dashed border-black bg-[#F4F4F0] p-10 text-center font-black uppercase tracking-widest shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.editor-series-grid {
+  @apply grid grid-cols-1 gap-6 lg:grid-cols-2;
+}
+
+.editor-series-card {
+  @apply flex min-h-[320px] flex-col justify-between border-4 border-black bg-white p-5 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.editor-series-card-top {
+  @apply flex items-start justify-between gap-3;
+}
+
+.editor-series-card-top h2 {
+  @apply m-0 text-2xl font-black uppercase leading-tight tracking-tight;
+}
+
+.editor-series-status,
+.editor-series-risk,
+.editor-series-proposal {
+  @apply shrink-0 border-2 border-black px-2 py-1 text-[10px] font-black uppercase;
+}
+
+.editor-series-status-active,
+.editor-series-status-approved {
+  @apply bg-[#23A094] text-white;
+}
+
+.editor-series-status-at-risk,
+.editor-series-risk-critical {
+  @apply bg-[#FF5C00] text-white;
+}
+
+.editor-series-status-hiatus,
+.editor-series-status-cancelled {
+  @apply bg-black text-white;
+}
+
+.editor-series-status-draft,
+.editor-series-status-changed-schedule,
+.editor-series-risk-warning {
+  @apply bg-[#FFD000] text-black;
+}
+
+.editor-series-risk-safe {
+  @apply bg-[#23A094] text-white;
+}
+
+.editor-series-description {
+  @apply my-4 line-clamp-3 text-sm font-semibold text-gray-700;
+}
+
+.editor-series-meta-grid {
+  @apply grid grid-cols-1 gap-3 border-y-4 border-black py-4 sm:grid-cols-2;
+}
+
+.editor-series-meta-grid div {
+  @apply bg-[#F4F4F0] border-2 border-black p-3;
+}
+
+.editor-series-meta-grid span {
+  @apply block text-[10px] font-black uppercase tracking-widest text-gray-600;
+}
+
+.editor-series-meta-grid strong {
+  @apply mt-1 block text-sm font-black;
+}
+
+.editor-series-card-footer {
+  @apply mt-4 flex flex-wrap items-center gap-2;
+}
+
+.editor-series-proposal {
+  @apply bg-[#FF90E8] text-black;
+}
+.editor-series-card-footer {
+  @apply mt-6 flex flex-wrap items-center justify-between gap-4 pt-2;
+}
+
+.editor-series-proposal {
+  @apply bg-[#FF90E8] text-black;
+}
+
+.editor-series-btn-chapter {
+  @apply bg-[#FFD000] text-black border-4 border-black px-6 py-3 font-black text-xs uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:bg-[#FF90E8] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all;
+}
+
+.editor-series-card-links {
+  @apply flex flex-wrap gap-2;
+}
+
+.editor-series-card-links a {
+  @apply bg-[#FFD000] text-black border-4 border-black px-4 py-2 font-black text-[10px] uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:bg-[#FF90E8] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all;
+}
+
+.editor-series-card-links a:last-child {
+  @apply bg-[#23A094] text-white hover:bg-[#1a7f75];
+}

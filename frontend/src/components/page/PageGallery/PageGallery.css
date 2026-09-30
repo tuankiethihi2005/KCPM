@@ -1,0 +1,11 @@
+@reference "../../../index.css";
+
+.pg-empty-state {
+  @apply p-8 text-center font-black text-xl border-4 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] uppercase tracking-tight text-black;
+}
+
+/* Sửa class này trong PageGallery.css */
+.pg-grid-container {
+  /* Giảm từ 5 cột xuống 4 cột (lg:grid-cols-4) hoặc 3 cột (lg:grid-cols-3) tùy ý bạn */
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6;
+}

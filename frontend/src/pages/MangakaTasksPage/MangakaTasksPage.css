@@ -1,0 +1,454 @@
+@reference "../../index.css";
+
+.mtp-container {
+  @apply max-w-6xl mx-auto p-4;
+}
+
+.mtp-header {
+  @apply mb-8 pb-6 border-b-4 border-black;
+}
+
+.mtp-title {
+  @apply text-4xl font-black uppercase tracking-tight text-black m-0;
+}
+
+.mtp-subtitle {
+  @apply text-sm font-bold text-gray-700 m-0 mt-2;
+}
+
+/* TAB BAR */
+.mtp-tabs {
+  @apply flex gap-4 mb-8 border-b-4 border-black pb-4;
+}
+
+.mtp-tab-btn {
+  @apply px-4 py-2.5 border-4 border-black bg-white font-black text-sm uppercase tracking-wide cursor-pointer transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.mtp-tab-btn:hover {
+  @apply bg-[#FF90E8] -translate-y-0.5 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)];
+}
+
+.mtp-tab-btn.active {
+  @apply bg-[#FFD000] -translate-y-0.5 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* LAYOUT */
+.mtp-layout {
+  @apply grid grid-cols-1 md:grid-cols-12 gap-8 items-start;
+}
+
+.mtp-left-section {
+  @apply md:col-span-5;
+}
+
+.mtp-right-section {
+  @apply md:col-span-7 sticky top-4;
+}
+
+/* LIST & CARDS */
+.mtp-list {
+  @apply flex flex-col gap-4;
+}
+
+.mtp-card {
+  @apply bg-white border-4 border-black p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer;
+}
+
+.mtp-card:hover {
+  @apply -translate-y-1 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.mtp-card.selected {
+  @apply border-[#23A094] bg-[#F9FDFB] -translate-y-1 shadow-[8px_8px_0px_0px_rgba(35,160,148,1)];
+}
+
+.mtp-card.overdue {
+  @apply bg-red-50 border-red-500 border-[4px] shadow-[4px_4px_0px_0px_rgba(239,68,68,1)];
+}
+
+.mtp-card.near-deadline {
+  @apply bg-orange-50 border-orange-500 border-[4px] shadow-[4px_4px_0px_0px_rgba(249,115,22,1)];
+}
+
+.mtp-warning-icon {
+  @apply text-2xl;
+}
+
+.mtp-card-header {
+  @apply flex items-center justify-between mb-3;
+}
+
+.mtp-badge {
+  @apply px-2.5 py-1 border-2 border-black text-[10px] font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.mtp-badge-small {
+  @apply px-2 py-0.5 border-2 border-black text-[9px] font-black uppercase tracking-wider;
+}
+
+.mtp-card-price {
+  @apply font-black text-sm;
+}
+
+.mtp-card-tasktype {
+  @apply text-lg font-black m-0 mb-2 uppercase tracking-wide text-black;
+}
+
+.mtp-card-meta {
+  @apply text-xs font-bold text-gray-800 m-0 leading-relaxed mb-3;
+}
+
+.mtp-card-footer {
+  @apply text-[10px] font-black text-gray-500 border-t-2 border-dashed border-gray-300 pt-2;
+}
+
+/* DETAILS RIGHT SIDE */
+.mtp-detail-placeholder {
+  @apply bg-white border-4 border-black p-10 text-center shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.placeholder-icon {
+  @apply text-5xl block mb-4;
+}
+
+.mtp-detail-placeholder h3 {
+  @apply text-xl font-black uppercase m-0 mb-2;
+}
+
+.mtp-detail-placeholder p {
+  @apply text-sm text-gray-600 font-bold m-0 max-w-xs mx-auto;
+}
+
+.mtp-detail-card {
+  @apply bg-white border-4 border-black p-6 lg:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.mtp-detail-header {
+  @apply flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b-4 border-black;
+}
+
+.mtp-detail-header h2 {
+  @apply text-2xl font-black uppercase tracking-wide m-0;
+}
+
+.mtp-detail-info-grid {
+  @apply grid grid-cols-2 gap-4 mb-6 bg-[#F4F4F0] border-2 border-black p-4 text-xs font-bold;
+}
+
+/* ASSIGN NEW TASK FORM */
+.mtp-assign-form {
+  @apply bg-white border-4 border-black p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-8;
+}
+
+.mtp-assign-form h2 {
+  @apply text-xl font-black uppercase tracking-wide m-0 mb-2;
+}
+
+.form-helper {
+  @apply text-xs font-bold text-gray-500 m-0 mb-6;
+}
+
+.form-group {
+  @apply mb-4 flex flex-col;
+}
+
+.form-row {
+  @apply flex gap-4;
+}
+
+.form-group.half {
+  @apply flex-1;
+}
+
+.form-group label {
+  @apply text-sm font-black uppercase mb-3;
+}
+
+.form-select,
+.form-input,
+.form-textarea {
+  @apply border-4 border-black
+    bg-white
+    p-4
+    min-h-[140px]
+    text-base
+    font-bold
+    resize-none
+    shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.form-select:focus,
+.form-input:focus,
+.form-textarea:focus {
+  @apply outline-none
+    shadow-[6px_6px_0px_0px_rgba(35,160,148,1)];
+}
+
+.mtp-assign-submit-btn {
+  @apply w-full mt-4 py-3 bg-[#FFD000] border-4 border-black text-black font-black uppercase tracking-widest text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer;
+}
+
+.mtp-assign-submit-btn:hover:not(:disabled) {
+  @apply bg-[#FF90E8] -translate-y-0.5 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)];
+}
+
+.mtp-assign-submit-btn:active:not(:disabled) {
+  @apply translate-x-0.5 translate-y-0.5 shadow-none;
+}
+
+/* =========================================
+   BEFORE / AFTER IMAGE COMPARISON SLIDER
+========================================= */
+.mtp-comparison-container {
+  @apply mb-8 border-t-4 border-dashed border-black pt-6;
+}
+
+.mtp-comparison-container h3 {
+  @apply text-sm font-black uppercase tracking-wide mb-1;
+}
+
+.comparison-helper {
+  @apply text-[10px] font-bold text-gray-500 m-0 mb-4;
+}
+
+.slider-wrapper {
+  @apply relative w-full h-[400px] border-4 border-black overflow-hidden bg-gray-100 select-none;
+}
+
+.slider-image {
+  @apply absolute top-0 left-0 w-full h-full object-contain pointer-events-none;
+}
+
+.slider-image.before {
+  @apply bg-white;
+}
+
+.slider-after-container {
+  @apply absolute top-0 left-0 w-full h-full pointer-events-none bg-white;
+}
+
+.slider-image.after {
+  @apply object-contain;
+}
+
+/* Drag line Splitting Indicator */
+.slider-line {
+  @apply absolute top-0 w-1 bg-black h-full pointer-events-none flex items-center justify-center -translate-x-[2px];
+}
+
+.slider-handle {
+  @apply w-8 h-8 rounded-full border-2 border-black bg-[#FFD000] flex items-center justify-center font-black text-black text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* Transparent Overlay Range input */
+.comparison-slider-input {
+  @apply absolute top-0 left-0 w-full h-full cursor-ew-resize opacity-0 z-30 m-0 p-0;
+}
+
+.comparison-non-image {
+  @apply bg-[#F4F4F0] border-2 border-black p-6 text-center text-xs font-bold mb-4;
+}
+
+.non-image-links {
+  @apply flex justify-center gap-4 mt-4;
+}
+
+.non-image-btn {
+  @apply px-4 py-2 border-2 border-black bg-white font-black text-xs uppercase text-black no-underline shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.non-image-btn.after {
+  @apply bg-[#FFD000];
+}
+
+.latest-note-box {
+  @apply bg-[#FFFEEB] border-2 border-black p-4 mt-4 text-xs font-bold;
+}
+
+.latest-note-box strong {
+  @apply block font-black uppercase text-[10px] tracking-wider text-gray-600 mb-1;
+}
+
+.latest-note-box p {
+  @apply m-0 text-gray-800 leading-relaxed;
+}
+
+.mtp-no-submission {
+  @apply bg-yellow-50 border-2 border-yellow-300 text-yellow-800 p-4 text-center font-bold text-xs mb-6;
+}
+
+/* REVIEW FORM */
+.mtp-review-form {
+  @apply mt-8 border-4 border-black bg-[#F8F8F8] p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.mtp-review-form h3 {
+  @apply text-2xl font-black uppercase border-b-4 border-black pb-3 mb-6;
+}
+
+.radio-group {
+  @apply grid grid-cols-3 gap-5 mt-4;
+}
+
+.radio-label {
+  @apply relative flex flex-col justify-center items-center
+    h-32 p-5
+    border-4 border-black
+    bg-white
+    cursor-pointer
+    transition-all
+    shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.radio-label input {
+  @apply absolute opacity-0;
+}
+
+.radio-label:hover {
+  @apply -translate-y-1
+    shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.radio-label.approve:has(input:checked) {
+  @apply bg-[#23A094] text-white
+    shadow-[8px_8px_0px_0px_rgba(35,160,148,1)];
+}
+
+.radio-label.revision:has(input:checked) {
+  @apply bg-[#FFD000]
+    text-black
+    shadow-[8px_8px_0px_0px_rgba(255,208,0,1)];
+}
+
+.radio-label.reject:has(input:checked) {
+  @apply bg-[#FF4545]
+    text-white
+    shadow-[8px_8px_0px_0px_rgba(255,69,69,1)];
+}
+
+.mtp-review-btn {
+  @apply mt-6
+    w-full
+    py-5
+    text-lg
+    font-black
+    uppercase
+    border-4
+    border-black
+    shadow-[6px_6px_0px_0px_rgba(0,0,0,1)];
+}
+.mtp-review-btn.approved {
+  @apply bg-[#23A094] text-white;
+}
+
+.mtp-review-btn.revision-requested {
+  @apply bg-[#FF5C00] text-white;
+}
+
+.mtp-review-btn.rejected {
+  @apply bg-red-500 text-white;
+}
+
+.mtp-review-btn:hover {
+  @apply -translate-y-1
+    shadow-[10px_10px_0px_0px_rgba(0,0,0,1)];
+}
+
+.mtp-review-btn:active {
+  @apply translate-x-0.5 translate-y-0.5 shadow-none;
+}
+
+/* HISTORY */
+.mtp-history-section {
+  @apply border-t-4 border-dashed border-black pt-6;
+}
+
+.mtp-history-section h3 {
+  @apply text-sm font-black uppercase tracking-wide mb-4;
+}
+
+.mtp-history-list {
+  @apply flex flex-col gap-4;
+}
+
+.mtp-history-item {
+  @apply bg-[#F4F4F0] border-2 border-black p-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.mtp-history-header {
+  @apply flex items-center justify-between mb-2;
+}
+
+.mtp-history-date {
+  @apply text-[10px] font-black uppercase text-gray-600;
+}
+
+.mtp-history-note {
+  @apply text-xs text-gray-800 m-0 mb-3 leading-relaxed;
+}
+
+.mtp-history-link {
+  @apply text-xs font-black text-[#23A094] hover:text-[#FF5C00] transition-colors no-underline;
+}
+
+.mtp-empty-state {
+  @apply bg-white border-4 border-black p-8 text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.mtp-empty-state h3 {
+  @apply font-black text-lg m-0 mb-2 uppercase;
+}
+
+.mtp-empty-state p {
+  @apply text-sm font-bold text-gray-600 m-0;
+}
+
+.mtp-cancel-task-area {
+  @apply mt-6 pt-6 border-t-4 border-dashed border-black flex justify-end;
+}
+
+.mtp-cancel-task-btn {
+  @apply px-4 py-2 bg-[#FF4545] border-4 border-black text-black font-black uppercase text-xs tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none cursor-pointer transition-all;
+}
+
+.mtp-review-preview {
+  @apply flex flex-col gap-4;
+}
+
+.mtp-review-image {
+  @apply w-full max-h-[700px]
+         object-contain
+         bg-white
+         border-4 border-black
+         shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.mtp-download-btn {
+  @apply inline-flex
+         items-center
+         justify-center
+         px-4
+         py-3
+         bg-[#FFD000]
+         border-4
+         border-black
+         font-black
+         uppercase
+         text-sm
+         no-underline
+         text-black
+         shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+         transition-all;
+}
+
+.mtp-download-btn:hover {
+  @apply -translate-y-0.5
+         shadow-[6px_6px_0px_0px_rgba(0,0,0,1)];
+}
+
+.mtp-download-btn:active {
+  @apply translate-x-0.5
+         translate-y-0.5
+         shadow-none;
+}
