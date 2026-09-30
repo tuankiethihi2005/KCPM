@@ -1,0 +1,175 @@
+@reference "../../../index.css";
+
+/* ================= CARD ================= */
+.page-card {
+  @apply bg-white border-4 border-black flex flex-col relative
+    shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]
+    transition-all duration-200
+    hover:-translate-y-1
+    hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* Khi ở thùng rác */
+.card-is-deleted {
+  @apply relative;
+}
+
+.card-is-deleted::after {
+  content: "";
+  @apply absolute inset-0 bg-white/50 pointer-events-none z-10;
+}
+
+/* Đảm bảo nút restore nổi trên overlay */
+.card-is-deleted .btn-corner-restore {
+  @apply relative z-20;
+}
+
+/* ================= CORNER ACTIONS ================= */
+.card-corner-actions {
+  @apply absolute top-2 right-2 flex gap-2 opacity-0 transition-opacity z-20;
+}
+
+.page-card:hover .card-corner-actions {
+  @apply opacity-100;
+}
+
+.btn-corner-delete {
+  @apply bg-[#FF4545] text-black border-4 border-black
+    p-2 font-black
+    shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+    hover:-translate-y-1
+    hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]
+    active:translate-x-[4px]
+    active:translate-y-[4px]
+    active:shadow-none;
+}
+
+.btn-corner-restore {
+  @apply bg-[#00E599] text-black border-4 border-black
+    px-3 py-1 text-[10px] font-black uppercase flex items-center gap-1
+    shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+    hover:-translate-y-1
+    hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]
+    active:translate-x-[4px]
+    active:translate-y-[4px]
+    active:shadow-none;
+}
+
+/* ================= IMAGE ================= */
+.page-image-container {
+  @apply w-full aspect-[2/3] bg-gray-200 overflow-hidden
+    flex items-center justify-center relative
+    border-b-4 border-black;
+}
+
+.page-image-container img {
+  @apply w-full h-full object-contain
+    grayscale-[20%] hover:grayscale-0
+    transition-all duration-300 bg-white;
+}
+
+/* ================= BADGES ================= */
+.page-version-badge {
+  @apply absolute bottom-3 right-3 bg-[#FF90E8] text-black
+    border-4 border-black px-2 py-1
+    font-black text-xs uppercase
+    shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10;
+}
+
+.page-number-badge {
+  @apply absolute top-3 left-3 bg-[#FFD000] text-black
+    border-4 border-black px-3 py-1
+    font-black text-xs uppercase tracking-widest
+    shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10;
+}
+
+.page-status-badge {
+  @apply absolute top-3 right-3 px-3 py-1
+    font-black text-xs uppercase tracking-widest
+    border-4 border-black
+    shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10;
+}
+
+/* STATUS COLORS */
+.status-draft {
+  @apply bg-white text-black;
+}
+.status-progress {
+  @apply bg-[#FF8A00] text-black;
+}
+.status-review {
+  @apply bg-[#FFD000] text-black;
+}
+.status-approved {
+  @apply bg-[#00E599] text-black;
+}
+
+/* ================= ACTIONS ================= */
+.page-actions {
+  @apply p-4 bg-[#F4F4F0] border-t-4 border-black
+    flex flex-col flex-grow justify-end;
+}
+
+.actions-wrapper,
+.editor-actions {
+  @apply flex flex-col gap-3 w-full;
+}
+
+.btn-action {
+  @apply w-full py-2 border-4 border-black
+    font-black text-xs uppercase tracking-widest
+    shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+    transition-all cursor-pointer
+    hover:-translate-y-1
+    hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]
+    active:translate-x-[4px]
+    active:translate-y-[4px]
+    active:shadow-none
+    disabled:bg-[#D1D5DB]
+    disabled:text-gray-600
+    disabled:cursor-not-allowed;
+}
+
+.btn-submit-review {
+  @apply bg-[#FFD000] text-black hover:bg-[#23A094] hover:text-white;
+}
+
+.btn-approve {
+  @apply bg-[#00E599] text-black hover:bg-white;
+}
+
+.btn-reject {
+  @apply bg-[#FF4545] text-black hover:bg-white;
+}
+
+/* ================= NAV ================= */
+.card-nav-actions {
+  @apply flex gap-2 w-full mt-3 pt-3
+    border-t-4 border-dashed border-black;
+}
+
+.btn-nav-workspace {
+  @apply bg-[#FF90E8] text-black border-4 border-black
+    font-black uppercase text-[10px] px-2 py-2 flex-1 text-center
+    shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+    hover:-translate-y-[2px]
+    hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+    active:translate-x-[2px]
+    active:translate-y-[2px]
+    active:shadow-none;
+}
+
+.btn-nav-history {
+  @apply bg-[#23A094] text-white border-4 border-black
+    font-black uppercase text-[10px] px-2 py-2 flex-1 text-center
+    shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+    hover:-translate-y-[2px]
+    hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+    active:translate-x-[2px]
+    active:translate-y-[2px]
+    active:shadow-none;
+}
+
+.btn-delete-page {
+  @apply bg-[#FF4545] text-black hover:bg-white;
+}

@@ -1,0 +1,20 @@
+@reference "../../../index.css";
+
+.dashboard-wrapper {
+  @apply min-h-screen bg-[#F4F4F0] p-6 lg:p-10 font-sans;
+}
+.dashboard-title {
+  @apply text-3xl lg:text-4xl font-black text-black uppercase tracking-tight border-b-4 border-black inline-block pb-2 mb-8;
+}
+.board-dashboard-stack {
+  @apply grid grid-cols-1 gap-8;
+}
+.board-dashboard-row {
+  @apply w-full min-w-0;
+}
+.board-dashboard-row .series-progress-card {
+  @apply w-full;
+}
+.board-dashboard-row .series-progress-header {
+  @apply flex-col items-start gap-4 lg:flex-row lg:items-start lg:justify-between;
+}

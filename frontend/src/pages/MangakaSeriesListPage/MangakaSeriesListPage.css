@@ -1,0 +1,95 @@
+@reference "../../index.css";
+
+.mangaka-list-wrapper {
+  @apply w-full space-y-8 font-sans;
+}
+
+.mangaka-list-header {
+  @apply flex flex-col md:flex-row justify-between md:items-end gap-6 mb-8 border-b-4 border-black pb-6;
+}
+
+.mangaka-list-title {
+  @apply font-black text-black uppercase tracking-tight text-4xl m-0;
+}
+
+.mangaka-list-desc {
+  @apply font-black text-xs uppercase tracking-widest text-black bg-[#FFD000] border-2 border-black inline-block px-3 py-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mt-3;
+}
+
+.btn-create-series {
+  @apply bg-[#23A094] text-white border-4 border-black px-6 py-3 font-black uppercase tracking-widest shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:bg-[#1a7f75] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all;
+}
+
+.empty-series-box {
+  @apply p-12 text-center bg-[#F4F4F0] border-4 border-dashed border-black hover:bg-[#FFD000] transition-colors font-black uppercase tracking-widest text-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.mangaka-series-grid {
+  @apply grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+}
+
+/* ========================================================
+   KHỐI CARD SERIES - GIAO DIỆN ĐỒNG BỘ VỚI ALL SERIES
+======================================================== */
+.neo-card {
+  @apply flex flex-col justify-between bg-white border-4 border-black p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all text-black outline-none;
+}
+
+.card-top {
+  @apply flex items-start justify-between gap-4 mb-4;
+}
+
+.card-title {
+  @apply m-0 font-black text-2xl uppercase tracking-tight leading-none;
+}
+
+/* BADGE SERIES STATUS CỦA MANGAKA */
+.badge-status {
+  @apply shrink-0 font-black text-[10px] uppercase tracking-widest border-2 border-black px-2 py-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+.status-active {
+  @apply bg-[#00E599] text-black;
+}
+.status-at-risk {
+  @apply bg-[#FF4545] text-white;
+}
+.status-approved {
+  @apply bg-[#23A094] text-white;
+}
+.status-submitted,
+.status-under-review {
+  @apply bg-[#FF8A00] text-black;
+}
+.status-cancelled,
+.status-hiatus {
+  @apply bg-black text-white;
+}
+.status-draft {
+  @apply bg-white text-black;
+}
+
+/* THÔNG TIN BÊN TRONG */
+.card-info-group {
+  @apply flex flex-col items-start gap-3 border-t-4 border-black pt-4;
+}
+
+.card-genre {
+  @apply m-0 font-bold text-sm text-gray-800;
+}
+
+.card-meta {
+  @apply m-0 font-black text-[10px] uppercase tracking-widest bg-[#FF90E8] border-2 border-black inline-block px-2 py-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* CÁC NÚT ĐIỀU HƯỚNG BÊN DƯỚI */
+.card-actions {
+  @apply mt-6 flex gap-3 border-t-4 border-black pt-4 flex-wrap;
+}
+
+.btn-action-secondary {
+  @apply flex-1 text-center bg-white border-4 border-black px-4 py-3 font-black uppercase text-xs tracking-widest text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:bg-[#FFD000] transition-all active:translate-x-[4px] active:translate-y-[4px] active:shadow-none;
+}
+
+.btn-action-primary {
+  @apply flex-1 text-center bg-[#23A094] border-4 border-black px-4 py-3 font-black uppercase text-xs tracking-widest text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:bg-[#1a7f75] transition-all active:translate-x-[4px] active:translate-y-[4px] active:shadow-none;
+}

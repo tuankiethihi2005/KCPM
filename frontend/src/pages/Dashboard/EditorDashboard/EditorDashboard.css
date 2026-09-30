@@ -1,0 +1,55 @@
+@reference "../../../index.css";
+
+/* Dùng chung layout */
+.dashboard-wrapper {
+  @apply max-w-7xl mx-auto space-y-8 font-sans;
+}
+.dashboard-title {
+  @apply text-3xl lg:text-4xl font-black text-black uppercase tracking-tight border-b-4 border-black inline-block pb-2 mb-4;
+}
+.editor-dashboard-stack {
+  @apply grid grid-cols-1 gap-8;
+}
+.editor-dashboard-row {
+  @apply w-full min-w-0;
+}
+.card {
+  @apply bg-white border-4 border-black p-6 lg:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+.card-title {
+  @apply text-2xl font-black uppercase mb-2 border-b-2 border-black inline-block pb-1 text-black;
+}
+.card-desc {
+  @apply text-gray-800 font-bold mt-4 mb-6 text-sm lg:text-base;
+}
+.placeholder-box {
+  @apply border-4 border-dashed border-black bg-[#F4F4F0] min-h-40 flex items-center justify-center text-center text-black font-black uppercase tracking-wider hover:bg-[#FF90E8] transition-colors cursor-pointer;
+}
+
+/* Tông màu hồng mộng mơ - đen */
+.widget-editor {
+  @apply bg-[#FF90E8] border-4 border-black p-6 lg:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+.widget-title-blue {
+  @apply text-xl font-black text-black uppercase mb-2;
+}
+.widget-desc-blue {
+  @apply text-black font-bold text-sm mb-6;
+}
+.ranking-item-blue {
+  @apply bg-white border-4 border-black p-4 mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center transform hover:-translate-y-1 transition-transform font-black text-sm uppercase;
+}
+.text-risk {
+  @apply text-white bg-red-500 px-2 border-2 border-black;
+}
+.btn-blue {
+  @apply block w-full text-center py-3 px-4 text-white font-black uppercase tracking-wider border-4 border-black bg-black hover:bg-white hover:text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.5)] transition-all active:shadow-none active:translate-x-[4px] active:translate-y-[4px];
+}
+
+.editor-dashboard-row .series-progress-card {
+  @apply w-full;
+}
+
+.editor-dashboard-row .series-progress-header {
+  @apply flex-col items-start gap-4 lg:flex-row lg:items-start lg:justify-between;
+}

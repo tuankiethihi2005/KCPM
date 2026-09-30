@@ -1,0 +1,35 @@
+@reference "../../index.css";
+
+.clp-wrapper {
+  @apply max-w-7xl mx-auto space-y-6 font-sans px-4 lg:px-8 py-8;
+}
+
+/* Hiệu ứng vệt dạ quang Neo-Brutalism */
+/* Hiệu ứng Đổ bóng chữ cứng & Trượt (Offset) */
+.clp-back-btn {
+  @apply inline-block mb-4 text-black font-black uppercase text-xs tracking-widest underline decoration-[3px] underline-offset-4 cursor-pointer transition-all duration-150;
+}
+
+.clp-header {
+  @apply flex flex-col md:flex-row justify-between md:items-end gap-4 mb-8 border-b-4 border-black pb-4;
+}
+
+.clp-title {
+  @apply text-3xl lg:text-4xl font-black text-black uppercase tracking-tight m-0;
+}
+
+.clp-subtitle {
+  @apply text-black font-bold mt-2 text-sm lg:text-base uppercase tracking-wider;
+}
+
+.clp-highlight {
+  @apply bg-[#FFD000] px-2 py-0.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.clp-empty-box {
+  @apply bg-[#F4F4F0] border-4 border-dashed border-black p-8 text-black font-black uppercase text-center tracking-widest text-lg shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.clp-table-container {
+  @apply bg-white border-4 border-black p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}

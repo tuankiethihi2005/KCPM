@@ -1,0 +1,148 @@
+@reference "../../index.css";
+
+.aip-container {
+  @apply max-w-6xl mx-auto p-4;
+}
+
+.aip-header {
+  @apply mb-8 pb-6 border-b-4 border-black;
+}
+
+.aip-title {
+  @apply text-4xl font-black uppercase tracking-tight text-black m-0;
+}
+
+.aip-subtitle {
+  @apply text-sm font-bold text-gray-700 m-0 mt-2;
+}
+
+/* STATS GRID */
+.aip-stats-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8;
+}
+
+.aip-stat-card {
+  @apply bg-white border-4 border-black p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between transition-transform hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)];
+}
+
+.aip-stat-card.total {
+  @apply bg-[#FFFEEB];
+}
+
+.aip-stat-card.paid {
+  @apply bg-[#E9FFF9];
+}
+
+.aip-stat-card.pending {
+  @apply bg-[#FFF0FD];
+}
+
+.aip-stat-card.count {
+  @apply bg-[#F4F4F0];
+}
+
+.aip-stat-label {
+  @apply text-[10px] font-black uppercase tracking-wider text-gray-500 mb-2;
+}
+
+.aip-stat-value {
+  @apply text-2xl lg:text-3xl font-black text-black my-1;
+}
+
+.aip-stat-sub {
+  @apply text-[9px] font-bold text-gray-600 mt-2 border-t border-dashed border-gray-300 pt-1.5;
+}
+
+/* FILTER PANEL */
+.aip-filter-panel {
+  @apply flex flex-wrap items-center justify-between gap-4 mb-6 bg-white border-4 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.aip-filter-group {
+  @apply flex items-center gap-3 text-xs font-black uppercase tracking-wider;
+}
+
+.aip-select {
+  @apply p-2 border-2 border-black bg-[#F4F4F0] font-bold outline-none text-xs;
+}
+
+.aip-refresh-btn {
+  @apply px-4 py-2 border-2 border-black font-black text-xs uppercase bg-[#FFD000] cursor-pointer transition-all;
+}
+
+.aip-refresh-btn:hover {
+  @apply bg-[#FF90E8] -translate-y-0.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.aip-refresh-btn:active {
+  @apply translate-y-0 shadow-none;
+}
+
+/* TABLE SECTION */
+.aip-table-section {
+  @apply bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden;
+}
+
+.aip-table-wrapper {
+  @apply overflow-x-auto;
+}
+
+.aip-table {
+  @apply w-full border-collapse text-left;
+}
+
+.aip-table th {
+  @apply bg-black text-white p-4 font-black uppercase text-xs tracking-wider border-r border-gray-800;
+}
+
+.aip-table td {
+  @apply p-4 border-b-2 border-black border-r border-gray-100 text-sm font-bold;
+}
+
+.aip-table tbody tr:last-child td {
+  @apply border-b-0;
+}
+
+.aip-table-month {
+  @apply bg-[#FFD000] border border-black px-2 py-0.5 text-xs font-black;
+}
+
+.aip-table-tasktype {
+  @apply font-black text-black uppercase tracking-wide text-sm;
+}
+
+.aip-table-series {
+  @apply text-xs font-black text-gray-800 bg-gray-100 border border-gray-300 px-2 py-1 inline-block;
+}
+
+.aip-table-amount {
+  @apply text-teal-700 font-black text-base;
+}
+
+.aip-table-status {
+  @apply inline-block px-2.5 py-1 border-2 border-black text-[9px] font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.aip-table-status.status-pending {
+  @apply bg-[#FFD000];
+}
+
+.aip-table-status.status-approved {
+  @apply bg-[#FF90E8];
+}
+
+.aip-table-status.status-paid {
+  @apply bg-[#23A094] text-white;
+}
+
+.aip-table-status.status-cancelled {
+  @apply bg-red-500 text-white;
+}
+
+.aip-table-date {
+  @apply text-xs font-bold text-gray-500;
+}
+
+.aip-table-empty {
+  @apply p-8 text-center text-gray-500 font-bold italic;
+}

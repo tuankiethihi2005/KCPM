@@ -1,0 +1,11 @@
+@reference "../../index.css";
+
+.loading-overlay {
+  @apply fixed inset-0 bg-[#F4F4F0]/80 backdrop-blur-sm flex flex-col items-center justify-center z-[9999];
+}
+.loading-spinner {
+  @apply w-12 h-12 border-8 border-black border-t-[#FF5C00] rounded-full animate-spin mb-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+.loading-text {
+  @apply font-black text-black text-lg uppercase tracking-widest bg-[#FFD000] px-4 py-2 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}

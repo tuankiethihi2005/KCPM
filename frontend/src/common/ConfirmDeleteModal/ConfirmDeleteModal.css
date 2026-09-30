@@ -1,0 +1,41 @@
+@reference "../../index.css";
+
+.confirm-modal-overlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4;
+}
+
+.confirm-modal-content {
+  @apply bg-white border-4 border-black p-6 w-full max-w-md shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.confirm-modal-header {
+  @apply flex items-center gap-3 mb-4;
+}
+
+.confirm-modal-icon {
+  @apply bg-[#FF4545] p-2 border-2 border-black;
+}
+
+.confirm-modal-title {
+  @apply text-xl font-black uppercase tracking-tight text-black;
+}
+
+.confirm-modal-text {
+  @apply font-bold text-gray-700 mb-6;
+}
+
+.confirm-modal-highlight {
+  @apply text-[#FF4545] font-black;
+}
+
+.confirm-modal-actions {
+  @apply flex gap-4 justify-end;
+}
+
+.confirm-btn-cancel {
+  @apply px-4 py-2 bg-gray-200 border-2 border-black font-black uppercase text-black hover:bg-gray-300 transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.confirm-btn-delete {
+  @apply px-4 py-2 bg-[#FF4545] text-white border-2 border-black font-black uppercase hover:bg-red-600 transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}

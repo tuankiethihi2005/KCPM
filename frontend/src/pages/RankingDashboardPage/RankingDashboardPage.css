@@ -1,0 +1,246 @@
+@reference "../../index.css";
+
+.ranking-wrapper {
+  @apply max-w-[1220px] mx-auto space-y-8 font-sans pb-12;
+}
+
+.page-header {
+  @apply flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8 border-b-4 border-black pb-6;
+}
+
+.header-info {
+  @apply flex-1;
+}
+
+.page-title {
+  @apply m-0 font-black text-3xl md:text-5xl uppercase tracking-tight text-black mb-4;
+}
+
+.page-desc {
+  @apply m-0 font-bold text-black text-sm uppercase bg-[#FFD000] border-2 border-black inline-block px-3 py-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#23A094] text-white font-black uppercase text-sm tracking-widest border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:bg-[#1a7f75] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-4 bg-white text-black font-black uppercase text-sm tracking-widest border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:bg-[#FFD000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all;
+}
+
+.ranking-grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8;
+}
+
+.neo-panel {
+  @apply bg-white border-4 border-black p-6 md:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-6;
+}
+
+.panel-title {
+  @apply flex items-center gap-3 font-black text-xl md:text-2xl uppercase tracking-tight text-black border-b-4 border-black pb-4 mb-2;
+}
+
+.panel-title h2 {
+  @apply m-0;
+}
+
+.neo-form {
+  @apply flex flex-col gap-6;
+}
+
+.form-group {
+  @apply flex flex-col gap-2;
+}
+
+.grid-2-cols {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-6;
+}
+
+.neo-label-wrap {
+  @apply flex items-center gap-2;
+}
+
+.neo-label {
+  @apply font-black text-xs uppercase tracking-widest text-black bg-[#F4F4F0] border-2 border-black inline-block px-2 py-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.neo-input,
+.neo-select {
+  @apply w-full px-4 py-3 border-4 border-black font-bold text-sm bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:bg-white focus:shadow-[6px_6px_0px_0px_rgba(35,160,148,1)] outline-none transition-all;
+}
+
+.field-tooltip {
+  @apply m-0 mt-2 font-bold text-xs uppercase bg-black text-white px-3 py-3 w-full shadow-[2px_2px_0px_0px_rgba(35,160,148,1)] whitespace-pre-line leading-relaxed block;
+}
+
+.series-list-wrap {
+  @apply font-black text-xs uppercase tracking-widest text-black mb-3 block bg-[#FF90E8] border-2 border-black w-max px-2 py-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.series-checkbox-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+}
+
+.series-checkbox-label {
+  @apply flex items-center gap-3 p-3 border-4 border-black bg-white font-bold text-sm cursor-pointer hover:bg-[#FFD000] hover:-translate-y-1 transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.series-checkbox-label input {
+  @apply w-5 h-5 border-4 border-black accent-black cursor-pointer;
+}
+
+/* Thống kê (Metrics) */
+.metrics-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-8;
+}
+
+.metric-card {
+  @apply bg-white border-4 border-black p-5 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col md:flex-row items-start md:items-center gap-4 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-transform;
+}
+
+.metric-card--danger {
+  @apply bg-[#FF4545] text-white;
+}
+
+.metric-card--danger .metric-label {
+  @apply bg-black text-white border-white;
+}
+
+.metric-card--danger .metric-detail {
+  @apply text-white;
+}
+
+.metric-icon {
+  @apply p-3 border-4 border-black bg-[#FFD000] text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+}
+
+.metric-card--danger .metric-icon {
+  @apply bg-white text-[#FF4545];
+}
+
+.metric-content {
+  @apply flex flex-col gap-2 items-start;
+}
+
+.metric-label {
+  @apply font-black text-[10px] uppercase tracking-widest bg-[#F4F4F0] border-2 border-black inline-block px-2 py-1 text-black;
+}
+
+.metric-value {
+  @apply font-black text-3xl tracking-tight leading-none;
+}
+
+.metric-detail {
+  @apply font-bold text-xs uppercase text-gray-800 m-0;
+}
+
+/* Bảng xếp hạng (Table) */
+.ranking-toolbar {
+  @apply flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 mb-6;
+}
+
+.ranking-filters {
+  @apply flex flex-wrap items-center gap-4 w-full xl:w-auto;
+}
+
+.table-responsive {
+  @apply w-full overflow-x-auto border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.neo-table {
+  @apply w-full text-left border-collapse min-w-[900px] bg-white;
+}
+
+.neo-table th {
+  @apply p-4 font-black text-xs uppercase tracking-widest border-b-4 border-black bg-[#F4F4F0] whitespace-nowrap text-black;
+}
+
+.neo-table td {
+  @apply p-4 font-bold text-sm border-b-2 border-black whitespace-nowrap text-black;
+}
+
+.neo-table tr:last-child td {
+  @apply border-b-0;
+}
+
+.neo-table tr:hover td {
+  @apply bg-[#FFD000]/20;
+}
+
+.rank-number {
+  @apply inline-flex items-center justify-center w-10 h-10 bg-black text-white font-black text-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.series-name {
+  @apply block font-black text-lg uppercase tracking-tight;
+}
+
+.series-id {
+  @apply block text-[10px] bg-gray-200 border-2 border-black inline-block px-1 mt-1 uppercase font-black tracking-widest;
+}
+
+/* Badges trạng thái */
+.trend-badge {
+  @apply px-3 py-1 font-black text-xs uppercase tracking-widest border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+}
+
+.trend-up {
+  @apply bg-[#00E599] text-black;
+}
+
+.trend-down {
+  @apply bg-[#FF4545] text-white;
+}
+
+.trend-stable {
+  @apply bg-[#FFD000] text-black;
+}
+
+.status-warning {
+  @apply px-3 py-1 font-black text-[10px] uppercase tracking-widest border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] bg-[#FF8A00] text-black;
+}
+
+.status-safe {
+  @apply px-3 py-1 font-black text-[10px] uppercase tracking-widest border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] bg-[#F4F4F0] text-black;
+}
+
+.ranking-empty {
+  @apply p-12 text-center bg-[#F4F4F0] border-4 border-dashed border-black font-black uppercase tracking-widest text-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:bg-[#FFD000] transition-colors cursor-default;
+}
+
+/* Biểu đồ (Chart) */
+.neo-chart-container {
+  @apply border-4 border-black bg-[#F4F4F0] p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative w-full overflow-hidden;
+}
+
+.neo-chart-container svg {
+  @apply w-full h-[300px] block;
+}
+
+.neo-chart-container line {
+  @apply stroke-black stroke-[4px];
+}
+
+.neo-chart-container path {
+  @apply stroke-[#23A094] stroke-[6px] fill-none;
+}
+
+.neo-chart-container circle {
+  @apply fill-[#FFD000] stroke-black stroke-[4px] transition-all hover:[r:10px] cursor-pointer hover:fill-[#FF90E8];
+}
+
+.neo-chart-container text {
+  @apply fill-black font-black text-sm;
+}
+
+.neo-chart-label {
+  @apply fill-black font-bold text-xs uppercase;
+}
+
+.chart-legend {
+  @apply mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 font-bold text-sm uppercase border-t-4 border-black pt-4;
+}
+
+.chart-legend-title {
+  @apply font-black bg-[#FF90E8] border-2 border-black px-3 py-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-black tracking-widest;
+}

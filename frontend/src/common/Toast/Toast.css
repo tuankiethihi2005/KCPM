@@ -1,0 +1,63 @@
+@reference "../../index.css";
+
+.toast-container {
+  @apply fixed top-6 right-6 flex flex-col gap-4 z-[10000];
+}
+
+.toast-box {
+  @apply flex items-center gap-3 min-w-[280px] p-4 bg-white border-4 border-black font-black text-sm uppercase tracking-wider shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] animate-[slideIn_0.3s_ease-out_forwards];
+  animation: slideInRight 0.3s ease-out forwards;
+}
+.toast-box.closing {
+  animation: fadeOutRight 0.3s ease-in forwards;
+}
+
+.toast-success {
+  @apply bg-[#23A094] text-white;
+}
+.toast-error {
+  @apply bg-[#FF5C00] text-white;
+}
+.toast-info {
+  @apply bg-[#FFD000] text-black;
+}
+
+.toast-icon {
+  @apply text-xl bg-white text-black p-1 border-2 border-black;
+}
+.toast-text {
+  @apply flex-1;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
