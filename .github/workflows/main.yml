@@ -35,14 +35,14 @@ jobs:
           npm run build
       #  báo cáo kết quả
       - name: ✅ Báo cáo Thành công lên Discord
-        if: success()
+        if: ${{ success() && secrets.DISCORD_WEBHOOK_URL != '' }}
         run: |
           curl -H "Content-Type: application/json" \
           -d '{"content": "🟢 **[THÀNH CÔNG]** Có code mới đẩy lên nhánh `main`. Đã kiểm tra Backend và build Next.js thành công không có lỗi! 🚀", "username": "CI/CD mangaer"}' \
           ${{ secrets.DISCORD_WEBHOOK_URL }}
 
       - name: ❌ Báo cáo Thất bại lên Discord
-        if: failure()
+        if: ${{ failure() && secrets.DISCORD_WEBHOOK_URL != '' }}
         run: |
           # Dùng biến môi trường của GitHub để lấy thông tin người gây lỗi và link log
           curl -H "Content-Type: application/json" \
