@@ -1,53 +1,29 @@
-# tên của luồng làm việc
 name: Manga Project CI/CD
-# điều kiện để luồn hoạt đông là khi có ai đó push lên nhánh main
+
 on:
   push:
     branches:
       - main
 
-#  định nghĩa job cần làm
 jobs:
   build-and-test:
-    # chạy công việc trên máy ảo ubuntu do github cấp
     runs-on: ubuntu-latest
-    # các bước thực hiện
+
     steps:
-      - name: 📥 Kéo mã nguồn
-        uses: actions/checkout@v4 # tải toàn bộ code từ dự án lên máy ảo
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: ⚙️ Setup Node.js 20
-        uses: actions/setup-node@v4 # tạo môi trường nodejs trên máy ảo
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: "20" # thiết lập versions máy ảo là 20
-      #  chạy và kiểm tra dự án
-      - name: 🛠️ Kiểm tra lỗi Backend (Node.js)
-        run: |
-          echo "Bắt đầu kiểm tra Backend..."
-          cd backend
-          npm install
+          node-version: "20"
 
-      - name: 🛠️ Kiểm tra lỗi Frontend (Next.js)
+      - name: Install Backend Dependencies
+        working-directory: backend
+        run: npm install
+
+      - name: Build Frontend
+        working-directory: frontend
         run: |
-          echo "Bắt đầu build thử Frontend..."
-          cd frontend
           npm install
           npm run build
-      #  báo cáo kết quả
-      - name: ✅ Báo cáo Thành công lên Discord
-        if: success()
-        run: |
-          curl -H "Content-Type: application/json" \
-          -d '{"content": "🟢 **[THÀNH CÔNG]** Có code mới đẩy lên nhánh `main`. Đã kiểm tra Backend và build Next.js thành công không có lỗi! 🚀", "username": "CI/CD mangaer"}' \
-          ${{ secrets.DISCORD_WEBHOOK_URL }}
-
-      - name: ❌ Báo cáo Thất bại lên Discord
-        if: failure()
-        run: |
-          # Dùng biến môi trường của GitHub để lấy thông tin người gây lỗi và link log
-          curl -H "Content-Type: application/json" \
-          -d '{
-            "content": "🔴 **[BÁO ĐỘNG ĐỎ] HỆ THỐNG BUILD THẤT BẠI!** 🔴\n\n👤 **Thủ phạm (Ai vừa push):** `${{ github.actor }}`\n🌿 **Nhánh bị lỗi:** `${{ github.ref_name }}`\n\n🔍 **👉 [CLICK VÀO ĐÂY ĐỂ XEM CHI TIẾT DÒNG CODE LỖI](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})**\n\nYêu cầu `${{ github.actor }}` vào kiểm tra lại code ngay lập tức!",
-            "username": "CI/CD Manager"
-          }' \
-          ${{ secrets.DISCORD_WEBHOOK_URL }}
