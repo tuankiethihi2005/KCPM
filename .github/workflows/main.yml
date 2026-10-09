@@ -27,3 +27,41 @@ jobs:
         run: |
           npm install
           npm run build
+
+  docker:
+    name: Build and Push Docker Images
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          push: true
+          tags: |
+            trongphucx5/kcpm-backend:latest
+            trongphucx5/kcpm-backend:sha-${{ github.sha }}
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          push: true
+          build-args: |
+            VITE_API_BASE_URL=http://localhost:5000/api
+          tags: |
+            trongphucx5/kcpm-frontend:latest
+            trongphucx5/kcpm-frontend:sha-${{ github.sha }}
