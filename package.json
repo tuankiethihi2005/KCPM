@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "npm run test:admin",
+    "test": "npx codeceptjs run --steps",
     "test:admin": "npx playwright test --config=test/playwright.config.js --project=admin",
     "test:admin:headed": "npx playwright test --config=test/playwright.config.js --project=admin --headed",
     "test:admin:debug": "npx playwright test --config=test/playwright.config.js --project=admin --debug",
@@ -33,12 +33,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/DQPdak/Project_CNPM/issues"
   },
   "homepage": "https://github.com/DQPdak/Project_CNPM#readme",
   "devDependencies": {
-    "@playwright/test": "^1.61.1"
+    "@playwright/test": "^1.61.1",
+    "codeceptjs": "^4.2.2",
+    "playwright": "^1.64.1"
   }
 }
