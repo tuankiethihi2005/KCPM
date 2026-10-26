@@ -1,0 +1,83 @@
+{
+  "hasFailed": false,
+  "stats": {
+    "passes": 1,
+    "failures": 0,
+    "tests": 1,
+    "pending": 0,
+    "failedHooks": 0,
+    "start": "2026-10-23T11:06:07.070Z",
+    "end": "2026-10-23T11:06:13.568Z",
+    "duration": 6498
+  },
+  "duration": 6830,
+  "tests": [
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "xedMcKcknOHOaPV0TnVTFXiVqgdz5RSLA5Z6hRmwPE",
+      "retries": -1,
+      "title": "Kiểm thử đăng nhập thất bại với tài khoản sai",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 3391,
+      "parent": {
+        "title": "Đăng nhập hệ thống"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": ["/login"],
+          "status": "success",
+          "startTime": 1792753570185,
+          "endTime": 1792753571692,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": ["Email", "sai_tai_khoan@example.com"],
+          "status": "success",
+          "startTime": 1792753571693,
+          "endTime": 1792753572754,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": ["#password", "wrongpassword"],
+          "status": "success",
+          "startTime": 1792753572754,
+          "endTime": 1792753573371,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": ["Đăng nhập"],
+          "status": "success",
+          "startTime": 1792753573372,
+          "endTime": 1792753573555,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "see",
+          "args": ["EMAIL OR PASSWORD IS INCORRECT"],
+          "status": "success",
+          "startTime": 1792753573556,
+          "endTime": 1792753573562,
+          "parent": {}
+        }
+      ]
+    }
+  ],
+  "failures": []
+}
