@@ -131,6 +131,17 @@ exports.createTask = async (req, res) => {
       });
     }
 
+    const parsedDeadline = new Date(deadline);
+    if (
+      Number.isNaN(parsedDeadline.getTime()) ||
+      parsedDeadline.getTime() <= Date.now()
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Hạn chót phải muộn hơn thời điểm giao việc, bao gồm cả giờ.",
+      });
+    }
+
     // Check if page exists
     const page = await Page.findById(page_id);
     if (!page) {
@@ -167,7 +178,7 @@ exports.createTask = async (req, res) => {
       assigned_by: req.user.id,
       task_type,
       description: description || "",
-      deadline: new Date(deadline),
+      deadline: parsedDeadline,
       price: price || 0,
       status: "Assigned",
     });

@@ -14,32 +14,21 @@ jest.mock("../src/middlewares/upload.middleware", () => {
   const multer = require("multer");
   const parser = multer().any();
 
+  const fields = () => (req, res, next) => {
+    parser(req, res, () => {
+      req.files = {
+        source_file: [
+          { path: "https://res.cloudinary.com/mock/trang_1.jpg" },
+        ],
+        attached_resource: [
+          { path: "https://res.cloudinary.com/mock/resource.zip" },
+        ],
+      };
+      next();
+    });
+  };
   return {
-    fields: () => (req, res, next) => {
-      parser(req, res, () => {
-        req.files = {
-          source_file: [
-            { path: "https://res.cloudinary.com/mock/trang_1.jpg" },
-          ],
-          attached_resource: [
-            { path: "https://res.cloudinary.com/mock/resource.zip" },
-          ],
-        };
-        next();
-      });
-    },
-    array: () => (req, res, next) => {
-      parser(req, res, () => {
-        req.files = [{ path: "https://res.cloudinary.com/mock/trang_1.jpg" }];
-        next();
-      });
-    },
-    single: () => (req, res, next) => {
-      parser(req, res, () => {
-        req.file = { path: "https://res.cloudinary.com/mock/cover.jpg" };
-        next();
-      });
-    },
+    pages: { fields },
   };
 });
 

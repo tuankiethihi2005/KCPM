@@ -50,6 +50,7 @@ export default function TaskSubmitForm({ taskId, onSubmissionSuccess }) {
           <span>Tải bản nộp (.PSD)</span>
           <input
             type="file"
+            accept=".psd"
             onChange={handleFileChange}
             required
             className="file-upload-input"
