@@ -133,6 +133,7 @@ export default function UploadPagesDropzone({
           </div>
           <input
             type="file"
+            accept=".psd"
             multiple
             onChange={handleBulkFileChange}
             disabled={isUploading}
@@ -175,7 +176,7 @@ export default function UploadPagesDropzone({
                   </span>
                   <input
                     type="file"
-                    accept=".zip,.rar,.7z"
+                    accept=".7z,.bz2,.gz,.rar,.tar,.tbz2,.tgz,.txz,.xz,.zip,.zst"
                     className="file-attach-input"
                     onChange={(e) =>
                       handleUpdateItem(

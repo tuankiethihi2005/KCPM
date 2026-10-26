@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const multer = require("multer");
 
 const authRoutes = require("./routes/auth.routes");
 const chapterRoutes = require("./routes/chapter.routes");
@@ -66,6 +67,18 @@ app.use("/api/admin", adminDashboardRoutes);
 app.use((error, req, res, next) => {
   if (res.headersSent) {
     return next(error);
+  }
+
+  if (error instanceof multer.MulterError) {
+    const isFileTooLarge = error.code === "LIMIT_FILE_SIZE";
+    return res.status(isFileTooLarge ? 413 : 400).json({
+      error: {
+        code: error.code,
+        message: isFileTooLarge
+          ? "File vượt quá dung lượng tối đa cho phép."
+          : "Thông tin upload file không hợp lệ.",
+      },
+    });
   }
 
   return res.status(error.status || 500).json({
