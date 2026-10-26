@@ -72,7 +72,7 @@ router.put(
 router.put(
   "/approve/:page_id",
   requireRole(ROLES.MANGAKA, ROLES.ADMIN, ROLES.TANTOU_EDITOR),
-  requirePageScope("page_id", "write"),
+  requirePageScope("page_id", "write"), // Đã bật lại đầy đủ bảo mật chuẩn của team
   approvePage.approvePage,
 );
 
