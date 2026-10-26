@@ -3,9 +3,13 @@ const Page = require("../../models/PageModel");
 exports.approvePage = async (req, res) => {
   try {
     const { page_id } = req.params;
+    
+    if (!req.body || typeof req.body.status === 'undefined') {
+      return res.status(400).json({ message: "Thiếu trường 'status' trong request body" });
+    }
+
     const { status } = req.body;
 
-    // Kiểm tra status có nằm trong enum của PageModel không
     const validStatuses = [
       "Draft",
       "In Progress",
@@ -20,9 +24,8 @@ exports.approvePage = async (req, res) => {
       return res.status(400).json({ message: "Trạng thái trang không hợp lệ" });
     }
 
-    // Trong file approvePage.js
     const updatedPage = await Page.findOneAndUpdate(
-      { _id: page_id, is_deleted: { $ne: true } }, // <-- BỔ SUNG ĐIỀU KIỆN NÀY
+      { _id: page_id, is_deleted: { $ne: true } },
       { status: status },
       { new: true },
     );
