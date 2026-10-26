@@ -1,7 +1,8 @@
 jest.mock("../src/middlewares/upload.middleware", () => ({
-  fields: () => (req, res, next) => next(),
-  array: () => (req, res, next) => next(),
-  single: () => (req, res, next) => next(),
+  pages: { fields: () => (req, res, next) => next() },
+  cover: { single: () => (req, res, next) => next() },
+  task: { single: () => (req, res, next) => next() },
+  votes: { single: () => (req, res, next) => next() },
 }));
 
 const request = require("supertest");
