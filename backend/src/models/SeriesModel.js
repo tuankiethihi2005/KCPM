@@ -6,10 +6,7 @@ const seriesSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-<<<<<<< HEAD
-=======
       unique: true,
->>>>>>> origin/main
     },
     description: {
       type: String,

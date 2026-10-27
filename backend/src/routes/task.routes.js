@@ -2,11 +2,7 @@ const express = require("express");
 const { ROLES } = require("../constants/roles");
 const { requireAuth } = require("../modules/auth/middlewares/requireAuth");
 const { requireRole } = require("../modules/authorization/middlewares/requireRole");
-<<<<<<< HEAD
-const upload = require("../middlewares/upload.middleware");
-=======
 const { task: taskUpload } = require("../middlewares/upload.middleware");
->>>>>>> origin/main
 const taskController = require("../controllers/task/taskController");
 
 const router = express.Router();
@@ -46,11 +42,7 @@ router.post(
 router.post(
   "/:id/submit",
   requireRole(ROLES.ASSISTANT, ROLES.ADMIN),
-<<<<<<< HEAD
-  upload.single("file"), // Client uploads completed file as "file" field
-=======
   taskUpload.single("file"),
->>>>>>> origin/main
   taskController.submitTask
 );
 

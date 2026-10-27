@@ -20,11 +20,7 @@ const getAtRiskSeries = require("../controllers/series/getAtRiskSeries");
 const getSeriesProgress = require("../controllers/series/getSeriesProgress");
 const updateSeriesStatus = require("../controllers/series/updateSeriesStatus");
 const lifecycleVote = require("../controllers/series/lifecycleVote");
-<<<<<<< HEAD
-const upload = require("../middlewares/upload.middleware");
-=======
 const { cover: coverUpload } = require("../middlewares/upload.middleware");
->>>>>>> origin/main
 
 const router = express.Router();
 
@@ -121,11 +117,7 @@ router.post(
   "/:id/proposal/upload-cover",
   requireRole(ROLES.MANGAKA),
   requireSeriesScope("id", "write"),
-<<<<<<< HEAD
-  upload.single("cover"),
-=======
   coverUpload.single("cover"),
->>>>>>> origin/main
   uploadCover.uploadCover,
 );
 
