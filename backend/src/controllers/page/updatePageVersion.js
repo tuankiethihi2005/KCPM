@@ -57,18 +57,21 @@ exports.updatePageVersion = async (req, res) => {
     existingPage.attached_resource_url = attachedResourceUrl;
     existingPage.current_version = newVersion;
 
+    // Khi nộp bản mới: chuyển về chờ duyệt để Editor review lại (trừ Approved/Locked)
     if (existingPage.status !== "Approved" && existingPage.status !== "Locked") {
       existingPage.status = "Ready For Review";
     }
 
     await existingPage.save({ session });
 
+    // Cập nhật chapter → "Waiting Review" nếu đã Approved/Published
     const chapter = await Chapter.findById(existingPage.chapter_id).session(session);
     if (chapter && (chapter.status === "Approved" || chapter.status === "Published")) {
       chapter.status = "Waiting Review";
       await chapter.save({ session });
     }
 
+    // Lưu 1 bản ghi mới vào bảng Lịch sử để không làm mất file cũ
     const newHistory = new PageVersionHistory({
       page_id: existingPage._id,
       version_number: newVersion,
@@ -81,6 +84,7 @@ exports.updatePageVersion = async (req, res) => {
 
     await newHistory.save({ session });
 
+    // Chốt Transaction
     await session.commitTransaction();
     session.endSession();
 
@@ -90,6 +94,7 @@ exports.updatePageVersion = async (req, res) => {
       new_version: newHistory,
     });
   } catch (error) {
+    // Rollback nếu có bất kỳ lỗi gì xảy ra
     await session.abortTransaction();
     session.endSession();
 
