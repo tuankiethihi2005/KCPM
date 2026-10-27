@@ -13,7 +13,11 @@ const updatePageVersion = require("../controllers/page/updatePageVersion");
 const approvePage = require("../controllers/page/approvedPage");
 const getPagesByChapter = require("../controllers/page/getPagesByChapter");
 const getPageById = require("../controllers/page/getPageById");
+<<<<<<< HEAD
 const upload = require("../middlewares/upload.middleware");
+=======
+const { pages: pageUpload } = require("../middlewares/upload.middleware");
+>>>>>>> origin/main
 const getPageVersions = require("../controllers/page/getPageVersions");
 const deletePage = require("../controllers/page/deletePage");
 const restorePage = require("../controllers/page/restorePage");
@@ -51,7 +55,11 @@ router.post(
   "/upload/:chapter_id/upload",
   requireRole(ROLES.MANGAKA, ROLES.ADMIN),
   requireChapterScope("chapter_id", "write"),
+<<<<<<< HEAD
   upload.fields([
+=======
+  pageUpload.fields([
+>>>>>>> origin/main
     { name: "source_file", maxCount: 1 }, // Bắt buộc: File PSD/CLIP
     { name: "attached_resource", maxCount: 1 }, // Tùy chọn: File ZIP
   ]),
@@ -62,7 +70,11 @@ router.put(
   "/update/:page_id",
   requireRole(ROLES.MANGAKA, ROLES.ASSISTANT, ROLES.ADMIN),
   requirePageScope("page_id", "write"),
+<<<<<<< HEAD
   upload.fields([
+=======
+  pageUpload.fields([
+>>>>>>> origin/main
     { name: "source_file", maxCount: 1 }, // Bản thảo mới (bắt buộc)
     { name: "attached_resource", maxCount: 1 }, // Tài nguyên mới (tùy chọn)
   ]),
@@ -72,7 +84,11 @@ router.put(
 router.put(
   "/approve/:page_id",
   requireRole(ROLES.MANGAKA, ROLES.ADMIN, ROLES.TANTOU_EDITOR),
+<<<<<<< HEAD
   requirePageScope("page_id", "write"),
+=======
+  requirePageScope("page_id", "write"), // Đã bật lại đầy đủ bảo mật chuẩn của team
+>>>>>>> origin/main
   approvePage.approvePage,
 );
 
@@ -102,4 +118,8 @@ router.put(
   restorePage.restorePage,
 );
 
+<<<<<<< HEAD
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> origin/main

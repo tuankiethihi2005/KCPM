@@ -1,8 +1,10 @@
+const mockSingleUpload = () => (req, res, next) => {
+  req.file = { path: "https://res.cloudinary.com/mock/cover.jpg" };
+  next();
+};
+
 jest.mock("../src/middlewares/upload.middleware", () => ({
-  single: () => (req, res, next) => {
-    req.file = { path: "https://res.cloudinary.com/mock/cover.jpg" };
-    next();
-  },
+  cover: { single: mockSingleUpload },
 }));
 
 const request = require("supertest");

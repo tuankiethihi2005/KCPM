@@ -1,5 +1,9 @@
 const express = require("express");
 const cors = require("cors");
+<<<<<<< HEAD
+=======
+const multer = require("multer");
+>>>>>>> origin/main
 
 const authRoutes = require("./routes/auth.routes");
 const chapterRoutes = require("./routes/chapter.routes");
@@ -22,9 +26,17 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
   "http://localhost:5175",
+<<<<<<< HEAD
   "http://127.0.0.1:5173",
   "http://127.0.0.1:5174",
   "http://127.0.0.1:5175",
+=======
+  "http://localhost:8080",
+  "http://127.0.0.1:5173",
+  "http://127.0.0.1:5174",
+  "http://127.0.0.1:5175",
+  "http://127.0.0.1:8080",
+>>>>>>> origin/main
 ].filter(Boolean);
 
 app.use(
@@ -66,6 +78,21 @@ app.use((error, req, res, next) => {
     return next(error);
   }
 
+<<<<<<< HEAD
+=======
+  if (error instanceof multer.MulterError) {
+    const isFileTooLarge = error.code === "LIMIT_FILE_SIZE";
+    return res.status(isFileTooLarge ? 413 : 400).json({
+      error: {
+        code: error.code,
+        message: isFileTooLarge
+          ? "File vượt quá dung lượng tối đa cho phép."
+          : "Thông tin upload file không hợp lệ.",
+      },
+    });
+  }
+
+>>>>>>> origin/main
   return res.status(error.status || 500).json({
     error: {
       code: error.code || "INTERNAL_SERVER_ERROR",

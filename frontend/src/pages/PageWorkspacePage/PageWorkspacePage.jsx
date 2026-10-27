@@ -53,6 +53,15 @@ const STATUS_CONFIG = {
   Reopened: { label: "Mở lại", color: "#9b59b6", bg: "#f8eeff" },
 };
 
+const getMinimumTaskDeadline = () => {
+  const minimum = new Date();
+  minimum.setSeconds(0, 0);
+  minimum.setMinutes(minimum.getMinutes() + 1);
+  return new Date(
+    minimum.getTime() - minimum.getTimezoneOffset() * 60000,
+  ).toISOString().slice(0, 16);
+};
+
 export default function PageWorkspacePage() {
   const { pageId } = useParams();
   const navigate = useNavigate();
@@ -107,6 +116,7 @@ export default function PageWorkspacePage() {
   const [taskPrice, setTaskPrice] = useState("");
   const [regionType, setRegionType] = useState("panel");
   const [showTaskModal, setShowTaskModal] = useState(false);
+  const minimumTaskDeadline = getMinimumTaskDeadline();
 
   const isMangaka = user?.role === "Mangaka" || user?.role === "Admin";
   const isEditor = user?.role === "Tantou Editor" || user?.role === "Admin";
@@ -398,6 +408,12 @@ export default function PageWorkspacePage() {
       toast.error("Vui lòng điền đủ thông tin để giao việc!");
       return;
     }
+    const deadlineTimestamp = new Date(taskDeadline).getTime();
+    if (!Number.isFinite(deadlineTimestamp) || deadlineTimestamp <= Date.now()) {
+      toast.error("Hạn chót phải muộn hơn thời điểm giao việc, bao gồm cả giờ.");
+      return;
+    }
+
     setIsLoading(true);
     try {
       const regionRes = await createRegion(pageId, {
@@ -413,7 +429,7 @@ export default function PageWorkspacePage() {
         assigned_to: assignedTo,
         task_type: taskType,
         description: taskDesc,
-        deadline: taskDeadline,
+        deadline: new Date(taskDeadline).toISOString(),
         price: Number(taskPrice) || 0,
       });
       if (!taskRes.success) {
@@ -1329,6 +1345,8 @@ export default function PageWorkspacePage() {
                     type="datetime-local"
                     value={taskDeadline}
                     onChange={(e) => setTaskDeadline(e.target.value)}
+                    min={minimumTaskDeadline}
+                    step={60}
                     required
                     className="ws-input w-full"
                   />

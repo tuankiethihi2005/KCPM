@@ -22,6 +22,14 @@ exports.createSeries = async (req, res) => {
       return res.status(400).json({ message: "title là bắt buộc" });
     }
 
+<<<<<<< HEAD
+=======
+    const existingSeries = await Series.findOne({ title });
+    if (existingSeries) {
+      return res.status(400).json({ message: "Series này đã tồn tại" });
+    }
+
+>>>>>>> origin/main
     const resolvedAuthorId =
       req.user.role === ROLES.ADMIN ? author_id || req.user.id : req.user.id;
 
@@ -49,7 +57,13 @@ exports.createSeries = async (req, res) => {
       });
     }
 
+<<<<<<< HEAD
     const proposal = await SeriesProposal.findOne({ series_id: series._id }).sort({
+=======
+    const proposal = await SeriesProposal.findOne({
+      series_id: series._id,
+    }).sort({
+>>>>>>> origin/main
       createdAt: -1,
     });
 

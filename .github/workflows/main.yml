@@ -1,11 +1,17 @@
+<<<<<<< HEAD
 # tên của luồng làm việc
 name: Manga Project CI/CD
 # điều kiện để luồn hoạt đông là khi có ai đó push lên nhánh main
+=======
+name: Manga Project CI/CD
+
+>>>>>>> origin/main
 on:
   push:
     branches:
       - main
 
+<<<<<<< HEAD
 #  định nghĩa job cần làm
 jobs:
   build-and-test:
@@ -51,3 +57,73 @@ jobs:
             "username": "CI/CD Manager"
           }' \
           ${{ secrets.DISCORD_WEBHOOK_URL }}
+=======
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Backend Dependencies
+        working-directory: backend
+        run: npm install
+
+      - name: Build Frontend
+        working-directory: frontend
+        run: |
+          npm install
+          npm run build
+      - name: Run CodeceptJS Tests
+        continue-on-error: true
+        run: |
+          npx codeceptjs run || echo "CodeceptJS executed"
+      - name: Qodana Scan
+        continue-on-error: true
+        uses: JetBrains/qodana-action@v2023.3
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
+  docker:
+    name: Build and Push Docker Images
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          push: true
+          tags: |
+            trongphucx5/kcpm-backend:latest
+            trongphucx5/kcpm-backend:sha-${{ github.sha }}
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          push: true
+          build-args: |
+            VITE_API_BASE_URL=http://localhost:5000/api
+          tags: |
+            trongphucx5/kcpm-frontend:latest
+            trongphucx5/kcpm-frontend:sha-${{ github.sha }}
+>>>>>>> origin/main
