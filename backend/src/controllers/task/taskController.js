@@ -131,17 +131,6 @@ exports.createTask = async (req, res) => {
       });
     }
 
-    const parsedDeadline = new Date(deadline);
-    if (
-      Number.isNaN(parsedDeadline.getTime()) ||
-      parsedDeadline.getTime() <= Date.now()
-    ) {
-      return res.status(400).json({
-        success: false,
-        message: "Hạn chót phải muộn hơn thời điểm giao việc, bao gồm cả giờ.",
-      });
-    }
-
     // Check if page exists
     const page = await Page.findById(page_id);
     if (!page) {
@@ -178,7 +167,7 @@ exports.createTask = async (req, res) => {
       assigned_by: req.user.id,
       task_type,
       description: description || "",
-      deadline: parsedDeadline,
+      deadline: new Date(deadline),
       price: price || 0,
       status: "Assigned",
     });
@@ -241,14 +230,14 @@ exports.submitTask = async (req, res) => {
       });
     }
 
-    if (!req.file || typeof req.file.path !== "string" || !req.file.path.trim()) {
+    if (!req.file) {
       return res.status(400).json({
         success: false,
         message: "Vui lòng tải lên file thành phẩm",
       });
     }
 
-    const fileUrl = req.file.path.trim();
+    const fileUrl = req.file.path;
 
     // Mặc định preview chính là file gốc
     let primaryPreviewUrl = fileUrl.replace(/\.[^/.]+$/, ".png");
