@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const User = require("../../../models/UserModel");
 const AuthSession = require("../models/AuthSessionModel");
 const { ROLES } = require("../../../constants/roles");
@@ -398,12 +399,20 @@ const updateUser = async ({ userId, updates }) => {
 
   if (filteredUpdates.email) {
     const normalizedEmail = filteredUpdates.email.trim().toLowerCase();
-    const existingUser = await User.findOne({
-      email: normalizedEmail,
-      _id: { $ne: userId },
-    });
-    if (existingUser) {
-      throw buildAuthError(409, AUTH_ERROR_CODES.EMAIL_ALREADY_EXISTS, "Email already exists.");
+    // Lấy user hiện tại để so sánh email
+    const currentUser = await User.findById(userId);
+    if (!currentUser) {
+      throw buildAuthError(404, AUTH_ERROR_CODES.USER_NOT_FOUND, "User was not found.");
+    }
+    // Chỉ kiểm tra trùng email nếu email thực sự thay đổi
+    if (normalizedEmail !== currentUser.email) {
+      const existingUser = await User.findOne({
+        email: normalizedEmail,
+        _id: { $ne: new mongoose.Types.ObjectId(userId) },
+      });
+      if (existingUser) {
+        throw buildAuthError(409, AUTH_ERROR_CODES.EMAIL_ALREADY_EXISTS, "Email already exists.");
+      }
     }
     filteredUpdates.email = normalizedEmail;
   }
