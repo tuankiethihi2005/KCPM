@@ -131,6 +131,8 @@ exports.createTask = async (req, res) => {
       });
     }
 
+<<<<<<< HEAD
+=======
     const parsedDeadline = new Date(deadline);
     if (
       Number.isNaN(parsedDeadline.getTime()) ||
@@ -142,6 +144,7 @@ exports.createTask = async (req, res) => {
       });
     }
 
+>>>>>>> origin/main
     // Check if page exists
     const page = await Page.findById(page_id);
     if (!page) {
@@ -178,7 +181,11 @@ exports.createTask = async (req, res) => {
       assigned_by: req.user.id,
       task_type,
       description: description || "",
+<<<<<<< HEAD
+      deadline: new Date(deadline),
+=======
       deadline: parsedDeadline,
+>>>>>>> origin/main
       price: price || 0,
       status: "Assigned",
     });

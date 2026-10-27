@@ -10,6 +10,10 @@ const {
   verifyAccessToken,
   verifyRefreshToken,
 } = require("../utils/token");
+<<<<<<< HEAD
+const NotificationService = require("../../../services/notificationService");
+=======
+>>>>>>> origin/main
 
 const buildAuthError = (status, code, message) => {
   const error = new Error(message);
