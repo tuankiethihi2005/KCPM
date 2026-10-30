@@ -3,16 +3,17 @@ export const config = {
   tests: "./codecept_tests/*_test.js",
   output: "./codecept_output",
   helpers: {
-    Playwright: {
-      browser: "chromium",
-      url: "http://localhost:5173/",
-      show: true,
-    },
+    REST: {
+      endpoint: "http://localhost:5000",
+      onRequest: (request) => {
+        request.headers['Content-Type'] = 'application/json';
+      }
+    }
   },
   include: {
-    I: "./steps_file.js",
+    I: "./steps_file.js"
   },
-  noGlobals: true,
+  noglobals: true,
   plugins: {},
-  name: "KCPM",
+  name: "KCPM"
 };
