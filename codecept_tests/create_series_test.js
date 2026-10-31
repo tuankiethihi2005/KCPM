@@ -28,10 +28,16 @@ async function fillCreateForm(I, data) {
     );
   }
   if (data.description !== undefined) {
-    await I.fillField(
-      ".form-section .form-group > textarea.textarea-short",
-      data.description,
-    );
+    // Dùng executeScript để gán nhanh chuỗi dài cho textarea, tránh lỗi Timeout 5s của I.fillField
+    await I.executeScript((args) => {
+      const [desc] = args;
+      const el = document.querySelector(".form-section .form-group > textarea.textarea-short");
+      if (el) {
+        el.value = desc;
+        el.dispatchEvent(new Event("input", { bubbles: true }));
+        el.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    }, [data.description]);
   }
   if (data.genre !== undefined) {
     await I.fillField(

@@ -9,6 +9,9 @@
   },
   "scripts": {
     "test": "npx codeceptjs run --steps",
+    "test:cc": "npx codeceptjs run --steps --reporter spec",
+    "test:cc:verbose": "npx codeceptjs run --steps --reporter spec --verbose",
+    "test:cc:one": "npx codeceptjs run --steps --reporter spec --grep",
     "test:admin": "npx playwright test --config=test/playwright.config.js --project=admin",
     "test:admin:headed": "npx playwright test --config=test/playwright.config.js --project=admin --headed",
     "test:admin:debug": "npx playwright test --config=test/playwright.config.js --project=admin --debug",
