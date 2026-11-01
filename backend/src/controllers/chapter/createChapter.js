@@ -10,6 +10,21 @@ exports.Chapter = async (req, res) => {
     const { series_id, chapter_number, title, deadline } = req.body;
     const series = await Series.findById(series_id);
 
+    if (!title || typeof title !== "string" || !title.trim()) {
+      return res.status(400).json({
+        message: "Tiêu đề chapter không được để trống",
+        success: false,
+      })
+    }
+
+    const trimmedTitle = title.trim();
+    if (trimmedTitle.length < 2 || trimmedTitle.length > 255) {
+      return res.status(400).json({
+        success: false,
+        message: "Tiêu đề chapter phải có độ dài từ 2 đến 255 ký tự",
+      });
+    }
+
     if (!series) {
       return res.status(404).json({ message: "Không tìm thấy series" });
     }
@@ -26,7 +41,7 @@ exports.Chapter = async (req, res) => {
     const newChapter = new Chapter({
       series_id,
       chapter_number,
-      title,
+      title: trimmedTitle,
       deadline,
     });
 
@@ -52,6 +67,13 @@ exports.Chapter = async (req, res) => {
       success: true,
     });
   } catch (err) {
+    if (err.name === "ValidationError") {
+      return res.status(400).json({
+        success: false,
+        message: err.message,
+        details: err.message,
+      });
+    }
     return res.status(500).json({ error: "Lỗi server", details: err.message });
   }
 };

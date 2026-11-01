@@ -17,8 +17,10 @@ const chapterSchema = new mongoose.Schema(
     },
     title: {
       type: String,
-      required: true,
+      required: [true, "Tiêu đề chapter là bắt buộc"],
       trim: true,
+      minlength: [2, "Tiêu đề chapter phải có ít nhất 2 ký tự"],
+      maxlength: [255, "Tiêu đề chapter không được vượt quá 255 ký tự"],
     },
     status: {
       type: String,
