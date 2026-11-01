@@ -241,14 +241,14 @@ exports.submitTask = async (req, res) => {
       });
     }
 
-    if (!req.file) {
+    if (!req.file || typeof req.file.path !== "string" || !req.file.path.trim()) {
       return res.status(400).json({
         success: false,
         message: "Vui lòng tải lên file thành phẩm",
       });
     }
 
-    const fileUrl = req.file.path;
+    const fileUrl = req.file.path.trim();
 
     // Mặc định preview chính là file gốc
     let primaryPreviewUrl = fileUrl.replace(/\.[^/.]+$/, ".png");
