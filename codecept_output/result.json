@@ -1,23 +1,23 @@
 {
-  "hasFailed": false,
+  "hasFailed": true,
   "stats": {
-    "passes": 1,
-    "failures": 0,
-    "tests": 1,
+    "passes": 5,
+    "failures": 6,
+    "tests": 11,
     "pending": 0,
     "failedHooks": 0,
-    "start": "2026-10-23T11:06:07.070Z",
-    "end": "2026-10-23T11:06:13.568Z",
-    "duration": 6498
+    "start": "2026-10-30T18:24:49.161Z",
+    "end": "2026-10-30T18:26:44.226Z",
+    "duration": 115065
   },
-  "duration": 6830,
+  "duration": 115411,
   "tests": [
     {
       "opts": {},
       "tags": [],
-      "uid": "xedMcKcknOHOaPV0TnVTFXiVqgdz5RSLA5Z6hRmwPE",
+      "uid": "+ZfzPon00wp6UAq+0hNzphUjuml_1qMEDGKKUM4F1E",
       "retries": -1,
-      "title": "Kiểm thử đăng nhập thất bại với tài khoản sai",
+      "title": "US-01: chủ sở hữu đổi title hợp lệ ở trạng thái Draft",
       "state": "passed",
       "notes": [],
       "meta": {
@@ -26,58 +26,3781 @@
         "windowSize": "1280x720"
       },
       "artifacts": [],
-      "duration": 3391,
+      "duration": 7400,
       "parent": {
-        "title": "Đăng nhập hệ thống"
+        "title": "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)"
       },
       "steps": [
         {
           "opts": {},
           "title": "amOnPage",
-          "args": ["/login"],
+          "args": [
+            "/"
+          ],
           "status": "success",
-          "startTime": 1792753570185,
-          "endTime": 1792753571692,
+          "startTime": 1793384689764,
+          "endTime": 1793384690516,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384690519,
+          "endTime": 1793384690525,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1793384690526,
+          "endTime": 1793384690533,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384690533,
+          "endTime": 1793384690537,
           "parent": {}
         },
         {
           "opts": {},
           "title": "fillField",
-          "args": ["Email", "sai_tai_khoan@example.com"],
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
           "status": "success",
-          "startTime": 1792753571693,
-          "endTime": 1792753572754,
+          "startTime": 1793384690538,
+          "endTime": 1793384691182,
           "parent": {}
         },
         {
           "opts": {},
           "title": "fillField",
-          "args": ["#password", "wrongpassword"],
+          "args": [
+            "#password",
+            "password123"
+          ],
           "status": "success",
-          "startTime": 1792753572754,
-          "endTime": 1792753573371,
+          "startTime": 1793384691183,
+          "endTime": 1793384691495,
           "parent": {}
         },
         {
           "opts": {},
           "title": "click",
-          "args": ["Đăng nhập"],
+          "args": [
+            "button[type=\"submit\"]"
+          ],
           "status": "success",
-          "startTime": 1792753573372,
-          "endTime": 1792753573555,
+          "startTime": 1793384691495,
+          "endTime": 1793384691725,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "see",
-          "args": ["EMAIL OR PASSWORD IS INCORRECT"],
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
           "status": "success",
-          "startTime": 1792753573556,
-          "endTime": 1792753573562,
+          "startTime": 1793384691726,
+          "endTime": 1793384691788,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384691789,
+          "endTime": 1793384691795,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384691795,
+          "endTime": 1793384691882,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1793384691883,
+          "endTime": 1793384692218,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384692219,
+          "endTime": 1793384692335,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384692337,
+          "endTime": 1793384692348,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384692348,
+          "endTime": 1793384692355,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384692356,
+          "endTime": 1793384692359,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Codecept 1793384691882 th9cu\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384692360,
+          "endTime": 1793384692366,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(1) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384692367,
+          "endTime": 1793384692376,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(1) input\",\"Fantasy\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384692378,
+          "endTime": 1793384692384,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(2) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384692386,
+          "endTime": 1793384692395,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(2) input\",\"Young adult\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384692395,
+          "endTime": 1793384692400,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384692400,
+          "endTime": 1793384692606,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"chi tiết series\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384692610,
+          "endTime": 1793384692941,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForValue",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "Codecept 1793384691882 th9cu",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384692942,
+          "endTime": 1793384692953,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384692954,
+          "endTime": 1793384695238,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".proposal-section textarea.textarea-tall",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384695239,
+          "endTime": 1793384695445,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384695446,
+          "endTime": 1793384695447,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384695447,
+          "endTime": 1793384695449,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384695450,
+          "endTime": 1793384695452,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384695453,
+          "endTime": 1793384695455,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".proposal-section textarea.textarea-tall",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384695456,
+          "endTime": 1793384695462,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".proposal-section textarea.textarea-tall\",\"Proposal summary for Codecept 1793384691882 th9cu\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384695463,
+          "endTime": 1793384695471,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".proposal-section textarea.textarea-tall\",\"Proposal summary for Codecept 1793384691882 th9cu\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384695472,
+          "endTime": 1793384695478,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384695479,
+          "endTime": 1793384695481,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type='submit'].btn-primary"
+          ],
+          "status": "success",
+          "startTime": 1793384695481,
+          "endTime": 1793384695663,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".toast-text, body\",\"đã lưu thông tin series và bản thảo!\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384695663,
+          "endTime": 1793384695886,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384695886,
+          "endTime": 1793384695889,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384695890,
+          "endTime": 1793384696102,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384696103,
+          "endTime": 1793384696107,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Updated 1793384695886\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384696108,
+          "endTime": 1793384696120,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384696121,
+          "endTime": 1793384696124,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type='submit'].btn-primary"
+          ],
+          "status": "success",
+          "startTime": 1793384696125,
+          "endTime": 1793384696422,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".toast-text, body\",\"đã lưu thông tin series và bản thảo!\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384696423,
+          "endTime": 1793384696426,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "refreshPage",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384696426,
+          "endTime": 1793384696650,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForValue",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "Updated 1793384695886",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384696651,
+          "endTime": 1793384697138,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384697140,
+          "endTime": 1793384697150,
           "parent": {}
         }
       ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "d6h31bJreUXKHN2z5ZHHoyCyBQl3SU5G4gPcPqy4jz",
+      "retries": -1,
+      "title": "US-02: cập nhật từng trường và tổ hợp nhiều trường hợp lệ khi ở Draft, giữ nguyên trường không đổi",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 6622,
+      "parent": {
+        "title": "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1793384697270,
+          "endTime": 1793384697739,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384697739,
+          "endTime": 1793384697743,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1793384697744,
+          "endTime": 1793384697746,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384697747,
+          "endTime": 1793384697748,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1793384697748,
+          "endTime": 1793384698266,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1793384698267,
+          "endTime": 1793384698603,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384698603,
+          "endTime": 1793384698758,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384698759,
+          "endTime": 1793384698814,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384698814,
+          "endTime": 1793384698817,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384698818,
+          "endTime": 1793384698840,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1793384698841,
+          "endTime": 1793384699158,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384699159,
+          "endTime": 1793384699330,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384699331,
+          "endTime": 1793384699335,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384699336,
+          "endTime": 1793384699342,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384699344,
+          "endTime": 1793384699349,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Codecept 1793384698840 9aekd\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384699350,
+          "endTime": 1793384699356,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(1) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384699357,
+          "endTime": 1793384699363,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(1) input\",\"Fantasy\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384699364,
+          "endTime": 1793384699369,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(2) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384699370,
+          "endTime": 1793384699386,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(2) input\",\"Young adult\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384699386,
+          "endTime": 1793384699390,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384699391,
+          "endTime": 1793384699560,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"chi tiết series\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384699560,
+          "endTime": 1793384699998,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForValue",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "Codecept 1793384698840 9aekd",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384699999,
+          "endTime": 1793384700006,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384700007,
+          "endTime": 1793384702118,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".proposal-section textarea.textarea-tall",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384702119,
+          "endTime": 1793384702325,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384702325,
+          "endTime": 1793384702326,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384702327,
+          "endTime": 1793384702328,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384702329,
+          "endTime": 1793384702331,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384702331,
+          "endTime": 1793384702332,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".proposal-section textarea.textarea-tall",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384702333,
+          "endTime": 1793384702338,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".proposal-section textarea.textarea-tall\",\"Proposal summary for Codecept 1793384698840 9aekd\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384702339,
+          "endTime": 1793384702346,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".proposal-section textarea.textarea-tall\",\"Proposal summary for Codecept 1793384698840 9aekd\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384702347,
+          "endTime": 1793384702349,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384702349,
+          "endTime": 1793384702355,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type='submit'].btn-primary"
+          ],
+          "status": "success",
+          "startTime": 1793384702355,
+          "endTime": 1793384702539,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".toast-text, body\",\"đã lưu thông tin series và bản thảo!\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384702539,
+          "endTime": 1793384702738,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384702739,
+          "endTime": 1793384702744,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".textarea-tall",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384702744,
+          "endTime": 1793384702941,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabValueFrom",
+          "args": [
+            ".textarea-tall"
+          ],
+          "status": "success",
+          "startTime": 1793384702942,
+          "endTime": 1793384702945,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384702945,
+          "endTime": 1793384702947,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384702947,
+          "endTime": 1793384702950,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384702951,
+          "endTime": 1793384702957,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Updated metadata 1793384702945\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384702964,
+          "endTime": 1793384702975,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > textarea.textarea-short",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384702977,
+          "endTime": 1793384702988,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > textarea.textarea-short\",\"Updated series description\",true]"
+          ],
+          "status": "success",
+          "startTime": 1793384702989,
+          "endTime": 1793384702998,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(1) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384703001,
+          "endTime": 1793384703012,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(1) input\",\"Sci-Fi, Action\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384703013,
+          "endTime": 1793384703026,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(2) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384703027,
+          "endTime": 1793384703036,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(2) input\",\"Seinen\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384703038,
+          "endTime": 1793384703044,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384703045,
+          "endTime": 1793384703047,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type='submit'].btn-primary"
+          ],
+          "status": "success",
+          "startTime": 1793384703047,
+          "endTime": 1793384703339,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".toast-text, body\",\"đã lưu thông tin series và bản thảo!\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384703339,
+          "endTime": 1793384703343,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "refreshPage",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384703344,
+          "endTime": 1793384703501,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384703502,
+          "endTime": 1793384703537,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384703537,
+          "endTime": 1793384703862,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabValueFrom",
+          "args": [
+            ".form-section .form-group > input.neo-input"
+          ],
+          "status": "success",
+          "startTime": 1793384703862,
+          "endTime": 1793384703873,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384703876,
+          "endTime": 1793384703877,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".textarea-tall",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384703878,
+          "endTime": 1793384703885,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabValueFrom",
+          "args": [
+            ".textarea-tall"
+          ],
+          "status": "success",
+          "startTime": 1793384703886,
+          "endTime": 1793384703889,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "nNhse_bcpycZyt4873FZVVEsrPD4Nvx_xhnY7QxjRr",
+      "retries": -1,
+      "title": "US-03: cho phép cập nhật hợp lệ khi proposal ở trạng thái Need Revision",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 24650,
+      "parent": {
+        "title": "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1793384703969,
+          "endTime": 1793384704404,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384704404,
+          "endTime": 1793384704407,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1793384704407,
+          "endTime": 1793384704409,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384704409,
+          "endTime": 1793384704411,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1793384704411,
+          "endTime": 1793384704914,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1793384704914,
+          "endTime": 1793384705221,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384705222,
+          "endTime": 1793384705379,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384705380,
+          "endTime": 1793384705431,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384705431,
+          "endTime": 1793384705435,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384705435,
+          "endTime": 1793384705459,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1793384705459,
+          "endTime": 1793384705781,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384705783,
+          "endTime": 1793384705893,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384705894,
+          "endTime": 1793384705908,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384705909,
+          "endTime": 1793384705929,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384705930,
+          "endTime": 1793384705940,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Codecept 1793384705459 y9m44\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384705940,
+          "endTime": 1793384705955,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(1) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384705956,
+          "endTime": 1793384705971,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(1) input\",\"Fantasy\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384705972,
+          "endTime": 1793384705978,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(2) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384705979,
+          "endTime": 1793384705984,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(2) input\",\"Young adult\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384705984,
+          "endTime": 1793384705989,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384705989,
+          "endTime": 1793384706197,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"chi tiết series\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384706198,
+          "endTime": 1793384706420,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForValue",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "Codecept 1793384705459 y9m44",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384706421,
+          "endTime": 1793384706425,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384706425,
+          "endTime": 1793384708568,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".proposal-section textarea.textarea-tall",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384708568,
+          "endTime": 1793384708772,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384708772,
+          "endTime": 1793384708774,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384708774,
+          "endTime": 1793384708777,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384708778,
+          "endTime": 1793384708780,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384708781,
+          "endTime": 1793384708785,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".proposal-section textarea.textarea-tall",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384708786,
+          "endTime": 1793384708789,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".proposal-section textarea.textarea-tall\",\"Proposal summary for Codecept 1793384705459 y9m44\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384708790,
+          "endTime": 1793384708798,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".proposal-section textarea.textarea-tall\",\"Proposal summary for Codecept 1793384705459 y9m44\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384708798,
+          "endTime": 1793384708806,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384708806,
+          "endTime": 1793384708809,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type='submit'].btn-primary"
+          ],
+          "status": "success",
+          "startTime": 1793384708809,
+          "endTime": 1793384708997,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".toast-text, body\",\"đã lưu thông tin series và bản thảo!\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384708998,
+          "endTime": 1793384709202,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384709203,
+          "endTime": 1793384709205,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button.btn-success",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384709205,
+          "endTime": 1793384709415,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button.btn-success"
+          ],
+          "status": "success",
+          "startTime": 1793384709416,
+          "endTime": 1793384709581,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".toast-text, body\",\"đã nộp thành công!\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384709582,
+          "endTime": 1793384709739,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1793384709741,
+          "endTime": 1793384710056,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384710057,
+          "endTime": 1793384710188,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1793384710189,
+          "endTime": 1793384710200,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1793384710200,
+          "endTime": 1793384710366,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "#email",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384710366,
+          "endTime": 1793384710369,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "editorialboard@example.com"
+          ],
+          "status": "success",
+          "startTime": 1793384710369,
+          "endTime": 1793384710961,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1793384710962,
+          "endTime": 1793384711272,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384711272,
+          "endTime": 1793384711442,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384711442,
+          "endTime": 1793384711478,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384711479,
+          "endTime": 1793384711488,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384711489,
+          "endTime": 1793384711496,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/board/series/6ae4e102f73978d2eb2187dd"
+          ],
+          "status": "success",
+          "startTime": 1793384711497,
+          "endTime": 1793384711809,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".section-title, h2\",\"bỏ phiếu\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384711810,
+          "endTime": 1793384718550,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            ".neo-textarea",
+            "Please revise the proposal."
+          ],
+          "status": "success",
+          "startTime": 1793384718550,
+          "endTime": 1793384719231,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384719231,
+          "endTime": 1793384719233,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".vote-actions button\",\"need revision\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384719233,
+          "endTime": 1793384719239,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".vote-actions button\",\"need revision\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384719239,
+          "endTime": 1793384719246,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384719249,
+          "endTime": 1793384719679,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\"Need Revision\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384719680,
+          "endTime": 1793384719685,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384719686,
+          "endTime": 1793384719687,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\"button.btn-finalize\",\"tổng hợp kết quả (finalize)\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384719687,
+          "endTime": 1793384719690,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\"button.btn-finalize\",\"tổng hợp kết quả (finalize)\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384719691,
+          "endTime": 1793384719699,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".toast-text, body\",\"kết quả: need revision\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384719700,
+          "endTime": 1793384719939,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\"Need Revision\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384719941,
+          "endTime": 1793384720202,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1793384720203,
+          "endTime": 1793384720543,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384720544,
+          "endTime": 1793384720631,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1793384720632,
+          "endTime": 1793384720647,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1793384720648,
+          "endTime": 1793384720821,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "#email",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384720821,
+          "endTime": 1793384720825,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1793384720826,
+          "endTime": 1793384721344,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1793384721344,
+          "endTime": 1793384721640,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384721641,
+          "endTime": 1793384721809,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384721810,
+          "endTime": 1793384726557,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384726558,
+          "endTime": 1793384726560,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384726561,
+          "endTime": 1793384726568,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/6ae4e102f73978d2eb2187dd"
+          ],
+          "status": "success",
+          "startTime": 1793384726568,
+          "endTime": 1793384727004,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".status-badge\",\"need revision\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384727005,
+          "endTime": 1793384727694,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384727695,
+          "endTime": 1793384727701,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384727701,
+          "endTime": 1793384727708,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384727708,
+          "endTime": 1793384727710,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".proposal-section textarea.textarea-tall",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384727710,
+          "endTime": 1793384727713,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".proposal-section textarea.textarea-tall\",\"Updated after review with valid length 1793384727694\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384727713,
+          "endTime": 1793384727722,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".proposal-section textarea.textarea-tall\",\"Updated after review with valid length 1793384727694\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384727725,
+          "endTime": 1793384727728,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384727731,
+          "endTime": 1793384727740,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type='submit'].btn-primary"
+          ],
+          "status": "success",
+          "startTime": 1793384727742,
+          "endTime": 1793384727946,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".toast-text, body\",\"đã lưu thông tin series và bản thảo!\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384727947,
+          "endTime": 1793384728401,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".status-badge\",\"draft\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384728402,
+          "endTime": 1793384728616,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "AwlxVGcLOgx5tTBanPURPMGVbX+IOydKp6cwxo6x2i",
+      "retries": -1,
+      "title": "US-04: gửi body rỗng hoặc lưu lại giá trị không đổi không tạo bản ghi mới",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 6606,
+      "parent": {
+        "title": "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1793384728689,
+          "endTime": 1793384729137,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384729138,
+          "endTime": 1793384729142,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1793384729142,
+          "endTime": 1793384729147,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384729148,
+          "endTime": 1793384729149,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1793384729150,
+          "endTime": 1793384729645,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1793384729646,
+          "endTime": 1793384729956,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384729956,
+          "endTime": 1793384730126,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384730127,
+          "endTime": 1793384730164,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384730164,
+          "endTime": 1793384730168,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384730169,
+          "endTime": 1793384730202,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384730203,
+          "endTime": 1793384730208,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1793384730209,
+          "endTime": 1793384730547,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384730548,
+          "endTime": 1793384730812,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384730814,
+          "endTime": 1793384730818,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384730818,
+          "endTime": 1793384730824,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384730825,
+          "endTime": 1793384730828,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Codecept 1793384730208 e8prl\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384730828,
+          "endTime": 1793384730834,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(1) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384730834,
+          "endTime": 1793384730839,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(1) input\",\"Fantasy\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384730840,
+          "endTime": 1793384730845,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(2) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384730846,
+          "endTime": 1793384730853,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(2) input\",\"Young adult\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384730854,
+          "endTime": 1793384730861,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384730862,
+          "endTime": 1793384731102,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"chi tiết series\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384731102,
+          "endTime": 1793384731210,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForValue",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "Codecept 1793384730208 e8prl",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384731210,
+          "endTime": 1793384731433,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384731435,
+          "endTime": 1793384733516,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".proposal-section textarea.textarea-tall",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384733517,
+          "endTime": 1793384733724,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384733725,
+          "endTime": 1793384733726,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384733727,
+          "endTime": 1793384733730,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384733730,
+          "endTime": 1793384733733,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384733733,
+          "endTime": 1793384733735,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".proposal-section textarea.textarea-tall",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384733736,
+          "endTime": 1793384733741,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".proposal-section textarea.textarea-tall\",\"Proposal summary for Codecept 1793384730208 e8prl\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384733742,
+          "endTime": 1793384733748,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".proposal-section textarea.textarea-tall\",\"Proposal summary for Codecept 1793384730208 e8prl\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384733749,
+          "endTime": 1793384733754,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384733755,
+          "endTime": 1793384733757,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type='submit'].btn-primary"
+          ],
+          "status": "success",
+          "startTime": 1793384733758,
+          "endTime": 1793384733940,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".toast-text, body\",\"đã lưu thông tin series và bản thảo!\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384733940,
+          "endTime": 1793384734167,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384734168,
+          "endTime": 1793384734173,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384734173,
+          "endTime": 1793384734373,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384734374,
+          "endTime": 1793384734376,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Codecept 1793384730208 e8prl\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384734377,
+          "endTime": 1793384734378,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384734379,
+          "endTime": 1793384734380,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type='submit'].btn-primary"
+          ],
+          "status": "success",
+          "startTime": 1793384734380,
+          "endTime": 1793384734756,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".toast-text, body\",\"đã lưu thông tin series và bản thảo!\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384734756,
+          "endTime": 1793384734759,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "refreshPage",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384734759,
+          "endTime": 1793384734925,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForValue",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "Codecept 1793384730208 e8prl",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384734925,
+          "endTime": 1793384735286,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384735287,
+          "endTime": 1793384735292,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "U7FYDEHHv+Os9SWdvGFaDJL_ZLcNyp2YYaxWunanLm",
+      "retries": -1,
+      "title": "US-05: từ chối title rỗng, chỉ khoảng trắng, vượt giới hạn (101 ký tự) hoặc chứa ký tự cấm (<, >)",
+      "state": "failed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 6787,
+      "err": {
+        "stack": "AssertionError [ERR_ASSERTION]: \n    at expectUpdateRejectedOnUi (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:49:10)\n    at async Test.<anonymous> (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:174:7)\n\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mFile:\u001b[22m\u001b[22m\u001b[39m\u001b[34m file://F:\\KCPM\\KCPM\\codecept_tests\\update_series_test.js\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mArtifacts:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n\u001b[34m- screenshot: F:\\KCPM\\KCPM\\codecept_output\\US-05__từ_chối_title_rỗng,_chỉ_khoảng_trắng,_vượt_giới_hạn_(101_ký_tự)_hoặc_chứa_ký_tự_cấm_((,_)).failed.png\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mMetadata:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n\u001b[34m- browser: chromium\u001b[39m\n\u001b[34m- browserVersion: 156.0.8078.4\u001b[39m\n\u001b[34m- windowSize: 1280x720\u001b[39m",
+        "message": "\n  Expected update to be rejected, but it succeeded: {\"path\":\"/mangaka/series/6ae4e121f73978d2eb2187f2\",\"formValid\":null,\"validationMessage\":\"\",\"toasts\":[\"Đã lưu thông tin series và bản thảo!\"]}\n  \n  true !== false",
+        "actual": "true",
+        "expected": "false"
+      },
+      "parent": {
+        "title": "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)"
+      },
+      "steps": []
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "FYXzkPlwl0EvDjGYFNJYgEseLGw5SJCANOyaV98JHM",
+      "retries": -1,
+      "title": "US-06: từ chối đổi sang title trùng (sau chuẩn hóa NFC, trim, không phân biệt hoa-thường) với Series đã có",
+      "state": "failed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 10059,
+      "err": {
+        "stack": "AssertionError [ERR_ASSERTION]: \n    at expectUpdateRejectedOnUi (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:49:10)\n    at async Test.<anonymous> (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:203:5)\n\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mFile:\u001b[22m\u001b[22m\u001b[39m\u001b[34m file://F:\\KCPM\\KCPM\\codecept_tests\\update_series_test.js\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mArtifacts:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n\u001b[34m- screenshot: F:\\KCPM\\KCPM\\codecept_output\\US-06__từ_chối_đổi_sang_title_trùng_(sau_chuẩn_hóa_NFC,_trim,_không_phân_biệt_hoa-thường)_với_Series.failed.png\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mMetadata:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n\u001b[34m- browser: chromium\u001b[39m\n\u001b[34m- browserVersion: 156.0.8078.4\u001b[39m\n\u001b[34m- windowSize: 1280x720\u001b[39m",
+        "message": "\n  Expected update to be rejected, but it succeeded: {\"path\":\"/mangaka/series/6ae4e12cf73978d2eb2187fb\",\"formValid\":null,\"validationMessage\":\"\",\"toasts\":[\"Đã lưu thông tin series và bản thảo!\"]}\n  \n  true !== false",
+        "actual": "true",
+        "expected": "false"
+      },
+      "parent": {
+        "title": "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)"
+      },
+      "steps": []
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "2zQcR42dk3rvfjnImroFdeX7vaoC4q06p5MwpFaZ0N",
+      "retries": -1,
+      "title": "US-07: kiểm tra biên hợp lệ và vượt biên 1 đơn vị cho description (1000/1001), genre (2/50/1/51) và target_audience (2/50/1/51)",
+      "state": "failed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 6740,
+      "err": {
+        "stack": "AssertionError [ERR_ASSERTION]: \n    at expectUpdateRejectedOnUi (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:49:10)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mFile:\u001b[22m\u001b[22m\u001b[39m\u001b[34m file://F:\\KCPM\\KCPM\\codecept_tests\\update_series_test.js\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mArtifacts:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n\u001b[34m- screenshot: F:\\KCPM\\KCPM\\codecept_output\\US-07__kiểm_tra_biên_hợp_lệ_và_vượt_biên_1_đơn_vị_cho_description_(1000_1001),_genre_(2_50_1_51)_và_.failed.png\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mMetadata:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n\u001b[34m- browser: chromium\u001b[39m\n\u001b[34m- browserVersion: 156.0.8078.4\u001b[39m\n\u001b[34m- windowSize: 1280x720\u001b[39m",
+        "message": "\n  Expected update to be rejected, but it succeeded: {\"path\":\"/mangaka/series/6ae4e132f73978d2eb218801\",\"formValid\":true,\"validationMessage\":\"\",\"toasts\":[\"Đã lưu thông tin series và bản thảo!\",\"Đã lưu thông tin series và bản thảo!\"]}\n  \n  true !== false",
+        "actual": "true",
+        "expected": "false"
+      },
+      "parent": {
+        "title": "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)"
+      },
+      "steps": []
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "74CppnDIQAkBuHxCo9iTooZgpREV22pNBGmDKfzZER",
+      "retries": -1,
+      "title": "US-08: từ chối gán editor_id không hợp lệ, không tồn tại hoặc không phải Tantou Editor",
+      "state": "failed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 6163,
+      "err": {
+        "stack": "AssertionError [ERR_ASSERTION]: \n    at expectUpdateRejectedOnUi (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:49:10)\n    at async Test.<anonymous> (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:267:9)\n\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mFile:\u001b[22m\u001b[22m\u001b[39m\u001b[34m file://F:\\KCPM\\KCPM\\codecept_tests\\update_series_test.js\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mArtifacts:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n\u001b[34m- screenshot: F:\\KCPM\\KCPM\\codecept_output\\US-08__từ_chối_gán_editor_id_không_hợp_lệ,_không_tồn_tại_hoặc_không_phải_Tantou_Editor.failed.png\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mMetadata:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n\u001b[34m- browser: chromium\u001b[39m\n\u001b[34m- browserVersion: 156.0.8078.4\u001b[39m\n\u001b[34m- windowSize: 1280x720\u001b[39m",
+        "message": "\n  Expected update to be rejected, but it succeeded: {\"path\":\"/mangaka/series/6ae4e139f73978d2eb218806\",\"formValid\":null,\"validationMessage\":\"\",\"toasts\":[\"Đã lưu thông tin series và bản thảo!\"]}\n  \n  true !== false",
+        "actual": "true",
+        "expected": "false"
+      },
+      "parent": {
+        "title": "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)"
+      },
+      "steps": []
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "QVKXCM674qx5qByFA2HdNDAjdTQnCbH3m4gUsrB68G",
+      "retries": -1,
+      "title": "US-09: từ chối cập nhật khi người dùng không sở hữu Series hoặc không có quyền sửa",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 26514,
+      "parent": {
+        "title": "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1793384765510,
+          "endTime": 1793384765965,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384765966,
+          "endTime": 1793384765970,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1793384765970,
+          "endTime": 1793384765972,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384765972,
+          "endTime": 1793384765973,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1793384765974,
+          "endTime": 1793384766477,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1793384766478,
+          "endTime": 1793384766817,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384766817,
+          "endTime": 1793384766988,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384766989,
+          "endTime": 1793384767187,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384767201,
+          "endTime": 1793384767207,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384767213,
+          "endTime": 1793384767261,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1793384767263,
+          "endTime": 1793384767604,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384767605,
+          "endTime": 1793384768307,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384768308,
+          "endTime": 1793384768312,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384768313,
+          "endTime": 1793384768317,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384768317,
+          "endTime": 1793384768319,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Codecept 1793384767261 5894r\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384768320,
+          "endTime": 1793384768326,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(1) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384768326,
+          "endTime": 1793384768331,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(1) input\",\"Fantasy\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384768331,
+          "endTime": 1793384768338,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(2) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384768338,
+          "endTime": 1793384768346,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(2) input\",\"Young adult\",false]"
+          ],
+          "status": "success",
+          "startTime": 1793384768347,
+          "endTime": 1793384768355,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384768356,
+          "endTime": 1793384768544,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"chi tiết series\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384768544,
+          "endTime": 1793384768888,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForValue",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "Codecept 1793384767261 5894r",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384768889,
+          "endTime": 1793384769059,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384769059,
+          "endTime": 1793384771198,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".proposal-section textarea.textarea-tall",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384771199,
+          "endTime": 1793384771394,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384771395,
+          "endTime": 1793384771396,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384771396,
+          "endTime": 1793384771397,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384771398,
+          "endTime": 1793384771401,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384771401,
+          "endTime": 1793384771403,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".proposal-section textarea.textarea-tall",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384771403,
+          "endTime": 1793384771412,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".proposal-section textarea.textarea-tall\",\"Proposal summary for Codecept 1793384767261 5894r\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384771413,
+          "endTime": 1793384771422,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".proposal-section textarea.textarea-tall\",\"Proposal summary for Codecept 1793384767261 5894r\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1793384771423,
+          "endTime": 1793384771427,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "scrollPageToBottom",
+          "args": [],
+          "status": "success",
+          "startTime": 1793384771427,
+          "endTime": 1793384771430,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type='submit'].btn-primary"
+          ],
+          "status": "success",
+          "startTime": 1793384771430,
+          "endTime": 1793384771594,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".toast-text, body\",\"đã lưu thông tin series và bản thảo!\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384771594,
+          "endTime": 1793384771799,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1793384771799,
+          "endTime": 1793384772088,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384772089,
+          "endTime": 1793384772165,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1793384772165,
+          "endTime": 1793384772172,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1793384772173,
+          "endTime": 1793384772343,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "#email",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384772344,
+          "endTime": 1793384772348,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "editorialboard@example.com"
+          ],
+          "status": "success",
+          "startTime": 1793384772349,
+          "endTime": 1793384772922,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1793384772922,
+          "endTime": 1793384773248,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384773249,
+          "endTime": 1793384773405,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384773405,
+          "endTime": 1793384773438,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384773438,
+          "endTime": 1793384773441,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384773442,
+          "endTime": 1793384773456,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384773457,
+          "endTime": 1793384773460,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/board/reviews"
+          ],
+          "status": "success",
+          "startTime": 1793384773461,
+          "endTime": 1793384773775,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\"/series/6ae4e140f73978d2eb21880b\",\"PUT\",{\"title\":\"Hacked Title 1793384773775\"}]"
+          ],
+          "status": "success",
+          "startTime": 1793384773775,
+          "endTime": 1793384773817,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1793384773818,
+          "endTime": 1793384774131,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384774132,
+          "endTime": 1793384785558,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1793384785559,
+          "endTime": 1793384785590,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1793384785591,
+          "endTime": 1793384785800,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "#email",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384785801,
+          "endTime": 1793384785805,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1793384785805,
+          "endTime": 1793384786295,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1793384786295,
+          "endTime": 1793384786619,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1793384786619,
+          "endTime": 1793384786758,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384786759,
+          "endTime": 1793384791418,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1793384791418,
+          "endTime": 1793384791423,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384791424,
+          "endTime": 1793384791428,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/6ae4e140f73978d2eb21880b"
+          ],
+          "status": "success",
+          "startTime": 1793384791429,
+          "endTime": 1793384791769,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForValue",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "Codecept 1793384767261 5894r",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1793384791770,
+          "endTime": 1793384792020,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "4dFIdxBBz5sHn_c1iPbFpow44r+Q0pfivgMJezsATt",
+      "retries": -1,
+      "title": "US-10: từ chối cập nhật hồ sơ khi Proposal ở trạng thái không cho phép sửa (Submitted, Under Review, Approved, Rejected)",
+      "state": "failed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 6003,
+      "err": {
+        "stack": "AssertionError [ERR_ASSERTION]: \n    at Test.<anonymous> (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:333:12)\n\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mFile:\u001b[22m\u001b[22m\u001b[39m\u001b[34m file://F:\\KCPM\\KCPM\\codecept_tests\\update_series_test.js\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mArtifacts:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n\u001b[34m- screenshot: F:\\KCPM\\KCPM\\codecept_output\\US-10__từ_chối_cập_nhật_hồ_sơ_khi_Proposal_ở_trạng_thái_không_cho_phép_sửa_(Submitted,_Under_Review,.failed.png\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mMetadata:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n\u001b[34m- browser: chromium\u001b[39m\n\u001b[34m- browserVersion: 156.0.8078.4\u001b[39m\n\u001b[34m- windowSize: 1280x720\u001b[39m",
+        "message": "\n  Input phải bị disable khi proposal đang Submitted\n  \u001b[32m+ actual\u001b[39m \u001b[31m- expected\u001b[39m\n  \n  \u001b[32m+\u001b[39m undefined\n  \u001b[31m- \u001b[39mtrue\n  ...",
+        "expected": true
+      },
+      "parent": {
+        "title": "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)"
+      },
+      "steps": []
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "I4oG1NAN5XLvbtGPMCdaTHCkpaRVniyeoT73azhPot",
+      "retries": -1,
+      "title": "US-11: gửi request cập nhật đồng thời với thao tác nộp proposal vẫn đảm bảo tính nhất quán dữ liệu",
+      "state": "failed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 6048,
+      "err": {
+        "stack": "AssertionError [ERR_ASSERTION]: \n    at Test.<anonymous> (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:405:12)\n\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mFile:\u001b[22m\u001b[22m\u001b[39m\u001b[34m file://F:\\KCPM\\KCPM\\codecept_tests\\update_series_test.js\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mArtifacts:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n\u001b[34m- screenshot: F:\\KCPM\\KCPM\\codecept_output\\US-11__gửi_request_cập_nhật_đồng_thời_với_thao_tác_nộp_proposal_vẫn_đảm_bảo_tính_nhất_quán_dữ_liệu.failed.png\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mMetadata:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n\u001b[34m- browser: chromium\u001b[39m\n\u001b[34m- browserVersion: 156.0.8078.4\u001b[39m\n\u001b[34m- windowSize: 1280x720\u001b[39m",
+        "message": "\n  Submit proposal phải thành công\n  \n  401 !== 200",
+        "actual": "401",
+        "expected": "200"
+      },
+      "parent": {
+        "title": "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)"
+      },
+      "steps": []
     }
   ],
-  "failures": []
+  "failures": [
+    [],
+    [
+      "\u001b[0m  %s) %s:\n%s\u001b[0m\u001b[90m\n%s\n\u001b[0m",
+      1,
+      "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)\n       US-05: từ chối title rỗng, chỉ khoảng trắng, vượt giới hạn (101 ký tự) hoặc chứa ký tự cấm (<, >)",
+      "\n      \u001b[31m\n  Expected update to be rejected, but it succeeded: {\"path\":\"/mangaka/series/6ae4e121f73978d2eb2187f2\",\"formValid\":null,\"validationMessage\":\"\",\"toasts\":[\"Đã lưu thông tin series và bản thảo!\"]}\n  \n  true !== false\u001b[0m\n      \u001b[32m+ expected\u001b[0m \u001b[31m- actual\u001b[0m\n\n      \u001b[31m-true\u001b[0m\n      \u001b[32m+false\u001b[0m\n      ",
+      "  AssertionError [ERR_ASSERTION]: \n      at expectUpdateRejectedOnUi (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:49:10)\n      at async Test.<anonymous> (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:174:7)\n  \n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mFile:\u001b[22m\u001b[22m\u001b[39m\u001b[34m file://F:\\KCPM\\KCPM\\codecept_tests\\update_series_test.js\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mArtifacts:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n  \u001b[34m- screenshot: F:\\KCPM\\KCPM\\codecept_output\\US-05__từ_chối_title_rỗng,_chỉ_khoảng_trắng,_vượt_giới_hạn_(101_ký_tự)_hoặc_chứa_ký_tự_cấm_((,_)).failed.png\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mMetadata:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n  \u001b[34m- browser: chromium\u001b[39m\n  \u001b[34m- browserVersion: 156.0.8078.4\u001b[39m\n  \u001b[34m- windowSize: 1280x720\u001b[39m"
+    ],
+    [
+      "\u001b[0m  %s) %s:\n%s\u001b[0m\u001b[90m\n%s\n\u001b[0m",
+      2,
+      "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)\n       US-06: từ chối đổi sang title trùng (sau chuẩn hóa NFC, trim, không phân biệt hoa-thường) với Series đã có",
+      "\n      \u001b[31m\n  Expected update to be rejected, but it succeeded: {\"path\":\"/mangaka/series/6ae4e12cf73978d2eb2187fb\",\"formValid\":null,\"validationMessage\":\"\",\"toasts\":[\"Đã lưu thông tin series và bản thảo!\"]}\n  \n  true !== false\u001b[0m\n      \u001b[32m+ expected\u001b[0m \u001b[31m- actual\u001b[0m\n\n      \u001b[31m-true\u001b[0m\n      \u001b[32m+false\u001b[0m\n      ",
+      "  AssertionError [ERR_ASSERTION]: \n      at expectUpdateRejectedOnUi (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:49:10)\n      at async Test.<anonymous> (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:203:5)\n  \n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mFile:\u001b[22m\u001b[22m\u001b[39m\u001b[34m file://F:\\KCPM\\KCPM\\codecept_tests\\update_series_test.js\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mArtifacts:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n  \u001b[34m- screenshot: F:\\KCPM\\KCPM\\codecept_output\\US-06__từ_chối_đổi_sang_title_trùng_(sau_chuẩn_hóa_NFC,_trim,_không_phân_biệt_hoa-thường)_với_Series.failed.png\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mMetadata:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n  \u001b[34m- browser: chromium\u001b[39m\n  \u001b[34m- browserVersion: 156.0.8078.4\u001b[39m\n  \u001b[34m- windowSize: 1280x720\u001b[39m"
+    ],
+    [
+      "\u001b[0m  %s) %s:\n%s\u001b[0m\u001b[90m\n%s\n\u001b[0m",
+      3,
+      "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)\n       US-07: kiểm tra biên hợp lệ và vượt biên 1 đơn vị cho description (1000/1001), genre (2/50/1/51) và target_audience (2/50/1/51)",
+      "\n      \u001b[31m\n  Expected update to be rejected, but it succeeded: {\"path\":\"/mangaka/series/6ae4e132f73978d2eb218801\",\"formValid\":true,\"validationMessage\":\"\",\"toasts\":[\"Đã lưu thông tin series và bản thảo!\",\"Đã lưu thông tin series và bản thảo!\"]}\n  \n  true !== false\u001b[0m\n      \u001b[32m+ expected\u001b[0m \u001b[31m- actual\u001b[0m\n\n      \u001b[31m-true\u001b[0m\n      \u001b[32m+false\u001b[0m\n      ",
+      "  AssertionError [ERR_ASSERTION]: \n      at expectUpdateRejectedOnUi (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:49:10)\n      at runNextTicks (node:internal/process/task_queues:65:5)\n  \n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mFile:\u001b[22m\u001b[22m\u001b[39m\u001b[34m file://F:\\KCPM\\KCPM\\codecept_tests\\update_series_test.js\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mArtifacts:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n  \u001b[34m- screenshot: F:\\KCPM\\KCPM\\codecept_output\\US-07__kiểm_tra_biên_hợp_lệ_và_vượt_biên_1_đơn_vị_cho_description_(1000_1001),_genre_(2_50_1_51)_và_.failed.png\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mMetadata:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n  \u001b[34m- browser: chromium\u001b[39m\n  \u001b[34m- browserVersion: 156.0.8078.4\u001b[39m\n  \u001b[34m- windowSize: 1280x720\u001b[39m"
+    ],
+    [
+      "\u001b[0m  %s) %s:\n%s\u001b[0m\u001b[90m\n%s\n\u001b[0m",
+      4,
+      "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)\n       US-08: từ chối gán editor_id không hợp lệ, không tồn tại hoặc không phải Tantou Editor",
+      "\n      \u001b[31m\n  Expected update to be rejected, but it succeeded: {\"path\":\"/mangaka/series/6ae4e139f73978d2eb218806\",\"formValid\":null,\"validationMessage\":\"\",\"toasts\":[\"Đã lưu thông tin series và bản thảo!\"]}\n  \n  true !== false\u001b[0m\n      \u001b[32m+ expected\u001b[0m \u001b[31m- actual\u001b[0m\n\n      \u001b[31m-true\u001b[0m\n      \u001b[32m+false\u001b[0m\n      ",
+      "  AssertionError [ERR_ASSERTION]: \n      at expectUpdateRejectedOnUi (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:49:10)\n      at async Test.<anonymous> (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:267:9)\n  \n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mFile:\u001b[22m\u001b[22m\u001b[39m\u001b[34m file://F:\\KCPM\\KCPM\\codecept_tests\\update_series_test.js\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mArtifacts:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n  \u001b[34m- screenshot: F:\\KCPM\\KCPM\\codecept_output\\US-08__từ_chối_gán_editor_id_không_hợp_lệ,_không_tồn_tại_hoặc_không_phải_Tantou_Editor.failed.png\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mMetadata:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n  \u001b[34m- browser: chromium\u001b[39m\n  \u001b[34m- browserVersion: 156.0.8078.4\u001b[39m\n  \u001b[34m- windowSize: 1280x720\u001b[39m"
+    ],
+    [
+      "\u001b[0m  %s) %s:\n\u001b[0m\u001b[31m     %s\u001b[0m\u001b[90m\n%s\n\u001b[0m",
+      5,
+      "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)\n       US-10: từ chối cập nhật hồ sơ khi Proposal ở trạng thái không cho phép sửa (Submitted, Under Review, Approved, Rejected)",
+      "\n  Input phải bị disable khi proposal đang Submitted\n  \u001b[32m+ actual\u001b[39m \u001b[31m- expected\u001b[39m\n  \n  \u001b[32m+\u001b[39m undefined\n  \u001b[31m- \u001b[39mtrue\n  ...",
+      "  AssertionError [ERR_ASSERTION]: \n      at Test.<anonymous> (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:333:12)\n  \n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mFile:\u001b[22m\u001b[22m\u001b[39m\u001b[34m file://F:\\KCPM\\KCPM\\codecept_tests\\update_series_test.js\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mArtifacts:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n  \u001b[34m- screenshot: F:\\KCPM\\KCPM\\codecept_output\\US-10__từ_chối_cập_nhật_hồ_sơ_khi_Proposal_ở_trạng_thái_không_cho_phép_sửa_(Submitted,_Under_Review,.failed.png\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mMetadata:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n  \u001b[34m- browser: chromium\u001b[39m\n  \u001b[34m- browserVersion: 156.0.8078.4\u001b[39m\n  \u001b[34m- windowSize: 1280x720\u001b[39m"
+    ],
+    [
+      "\u001b[0m  %s) %s:\n%s\u001b[0m\u001b[90m\n%s\n\u001b[0m",
+      6,
+      "Cập nhật hồ sơ Series — kiểm thử đầu vào (US-01 .. US-11)\n       US-11: gửi request cập nhật đồng thời với thao tác nộp proposal vẫn đảm bảo tính nhất quán dữ liệu",
+      "\n      \u001b[31m\n  Submit proposal phải thành công\n  \n  401 !== 200\u001b[0m\n      \u001b[32m+ expected\u001b[0m \u001b[31m- actual\u001b[0m\n\n      \u001b[31m-401\u001b[0m\n      \u001b[32m+200\u001b[0m\n      ",
+      "  AssertionError [ERR_ASSERTION]: \n      at Test.<anonymous> (file:///F:/KCPM/KCPM/codecept_tests/update_series_test.js:405:12)\n  \n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mFile:\u001b[22m\u001b[22m\u001b[39m\u001b[34m file://F:\\KCPM\\KCPM\\codecept_tests\\update_series_test.js\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mArtifacts:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n  \u001b[34m- screenshot: F:\\KCPM\\KCPM\\codecept_output\\US-11__gửi_request_cập_nhật_đồng_thời_với_thao_tác_nộp_proposal_vẫn_đảm_bảo_tính_nhất_quán_dữ_liệu.failed.png\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mMetadata:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n  \u001b[34m- browser: chromium\u001b[39m\n  \u001b[34m- browserVersion: 156.0.8078.4\u001b[39m\n  \u001b[34m- windowSize: 1280x720\u001b[39m"
+    ]
+  ]
 }
