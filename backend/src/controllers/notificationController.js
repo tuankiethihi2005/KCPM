@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const NotificationService = require("../services/notificationService");
 
 const getNotifications = async (req, res) => {
@@ -34,6 +35,12 @@ const getUnreadCount = async (req, res) => {
 
 const markAsRead = async (req, res) => {
   try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({
+        success: false,
+        message: "ID thông báo không hợp lệ.",
+      });
+    }
     const result = await NotificationService.markAsRead(req.params.id, req.user.id);
     if (!result) {
       return res.status(404).json({
@@ -66,6 +73,12 @@ const markAllAsRead = async (req, res) => {
 
 const deleteNotification = async (req, res) => {
   try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({
+        success: false,
+        message: "ID thông báo không hợp lệ.",
+      });
+    }
     const result = await NotificationService.deleteNotification(req.params.id, req.user.id);
     if (!result) {
       return res.status(404).json({

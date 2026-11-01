@@ -3,6 +3,7 @@ const cors = require("cors");
 const multer = require("multer");
 
 const authRoutes = require("./routes/auth.routes");
+const userRoutes = require("./routes/user.routes");
 const chapterRoutes = require("./routes/chapter.routes");
 const pageRoutes = require("./routes/page.routes");
 const publishRoutes = require("./routes/publish.routes");
@@ -50,6 +51,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/chapters", chapterRoutes);
 app.use("/api/pages", pageRoutes);
 app.use("/api/publish", publishRoutes);
@@ -67,6 +69,15 @@ app.use("/api/admin", adminDashboardRoutes);
 app.use((error, req, res, next) => {
   if (res.headersSent) {
     return next(error);
+  }
+
+  if (error.name === "CastError") {
+    return res.status(400).json({
+      error: {
+        code: "INVALID_ID",
+        message: "ID không hợp lệ hoặc sai định dạng ObjectId.",
+      },
+    });
   }
 
   if (error instanceof multer.MulterError) {

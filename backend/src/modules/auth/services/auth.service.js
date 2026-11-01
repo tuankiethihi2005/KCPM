@@ -29,16 +29,35 @@ const sanitizeUser = (user) => ({
   status: user.status,
 });
 
-const validateRole = (role) => Object.values(ROLES).includes(role);
-const validateStatus = (status) =>
-  ["Active", "Inactive", "Suspended"].includes(status);
+const normalizeRole = (role) => {
+  if (!role || typeof role !== "string") return null;
+  const upper = role.toUpperCase();
+  for (const [k, v] of Object.entries(ROLES)) {
+    if (k.toUpperCase() === upper || v.toUpperCase() === upper) {
+      return v;
+    }
+  }
+  return null;
+};
+const validateRole = (role) => Boolean(normalizeRole(role));
+
+const normalizeStatus = (status) => {
+  if (!status || typeof status !== "string") return null;
+  const upper = status.toUpperCase();
+  if (upper === "ACTIVE") return "Active";
+  if (upper === "BLOCKED" || upper === "SUSPENDED") return "Suspended";
+  if (upper === "INACTIVE") return "Inactive";
+  if (["Active", "Suspended", "Inactive"].includes(status)) return status;
+  return null;
+};
+const validateStatus = (status) => Boolean(normalizeStatus(status));
 
 const validatePasswordPolicy = (password) => {
-  if (typeof password !== "string" || password.length < 8) {
+  if (typeof password !== "string" || password.length < 6 || password.length > 50) {
     throw buildAuthError(
       400,
       AUTH_ERROR_CODES.PASSWORD_POLICY_VIOLATION,
-      "Password must be at least 8 characters long.",
+      "Password must be between 6 and 50 characters long.",
     );
   }
 };
@@ -215,12 +234,19 @@ const listUsers = async () => {
 };
 
 const createUser = async ({ name, email, password, role, status = "Active" }) => {
-  if (!name || !email || !password || !role) {
+  if (!email || !password || !role) {
     throw buildAuthError(
       400,
       "AUTH_INVALID_PAYLOAD",
-      "Name, email, password, and role are required.",
+      "Email, password, and role are required.",
     );
+  }
+
+  const normalizedName = name || email.split("@")[0];
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(String(email).trim())) {
+    throw buildAuthError(400, "AUTH_INVALID_EMAIL", "Email format is invalid.");
   }
 
   if (!validateRole(role)) {
@@ -233,6 +259,9 @@ const createUser = async ({ name, email, password, role, status = "Active" }) =>
 
   validatePasswordPolicy(password);
 
+  const normalizedRole = normalizeRole(role);
+  const normalizedStatus = normalizeStatus(status) || "Active";
+
   const normalizedEmail = email.trim().toLowerCase();
   const existingUser = await User.findOne({ email: normalizedEmail });
   if (existingUser) {
@@ -244,20 +273,24 @@ const createUser = async ({ name, email, password, role, status = "Active" }) =>
   }
 
   const user = await User.create({
-    name,
+    name: normalizedName,
     email: normalizedEmail,
     password: await hashPassword(password),
-    role,
-    status,
+    role: normalizedRole,
+    status: normalizedStatus,
   });
 
   // Welcome notification for new user
-  await NotificationService.createNotification({
-    user_id: user._id,
-    type: "System",
-    title: "Chào mừng bạn đến với Hệ thống",
-    message: `Chào mừng ${name} đến với Hệ thống quản lý Manga. Tài khoản ${role} của bạn đã được tạo thành công.`,
-  });
+  try {
+    await NotificationService.createNotification({
+      user_id: user._id,
+      type: "System",
+      title: "Chào mừng bạn đến với Hệ thống",
+      message: `Chào mừng ${normalizedName} đến với Hệ thống quản lý Manga. Tài khoản ${normalizedRole} của bạn đã được tạo thành công.`,
+    });
+  } catch (err) {
+    // Ignore notification failure
+  }
 
   return { user: sanitizeUser(user) };
 };
@@ -290,6 +323,10 @@ const resetPassword = async ({ userId, newPassword }) => {
  * Dùng để khóa/mở khóa hoặc xóa tài khoản (soft delete)
  */
 const updateUserStatus = async ({ userId, status }) => {
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
+    throw buildAuthError(400, "INVALID_ID", "ID không hợp lệ hoặc sai định dạng ObjectId.");
+  }
+
   if (!validateStatus(status)) {
     throw buildAuthError(400, AUTH_ERROR_CODES.INVALID_STATUS, "Status is invalid.");
   }
@@ -299,11 +336,12 @@ const updateUserStatus = async ({ userId, status }) => {
     throw buildAuthError(404, AUTH_ERROR_CODES.USER_NOT_FOUND, "User was not found.");
   }
 
-  user.status = status;
+  const normalizedStatus = normalizeStatus(status);
+  user.status = normalizedStatus;
   await user.save();
 
   // Khi khóa hoặc vô hiệu hóa → Revoke tất cả sessions
-  if (status === "Suspended" || status === "Inactive") {
+  if (normalizedStatus === "Suspended" || normalizedStatus === "Inactive") {
     await AuthSession.updateMany(
       { user_id: user._id, revoked_at: null },
       { revoked_at: new Date() },
@@ -317,6 +355,10 @@ const updateUserStatus = async ({ userId, status }) => {
  * Admin xóa tài khoản (soft delete → chuyển status thành Inactive)
  */
 const deleteUser = async (userId) => {
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
+    throw buildAuthError(400, "INVALID_ID", "ID không hợp lệ hoặc sai định dạng ObjectId.");
+  }
+
   const user = await User.findById(userId);
   if (!user) {
     throw buildAuthError(404, AUTH_ERROR_CODES.USER_NOT_FOUND, "User was not found.");
@@ -381,6 +423,10 @@ const listUsersWithFilter = async ({ page = 1, limit = 10, search = "", role = "
  * Admin cập nhật thông tin user (name, email, role)
  */
 const updateUser = async ({ userId, updates }) => {
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
+    throw buildAuthError(400, "INVALID_ID", "ID không hợp lệ hoặc sai định dạng ObjectId.");
+  }
+
   const allowedFields = ["name", "email", "role"];
   const filteredUpdates = {};
 
@@ -390,8 +436,11 @@ const updateUser = async ({ userId, updates }) => {
     }
   }
 
-  if (filteredUpdates.role && !validateRole(filteredUpdates.role)) {
-    throw buildAuthError(400, "AUTH_INVALID_ROLE", "Role is invalid.");
+  if (filteredUpdates.role) {
+    if (!validateRole(filteredUpdates.role)) {
+      throw buildAuthError(400, "AUTH_INVALID_ROLE", "Role is invalid.");
+    }
+    filteredUpdates.role = normalizeRole(filteredUpdates.role);
   }
 
   if (filteredUpdates.email) {

@@ -45,11 +45,28 @@ const clearRefreshCookie = (res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
 
-  if (!email || !password) {
+  if (
+    !email ||
+    !password ||
+    typeof email !== "string" ||
+    !email.trim() ||
+    typeof password !== "string" ||
+    !password.trim()
+  ) {
     return res.status(400).json({
       error: {
         code: "AUTH_INVALID_PAYLOAD",
         message: "Email and password are required.",
+      },
+    });
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email.trim())) {
+    return res.status(400).json({
+      error: {
+        code: "AUTH_INVALID_EMAIL",
+        message: "Invalid email format.",
       },
     });
   }
