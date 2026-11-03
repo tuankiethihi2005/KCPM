@@ -24,11 +24,26 @@ exports.updateSeries = async (req, res) => {
     }
 
     if (title !== undefined) {
-      if (!title) {
+      const trimmedTitle = typeof title === "string" ? title.trim() : title;
+      if (!trimmedTitle) {
         return res.status(400).json({ message: "title không được rỗng" });
       }
-      series.title = title;
+
+      // 🔍 BỔ SUNG LOGIC CHECK TRÙNG LẶP TIÊU ĐỀ (SCRUM-86)
+      const existingSeries = await Series.findOne({
+        title: trimmedTitle,
+        _id: { $ne: id }, // Loại trừ chính series hiện tại ra
+      });
+
+      if (existingSeries) {
+        return res.status(400).json({
+          message: "Tiêu đề series này đã tồn tại, vui lòng chọn tiêu đề khác.",
+        });
+      }
+
+      series.title = trimmedTitle;
     }
+
     if (description !== undefined) series.description = description;
     if (genre !== undefined) series.genre = genre;
     if (target_audience !== undefined) series.target_audience = target_audience;
