@@ -16,30 +16,28 @@ exports.submitProposal = async (req, res) => {
       return res.status(400).json({ message: "Series đã bị hủy, không thể nộp proposal" });
     }
 
-    const proposal = await SeriesProposal.findOne({ series_id: series._id }).sort({
-      createdAt: -1,
-    });
+    const now = new Date();
+    const proposal = await SeriesProposal.findOneAndUpdate(
+      {
+        series_id: series._id,
+        status: { $in: SUBMITTABLE_STATUSES },
+      },
+      {
+        $set: {
+          status: "Submitted",
+          submitted_at: now,
+          review_deadline: addReviewDeadline(now),
+        },
+      },
+      { new: true, sort: { createdAt: -1 } }
+    );
 
     if (!proposal) {
-      return res.status(400).json({ message: "Chưa có proposal để nộp" });
-    }
-
-    if (!SUBMITTABLE_STATUSES.includes(proposal.status)) {
       return res.status(400).json({
-        message: `Không thể nộp proposal ở trạng thái ${proposal.status}`,
+        message:
+          "Không thể nộp proposal. Proposal không tồn tại hoặc đang trong quá trình xét duyệt.",
       });
     }
-
-    await BoardVote.deleteMany({
-      series_id: series._id,
-      vote_context: "initial_review",
-    });
-
-    const now = new Date();
-    proposal.status = "Submitted";
-    proposal.submitted_at = now;
-    proposal.review_deadline = addReviewDeadline(now);
-    await proposal.save();
 
     // Notify all Editorial Board members
     const boardMembers = await User.find({ role: "Editorial Board", status: "Active" }).select("_id");
