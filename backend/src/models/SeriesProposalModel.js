@@ -8,9 +8,12 @@ const seriesProposalSchema = new mongoose.Schema(
       required: true,
     },
     summary: {
-      type: String,
-      required: true,
-    },
+    type: String,
+    required: [true, "Vui lòng nhập summary"],
+    minlength: [20, "Summary phải có ít nhất 20 ký tự"],
+    maxlength: [2000, "Summary không được vượt quá 2000 ký tự"],
+    trim: true,
+  },
     characters: {
       type: String, // Mô tả thông tin các nhân vật
     },
