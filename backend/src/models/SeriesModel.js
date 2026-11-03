@@ -3,11 +3,13 @@ const mongoose = require("mongoose");
 const seriesSchema = new mongoose.Schema(
   {
     title: {
-      type: String,
-      required: true,
-      trim: true,
-      unique: true,
-    },
+    type: String,
+    required: [true, "Vui lòng nhập tên series"],
+    minlength: [2, "Tên series phải có ít nhất 2 ký tự"],
+    maxlength: [100, "Tên series không được vượt quá 100 ký tự"],
+    trim: true,
+    unique: true,
+  },
     description: {
       type: String,
     },
