@@ -202,4 +202,29 @@ describe("Series API - Lấy series theo từng role", () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toContain("không phải Tantou Editor");
   });
+
+  it.each([
+    ["genre", "A"],
+    ["genre", "A".repeat(51)],
+    ["target_audience", "A"],
+    ["target_audience", "A".repeat(51)],
+  ])("từ chối %s ngoài giới hạn độ dài", async (field, value) => {
+    const { accessToken } = await createAuthenticatedUser({
+      role: "Mangaka",
+      email: `mk-invalid-${field}-${Date.now()}-${Math.random()}@example.com`,
+    });
+    const title = `Series invalid ${field} ${Date.now()} ${Math.random()}`;
+
+    const response = await withAuth(
+      request(app).post("/api/series"),
+      accessToken,
+    ).send({
+      title,
+      [field]: value,
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe("Dữ liệu Series không hợp lệ");
+    expect(await Series.findOne({ title })).toBeNull();
+  });
 });
