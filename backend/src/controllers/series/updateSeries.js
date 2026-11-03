@@ -41,6 +41,13 @@ exports.updateSeries = async (req, res) => {
       series,
     });
   } catch (err) {
+    if (err.name === "ValidationError") {
+      return res.status(400).json({
+        message: "Dữ liệu Series không hợp lệ",
+        details: Object.values(err.errors).map((error) => error.message),
+      });
+    }
+
     return res.status(500).json({ error: "Lỗi server", details: err.message });
   }
 };
