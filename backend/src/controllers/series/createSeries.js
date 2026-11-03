@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const Series = require("../../models/SeriesModel");
 const SeriesProposal = require("../../models/SeriesProposalModel");
 const { ROLES } = require("../../constants/roles");
@@ -34,13 +35,37 @@ exports.createSeries = async (req, res) => {
       return res.status(400).json({ message: "author_id là bắt buộc" });
     }
 
+    let resolvedEditorId = null;
+    if (editor_id) {
+      if (!mongoose.isValidObjectId(editor_id)) {
+        return res.status(400).json({
+          message: "editor_id không hợp lệ",
+        });
+      }
+
+      const editor = await User.findById(editor_id).select("_id role name");
+      if (!editor) {
+        return res.status(400).json({
+          message: "Không tìm thấy người dùng với editor_id đã cung cấp",
+        });
+      }
+
+      if (editor.role !== ROLES.TANTOU_EDITOR) {
+        return res.status(400).json({
+          message: `Người dùng "${editor.name}" không phải Tantou Editor`,
+        });
+      }
+
+      resolvedEditorId = editor._id;
+    }
+
     const series = await Series.create({
       title,
       description,
       genre,
       target_audience,
       author_id: resolvedAuthorId,
-      editor_id: editor_id || null,
+      editor_id: resolvedEditorId,
       status: "Draft",
     });
 
@@ -88,6 +113,13 @@ exports.createSeries = async (req, res) => {
       proposal,
     });
   } catch (err) {
+    if (err.name === "ValidationError") {
+      return res.status(400).json({
+        message: "Dữ liệu Series không hợp lệ",
+        details: Object.values(err.errors).map((error) => error.message),
+      });
+    }
+
     return res.status(500).json({ error: "Lỗi server", details: err.message });
   }
 };

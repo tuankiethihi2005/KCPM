@@ -14,10 +14,14 @@ const seriesSchema = new mongoose.Schema(
       type: String,
     },
     genre: {
-      type: String, // Bạn có thể đổi thành [String] nếu 1 truyện có nhiều thể loại
+      type: String,
+      minlength: 2,
+      maxlength: 50,
     },
     target_audience: {
       type: String,
+      minlength: 2,
+      maxlength: 50,
     },
     author_id: {
       type: mongoose.Schema.Types.ObjectId,

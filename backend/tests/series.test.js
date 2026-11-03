@@ -179,4 +179,72 @@ describe("Series API - Lấy series theo từng role và kiểm thử tính năn
     expect(response.status).toBe(400);
     expect(response.body.message).toMatch(/đã tồn tại/i);
   });
+
+  it("không tạo series khi editor_id không tồn tại", async () => {
+    const { accessToken } = await createAuthenticatedUser({
+      role: "Mangaka",
+      email: `mk-invalid-editor-${Date.now()}@example.com`,
+    });
+
+    const response = await withAuth(
+      request(app).post("/api/series"),
+      accessToken,
+    ).send({
+      title: "Series editor khong ton tai",
+      editor_id: "507f1f77bcf86cd799439011",
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe(
+      "Không tìm thấy người dùng với editor_id đã cung cấp",
+    );
+    expect(await Series.findOne({ title: "Series editor khong ton tai" })).toBeNull();
+  });
+
+  it("không tạo series khi editor_id không phải Tantou Editor", async () => {
+    const { accessToken } = await createAuthenticatedUser({
+      role: "Mangaka",
+      email: `mk-invalid-editor-role-${Date.now()}@example.com`,
+    });
+    const { user: assistant } = await createAuthenticatedUser({
+      role: "Assistant",
+      email: `assistant-invalid-editor-${Date.now()}@example.com`,
+    });
+
+    const response = await withAuth(
+      request(app).post("/api/series"),
+      accessToken,
+    ).send({
+      title: "Series sai role editor",
+      editor_id: assistant._id.toString(),
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toContain("không phải Tantou Editor");
+  });
+
+  it.each([
+    ["genre", "A"],
+    ["genre", "A".repeat(51)],
+    ["target_audience", "A"],
+    ["target_audience", "A".repeat(51)],
+  ])("từ chối %s ngoài giới hạn độ dài", async (field, value) => {
+    const { accessToken } = await createAuthenticatedUser({
+      role: "Mangaka",
+      email: `mk-invalid-${field}-${Date.now()}-${Math.random()}@example.com`,
+    });
+    const title = `Series invalid ${field} ${Date.now()} ${Math.random()}`;
+
+    const response = await withAuth(
+      request(app).post("/api/series"),
+      accessToken,
+    ).send({
+      title,
+      [field]: value,
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe("Dữ liệu Series không hợp lệ");
+    expect(await Series.findOne({ title })).toBeNull();
+  });
 });

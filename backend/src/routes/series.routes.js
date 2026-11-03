@@ -42,7 +42,8 @@ router.get(
   requireRole(ROLES.TANTOU_EDITOR),
   getSeriesByRole.getEditorSeries,
 );
-router.get("/all", getSeriesByRole.getAllSeries);
+router.get("/all", requireRole(ROLES.EDITORIAL_BOARD,
+  ROLES.ADMIN), getSeriesByRole.getAllSeries);
 router.get(
   "/assistant",
   requireRole(ROLES.ASSISTANT),
