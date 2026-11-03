@@ -3,25 +3,30 @@ const mongoose = require("mongoose");
 const seriesSchema = new mongoose.Schema(
   {
     title: {
-    type: String,
-    required: [true, "Vui lòng nhập tên series"],
-    minlength: [2, "Tên series phải có ít nhất 2 ký tự"],
-    maxlength: [100, "Tên series không được vượt quá 100 ký tự"],
-    trim: true,
-    unique: true,
-  },
+      type: String,
+      required: [true, "Vui lòng nhập tên series"],
+      minlength: [2, "Tên series phải có ít nhất 2 ký tự"],
+      maxlength: [100, "Tên series không được vượt quá 100 ký tự"],
+      trim: true,
+      unique: true,
+    },
     description: {
       type: String,
+      trim: true,
+      minlength: [10, "Mô tả series phải có ít nhất 10 ký tự"],
+      maxlength: [2000, "Mô tả series không được vượt quá 2000 ký tự"],
     },
     genre: {
       type: String,
-      minlength: 2,
-      maxlength: 50,
+      trim: true,
+      minlength: [2, "Thể loại phải có ít nhất 2 ký tự"],
+      maxlength: [100, "Thể loại không được vượt quá 100 ký tự"],
     },
     target_audience: {
       type: String,
-      minlength: 2,
-      maxlength: 50,
+      trim: true,
+      minlength: [2, "Đối tượng mục tiêu phải có ít nhất 2 ký tự"],
+      maxlength: [100, "Đối tượng mục tiêu không được vượt quá 100 ký tự"],
     },
     author_id: {
       type: mongoose.Schema.Types.ObjectId,
@@ -31,7 +36,6 @@ const seriesSchema = new mongoose.Schema(
     editor_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      // Không bắt buộc ngay từ đầu vì có thể lúc tạo series chưa có editor
     },
     status: {
       type: String,
@@ -58,6 +62,6 @@ const seriesSchema = new mongoose.Schema(
     },
   },
   { timestamps: true },
-); // Tự động tạo created_at và updated_at
+);
 
 module.exports = mongoose.model("Series", seriesSchema);
