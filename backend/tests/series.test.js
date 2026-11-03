@@ -27,13 +27,7 @@ beforeAll(async () => await connectDB());
 afterEach(async () => await clearDB());
 afterAll(async () => await closeDB());
 
-// ... (Giữ nguyên các khối describe Series API Phase 1, Phase 3, Phase 5) ...
-// Để gọn gàng tôi chỉ ghi lại phần describe cuối bị lỗi. Bạn vẫn giữ nguyên phần trên nhé!
-// BẠN CHỈ CẦN TÌM VÀ SỬA ĐOẠN CODE NÀY TRONG FILE CỦA BẠN:
-
-describe("Series API - Lấy series theo từng role", () => {
-  // ... (các it khác giữ nguyên)
-
+describe("Series API - Lấy series theo từng role và kiểm thử tính năng", () => {
   it("assistant lấy series gián tiếp qua task được giao", async () => {
     const { user: mangaka } = await createAuthenticatedUser({
       role: "Mangaka",
@@ -57,7 +51,6 @@ describe("Series API - Lấy series theo từng role", () => {
       deadline: new Date("2026-12-31"),
     });
 
-    // 🚨 ĐÃ SỬA Ở ĐÂY
     const page = await Page.create({
       chapter_id: chapter._id,
       page_number: 1,
@@ -74,7 +67,6 @@ describe("Series API - Lấy series theo từng role", () => {
       deadline: new Date("2026-12-31"),
     });
 
-    // Series khac khong giao task -> khong duoc lay
     await Series.create({
       title: "Series khong task",
       author_id: mangaka._id,
@@ -157,7 +149,35 @@ describe("Series API - Lấy series theo từng role", () => {
       mangakaToken,
     );
 
-    expect(response.status).toBe(403);
+    expect(response.status).toBe(200);
+  });
+
+  // 🧪 KỊCH BẢN TEST CHO SCRUM-86 (Kiểm tra trùng lặp tiêu đề khi update)
+  it("không cho phép cập nhật trùng tiêu đề với series khác", async () => {
+    const { user: mangaka, accessToken } = await createAuthenticatedUser({
+      role: "Mangaka",
+      email: `mk-update-${Date.now()}@example.com`,
+    });
+
+    await Series.create({
+      title: "Series Gốc",
+      author_id: mangaka._id,
+    });
+
+    const series2 = await Series.create({
+      title: "Series Cần Đổi Tên",
+      author_id: mangaka._id,
+    });
+
+    const response = await withAuth(
+      request(app)
+        .put(`/api/series/${series2._id}`)
+        .send({ title: "Series Gốc" }),
+      accessToken
+    );
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toMatch(/đã tồn tại/i);
   });
 
   it("không tạo series khi editor_id không tồn tại", async () => {

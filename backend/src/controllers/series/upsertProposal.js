@@ -14,14 +14,15 @@ exports.upsertProposal = async (req, res) => {
     }
 
     let proposal = await SeriesProposal.findOne({ series_id: id }).sort({
-      createdAt: -1,
-    });
+  createdAt: -1,
+});
 
-    if (proposal && !EDITABLE_STATUSES.includes(proposal.status)) {
-      return res.status(400).json({
-        message: `Không thể sửa proposal ở trạng thái ${proposal.status}`,
-      });
-    }
+// Nếu đã có proposal và trạng thái không thuộc nhóm cho phép sửa (Draft, Need Revision)
+if (proposal && !EDITABLE_STATUSES.includes(proposal.status)) {
+  return res.status(400).json({
+    message: `Không thể nộp hoặc cập nhật proposal khi hồ sơ đang ở trạng thái "${proposal.status}"`,
+  });
+}
 
     if (!summary) {
       return res.status(400).json({ message: "summary là bắt buộc" });
