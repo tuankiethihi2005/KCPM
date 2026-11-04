@@ -67,6 +67,36 @@ describe("Board review flow Phase 2", () => {
     return seriesId;
   };
 
+  it("không cho bỏ phiếu khi proposal đang ở trạng thái Draft", async () => {
+    const createRes = await withAuth(
+      request(app).post("/api/series"),
+      mangakaToken,
+    ).send({
+      title: "Draft Series Vote Test",
+      summary: "A boy fights demons in a dangerous world",
+    });
+
+    expect(createRes.status).toBe(201);
+    const seriesId = createRes.body.series._id;
+
+    const voteRes = await withAuth(
+      request(app).post(`/api/board/series/${seriesId}/vote`),
+      boardToken,
+    ).send({ vote: "Approve" });
+
+    expect(voteRes.status).toBe(400);
+    expect(voteRes.body.message).toBe("Series không ở trạng thái chờ duyệt");
+    expect(
+      await BoardVote.countDocuments({
+        series_id: seriesId,
+        vote_context: "initial_review",
+      }),
+    ).toBe(0);
+
+    const proposal = await SeriesProposal.findOne({ series_id: seriesId });
+    expect(proposal.status).toBe("Draft");
+  });
+
   it("submits a proposal for board review", async () => {
     const seriesId = await createSubmittedSeries();
     const proposal = await SeriesProposal.findOne({ series_id: seriesId });
