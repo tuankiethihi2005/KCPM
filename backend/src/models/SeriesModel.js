@@ -20,13 +20,13 @@ const seriesSchema = new mongoose.Schema(
       type: String,
       trim: true,
       minlength: [2, "Thể loại phải có ít nhất 2 ký tự"],
-      maxlength: [100, "Thể loại không được vượt quá 100 ký tự"],
+      maxlength: [50, "Thể loại không được vượt quá 50 ký tự"],
     },
     target_audience: {
       type: String,
       trim: true,
       minlength: [2, "Đối tượng mục tiêu phải có ít nhất 2 ký tự"],
-      maxlength: [100, "Đối tượng mục tiêu không được vượt quá 100 ký tự"],
+      maxlength: [50, "Đối tượng mục tiêu không được vượt quá 50 ký tự"],
     },
     author_id: {
       type: mongoose.Schema.Types.ObjectId,

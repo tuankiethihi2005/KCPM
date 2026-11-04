@@ -52,7 +52,7 @@ describe("Board review flow Phase 2", () => {
       mangakaToken,
     ).send({
       title: "Demon Slayer",
-      summary: "A boy fights demons",
+      summary: "A boy fights demons in a dangerous world",
       characters: "Tanjiro",
       art_style: "Shonen",
     });
