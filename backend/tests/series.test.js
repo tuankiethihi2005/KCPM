@@ -224,7 +224,35 @@ describe("Series API - Lấy series theo từng role", () => {
     });
 
     expect(response.status).toBe(400);
-    expect(response.body.message).toBe("Dữ liệu Series không hợp lệ");
+    expect(response.body.message).toBe(
+      "Dữ liệu Series hoặc proposal không hợp lệ",
+    );
     expect(await Series.findOne({ title })).toBeNull();
+  });
+
+  it.each([
+    ["A".repeat(19), "ít hơn 20 ký tự"],
+    ["A".repeat(2001), "nhiều hơn 2000 ký tự"],
+  ])("từ chối summary %s", async (summary, boundaryDescription) => {
+    const { accessToken } = await createAuthenticatedUser({
+      role: "Mangaka",
+      email: `mk-invalid-summary-${Date.now()}-${Math.random()}@example.com`,
+    });
+    const title = `Series invalid summary ${boundaryDescription} ${Date.now()}`;
+
+    const response = await withAuth(
+      request(app).post("/api/series"),
+      accessToken,
+    ).send({
+      title,
+      summary,
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe("Dữ liệu proposal không hợp lệ");
+    expect(await Series.findOne({ title })).toBeNull();
+    expect(
+      await SeriesProposal.findOne({ summary }),
+    ).toBeNull();
   });
 });

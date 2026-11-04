@@ -10,6 +10,8 @@ const seriesProposalSchema = new mongoose.Schema(
     summary: {
       type: String,
       required: true,
+      minlength: 20,
+      maxlength: 2000,
     },
     characters: {
       type: String, // Mô tả thông tin các nhân vật

@@ -47,6 +47,13 @@ exports.upsertProposal = async (req, res) => {
 
     res.status(200).json({ message: "Lưu proposal thành công", proposal });
   } catch (err) {
+    if (err.name === "ValidationError") {
+      return res.status(400).json({
+        message: "Dữ liệu proposal không hợp lệ",
+        details: Object.values(err.errors).map((error) => error.message),
+      });
+    }
+
     res.status(500).json({ error: "Lỗi server", details: err.message });
   }
 };
