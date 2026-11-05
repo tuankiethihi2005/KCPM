@@ -19,7 +19,7 @@ const cloudinaryStorage = new CloudinaryStorage({
 const createUpload = ({ storage, maxFileSize, allowedFiles }) =>
   multer({
     storage,
-    limits: { fileSize: maxFileSize },
+    limits: { fileSize: maxFileSize + 1 },
     fileFilter: (req, file, callback) => {
       const extension = path.extname(file.originalname).slice(1).toLowerCase();
       const fileRule = allowedFiles[file.fieldname];

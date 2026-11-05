@@ -1,50 +1,64 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
+import {
+  createSeries,
+  fillSeriesFields,
+  getUiResult,
+  signInAs,
+} from "./series_test_helpers.js";
 
-const mangakaEmail =  "magakatest123@gmail.com";
-const mangakaPassword = "password123";
 const maxCoverSize = 10 * 1024 * 1024;
 const tinyPng = Buffer.from(
   "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/pWQAAAAASUVORK5CYII=",
   "base64",
 );
 
+function crc32(buffer) {
+  let crc = 0xffffffff;
+  for (const byte of buffer) {
+    crc ^= byte;
+    for (let bit = 0; bit < 8; bit += 1) {
+      crc = (crc >>> 1) ^ (crc & 1 ? 0xedb88320 : 0);
+    }
+  }
+  return (crc ^ 0xffffffff) >>> 0;
+}
+
+function createPngAtSize(size) {
+  const payloadSize = size - tinyPng.length;
+  const ancillaryPayloadSize = payloadSize - 12;
+  assert.ok(ancillaryPayloadSize >= 8, "PNG size is too small for a text chunk");
+
+  const chunk = Buffer.alloc(ancillaryPayloadSize + 12, 0x78);
+  chunk.writeUInt32BE(ancillaryPayloadSize, 0);
+  chunk.write("tEXt", 4, "ascii");
+  chunk.write("Comment", 8, "ascii");
+  chunk[15] = 0;
+  chunk.writeUInt32BE(crc32(chunk.subarray(4, chunk.length - 4)), chunk.length - 4);
+
+  return Buffer.concat([
+    tinyPng.subarray(0, tinyPng.length - 12),
+    chunk,
+    tinyPng.subarray(tinyPng.length - 12),
+  ]);
+}
+
 async function createSeriesAndOpenDetails(I) {
   await I.amOnPage("/mangaka/series/new");
   if ((await I.grabCurrentUrl()).includes("/login")) {
-    await I.fillField("#email", mangakaEmail);
-    await I.fillField("#password", mangakaPassword);
-    await I.click('button[type="submit"]');
-    await I.waitForElement('a[href="/mangaka/series/new"]', 15);
-    await I.amOnPage("/mangaka/series/new");
+    await signInAs(I, "mangaka");
   }
-  await I.waitForText("Tạo series mới", 10);
-  await I.fillField(
-    ".form-section .form-group > input.neo-input",
-    `Proposal ${Date.now()} ${Math.random().toString(36).slice(2, 8)}`,
-  );
-  await I.click('button[type="submit"]');
-  await I.waitForText("Chi tiết series", 15);
+  return createSeries(I, {
+    title: `Proposal ${Date.now()} ${Math.random().toString(36).slice(2, 8)}`,
+    genre: "",
+    targetAudience: "",
+  });
 }
 
 async function saveProposal(I, { summary, characters = "", artStyle = "" }) {
-  await I.fillField(".textarea-tall", summary);
-  await I.fillField(".proposal-section .grid-2-cols .form-group:nth-child(1) textarea", characters);
-  await I.fillField(".proposal-section .grid-2-cols .form-group:nth-child(2) textarea", artStyle);
+  await fillSeriesFields(I, { summary, characters, artStyle });
   await I.click('button[type="submit"]');
-}
-
-async function getUiResult(I) {
-  return I.executeScript(() => ({
-    path: window.location.pathname,
-    formValid: document.querySelector("form")?.checkValidity() ?? null,
-    validationMessage: document.querySelector(":invalid")?.validationMessage || "",
-    toasts: Array.from(document.querySelectorAll(".toast-text")).map((toast) =>
-      toast.textContent.trim(),
-    ),
-  }));
 }
 
 async function expectProposalSaved(I) {
@@ -82,7 +96,11 @@ async function expectToast(I, expectedMessage) {
 }
 
 function createTempFile(extension, size, content = Buffer.alloc(0)) {
-  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "kcpm-codecept-"));
+  const outputDirectory = path.join(process.cwd(), "codecept_output");
+  fs.mkdirSync(outputDirectory, { recursive: true });
+  const directory = fs.mkdtempSync(
+    path.join(outputDirectory, "kcpm-codecept-"),
+  );
   const filePath = path.join(directory, `cover.${extension}`);
   const data = Buffer.alloc(size);
   content.copy(data, 0, 0, Math.min(content.length, data.length));
@@ -110,25 +128,47 @@ Scenario("PR-02: chấp nhận dữ liệu văn bản tối đa và ảnh bìa �
   });
   await expectProposalSaved(I);
 
-  const file = createTempFile("png", maxCoverSize, tinyPng);
-  let uploadedBytes = 0;
+  const file = createTempFile("png", maxCoverSize, createPngAtSize(maxCoverSize));
   try {
-    await I.mockRoute("**/proposal/upload-cover", async (route) => {
-      uploadedBytes = route.request().postDataBuffer()?.length || 0;
-      await route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({
-          message: "Upload cover thành công",
-          cover_image: "https://example.test/cover.png",
-        }),
-      });
+    await I.scrollPageToBottom();
+    await I.waitForVisible(".neo-file-input", 15);
+    await I.executeScript(() => {
+      const originalFetch = window.fetch.bind(window);
+      window.__codeceptCoverUploadResponse = null;
+      window.fetch = async (...args) => {
+        const response = await originalFetch(...args);
+        const requestUrl =
+          typeof args[0] === "string" ? args[0] : args[0]?.url || "";
+        if (requestUrl.includes("/proposal/upload-cover")) {
+          window.__codeceptCoverUploadResponse = {
+            status: response.status,
+            body: await response.clone().text(),
+          };
+        }
+        return response;
+      };
     });
-    await I.attachFile("input.neo-file-input", file.filePath);
+    await I.attachFile(
+      ".neo-file-input",
+      path.relative(process.cwd(), file.filePath),
+    );
+    await I.waitForFunction(
+      () => window.__codeceptCoverUploadResponse !== null,
+      [],
+      60,
+    );
+    const uploadResponse = await I.executeScript(
+      () => window.__codeceptCoverUploadResponse,
+    );
+    assert.ok(uploadResponse, "Expected the backend upload endpoint to respond");
+    const uploadBody = JSON.parse(uploadResponse.body);
+    console.log(
+      `[ACTUAL BACKEND RESULT] status=${uploadResponse.status}; body=${JSON.stringify(uploadBody)}`,
+    );
+    assert.equal(uploadResponse.status, 200);
+    assert.equal(uploadBody.message, "Upload cover thành công");
     await expectToast(I, "Upload ảnh bìa thành công!");
     assert.equal(fs.statSync(file.filePath).size, maxCoverSize);
-    assert.ok(uploadedBytes > maxCoverSize, "Upload request should contain the 10 MB file");
-    await I.stopMockingRoute("**/proposal/upload-cover");
   } finally {
     file.cleanup();
   }
@@ -177,7 +217,12 @@ Scenario("PR-09: từ chối file bìa không phải ảnh", async ({ I }) => {
 
   const file = createTempFile("txt", 16, Buffer.from("not an image"));
   try {
-    await I.attachFile("input.neo-file-input", file.filePath);
+    await I.scrollPageToBottom();
+    await I.waitForVisible(".neo-file-input", 15);
+    await I.attachFile(
+      ".neo-file-input",
+      path.relative(process.cwd(), file.filePath),
+    );
     await expectToast(I, "File cover chỉ hỗ trợ: các định dạng ảnh phổ biến.");
   } finally {
     file.cleanup();
@@ -191,7 +236,46 @@ Scenario("PR-10: từ chối ảnh bìa lớn hơn 10 MB", async ({ I }) => {
 
   const file = createTempFile("png", maxCoverSize + 1, tinyPng);
   try {
-    await I.attachFile("input.neo-file-input", file.filePath);
+    await I.scrollPageToBottom();
+    await I.waitForVisible(".neo-file-input", 15);
+    await I.executeScript(() => {
+      const originalFetch = window.fetch.bind(window);
+      window.__codeceptCoverUploadResponse = null;
+      window.fetch = async (...args) => {
+        const response = await originalFetch(...args);
+        const requestUrl =
+          typeof args[0] === "string" ? args[0] : args[0]?.url || "";
+        if (requestUrl.includes("/proposal/upload-cover")) {
+          window.__codeceptCoverUploadResponse = {
+            status: response.status,
+            body: await response.clone().text(),
+          };
+        }
+        return response;
+      };
+    });
+    await I.attachFile(
+      ".neo-file-input",
+      path.relative(process.cwd(), file.filePath),
+    );
+    await I.waitForFunction(
+      () => window.__codeceptCoverUploadResponse !== null,
+      [],
+      60,
+    );
+    const uploadResponse = await I.executeScript(
+      () => window.__codeceptCoverUploadResponse,
+    );
+    assert.ok(uploadResponse, "Expected the backend upload endpoint to respond");
+    const uploadBody = JSON.parse(uploadResponse.body);
+    console.log(
+      `[ACTUAL BACKEND RESULT] status=${uploadResponse.status}; body=${JSON.stringify(uploadBody)}`,
+    );
+    assert.equal(uploadResponse.status, 413);
+    assert.equal(
+      uploadBody.error?.message,
+      "File vượt quá dung lượng tối đa cho phép.",
+    );
     await expectToast(I, "File vượt quá dung lượng tối đa cho phép.");
   } finally {
     file.cleanup();

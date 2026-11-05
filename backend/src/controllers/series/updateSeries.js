@@ -31,6 +31,11 @@ exports.updateSeries = async (req, res) => {
       if (!trimmedTitle) {
         return res.status(400).json({ message: "title không được rỗng" });
       }
+      if (typeof trimmedTitle === "string" && /[<>]/.test(trimmedTitle)) {
+        return res.status(400).json({
+          message: "Tên series không được chứa ký tự markup HTML.",
+        });
+      }
 
       const existingSeries = await Series.findOne({
         title: trimmedTitle,

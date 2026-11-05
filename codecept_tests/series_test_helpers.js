@@ -340,15 +340,17 @@ export async function fillSeriesFields(I, data = {}) {
     );
   }
   if (data.characters !== undefined) {
-    await I.fillField(
+    await setReactInputValue(
       ".proposal-section .grid-2-cols .form-group:nth-child(1) textarea",
       data.characters,
+      true,
     );
   }
   if (data.artStyle !== undefined) {
-    await I.fillField(
+    await setReactInputValue(
       ".proposal-section .grid-2-cols .form-group:nth-child(2) textarea",
       data.artStyle,
+      true,
     );
   }
 }
@@ -426,6 +428,13 @@ export async function submitProposal(I) {
   await I.waitForElement("button.btn-success", 15);
   await I.click("button.btn-success");
   await expectToastCaseInsensitive(I, "Đã nộp thành công!", 15);
+  await waitForTextCaseInsensitive(I, "Submitted", 15, ".status-badge");
+
+  const result = await getUiResult(I);
+  console.log(
+    `[ACTUAL RESULT] expected=proposal submitted; actual=${JSON.stringify(result)}`,
+  );
+  return result;
 }
 
 export async function createSubmittedSeries(I) {

@@ -30,6 +30,12 @@ exports.createSeries = async (req, res) => {
       return res.status(400).json({ message: "title là bắt buộc" });
     }
 
+    if (typeof title === "string" && /[<>]/.test(title)) {
+      return res.status(400).json({
+        message: "Tên series không được chứa ký tự markup HTML.",
+      });
+    }
+
     const existingSeries = await Series.findOne({ title });
     if (existingSeries) {
       return res.status(400).json({ message: "Series này đã tồn tại" });
