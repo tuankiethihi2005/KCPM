@@ -180,6 +180,34 @@ class RankingService {
       }),
     );
 
+    // [SCRUM-92] Cập nhật risk_status và status của Series dựa trên kết quả xếp hạng
+    await Promise.all(
+      processedVotes.map(async (current) => {
+        let newRiskStatus;
+        let newStatus;
+
+        if (current.totalScore < 300) {
+          // Ngưỡng nguy hiểm: điểm rất thấp → Critical
+          newRiskStatus = "Critical";
+          newStatus = "At Risk";
+        } else if (current.totalScore < 500) {
+          // Ngưỡng cảnh báo: cancellationWarning đã được đánh dấu → Warning
+          newRiskStatus = "Warning";
+          newStatus = "At Risk";
+        } else {
+          // An toàn
+          newRiskStatus = "Safe";
+          newStatus = "Active";
+        }
+
+        await Series.findByIdAndUpdate(
+          current.series_id,
+          { risk_status: newRiskStatus, status: newStatus },
+          { new: true },
+        );
+      }),
+    );
+
     return await this.getVoteHistory();
   }
 }
