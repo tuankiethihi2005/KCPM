@@ -4,6 +4,7 @@ const SeriesProposal = require("../../models/SeriesProposalModel");
 const User = require("../../models/UserModel"); // Thêm dòng này để kết nối với Model User
 
 const EDITABLE_STATUSES = ["Draft", "Need Revision"];
+const PENDING_STATUSES = ["Submitted", "Pending", "Under Review"];
 
 exports.updateSeries = async (req, res) => {
   try {
@@ -19,6 +20,14 @@ exports.updateSeries = async (req, res) => {
     const proposal = await SeriesProposal.findOne({ series_id: id }).sort({
       createdAt: -1,
     });
+    if (
+      (proposal && PENDING_STATUSES.includes(proposal.status)) ||
+      PENDING_STATUSES.includes(series.status)
+    ) {
+      return res.status(409).json({
+        message: "Hồ sơ đang ở trạng thái chờ duyệt, không thể cập nhật thông tin.",
+      });
+    }
     if (proposal && !EDITABLE_STATUSES.includes(proposal.status)) {
       return res.status(400).json({
         message: `Không thể sửa thông tin series khi proposal ở trạng thái ${proposal.status}`,
@@ -100,6 +109,28 @@ exports.updateSeries = async (req, res) => {
 
         series.editor_id = editor_id;
       }
+    }
+
+    // Kiểm tra concurrency trước khi lưu (Optimistic Concurrency Check):
+    // Đảm bảo trạng thái Series/Proposal không bị chuyển sang chờ duyệt trong quá trình xử lý cập nhật
+    const latestProposal = await SeriesProposal.findOne({ series_id: id }).sort({
+      createdAt: -1,
+    });
+    const latestSeries = await Series.findById(id).select("status");
+
+    if (
+      (latestProposal && PENDING_STATUSES.includes(latestProposal.status)) ||
+      (latestSeries && PENDING_STATUSES.includes(latestSeries.status))
+    ) {
+      return res.status(409).json({
+        message: "Hồ sơ đang ở trạng thái chờ duyệt, không thể cập nhật thông tin.",
+      });
+    }
+
+    if (latestProposal && !EDITABLE_STATUSES.includes(latestProposal.status)) {
+      return res.status(400).json({
+        message: `Không thể sửa thông tin series khi proposal ở trạng thái ${latestProposal.status}`,
+      });
     }
 
     await series.save();
