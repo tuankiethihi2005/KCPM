@@ -201,6 +201,60 @@ describe("Series API - Lấy series theo từng role và kiểm thử tính năn
     expect(await Series.findOne({ title: "Series editor khong ton tai" })).toBeNull();
   });
 
+  it("cho phép xóa các trường tùy chọn bằng giá trị rỗng khi cập nhật series", async () => {
+    const { accessToken, user } = await createAuthenticatedUser({
+      role: "Mangaka",
+      email: `mk-clear-optional-${Date.now()}@example.com`,
+    });
+    const series = await Series.create({
+      title: `Series clear optional fields ${Date.now()}`,
+      author_id: user._id,
+      description: "Mô tả series ban đầu",
+      genre: "Fantasy",
+      target_audience: "Adults",
+    });
+
+    const response = await withAuth(
+      request(app).put(`/api/series/${series._id}`),
+      accessToken,
+    ).send({
+      description: "",
+      genre: " ",
+      target_audience: "",
+    });
+
+    expect(response.status).toBe(200);
+    const updatedSeries = await Series.findById(series._id);
+    expect(updatedSeries.description).toBeUndefined();
+    expect(updatedSeries.genre).toBeUndefined();
+    expect(updatedSeries.target_audience).toBeUndefined();
+  });
+
+  it("tạo được series chỉ với title khi các trường tùy chọn để trống", async () => {
+    const { accessToken, user } = await createAuthenticatedUser({
+      role: "Mangaka",
+      email: `mk-empty-optional-${Date.now()}@example.com`,
+    });
+    const title = `Series with empty optional fields ${Date.now()}`;
+
+    const response = await withAuth(
+      request(app).post("/api/series"),
+      accessToken,
+    ).send({
+      title,
+      description: "",
+      genre: "   ",
+      target_audience: "",
+      summary: "",
+    });
+
+    expect(response.status).toBe(201);
+    expect(response.body.series.title).toBe(title);
+    expect(response.body.proposal).toBeNull();
+    expect(await Series.countDocuments({ author_id: user._id })).toBe(1);
+    expect(await SeriesProposal.countDocuments({})).toBe(0);
+  });
+
   it("không tạo series khi editor_id không phải Tantou Editor", async () => {
     const { accessToken } = await createAuthenticatedUser({
       role: "Mangaka",
@@ -246,5 +300,51 @@ describe("Series API - Lấy series theo từng role và kiểm thử tính năn
     expect(response.status).toBe(400);
     expect(response.body.message).toBe("Dữ liệu Series không hợp lệ");
     expect(await Series.findOne({ title })).toBeNull();
+  });
+
+  it.each([
+    ["A".repeat(19), "short"],
+    ["A".repeat(2001), "long"],
+  ])("không tạo Series khi summary %s ngoài giới hạn", async (summary, label) => {
+    const { accessToken, user } = await createAuthenticatedUser({
+      role: "Mangaka",
+      email: `mk-invalid-summary-${label}-${Date.now()}-${Math.random()}@example.com`,
+    });
+    const title = `Series invalid summary ${label} ${Date.now()} ${Math.random()}`;
+
+    const response = await withAuth(
+      request(app).post("/api/series"),
+      accessToken,
+    ).send({ title, summary });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe("Dữ liệu proposal không hợp lệ");
+    expect(await Series.findOne({ title })).toBeNull();
+    expect(await SeriesProposal.findOne({ summary })).toBeNull();
+    expect(await Series.countDocuments({ author_id: user._id })).toBe(0);
+  });
+
+  it.each([
+    ["A".repeat(19), "short"],
+    ["A".repeat(2001), "long"],
+  ])("từ chối cập nhật proposal khi summary %s ngoài giới hạn", async (summary, label) => {
+    const { accessToken, user } = await createAuthenticatedUser({
+      role: "Mangaka",
+      email: `mk-update-summary-${label}-${Date.now()}-${Math.random()}@example.com`,
+    });
+    const series = await Series.create({
+      title: `Series update summary ${label} ${Date.now()} ${Math.random()}`,
+      author_id: user._id,
+      status: "Draft",
+    });
+
+    const response = await withAuth(
+      request(app).put(`/api/series/${series._id}/proposal`),
+      accessToken,
+    ).send({ summary });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe("Dữ liệu proposal không hợp lệ");
+    expect(await SeriesProposal.findOne({ series_id: series._id })).toBeNull();
   });
 });

@@ -35,6 +35,7 @@ export default function MangakaSeriesFormPage() {
   const previewUrlRef = useRef("");
 
   const [editors, setEditors] = useState([]);
+  const formRef = useRef(null);
 
   const [form, setForm] = useState({
     title: "",
@@ -104,11 +105,32 @@ export default function MangakaSeriesFormPage() {
     setForm((prev) => ({ ...prev, [field]: event.target.value }));
   };
 
-  const canEdit =
-    !isEdit || editableStatuses.includes(proposalStatus);
+  const canEdit = !isEdit || editableStatuses.includes(proposalStatus);
   const displayCover = previewUrl || coverImage;
   const reviewDeadline = getProposalReviewDeadline(proposalInfo);
   const deadlineStatus = formatDeadlineStatus(reviewDeadline);
+
+  const saveSeriesAndProposal = async () => {
+    const seriesResult = await updateSeries(seriesId, {
+      title: form.title,
+      description: form.description,
+      genre: form.genre,
+      target_audience: form.target_audience,
+      editor_id: form.editor_id,
+    });
+    if (seriesResult.success === false) return seriesResult;
+
+    const proposalResult = await upsertProposal(seriesId, {
+      summary: form.summary,
+      characters: form.characters,
+      art_style: form.art_style,
+    });
+    if (proposalResult.success === false) return proposalResult;
+
+    setProposalStatus(proposalResult.proposal?.status || proposalStatus);
+    setProposalInfo(proposalResult.proposal || null);
+    return proposalResult;
+  };
 
   const handleSave = async (event) => {
     event.preventDefault();
@@ -119,7 +141,13 @@ export default function MangakaSeriesFormPage() {
     setIsSaving(true);
 
     if (!isEdit) {
-      const result = await createSeries(form);
+      const result = await createSeries({
+        title: form.title,
+        description: form.description,
+        genre: form.genre,
+        target_audience: form.target_audience,
+        editor_id: form.editor_id,
+      });
       if (result.success === false) {
         toast.error(result.message);
         setIsSaving(false);
@@ -131,32 +159,13 @@ export default function MangakaSeriesFormPage() {
       return;
     }
 
-    // Chế độ sửa: cập nhật thông tin series + lưu bản thảo (proposal).
-    const seriesResult = await updateSeries(seriesId, {
-      title: form.title,
-      description: form.description,
-      genre: form.genre,
-      target_audience: form.target_audience,
-      editor_id: form.editor_id,
-    });
-    if (seriesResult.success === false) {
-      toast.error(seriesResult.message);
-      setIsSaving(false);
-      return;
-    }
-
-    const proposalResult = await upsertProposal(seriesId, {
-      summary: form.summary,
-      characters: form.characters,
-      art_style: form.art_style,
-    });
-    if (proposalResult.success === false) {
-      toast.error(proposalResult.message);
+    const result = await saveSeriesAndProposal();
+    if (result.success === false) {
+      toast.error(result.message);
       setIsSaving(false);
       return;
     }
     toast.success("Đã lưu thông tin series và bản thảo!");
-    setProposalStatus(proposalResult.proposal?.status || proposalStatus);
     setIsSaving(false);
   };
 
@@ -202,14 +211,37 @@ export default function MangakaSeriesFormPage() {
 
   const handleSubmit = async () => {
     if (!seriesId) return;
+    if (!formRef.current?.reportValidity()) return;
+
+    const missingFields = [
+      ["genre", form.genre, "Thể loại"],
+      ["target_audience", form.target_audience, "Độc giả mục tiêu"],
+    ].filter(([, value]) => !value.trim());
+    if (missingFields.length > 0) {
+      toast.error(
+        `Vui lòng nhập: ${missingFields.map(([, , label]) => label).join(", ")}.`,
+      );
+      return;
+    }
+
+    setIsSaving(true);
+    const saved = await saveSeriesAndProposal();
+    if (saved.success === false) {
+      toast.error(saved.message);
+      setIsSaving(false);
+      return;
+    }
+
     const result = await submitProposal(seriesId);
     if (result.success === false) {
       toast.error(result.message);
+      setIsSaving(false);
       return;
     }
     setProposalStatus(result.proposal?.status || "Submitted");
     setProposalInfo(result.proposal || null);
     toast.success("Đã nộp thành công!");
+    setIsSaving(false);
   };
 
   if (isLoading) {
@@ -230,14 +262,16 @@ export default function MangakaSeriesFormPage() {
 
       {isEdit && (
         <p className="status-text">
-          Trạng thái series: {" "}
-          <span className="status-badge">{seriesStatus}</span>
-          {" "}| Trạng thái proposal: {" "}
-          <span className="status-badge">{proposalStatus}</span>
+          Trạng thái series:{" "}
+          <span className="status-badge">{seriesStatus}</span> | Trạng thái
+          proposal: <span className="status-badge">{proposalStatus}</span>
           {reviewDeadline && (
             <>
-              {" "}| Hạn duyệt:{" "}
-              <span className={`status-badge deadline-badge ${deadlineStatus?.className || ""}`}>
+              {" "}
+              | Hạn duyệt:{" "}
+              <span
+                className={`status-badge deadline-badge ${deadlineStatus?.className || ""}`}
+              >
                 {reviewDeadline.toLocaleDateString("vi-VN")}
                 {deadlineStatus ? ` (${deadlineStatus.label})` : ""}
               </span>
@@ -260,7 +294,7 @@ export default function MangakaSeriesFormPage() {
         </div>
       )}
 
-      <form onSubmit={handleSave} className="neo-form">
+      <form ref={formRef} onSubmit={handleSave} className="neo-form">
         <section className="form-section">
           <h2 className="section-title">Thông tin series</h2>
 
@@ -287,7 +321,9 @@ export default function MangakaSeriesFormPage() {
 
           <div className="grid-2-cols">
             <div className="form-group">
-              <label className="neo-label">Thể loại</label>
+              <label className="neo-label">
+                Thể loại {isEdit && canEdit ? "*" : ""}
+              </label>
               <input
                 className="neo-input"
                 value={form.genre}
@@ -296,7 +332,9 @@ export default function MangakaSeriesFormPage() {
               />
             </div>
             <div className="form-group">
-              <label className="neo-label">Độc giả mục tiêu</label>
+              <label className="neo-label">
+                Độc giả mục tiêu {isEdit && canEdit ? "*" : ""}
+              </label>
               <input
                 className="neo-input"
                 value={form.target_audience}
@@ -335,6 +373,8 @@ export default function MangakaSeriesFormPage() {
                 value={form.summary}
                 onChange={handleChange("summary")}
                 required
+                minLength={20}
+                maxLength={2000}
                 disabled={!canEdit}
               />
             </div>
@@ -396,8 +436,13 @@ export default function MangakaSeriesFormPage() {
             {isSaving ? "Đang lưu..." : isEdit ? "Lưu thay đổi" : "Tạo series"}
           </button>
 
-            {isEdit && canEdit && (
-              <button type="button" onClick={handleSubmit} className="btn-success">
+          {isEdit && canEdit && (
+            <button
+              type="button"
+              onClick={handleSubmit}
+              disabled={isSaving}
+              className="btn-success"
+            >
               Nộp xin duyệt
             </button>
           )}

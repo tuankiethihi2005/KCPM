@@ -52,7 +52,9 @@ describe("Board review flow Phase 2", () => {
       mangakaToken,
     ).send({
       title: "Demon Slayer",
-      summary: "A boy fights demons",
+      genre: "Fantasy",
+      target_audience: "Young adult",
+      summary: "A boy fights demons in a dangerous world",
       characters: "Tanjiro",
       art_style: "Shonen",
     });
@@ -67,6 +69,36 @@ describe("Board review flow Phase 2", () => {
     return seriesId;
   };
 
+  it("không cho bỏ phiếu khi proposal đang ở trạng thái Draft", async () => {
+    const createRes = await withAuth(
+      request(app).post("/api/series"),
+      mangakaToken,
+    ).send({
+      title: "Draft Series Vote Test",
+      summary: "A boy fights demons in a dangerous world",
+    });
+
+    expect(createRes.status).toBe(201);
+    const seriesId = createRes.body.series._id;
+
+    const voteRes = await withAuth(
+      request(app).post(`/api/board/series/${seriesId}/vote`),
+      boardToken,
+    ).send({ vote: "Approve" });
+
+    expect(voteRes.status).toBe(400);
+    expect(voteRes.body.message).toBe("Series không ở trạng thái chờ duyệt");
+    expect(
+      await BoardVote.countDocuments({
+        series_id: seriesId,
+        vote_context: "initial_review",
+      }),
+    ).toBe(0);
+
+    const proposal = await SeriesProposal.findOne({ series_id: seriesId });
+    expect(proposal.status).toBe("Draft");
+  });
+
   it("submits a proposal for board review", async () => {
     const seriesId = await createSubmittedSeries();
     const proposal = await SeriesProposal.findOne({ series_id: seriesId });
@@ -78,6 +110,54 @@ describe("Board review flow Phase 2", () => {
     const expectedDeadline = new Date(proposal.submitted_at);
     expectedDeadline.setDate(expectedDeadline.getDate() + REVIEW_DEADLINE_DAYS);
     expect(proposal.review_deadline.getTime()).toBe(expectedDeadline.getTime());
+  });
+
+  it("rejects submission when required series metadata is missing", async () => {
+    const createRes = await withAuth(
+      request(app).post("/api/series"),
+      mangakaToken,
+    ).send({
+      title: "Series Missing Metadata",
+      summary: "A complete proposal summary that meets minimum length",
+    });
+
+    expect(createRes.status).toBe(201);
+    const seriesId = createRes.body.series._id;
+
+    const response = await withAuth(
+      request(app).post(`/api/series/${seriesId}/proposal/submit`),
+      mangakaToken,
+    );
+
+    expect(response.status).toBe(400);
+    expect(response.body.missingFields).toEqual(
+      expect.arrayContaining(["genre", "target_audience"]),
+    );
+    expect(
+      (await SeriesProposal.findOne({ series_id: seriesId })).status,
+    ).toBe("Draft");
+  });
+
+  it("rejects submission when proposal summary is missing", async () => {
+    const createRes = await withAuth(
+      request(app).post("/api/series"),
+      mangakaToken,
+    ).send({
+      title: "Series Missing Summary",
+      genre: "Fantasy",
+      target_audience: "Young adult",
+    });
+
+    expect(createRes.status).toBe(201);
+    const seriesId = createRes.body.series._id;
+
+    const response = await withAuth(
+      request(app).post(`/api/series/${seriesId}/proposal/submit`),
+      mangakaToken,
+    );
+
+    expect(response.status).toBe(400);
+    expect(response.body.missingFields).toContain("summary");
   });
 
   it("backfills review_deadline for legacy pending proposals", async () => {

@@ -1,4 +1,5 @@
 const SeriesProposal = require("../../models/SeriesProposalModel");
+const Series = require("../../models/SeriesModel");
 const BoardVote = require("../../models/BoardVoteModel");
 const User = require("../../models/UserModel");
 const NotificationService = require("../../services/notificationService");
@@ -14,6 +15,55 @@ exports.submitProposal = async (req, res) => {
     }
     if (series.status === "Cancelled") {
       return res.status(400).json({ message: "Series đã bị hủy, không thể nộp proposal" });
+    }
+
+    const proposalToSubmit = await SeriesProposal.findOne({
+      series_id: series._id,
+    }).sort({ createdAt: -1 });
+    if (
+      proposalToSubmit &&
+      !SUBMITTABLE_STATUSES.includes(proposalToSubmit.status)
+    ) {
+      return res.status(400).json({
+        message:
+          "Không thể nộp proposal. Proposal không tồn tại hoặc đang trong quá trình xét duyệt.",
+      });
+    }
+
+    const missingFields = [];
+    if (!series.title?.trim()) missingFields.push("title");
+    if (!series.genre?.trim()) missingFields.push("genre");
+    if (!series.target_audience?.trim()) {
+      missingFields.push("target_audience");
+    }
+    if (!proposalToSubmit?.summary?.trim()) missingFields.push("summary");
+
+    if (missingFields.length > 0) {
+      return res.status(400).json({
+        message: "Vui lòng hoàn tất các trường bắt buộc trước khi nộp proposal",
+        missingFields,
+      });
+    }
+
+    const seriesValidation = new Series({
+      title: series.title,
+      genre: series.genre,
+      target_audience: series.target_audience,
+      author_id: series.author_id,
+    }).validateSync();
+    const proposalValidation = new SeriesProposal({
+      series_id: series._id,
+      summary: proposalToSubmit.summary,
+    }).validateSync();
+    const validationErrors = [
+      ...Object.values(seriesValidation?.errors || {}),
+      ...Object.values(proposalValidation?.errors || {}),
+    ];
+    if (validationErrors.length > 0) {
+      return res.status(400).json({
+        message: "Dữ liệu proposal chưa hợp lệ",
+        details: validationErrors.map((error) => error.message),
+      });
     }
 
     const now = new Date();
