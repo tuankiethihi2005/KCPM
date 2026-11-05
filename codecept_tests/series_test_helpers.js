@@ -372,6 +372,8 @@ export async function createSeries(I, overrides = {}) {
     title.trim(),
     15,
   );
+  const uiResult = await getUiResult(I);
+  console.log("UI Result after creating series:", JSON.stringify(uiResult));
   await I.waitForFunction(
     () =>
       !Array.from(document.querySelectorAll(".toast-text")).some((toast) =>

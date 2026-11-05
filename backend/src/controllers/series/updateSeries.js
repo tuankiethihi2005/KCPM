@@ -55,7 +55,7 @@ exports.updateSeries = async (req, res) => {
       if (trimmedDesc && trimmedDesc.length > 2000) {
         return res.status(400).json({ message: "Mô tả series không được vượt quá 2000 ký tự" });
       }
-      series.description = trimmedDesc;
+      series.description = trimmedDesc || undefined;
     }
 
     // 3. Validate genre (SCRUM-87)
@@ -67,7 +67,7 @@ exports.updateSeries = async (req, res) => {
       if (trimmedGenre && trimmedGenre.length > 100) {
         return res.status(400).json({ message: "Thể loại không được vượt quá 100 ký tự" });
       }
-      series.genre = trimmedGenre;
+      series.genre = trimmedGenre || undefined;
     }
 
     // 4. Validate target_audience (SCRUM-87)
@@ -79,7 +79,7 @@ exports.updateSeries = async (req, res) => {
       if (trimmedAudience && trimmedAudience.length > 100) {
         return res.status(400).json({ message: "Đối tượng mục tiêu không được vượt quá 100 ký tự" });
       }
-      series.target_audience = trimmedAudience;
+      series.target_audience = trimmedAudience || undefined;
     }
 
     // 5. Validate editor_id (SCRUM-88)
