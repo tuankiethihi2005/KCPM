@@ -463,6 +463,11 @@ export async function castBoardVote(I, vote, comment = "") {
     15,
   );
   await waitForVoteDisplayed(I, vote);
+  const uiResult = await getUiResult(I);
+  console.log(
+    `[ACTUAL RESULT] expected=vote cast; actual=${JSON.stringify(uiResult)}`,
+  );
+  return uiResult;
 }
 
 export async function captureVoteAuthHeader(I) {
@@ -480,21 +485,41 @@ export async function captureVoteAuthHeader(I) {
   });
 }
 
+export async function refreshAccessToken(I) {
+  return I.executeScript(async () => {
+    const response = await fetch("http://localhost:5000/api/auth/refresh", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await response.json().catch(() => null);
+
+    if (!response.ok || !data?.accessToken) {
+      throw new Error(
+        `Could not refresh access token (status=${response.status}): ${
+          data?.error?.message || "No access token returned"
+        }`,
+      );
+    }
+
+    return data.accessToken;
+  });
+}
+
 export async function sendApiRequestWithAuth(
   I,
   path,
   method = "POST",
   body = undefined,
 ) {
+  const accessToken = await refreshAccessToken(I);
   return I.executeScript(
     async (args) => {
       const [reqPath, reqMethod, reqBody] = Array.isArray(args)
         ? args
         : [args.path, args.method, args.body];
       const headers = {
-        ...(window.__codeceptVoteAuth
-          ? { Authorization: window.__codeceptVoteAuth }
-          : {}),
+        Authorization: `Bearer ${args.accessToken}`,
       };
       if (reqBody !== undefined) {
         headers["Content-Type"] = "application/json";
@@ -511,7 +536,7 @@ export async function sendApiRequestWithAuth(
       } catch (_) {}
       return { status: response.status, body: json };
     },
-    [path, method, body],
+    { path, method, body, accessToken },
   );
 }
 
