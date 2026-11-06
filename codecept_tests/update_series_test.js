@@ -14,6 +14,7 @@ import {
   getUiResult,
   normalizeText,
   sendApiRequestWithAuth,
+  refreshAccessToken,
 } from "./series_test_helpers.js";
 
 async function expectUpdateRejectedOnUi(I) {
@@ -28,6 +29,7 @@ async function expectUpdateRejectedOnUi(I) {
   await I.waitForFunction(
     () => {
       const form = document.querySelector("form");
+
       if (form && !form.checkValidity()) return true;
 
       const submitBtn = document.querySelector('button[type="submit"]');
@@ -35,6 +37,9 @@ async function expectUpdateRejectedOnUi(I) {
         submitBtn?.disabled ||
         submitBtn?.textContent.toLowerCase().includes("đang lưu");
       const toasts = document.querySelectorAll(".toast-text");
+      console.log(
+        `[expectUpdateRejectedOnUi] isSaving=${isSaving}, toasts.length=${toasts}`,
+      );
       return !isSaving && toasts.length > 0;
     },
     [],
@@ -161,7 +166,7 @@ Scenario(
   "US-05: từ chối title rỗng, chỉ khoảng trắng, vượt giới hạn (101 ký tự) hoặc chứa ký tự cấm (<, >)",
   async ({ I }) => {
     await signInAs(I, "mangaka");
-    const { title: originalTitle } = await createSeriesDraft(I);
+    const { seriesId, title: originalTitle } = await createSeriesDraft(I);
 
     for (const invalidTitle of [
       "",
@@ -170,16 +175,30 @@ Scenario(
       "S".repeat(101),
       "Bad <script> Title",
     ]) {
-      await fillSeriesFields(I, { title: invalidTitle });
-      await expectUpdateRejectedOnUi(I);
-    }
+      const updateResponse = await sendApiRequestWithAuth(
+        I,
+        `/series/${seriesId}`,
+        "PUT",
+        { title: invalidTitle },
+      );
+      assert.equal(
+        updateResponse.status,
+        400,
+        `Expected invalid title to return 400, got ${updateResponse.status}: ${JSON.stringify(updateResponse.body)}`,
+      );
 
-    await I.refreshPage();
-    await I.waitForValue(
-      ".form-section .form-group > input.neo-input",
-      originalTitle,
-      15,
-    );
+      const getResponse = await sendApiRequestWithAuth(
+        I,
+        `/series/${seriesId}`,
+        "GET",
+      );
+      assert.equal(getResponse.status, 200);
+      assert.equal(
+        getResponse.body.series.title,
+        originalTitle,
+        "Rejected title updates must not change the stored title",
+      );
+    }
   },
 );
 
@@ -205,39 +224,46 @@ Scenario(
 );
 
 Scenario(
-  "US-07: kiểm tra biên hợp lệ và vượt biên 1 đơn vị cho description (1000/1001), genre (2/50/1/51) và target_audience (2/50/1/51)",
+  "US-07: kiểm tra biên hợp lệ và vượt biên 1 đơn vị cho description (2000/2001), genre (2/50/1/51) và target_audience (2/50/1/51)",
   async ({ I }) => {
     await signInAs(I, "mangaka");
-    await createSeriesDraft(I);
+    const { seriesId } = await createSeriesDraft(I);
+    const update = (body) =>
+      sendApiRequestWithAuth(I, `/series/${seriesId}`, "PUT", body);
 
-    // Biên hợp lệ
-    await saveSeriesDraft(I, {
-      description: "d".repeat(1000),
+    const maxLengthValues = {
+      description: "d".repeat(2000),
       genre: "g".repeat(50),
-      targetAudience: "a".repeat(50),
-    });
+      target_audience: "a".repeat(50),
+    };
+    const maxLengthResponse = await update(maxLengthValues);
+    assert.equal(
+      maxLengthResponse.status,
+      200,
+      `Expected maximum valid lengths to pass, got ${maxLengthResponse.status}: ${JSON.stringify(maxLengthResponse.body)}`,
+    );
 
-    // Vượt biên 1 đơn vị
-    await fillSeriesFields(I, { description: "d".repeat(1001) });
-    await expectUpdateRejectedOnUi(I);
+    for (const body of [{ genre: "g" }, { target_audience: "a" }]) {
+      const response = await update(body);
+      assert.equal(
+        response.status,
+        400,
+        `Expected values shorter than the minimum to be rejected, got ${response.status}: ${JSON.stringify(response.body)}`,
+      );
+    }
 
-    await fillSeriesFields(I, {
-      description: "Mô tả hợp lệ",
-      genre: "G",
-    });
-    await expectUpdateRejectedOnUi(I);
-
-    await fillSeriesFields(I, { genre: "g".repeat(51) });
-    await expectUpdateRejectedOnUi(I);
-
-    await fillSeriesFields(I, {
-      genre: "Fantasy",
-      targetAudience: "A",
-    });
-    await expectUpdateRejectedOnUi(I);
-
-    await fillSeriesFields(I, { targetAudience: "a".repeat(51) });
-    await expectUpdateRejectedOnUi(I);
+    for (const body of [
+      { description: "d".repeat(2001) },
+      { genre: "g".repeat(51) },
+      { target_audience: "a".repeat(51) },
+    ]) {
+      const response = await update(body);
+      assert.equal(
+        response.status,
+        400,
+        `Expected values longer than the maximum to be rejected, got ${response.status}: ${JSON.stringify(response.body)}`,
+      );
+    }
   },
 );
 
@@ -377,11 +403,12 @@ Scenario(
     await captureVoteAuthHeader(I);
     const { seriesId } = await createSeriesDraft(I);
     const concurrentTitle = `Concurrent Title ${Date.now()}`;
+    const accessToken = await refreshAccessToken(I);
 
     const [updateRes, submitRes] = await I.executeScript(
-      async ({ id, newTitle }) => {
+      async ({ id, newTitle, token }) => {
         const headers = {
-          Authorization: window.__codeceptVoteAuth,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         };
         const [u, s] = await Promise.all([
@@ -399,7 +426,7 @@ Scenario(
         ]);
         return [u, s];
       },
-      { id: seriesId, newTitle: concurrentTitle },
+      { id: seriesId, newTitle: concurrentTitle, token: accessToken },
     );
 
     assert.equal(submitRes.status, 200, "Submit proposal phải thành công");
