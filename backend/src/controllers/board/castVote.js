@@ -36,6 +36,12 @@ exports.castVote = async (req, res) => {
       });
     }
 
+    if (proposal.status === "Draft") {
+      return res.status(400).json({
+        message: "Proposal không có trạng thái hợp lệ",
+      });
+    }
+
     if (!VOTABLE_PROPOSAL_STATUSES.includes(proposal.status)) {
       return res.status(400).json({
         message: "Series không ở trạng thái chờ duyệt",

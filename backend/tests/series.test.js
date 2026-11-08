@@ -255,6 +255,26 @@ describe("Series API - Lấy series theo từng role và kiểm thử tính năn
     expect(await SeriesProposal.countDocuments({})).toBe(0);
   });
 
+  it("không tạo series khi title chứa ký tự markup HTML", async () => {
+    const { accessToken, user } = await createAuthenticatedUser({
+      role: "Mangaka",
+      email: `mk-markup-title-${Date.now()}@example.com`,
+    });
+    const title = "Tên <b>Series</b>";
+
+    const response = await withAuth(
+      request(app).post("/api/series"),
+      accessToken,
+    ).send({ title });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe(
+      "Tên series không được chứa ký tự markup HTML.",
+    );
+    expect(await Series.findOne({ title })).toBeNull();
+    expect(await Series.countDocuments({ author_id: user._id })).toBe(0);
+  });
+
   it("không tạo series khi editor_id không phải Tantou Editor", async () => {
     const { accessToken } = await createAuthenticatedUser({
       role: "Mangaka",
@@ -301,6 +321,41 @@ describe("Series API - Lấy series theo từng role và kiểm thử tính năn
     expect(response.body.message).toBe("Dữ liệu Series không hợp lệ");
     expect(await Series.findOne({ title })).toBeNull();
   });
+
+  it.each([
+    ["description", "D".repeat(2001)],
+    ["genre", "G".repeat(51)],
+    ["target_audience", "A".repeat(51)],
+  ])(
+    "từ chối cập nhật %s vượt quá giới hạn và giữ nguyên dữ liệu",
+    async (field, invalidValue) => {
+      const { accessToken, user } = await createAuthenticatedUser({
+        role: "Mangaka",
+        email: `mk-update-invalid-${field}-${Date.now()}-${Math.random()}@example.com`,
+      });
+      const originalValues = {
+        description: "Mô tả hợp lệ",
+        genre: "Fantasy",
+        target_audience: "Adults",
+      };
+      const series = await Series.create({
+        title: `Series update invalid ${field} ${Date.now()} ${Math.random()}`,
+        author_id: user._id,
+        ...originalValues,
+      });
+
+      const response = await withAuth(
+        request(app).put(`/api/series/${series._id}`),
+        accessToken,
+      ).send({ [field]: invalidValue });
+
+      expect(response.status).toBe(400);
+      const unchangedSeries = await Series.findById(series._id);
+      expect(unchangedSeries.description).toBe(originalValues.description);
+      expect(unchangedSeries.genre).toBe(originalValues.genre);
+      expect(unchangedSeries.target_audience).toBe(originalValues.target_audience);
+    },
+  );
 
   it.each([
     ["A".repeat(19), "short"],

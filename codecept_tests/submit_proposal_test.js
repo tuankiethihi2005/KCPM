@@ -19,6 +19,7 @@ import {
   sendApiRequestWithAuth,
   getUiResult,
   normalizeText,
+  refreshAccessToken,
 } from "./series_test_helpers.js";
 
 const maxCoverSize = 10 * 1024 * 1024;
@@ -334,10 +335,11 @@ Scenario(
     await captureVoteAuthHeader(I);
     const { seriesId } = await createSeriesDraft(I);
 
+    const accessToken = await refreshAccessToken(I);
     const [upsertRes, submitRes] = await I.executeScript(
-      async ({ id }) => {
+      async ({ id, token }) => {
         const headers = {
-          Authorization: window.__codeceptVoteAuth,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         };
         return Promise.all([
@@ -357,7 +359,7 @@ Scenario(
           }).then((r) => r.status),
         ]);
       },
-      { id: seriesId },
+      { id: seriesId, token: accessToken },
     );
 
     assert.equal(submitRes, 200);
