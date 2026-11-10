@@ -29,3 +29,34 @@
 | EBV-09 | Người không đủ tư cách, tài khoản bị khóa hoặc người chưa đăng nhập thử bỏ phiếu.   | Từ chối; không lưu phiếu; thao tác bị ghi nhận theo chính sách kiểm toán.                             |
 | EBV-10 | Bỏ phiếu cho proposal không tồn tại, chưa được nộp hoặc đã có kết quả cuối.         | Từ chối; không tạo dữ liệu vote mồ côi hoặc thay đổi kết quả.                                         |
 | EBV-11 | Gửi lại cùng request sau timeout phía client.                                       | Hệ thống không tính trùng phiếu; phản hồi chỉ rõ phiếu đã được ghi nhận hay chưa.                     |
+
+## Bảng chuyển đổi trạng thái và bảng quyết định theo chức năng hiện có
+
+Các bảng dưới đây phản ánh `castVote`, route Board và các enum của Proposal/BoardVote. Các giả định về quorum, thời hạn đóng phiếu, lịch sử đổi phiếu và giới hạn comment ở phần trên chưa được thể hiện trong luồng bỏ phiếu này.
+
+### Bảng chuyển đổi trạng thái
+
+| Test case | Trạng thái Proposal đầu | Sự kiện / đầu vào | Trạng thái Proposal cuối / kết quả |
+| --- | --- | --- | --- |
+| 1 | `Submitted` | Gửi một trong `Approve`, `Reject`, `Need Revision`; chưa có phiếu của thành viên cho Series ở `initial_review` | Tạo phiếu; Proposal chuyển thành `Under Review`. |
+| 2 | `Under Review` | Gửi lựa chọn hợp lệ; chưa có phiếu hiện hành của thành viên | Tạo phiếu; Proposal giữ `Under Review`. |
+| 3 | `Submitted` hoặc `Under Review` | Thành viên đã có phiếu hiện hành gửi lựa chọn khác hoặc cập nhật comment | Cập nhật phiếu hiện có; Proposal giữ nguyên trạng thái. |
+| 4 | `Draft`, trạng thái khác hoặc không có Proposal | Gửi phiếu | Request bị từ chối; không ghi nhận phiếu mới. |
+
+### Bảng quyết định
+
+`Y` = có/đúng; `N` = không/sai; `-` = không ảnh hưởng.
+
+| Điều kiện / hành động | R1 | R2 | R3 | R4 | R5 | R6 |
+| --- | --- | --- | --- | --- | --- | --- |
+| C1: Series và Proposal gần nhất tồn tại | Y | Y | Y | Y | Y | N |
+| C2: Proposal ở `Submitted` hoặc `Under Review` | Y | Y | Y | Y | N | - |
+| C3: Vote thuộc `Approve`, `Reject`, `Need Revision` | Y | Y | Y | N | - | - |
+| C4: Đã có phiếu thành viên đó trong `initial_review` | N | N | Y | - | - | - |
+| C5: Proposal đang ở `Submitted` | Y | N | - | - | - | - |
+| A1: Tạo phiếu mới | X | X | - | - | - | - |
+| A2: Cập nhật phiếu hiện có | - | - | X | - | - | - |
+| A3: Nếu Proposal là `Submitted`, chuyển thành `Under Review` | X | - | - | - | - | - |
+| A4: Từ chối request | - | - | - | X | X | X |
+
+Route chỉ cho phép role Editorial Board hoặc Admin. Phiếu được tìm theo Series, thành viên và `vote_context: initial_review`; model không lưu mã vòng xét duyệt hoặc lịch sử các giá trị phiếu trước đó.

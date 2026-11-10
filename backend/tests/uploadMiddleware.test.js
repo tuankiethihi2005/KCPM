@@ -15,7 +15,9 @@ const upload = createUpload({
 }).single("file");
 
 const app = express();
-app.post("/", upload, (req, res) => res.sendStatus(200));
+app.post("/", upload, (req, res) =>
+  res.status(200).json({ size: req.file.size }),
+);
 app.use((error, req, res, next) => {
   const status =
     error instanceof multer.MulterError
@@ -27,15 +29,16 @@ app.use((error, req, res, next) => {
 });
 
 describe("upload middleware validation", () => {
-  it("accepts an allowed file within the size limit", async () => {
+  it("accepts an allowed file exactly at the size limit", async () => {
     const response = await request(app)
       .post("/")
-      .attach("file", Buffer.from("123"), {
+      .attach("file", Buffer.from("1234"), {
         filename: "valid.txt",
         contentType: "text/plain",
       });
 
     expect(response.status).toBe(200);
+    expect(response.body.size).toBe(4);
   });
 
   it("rejects unsupported file extensions", async () => {

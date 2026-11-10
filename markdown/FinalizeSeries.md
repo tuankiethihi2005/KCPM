@@ -35,3 +35,35 @@
 | FS-14 | Hai người có quyền gửi yêu cầu chốt đồng thời. | Chỉ một quyết định được commit; request còn lại nhận trạng thái đã chốt, không ghi đè. |
 | FS-15 | Gửi lại request sau timeout khi lần chốt đầu đã thành công. | Không tạo quyết định/thông báo trùng; phản hồi thể hiện kết quả đã chốt. |
 | FS-16 | Lưu quyết định thành công nhưng dịch vụ thông báo lỗi. | Kết quả đã chốt vẫn chính xác; lỗi thông báo được ghi nhận và có thể gửi lại; không trả thông báo thành công sai nội dung. |
+
+## Bảng chuyển đổi trạng thái và bảng quyết định theo chức năng hiện có
+
+Các bảng dưới đây mô tả `finalizeSeriesById` và model hiện tại. Luồng này không áp dụng quorum hay ngưỡng quá bán; các điều kiện được ghi ở phần trên nhưng chưa thể hiện trong code không được xem là hành vi hiện tại.
+
+### Bảng chuyển đổi trạng thái
+
+| Test case | Trạng thái Proposal đầu | Sự kiện / đầu vào | Trạng thái Proposal cuối / trạng thái Series |
+| --- | --- | --- | --- |
+| 1 | `Submitted` hoặc `Under Review` | `Approve` là lựa chọn cao nhất duy nhất; lịch phát hành hợp lệ hoặc để mặc định | Proposal `Approved`; Series `Active`; lưu lịch được chọn, mặc định `weekly`. |
+| 2 | `Submitted` hoặc `Under Review` | `Reject` cao hơn hoặc bằng cả hai lựa chọn còn lại | Proposal `Rejected`; Series chuyển về `Draft`. |
+| 3 | `Submitted` hoặc `Under Review` | `Need Revision` cao hơn `Approve` và `Reject`, hoặc hòa cao nhất mà `Reject` không cùng đạt cao nhất | Proposal `Need Revision`; trạng thái Series giữ nguyên. |
+| 4 | `Submitted` hoặc `Under Review` | Không có phiếu, Proposal không tồn tại/không chờ xử lý, hoặc lịch `Approve` không hợp lệ | Request bị từ chối; không áp dụng quyết định. |
+| 5 | `Submitted` hoặc `Under Review` | Hết hạn mà không có phiếu, qua luồng tự động riêng | Proposal chuyển thành `Need Revision`; trạng thái Series giữ nguyên. |
+
+### Bảng quyết định
+
+`Y` = có/đúng; `N` = không/sai; `-` = không ảnh hưởng.
+
+| Điều kiện / hành động | R1 | R2 | R3 | R4 | R5 |
+| --- | --- | --- | --- | --- | --- |
+| C1: Proposal gần nhất đang `Submitted` hoặc `Under Review` | Y | Y | Y | N | Y |
+| C2: Có ít nhất một phiếu | Y | Y | Y | - | Y |
+| C3: `Approve` nhiều hơn cả `Reject` và `Need Revision` | Y | N | N | - | Y |
+| C4: `Reject` lớn hơn hoặc bằng `Approve` và `Need Revision` | - | Y | N | - | - |
+| C5: Với quyết định `Approve`, lịch thuộc `weekly`, `monthly`, `one-shot`, `online only` | Y | - | - | - | N |
+| A1: Quyết định `Approve`; Proposal `Approved`, Series `Active` và lưu lịch | X | - | - | - | - |
+| A2: Quyết định `Reject`; Proposal `Rejected`, Series `Draft` | - | X | - | - | - |
+| A3: Quyết định `Need Revision`; Proposal `Need Revision` | - | - | X | - | - |
+| A4: Từ chối finalize | - | - | - | X | X |
+
+Nếu `Approve` thắng nhưng lịch không hợp lệ thì finalize bị từ chối. Quyết định `Reject` được chọn khi là lựa chọn cao nhất, kể cả khi hòa; các hòa còn lại rơi vào `Need Revision`. Kết quả được tính từ các phiếu `initial_review` của Series, còn route finalize chỉ cho phép role Editorial Board hoặc Admin.

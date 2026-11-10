@@ -5,6 +5,9 @@ const { ROLES } = require("../../constants/roles");
 const User = require("../../models/UserModel");
 const NotificationService = require("../../services/notificationService");
 
+const normalizeOptionalText = (value) =>
+  typeof value === "string" && value.trim() === "" ? undefined : value;
+
 exports.createSeries = async (req, res) => {
   try {
     const {
@@ -18,9 +21,19 @@ exports.createSeries = async (req, res) => {
       characters,
       art_style,
     } = req.body;
+    const normalizedDescription = normalizeOptionalText(description);
+    const normalizedGenre = normalizeOptionalText(genre);
+    const normalizedTargetAudience = normalizeOptionalText(target_audience);
+    const normalizedSummary = normalizeOptionalText(summary);
 
     if (!title) {
       return res.status(400).json({ message: "title là bắt buộc" });
+    }
+
+    if (typeof title === "string" && /[<>]/.test(title)) {
+      return res.status(400).json({
+        message: "Tên series không được chứa ký tự markup HTML.",
+      });
     }
 
     const existingSeries = await Series.findOne({ title });
@@ -35,8 +48,10 @@ exports.createSeries = async (req, res) => {
       return res.status(400).json({ message: "author_id là bắt buộc" });
     }
 
-    if (summary !== undefined && summary !== null) {
-      const summaryValidation = new SeriesProposal({ summary }).validateSync();
+    if (normalizedSummary !== undefined && normalizedSummary !== null) {
+      const summaryValidation = new SeriesProposal({
+        summary: normalizedSummary,
+      }).validateSync();
       if (summaryValidation?.errors?.summary) {
         return res.status(400).json({
           message: "Dữ liệu proposal không hợp lệ",
@@ -71,18 +86,18 @@ exports.createSeries = async (req, res) => {
 
     const series = await Series.create({
       title,
-      description,
-      genre,
-      target_audience,
+      description: normalizedDescription,
+      genre: normalizedGenre,
+      target_audience: normalizedTargetAudience,
       author_id: resolvedAuthorId,
       editor_id: resolvedEditorId,
       status: "Draft",
     });
 
-    if (summary) {
+    if (normalizedSummary !== undefined && normalizedSummary !== null) {
       await SeriesProposal.create({
         series_id: series._id,
-        summary,
+        summary: normalizedSummary,
         characters,
         art_style,
         status: "Draft",

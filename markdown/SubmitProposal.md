@@ -30,3 +30,33 @@
 | SP-10 | Mangaka không sở hữu hồ sơ, Assistant hoặc người chưa đăng nhập thử nộp. | Từ chối theo quyền; không thay đổi hồ sơ hoặc tạo thông báo. |
 | SP-11 | Nộp thành công nhưng dịch vụ thông báo gặp lỗi. | Kết quả lưu hồ sơ phải rõ ràng, không trả thành công giả hoặc thất bại giả; lỗi thông báo được ghi nhận và có cơ chế gửi lại/quan sát được. |
 | SP-12 | Nộp hồ sơ trong khi cùng lúc một phiên khác đang cập nhật hồ sơ. | Bản nộp gắn với một phiên bản nhất quán; không gửi hồ sơ chứa dữ liệu cập nhật dở dang. |
+
+## Bảng chuyển đổi trạng thái và bảng quyết định theo chức năng hiện có
+
+Các bảng dưới đây mô tả trạng thái Proposal được hỗ trợ bởi model và `submitProposal`. Quy tắc về quorum, phiên bản nội dung và tạo Proposal mới không được suy diễn từ luồng này.
+
+### Bảng chuyển đổi trạng thái
+
+| Test case | Trạng thái đầu | Sự kiện / đầu vào | Trạng thái cuối / kết quả |
+| --- | --- | --- | --- |
+| 1 | `Draft` | Nộp Proposal hợp lệ; Series không bị hủy và đủ title, genre, target audience, summary | Proposal chuyển thành `Submitted`; ghi `submitted_at` và `review_deadline`. |
+| 2 | `Need Revision` | Nộp lại Proposal hợp lệ | Proposal hiện tại chuyển thành `Submitted`; cập nhật thời điểm nộp và hạn xét duyệt. |
+| 3 | `Submitted` | Gửi phiếu hợp lệ đầu tiên | Proposal chuyển thành `Under Review`. |
+| 4 | `Under Review` | Nộp lại Proposal | Request bị từ chối; Proposal giữ `Under Review`. |
+| 5 | Bất kỳ trạng thái nào | Nộp khi Series `Cancelled`, thiếu trường bắt buộc hoặc validation không đạt | Request bị từ chối; không nộp Proposal. |
+
+### Bảng quyết định
+
+`Y` = có/đúng; `N` = không/sai; `-` = không ảnh hưởng.
+
+| Điều kiện / hành động | R1 | R2 | R3 | R4 |
+| --- | --- | --- | --- | --- |
+| C1: Series tồn tại và không ở trạng thái `Cancelled` | Y | Y | Y | N |
+| C2: Proposal gần nhất có trạng thái `Draft` hoặc `Need Revision` | Y | Y | N | - |
+| C3: Đủ title, genre, target audience, summary và validation hợp lệ | Y | N | - | - |
+| A1: Chuyển Proposal sang `Submitted`, ghi thời điểm nộp và hạn xét duyệt | X | - | - | - |
+| A2: Từ chối do thiếu dữ liệu hoặc validation thất bại | - | X | - | - |
+| A3: Từ chối do Proposal không ở trạng thái có thể nộp | - | - | X | - |
+| A4: Từ chối do Series bị hủy hoặc không tồn tại | - | - | - | X |
+
+Hạn xét duyệt được đặt theo cấu hình `BOARD_REVIEW_DEADLINE_DAYS` (mặc định 7 ngày). Route nộp yêu cầu role Mangaka và quyền ghi trên Series; khi không tìm thấy thành viên Editorial Board đang hoạt động, handler gửi thông báo dự phòng tới Admin và Tantou Editor đang hoạt động.

@@ -30,3 +30,33 @@
 | US-09 | Người không sở hữu Series hoặc role không được phép sửa thử cập nhật hồ sơ. | Từ chối; không tiết lộ/cập nhật dữ liệu; ghi nhận kết quả truy cập theo chính sách bảo mật. |
 | US-10 | Cập nhật hồ sơ khi Series ở từng trạng thái không cho phép sửa. | Từ chối; không đổi hồ sơ hoặc trạng thái. |
 | US-11 | Gửi request cập nhật đồng thời với request nộp proposal. | Hệ thống xử lý nhất quán: hoặc cập nhật hoàn tất trước khi nộp, hoặc bị từ chối sau khi khóa sửa; không có hồ sơ nộp với dữ liệu cập nhật dở dang. |
+
+## Bảng chuyển đổi trạng thái và bảng quyết định theo chức năng hiện có
+
+Các bảng dưới đây phản ánh điều kiện trong `updateSeries` và `upsertProposal`; không bổ sung giả định về phân quyền ngoài các route hiện có.
+
+### Bảng chuyển đổi trạng thái
+
+| Test case | Trạng thái Proposal gần nhất | Sự kiện / đầu vào | Trạng thái cuối / kết quả |
+| --- | --- | --- | --- |
+| 1 | Proposal chưa có | Cập nhật các trường Series hợp lệ | Series được cập nhật; trạng thái Series không bị thay đổi. |
+| 2 | `Draft` | Cập nhật các trường Series hợp lệ hoặc lưu Proposal hợp lệ | Series/Proposal được lưu; Proposal giữ trạng thái `Draft`. |
+| 3 | `Need Revision` | Cập nhật thông tin Series | Series được cập nhật; Proposal vẫn là `Need Revision`. |
+| 4 | `Need Revision` | Lưu nội dung Proposal hợp lệ qua chức năng lưu Proposal | Proposal chuyển về `Draft`. |
+| 5 | `Submitted`, `Under Review`, `Approved` hoặc `Rejected` | Cập nhật Series hoặc lưu Proposal | Request bị từ chối; trạng thái không đổi. |
+
+### Bảng quyết định
+
+`Y` = có/đúng; `N` = không/sai; `-` = không ảnh hưởng.
+
+| Điều kiện / hành động | R1 | R2 | R3 | R4 |
+| --- | --- | --- | --- | --- |
+| C1: Series tồn tại | Y | Y | N | Y |
+| C2: Chưa có Proposal gần nhất hoặc trạng thái Proposal là `Draft` / `Need Revision` | Y | N | - | Y |
+| C3: Dữ liệu trường được gửi qua validation | Y | - | - | N |
+| A1: Lưu thay đổi Series, giữ nguyên trạng thái Series | X | - | - | - |
+| A2: Từ chối do Proposal không cho phép sửa | - | X | - | - |
+| A3: Từ chối do không tìm thấy Series | - | - | X | - |
+| A4: Từ chối do validation dữ liệu thất bại | - | - | - | X |
+
+Khi lưu Proposal, trạng thái `Need Revision` chỉ chuyển về `Draft` sau khi lưu nội dung thành công; các chỉnh sửa riêng trên Series không tự chuyển trạng thái Proposal.
