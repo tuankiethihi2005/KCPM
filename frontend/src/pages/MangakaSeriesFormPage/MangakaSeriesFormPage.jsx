@@ -105,7 +105,17 @@ export default function MangakaSeriesFormPage() {
     setForm((prev) => ({ ...prev, [field]: event.target.value }));
   };
 
-  const canEdit = !isEdit || editableStatuses.includes(proposalStatus);
+  const isPending =
+    proposalStatus === "Submitted" ||
+    proposalStatus === "Pending" ||
+    proposalStatus === "Under Review" ||
+    seriesStatus === "Submitted" ||
+    seriesStatus === "Pending" ||
+    seriesStatus === "Under Review";
+
+  const canEdit =
+    !isEdit || (editableStatuses.includes(proposalStatus) && !isPending);
+
   const displayCover = previewUrl || coverImage;
   const reviewDeadline = getProposalReviewDeadline(proposalInfo);
   const deadlineStatus = formatDeadlineStatus(reviewDeadline);
@@ -134,7 +144,7 @@ export default function MangakaSeriesFormPage() {
 
   const handleSave = async (event) => {
     event.preventDefault();
-    if (isEdit && !canEdit) {
+    if (isEdit && (!canEdit || isPending)) {
       toast.error("Không thể sửa khi proposal đang chờ duyệt.");
       return;
     }
@@ -248,7 +258,7 @@ export default function MangakaSeriesFormPage() {
     return <Loading text="Đang tải dữ liệu series..." />;
   }
 
-  const seriesFieldsDisabled = isEdit && !canEdit;
+  const seriesFieldsDisabled = (isEdit && !canEdit) || isPending;
 
   return (
     <div className="mangaka-form-wrapper">
@@ -402,15 +412,13 @@ export default function MangakaSeriesFormPage() {
 
             <div className="form-group">
               <label className="neo-label">Ảnh bìa / Concept art</label>
-              {canEdit && (
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleUploadCover}
-                  disabled={isUploading}
-                  className="neo-file-input"
-                />
-              )}
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleUploadCover}
+                disabled={isUploading || isPending || !canEdit}
+                className="neo-file-input"
+              />
               {isUploading && (
                 <span className="upload-hint">Đang tải ảnh lên...</span>
               )}
@@ -430,13 +438,13 @@ export default function MangakaSeriesFormPage() {
         <div className="form-actions">
           <button
             type="submit"
-            disabled={isSaving || (isEdit && !canEdit)}
+            disabled={isSaving || (isEdit && (!canEdit || isPending))}
             className="btn-primary"
           >
             {isSaving ? "Đang lưu..." : isEdit ? "Lưu thay đổi" : "Tạo series"}
           </button>
 
-          {isEdit && canEdit && (
+          {isEdit && canEdit && !isPending && (
             <button
               type="button"
               onClick={handleSubmit}
