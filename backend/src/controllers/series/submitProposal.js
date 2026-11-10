@@ -5,6 +5,7 @@ const NotificationService = require("../../services/notificationService");
 const { addReviewDeadline } = require("../../constants/boardReview");
 
 const SUBMITTABLE_STATUSES = ["Draft", "Need Revision"];
+const PENDING_STATUSES = ["Submitted", "Pending", "Under Review"];
 
 exports.submitProposal = async (req, res) => {
   try {
@@ -17,6 +18,7 @@ exports.submitProposal = async (req, res) => {
     }
 
     const now = new Date();
+    // Atomic findOneAndUpdate để chống race condition: chỉ cho phép chuyển sang Submitted khi trạng thái thuộc SUBMITTABLE_STATUSES
     const proposal = await SeriesProposal.findOneAndUpdate(
       {
         series_id: series._id,
@@ -29,15 +31,35 @@ exports.submitProposal = async (req, res) => {
           review_deadline: addReviewDeadline(now),
         },
       },
-      { new: true, sort: { createdAt: -1 } }
+      { new: true, returnDocument: "after", sort: { createdAt: -1 } }
     );
 
     if (!proposal) {
-      return res.status(400).json({
-        message:
-          "Không thể nộp proposal. Proposal không tồn tại hoặc đang trong quá trình xét duyệt.",
+      const existingProposal = await SeriesProposal.findOne({
+        series_id: series._id,
+      }).sort({ createdAt: -1 });
+
+      if (!existingProposal) {
+        return res.status(404).json({
+          message: "Không tìm thấy proposal để nộp",
+        });
+      }
+
+      if (PENDING_STATUSES.includes(existingProposal.status)) {
+        return res.status(409).json({
+          message: "Hồ sơ đang trong quá trình xét duyệt hoặc đang được xử lý",
+        });
+      }
+
+      return res.status(409).json({
+        message: `Hồ sơ đang ở trạng thái "${existingProposal.status}", không thể nộp proposal.`,
       });
     }
+
+    await BoardVote.deleteMany({
+      series_id: series._id,
+      vote_context: "initial_review",
+    });
 
     // Notify all Editorial Board members
     const boardMembers = await User.find({ role: "Editorial Board", status: "Active" }).select("_id");

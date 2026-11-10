@@ -247,4 +247,50 @@ describe("Series API - Lấy series theo từng role và kiểm thử tính năn
     expect(response.body.message).toBe("Dữ liệu Series không hợp lệ");
     expect(await Series.findOne({ title })).toBeNull();
   });
+
+  it.each([
+    ["A".repeat(19), "short"],
+    ["A".repeat(2001), "long"],
+  ])("không tạo Series khi summary %s ngoài giới hạn", async (summary, label) => {
+    const { accessToken, user } = await createAuthenticatedUser({
+      role: "Mangaka",
+      email: `mk-invalid-summary-${label}-${Date.now()}-${Math.random()}@example.com`,
+    });
+    const title = `Series invalid summary ${label} ${Date.now()} ${Math.random()}`;
+
+    const response = await withAuth(
+      request(app).post("/api/series"),
+      accessToken,
+    ).send({ title, summary });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe("Dữ liệu proposal không hợp lệ");
+    expect(await Series.findOne({ title })).toBeNull();
+    expect(await SeriesProposal.findOne({ summary })).toBeNull();
+    expect(await Series.countDocuments({ author_id: user._id })).toBe(0);
+  });
+
+  it.each([
+    ["A".repeat(19), "short"],
+    ["A".repeat(2001), "long"],
+  ])("từ chối cập nhật proposal khi summary %s ngoài giới hạn", async (summary, label) => {
+    const { accessToken, user } = await createAuthenticatedUser({
+      role: "Mangaka",
+      email: `mk-update-summary-${label}-${Date.now()}-${Math.random()}@example.com`,
+    });
+    const series = await Series.create({
+      title: `Series update summary ${label} ${Date.now()} ${Math.random()}`,
+      author_id: user._id,
+      status: "Draft",
+    });
+
+    const response = await withAuth(
+      request(app).put(`/api/series/${series._id}/proposal`),
+      accessToken,
+    ).send({ summary });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe("Dữ liệu proposal không hợp lệ");
+    expect(await SeriesProposal.findOne({ series_id: series._id })).toBeNull();
+  });
 });

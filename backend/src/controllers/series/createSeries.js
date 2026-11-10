@@ -35,6 +35,16 @@ exports.createSeries = async (req, res) => {
       return res.status(400).json({ message: "author_id là bắt buộc" });
     }
 
+    if (summary !== undefined && summary !== null) {
+      const summaryValidation = new SeriesProposal({ summary }).validateSync();
+      if (summaryValidation?.errors?.summary) {
+        return res.status(400).json({
+          message: "Dữ liệu proposal không hợp lệ",
+          details: [summaryValidation.errors.summary.message],
+        });
+      }
+    }
+
     let resolvedEditorId = null;
     if (editor_id) {
       if (!mongoose.isValidObjectId(editor_id)) {
