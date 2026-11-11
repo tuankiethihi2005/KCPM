@@ -3,6 +3,7 @@ const SeriesProposal = require("../../models/SeriesProposalModel");
 const BoardVote = require("../../models/BoardVoteModel");
 
 const INITIAL_VOTES = ["Approve", "Reject", "Need Revision"];
+const VOTABLE_PROPOSAL_STATUSES = ["Submitted", "Under Review"];
 
 exports.castVote = async (req, res) => {
   try {
@@ -29,7 +30,19 @@ exports.castVote = async (req, res) => {
       createdAt: -1,
     });
 
-    if (!proposal || !["Submitted", "Under Review"].includes(proposal.status)) {
+    if (!proposal) {
+      return res.status(400).json({
+        message: "Series chưa có proposal để bỏ phiếu",
+      });
+    }
+
+    if (proposal.status === "Draft") {
+      return res.status(400).json({
+        message: "Proposal không có trạng thái hợp lệ",
+      });
+    }
+
+    if (!VOTABLE_PROPOSAL_STATUSES.includes(proposal.status)) {
       return res.status(400).json({
         message: "Series không ở trạng thái chờ duyệt",
       });

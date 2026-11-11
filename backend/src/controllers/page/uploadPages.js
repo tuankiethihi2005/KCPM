@@ -10,16 +10,33 @@ exports.uploadPages = async (req, res) => {
 
   try {
     const { chapter_id } = req.params;
-    const { page_number } = req.body; // Client cần gửi thêm số trang
+    const { page_number } = req.body;
+
+    // Kiểm tra tính hợp lệ của chapter_id (ObjectId)
+    if (!mongoose.Types.ObjectId.isValid(chapter_id)) {
+      await session.abortTransaction();
+      session.endSession();
+      return res.status(400).json({ message: "ID chương truyện không hợp lệ!" });
+    }
+
+    // Kiểm tra xem chapter có tồn tại không
+    const chapterExists = await Chapter.findById(chapter_id).session(session);
+    if (!chapterExists) {
+      await session.abortTransaction();
+      session.endSession();
+      return res.status(404).json({ message: "Không tìm thấy chương truyện!" });
+    }
 
     // 2. Kiểm tra xem có nhận được file bản thảo không
     if (!req.files || !req.files.source_file) {
+      await session.abortTransaction();
+      session.endSession();
       return res
         .status(400)
         .json({ message: "Thiếu file bản thảo (source_file)!" });
     }
 
-    // Lấy link file từ Multer (Cloudinary trả về link trong trường .path)
+    // Lấy link file từ Multer
     const sourceFileUrl = req.files.source_file[0].path;
 
     // Nếu có file ZIP đính kèm thì lấy link, không thì để null
@@ -27,8 +44,7 @@ exports.uploadPages = async (req, res) => {
       ? req.files.attached_resource[0].path
       : null;
 
-    // 3. Ma thuật Cloudinary: Tự động tạo link Preview (Ép đuôi file thành .png)
-    // Thay thế phần mở rộng cuối cùng (ví dụ: .psd, .clip) thành .png
+    // 3. Tự động tạo link Preview (Ép đuôi file thành .png)
     const previewUrl = sourceFileUrl.replace(/\.[^/.]+$/, ".png");
 
     // 4. Lưu vào bảng Page
@@ -42,7 +58,6 @@ exports.uploadPages = async (req, res) => {
       status: "Ready For Review",
     });
 
-    // Dùng { session } để báo cho Mongoose biết thao tác này nằm trong Transaction
     const savedPage = await newPage.save({ session });
 
     // 5. Lưu ngay 1 bản ghi vào bảng Lịch sử (PageVersionHistory)
@@ -52,20 +67,19 @@ exports.uploadPages = async (req, res) => {
       preview_url: previewUrl,
       source_file_url: sourceFileUrl,
       attached_resource_url: attachedResourceUrl,
-      submitted_by: req.user.id, // Lấy ID người up từ token
+      submitted_by: req.user.id,
       commit_note: "Upload bản thảo gốc lần đầu",
     });
 
     await newHistory.save({ session });
 
     // 6. Tự động cập nhật chapter → "Waiting Review" nếu đang ở Draft/In Production
-    const chapter = await Chapter.findById(chapter_id).session(session);
-    if (chapter && ["Draft", "In Production"].includes(chapter.status)) {
-      chapter.status = "Waiting Review";
-      await chapter.save({ session });
+    if (["Draft", "In Production"].includes(chapterExists.status)) {
+      chapterExists.status = "Waiting Review";
+      await chapterExists.save({ session });
     }
 
-    // 7. Nếu cả 2 bước trên đều ổn -> Chốt lưu vào Database thực sự
+    // 7. Chốt lưu vào Database thực sự
     await session.commitTransaction();
     session.endSession();
 
@@ -74,11 +88,22 @@ exports.uploadPages = async (req, res) => {
       page: savedPage,
     });
   } catch (error) {
-    // 7. Nếu có LỖI xảy ra -> Hủy bỏ toàn bộ (Rollback) để không tạo rác
-    await session.abortTransaction();
+    // Nếu transaction đang chạy thì mới abort
+    if (session.inTransaction()) {
+      await session.abortTransaction();
+    }
     session.endSession();
 
     console.error("Lỗi upload file:", error);
+
+    // Xử lý các lỗi Validation hoặc CastError của Mongoose để trả về 400 thay vì 500
+    if (error.name === "ValidationError" || error.name === "CastError") {
+      return res.status(400).json({ 
+        message: "Dữ liệu upload không hợp lệ.", 
+        error: error.message 
+      });
+    }
+
     return res
       .status(500)
       .json({ message: "Lỗi server khi upload trang truyện." });

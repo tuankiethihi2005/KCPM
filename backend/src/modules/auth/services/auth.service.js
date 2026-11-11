@@ -163,7 +163,7 @@ const refresh = async (refreshToken) => {
 
   if (!session || session.expires_at.getTime() <= Date.now()) {
     throw buildAuthError(
-      401,
+      401, // Trả lại 401 như ban đầu để pass các test suite auth
       AUTH_ERROR_CODES.REFRESH_INVALID,
       "Refresh token is invalid or expired.",
     );
@@ -280,7 +280,6 @@ const createUser = async ({ name, email, password, role, status = "Active" }) =>
     status: normalizedStatus,
   });
 
-  // Welcome notification for new user
   try {
     await NotificationService.createNotification({
       user_id: user._id,
@@ -318,10 +317,6 @@ const resetPassword = async ({ userId, newPassword }) => {
   return { user: sanitizeUser(user) };
 };
 
-/**
- * Admin cập nhật trạng thái tài khoản (Active/Inactive/Suspended)
- * Dùng để khóa/mở khóa hoặc xóa tài khoản (soft delete)
- */
 const updateUserStatus = async ({ userId, status }) => {
   if (!mongoose.Types.ObjectId.isValid(userId)) {
     throw buildAuthError(400, "INVALID_ID", "ID không hợp lệ hoặc sai định dạng ObjectId.");
@@ -340,7 +335,6 @@ const updateUserStatus = async ({ userId, status }) => {
   user.status = normalizedStatus;
   await user.save();
 
-  // Khi khóa hoặc vô hiệu hóa → Revoke tất cả sessions
   if (normalizedStatus === "Suspended" || normalizedStatus === "Inactive") {
     await AuthSession.updateMany(
       { user_id: user._id, revoked_at: null },
@@ -351,9 +345,6 @@ const updateUserStatus = async ({ userId, status }) => {
   return { user: sanitizeUser(user) };
 };
 
-/**
- * Admin xóa tài khoản (soft delete → chuyển status thành Inactive)
- */
 const deleteUser = async (userId) => {
   if (!mongoose.Types.ObjectId.isValid(userId)) {
     throw buildAuthError(400, "INVALID_ID", "ID không hợp lệ hoặc sai định dạng ObjectId.");
@@ -367,7 +358,6 @@ const deleteUser = async (userId) => {
   user.status = "Inactive";
   await user.save();
 
-  // Revoke tất cả sessions
   await AuthSession.updateMany(
     { user_id: user._id, revoked_at: null },
     { revoked_at: new Date() },
@@ -376,9 +366,6 @@ const deleteUser = async (userId) => {
   return { user: sanitizeUser(user) };
 };
 
-/**
- * Lấy danh sách users với filter, search, pagination
- */
 const listUsersWithFilter = async ({ page = 1, limit = 10, search = "", role = "", status = "" }) => {
   const query = {};
 
@@ -419,9 +406,6 @@ const listUsersWithFilter = async ({ page = 1, limit = 10, search = "", role = "
   };
 };
 
-/**
- * Admin cập nhật thông tin user (name, email, role)
- */
 const updateUser = async ({ userId, updates }) => {
   if (!mongoose.Types.ObjectId.isValid(userId)) {
     throw buildAuthError(400, "INVALID_ID", "ID không hợp lệ hoặc sai định dạng ObjectId.");
@@ -445,19 +429,17 @@ const updateUser = async ({ userId, updates }) => {
 
   if (filteredUpdates.email) {
     const normalizedEmail = filteredUpdates.email.trim().toLowerCase();
-    // Lấy user hiện tại để so sánh email
     const currentUser = await User.findById(userId);
     if (!currentUser) {
       throw buildAuthError(404, AUTH_ERROR_CODES.USER_NOT_FOUND, "User was not found.");
     }
-    // Chỉ kiểm tra trùng email nếu email thực sự thay đổi
-    if (normalizedEmail !== currentUser.email) {
+    if (normalizedEmail && normalizedEmail !== currentUser.email) {
       const existingUser = await User.findOne({
         email: normalizedEmail,
-        _id: { $ne: new mongoose.Types.ObjectId(userId) },
+        _id: { $ne: new mongoose.Types.ObjectId(userId) }
       });
       if (existingUser) {
-        throw buildAuthError(409, AUTH_ERROR_CODES.EMAIL_ALREADY_EXISTS, "Email already exists.");
+        throw buildAuthError(409, "AUTH_EMAIL_ALREADY_EXISTS", "Email already exists.");
       }
     }
     filteredUpdates.email = normalizedEmail;
