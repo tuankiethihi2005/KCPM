@@ -82,3 +82,30 @@
 - CS-01/CS-02 và PR-01/PR-02 gộp nhiều giá trị hợp lệ để giảm số ca chạy; các ca không hợp lệ được tách riêng để lỗi của trường này không che lỗi trường khác.
 - Quy tắc tên đề xuất: cho phép chữ Unicode (gồm tiếng Việt), số, khoảng trắng và dấu câu thường dùng; cấm ký tự điều khiển, xuống dòng, `<` và `>`. Tính duy nhất so sánh sau khi trim.
 - Các giới hạn trong tài liệu là yêu cầu kiểm thử đề xuất, chưa khẳng định ứng dụng hiện tại đã kiểm tra chúng.
+
+## Bảng chuyển đổi trạng thái và bảng quyết định theo chức năng hiện có
+
+Các bảng dưới đây mô tả `createSeries` và model hiện tại, không khẳng định các tiêu chí kiểm thử đề xuất ở trên đều đã được triển khai.
+
+### Bảng chuyển đổi trạng thái
+
+| Test case | Trạng thái đầu | Sự kiện / đầu vào | Trạng thái cuối / kết quả |
+| --- | --- | --- | --- |
+| 1 | Chưa có Series | Tạo Series với dữ liệu hợp lệ, không gửi `summary` | Tạo Series ở `Draft`; không tạo Proposal. |
+| 2 | Chưa có Series | Tạo Series với dữ liệu hợp lệ và `summary` hợp lệ | Tạo Series ở `Draft` và Proposal ở `Draft`. |
+| 3 | Chưa có Series | Thiếu `title`, `summary` không hợp lệ hoặc `editor_id` không hợp lệ | Request bị từ chối; không tạo Series. |
+
+### Bảng quyết định
+
+`Y` = có/đúng; `N` = không/sai; `-` = không ảnh hưởng.
+
+| Điều kiện / hành động | R1 | R2 | R3 |
+| --- | --- | --- | --- |
+| C1: Các trường được gửi qua kiểm tra của handler/model, gồm `editor_id` nếu có | Y | Y | N |
+| C2: `summary` không có hoặc chỉ có khoảng trắng | Y | N | - |
+| C3: Có `summary` hợp lệ | - | Y | - |
+| A1: Tạo Series với trạng thái `Draft` | X | X | - |
+| A2: Tạo Proposal với trạng thái `Draft` | - | X | - |
+| A3: Từ chối request | - | - | X |
+
+**Lưu ý:** handler kiểm tra editor tồn tại và đúng role Tantou Editor; handler không kiểm tra trạng thái hoạt động của editor. Các trạng thái Series khác `Draft` trong model không được tạo bởi luồng này.

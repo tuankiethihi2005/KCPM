@@ -19,6 +19,7 @@ import {
   sendApiRequestWithAuth,
   getUiResult,
   normalizeText,
+  refreshAccessToken,
 } from "./series_test_helpers.js";
 
 const maxCoverSize = 10 * 1024 * 1024;
@@ -66,26 +67,32 @@ Scenario(
 );
 
 Scenario(
-  "SP-02: từ chối nộp hồ sơ khi thiếu trường bắt buộc (title, genre, target_audience hoặc summary)",
+  "SP-02: giao diện yêu cầu summary trước khi nộp proposal",
   async ({ I }) => {
     await signInAs(I, "mangaka");
-    await captureVoteAuthHeader(I);
     await createSeries(I);
+    await I.scrollPageToBottom();
+    await I.click("button.btn-success");
 
-    const successBtnCount =
-      await I.grabNumberOfVisibleElements("button.btn-success");
-    if (successBtnCount > 0) {
-      await I.click("button.btn-success");
-      await waitForTextCaseInsensitive(
-        I,
-        "Chưa có proposal",
-        10,
-        ".toast-text, body",
-      );
-    } else {
-      // Nếu nút chưa hiện vì chưa có proposal thì hợp lệ theo nghiệp vụ
-      assert.ok(true);
-    }
+    const validation = await I.executeScript(() => {
+      const form = document.querySelector("form");
+      const invalidField = form?.querySelector(":invalid");
+      return {
+        formValid: form?.checkValidity() ?? null,
+        invalidFieldClass: invalidField?.className || "",
+        validationMessage: invalidField?.validationMessage || "",
+      };
+    });
+
+    assert.equal(validation.formValid, false);
+    assert.ok(
+      validation.invalidFieldClass.includes("textarea-tall"),
+      `Expected the summary field to be invalid, got: ${JSON.stringify(validation)}`,
+    );
+    assert.ok(
+      validation.validationMessage.length > 0,
+      "Expected the browser to display a required-field validation message",
+    );
   },
 );
 
@@ -328,10 +335,11 @@ Scenario(
     await captureVoteAuthHeader(I);
     const { seriesId } = await createSeriesDraft(I);
 
+    const accessToken = await refreshAccessToken(I);
     const [upsertRes, submitRes] = await I.executeScript(
-      async ({ id }) => {
+      async ({ id, token }) => {
         const headers = {
-          Authorization: window.__codeceptVoteAuth,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         };
         return Promise.all([
@@ -351,7 +359,7 @@ Scenario(
           }).then((r) => r.status),
         ]);
       },
-      { id: seriesId },
+      { id: seriesId, token: accessToken },
     );
 
     assert.equal(submitRes, 200);

@@ -217,12 +217,24 @@ Scenario(
 
     await signInAs(I, "editorial");
     await captureVoteAuthHeader(I);
-    await I.amOnPage("/board/series/000000000000000000000000");
+    await I.waitForElement('a[href="/board/reviews"]', 15);
+    await I.click('a[href="/board/reviews"]');
     await waitForTextCaseInsensitive(
       I,
-      "Không tìm thấy hồ sơ series.",
+      "Duyệt Series Mới",
       15,
-      ".empty-state, body",
+      ".page-title, h1",
+    );
+
+    const missingSeriesVoteRes = await sendVoteRequest(
+      I,
+      "000000000000000000000000",
+      { vote: "Approve" },
+    );
+    assert.equal(
+      missingSeriesVoteRes.status,
+      404,
+      "Không được phép bỏ phiếu cho series không tồn tại",
     );
 
     // Thử bỏ phiếu cho Series còn ở trạng thái Draft

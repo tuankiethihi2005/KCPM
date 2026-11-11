@@ -433,13 +433,13 @@ const updateUser = async ({ userId, updates }) => {
     if (!currentUser) {
       throw buildAuthError(404, AUTH_ERROR_CODES.USER_NOT_FOUND, "User was not found.");
     }
-    if (normalizedEmail !== currentUser.email) {
+    if (normalizedEmail && normalizedEmail !== currentUser.email) {
       const existingUser = await User.findOne({
         email: normalizedEmail,
-        _id: { $ne: new mongoose.Types.ObjectId(userId) },
+        _id: { $ne: new mongoose.Types.ObjectId(userId) }
       });
       if (existingUser) {
-        throw buildAuthError(409, AUTH_ERROR_CODES.EMAIL_ALREADY_EXISTS, "Email already exists.");
+        throw buildAuthError(409, "AUTH_EMAIL_ALREADY_EXISTS", "Email already exists.");
       }
     }
     filteredUpdates.email = normalizedEmail;

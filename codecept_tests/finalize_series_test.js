@@ -8,7 +8,6 @@ import {
   signInAs,
   waitForTextCaseInsensitive,
   seeTextCaseInsensitive,
-  dontSeeTextCaseInsensitive,
   clickByTextCaseInsensitive,
   sendApiRequestWithAuth,
   fillSeriesFields,
