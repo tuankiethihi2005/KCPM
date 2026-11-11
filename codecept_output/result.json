@@ -1,23 +1,23 @@
 {
   "hasFailed": false,
   "stats": {
-    "passes": 1,
+    "passes": 3,
     "failures": 0,
-    "tests": 1,
+    "tests": 3,
     "pending": 0,
     "failedHooks": 0,
-    "start": "2026-11-08T14:23:21.121Z",
-    "end": "2026-11-08T14:23:23.347Z",
-    "duration": 2226
+    "start": "2026-11-11T13:32:44.969Z",
+    "end": "2026-11-11T13:32:47.663Z",
+    "duration": 2694
   },
-  "duration": 2259,
+  "duration": 2837,
   "tests": [
     {
       "opts": {},
       "tags": [],
-      "uid": "1rWP9Crcweltk4FOs2f8SXiPehigrxy4vXDRPTJ5aQ",
+      "uid": "wPVilkLEu7awST+k3ieIns8Ev5fGt8gTuRy3d6ccHF",
       "retries": -1,
-      "title": "US-SD-04 / R3: Series không tồn tại bị từ chối cập nhật",
+      "title": "ST-01: Vòng đời trạng thái tài khoản người dùng (ACTIVE <-> BLOCKED & Negative Transition)",
       "state": "passed",
       "notes": [],
       "meta": {
@@ -26,149 +26,464 @@
         "windowSize": "1280x720"
       },
       "artifacts": [],
-      "duration": 1971,
+      "duration": 1393,
       "parent": {
-        "title": "Cập nhật Series — chuyển đổi trạng thái và bảng quyết định"
+        "title": "State Transition Testing - Auth, User Lifecycle & Notification"
       },
       "steps": [
         {
           "opts": {},
-          "title": "amOnPage",
+          "title": "sendPostRequest",
           "args": [
-            "/"
+            "/api/auth/login",
+            "{\"email\":\"admin@example.com\",\"password\":\"password123\"}"
           ],
           "status": "success",
-          "startTime": 1794147801385,
-          "endTime": 1794147801883,
+          "startTime": 1794403965339,
+          "endTime": 1794403965682,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "waitForFunction",
+          "title": "seeResponseCodeIs",
           "args": [
-            "",
-            "[]",
-            "15"
+            "404",
+            "404"
           ],
           "status": "success",
-          "startTime": 1794147801884,
-          "endTime": 1794147801888,
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "grabNumberOfVisibleElements",
+          "title": "sendPostRequest",
           "args": [
-            "button:has-text(\"Đăng xuất\")"
+            "/api/users",
+            "{\"name\":\"State Test User 1794403965684\",\"email\":\"state_user_1794403965684@example.com\",\"password\":\"password123\",\"role\":\"Member\"}",
+            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWJmY2FhZjRkMDgwNDRlMTY3YTZiNzIiLCJyb2xlIjoiQWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJpYXQiOjE3OTQ0MDM5NjUsImV4cCI6MTc5NDQwNDg2NX0.oDX4CnNlz5_kB9Yw4sihvAtxu0Gqqvn5vo1KvZFw0N4\"}"
           ],
           "status": "success",
-          "startTime": 1794147801889,
-          "endTime": 1794147801894,
+          "startTime": 1794403965685,
+          "endTime": 1794403965935,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "executeScript",
+          "title": "seeResponseCodeIs",
           "args": [
-            ""
+            "404",
+            "404"
           ],
           "status": "success",
-          "startTime": 1794147801894,
-          "endTime": 1794147801896,
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "fillField",
+          "title": "sendPatchRequest",
           "args": [
-            "#email",
-            "magakatest123@gmail.com"
+            "/api/users/6af46e7d94f137a996008456/status",
+            "{\"status\":\"BLOCKED\"}",
+            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWJmY2FhZjRkMDgwNDRlMTY3YTZiNzIiLCJyb2xlIjoiQWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJpYXQiOjE3OTQ0MDM5NjUsImV4cCI6MTc5NDQwNDg2NX0.oDX4CnNlz5_kB9Yw4sihvAtxu0Gqqvn5vo1KvZFw0N4\"}"
           ],
           "status": "success",
-          "startTime": 1794147801896,
-          "endTime": 1794147802561,
+          "startTime": 1794403965937,
+          "endTime": 1794403966086,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "fillField",
+          "title": "seeResponseCodeIs",
           "args": [
-            "#password",
-            "password123"
+            "404",
+            "404"
           ],
           "status": "success",
-          "startTime": 1794147802561,
-          "endTime": 1794147802883,
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "click",
+          "title": "sendPostRequest",
           "args": [
-            "button[type=\"submit\"]"
+            "/api/auth/login",
+            "{\"email\":\"state_user_1794403965684@example.com\",\"password\":\"password123\"}"
           ],
           "status": "success",
-          "startTime": 1794147802884,
-          "endTime": 1794147803055,
+          "startTime": 1794403966087,
+          "endTime": 1794403966227,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "waitForFunction",
+          "title": "seeResponseCodeIs",
           "args": [
-            "",
-            "[]",
-            "15"
+            "404",
+            "404"
           ],
           "status": "success",
-          "startTime": 1794147803056,
-          "endTime": 1794147803092,
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "executeScript",
+          "title": "sendPatchRequest",
           "args": [
-            ""
+            "/api/users/6af46e7d94f137a996008456/status",
+            "{\"status\":\"ACTIVE\"}",
+            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWJmY2FhZjRkMDgwNDRlMTY3YTZiNzIiLCJyb2xlIjoiQWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJpYXQiOjE3OTQ0MDM5NjUsImV4cCI6MTc5NDQwNDg2NX0.oDX4CnNlz5_kB9Yw4sihvAtxu0Gqqvn5vo1KvZFw0N4\"}"
           ],
           "status": "success",
-          "startTime": 1794147803093,
-          "endTime": 1794147803098,
+          "startTime": 1794403966230,
+          "endTime": 1794403966360,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "waitForElement",
+          "title": "seeResponseCodeIs",
           "args": [
-            "button:has-text(\"Đăng xuất\")",
-            "15"
+            "404",
+            "404"
           ],
           "status": "success",
-          "startTime": 1794147803098,
-          "endTime": 1794147803122,
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "executeScript",
+          "title": "sendPostRequest",
           "args": [
-            ""
+            "/api/auth/login",
+            "{\"email\":\"state_user_1794403965684@example.com\",\"password\":\"password123\"}"
           ],
           "status": "success",
-          "startTime": 1794147803123,
-          "endTime": 1794147803270,
+          "startTime": 1794403966363,
+          "endTime": 1794403966538,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "executeScript",
+          "title": "seeResponseCodeIs",
           "args": [
-            "",
-            "{\"path\":\"/series/000000000000000000000000\",\"method\":\"PUT\",\"body\":{\"title\":\"Missing series update\"},\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWRmNjljM2E5YWIyYzAyYzMyZWVlMjciLCJyb2xlIjoiTWFuZ2FrYSIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDE0NzgwMywiZXhwIjoxNzk0MTQ4NzAzfQ.zp8hWW6oTU"
+            "404",
+            "404"
           ],
           "status": "success",
-          "startTime": 1794147803271,
-          "endTime": 1794147803345,
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendPatchRequest",
+          "args": [
+            "/api/users/6af46e7d94f137a996008456/status",
+            "{\"status\":\"BLOCKED\"}",
+            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWY0NmU3ZDk0ZjEzN2E5OTYwMDg0NTYiLCJyb2xlIjoiTWVtYmVyIiwic3RhdHVzIjoiQWN0aXZlIiwiaWF0IjoxNzk0NDAzOTY2LCJleHAiOjE3OTQ0MDQ4NjZ9.a84sRpdxnZktoo5L4_JnyEciLxGhmnfHlBl4zVJg77o\"}"
+          ],
+          "status": "success",
+          "startTime": 1794403966539,
+          "endTime": 1794403966573,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "seeResponseCodeIs",
+          "args": [
+            "404",
+            "404"
+          ],
+          "status": "success",
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendDeleteRequest",
+          "args": [
+            "/api/users/6af46e7d94f137a996008456",
+            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWJmY2FhZjRkMDgwNDRlMTY3YTZiNzIiLCJyb2xlIjoiQWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJpYXQiOjE3OTQ0MDM5NjUsImV4cCI6MTc5NDQwNDg2NX0.oDX4CnNlz5_kB9Yw4sihvAtxu0Gqqvn5vo1KvZFw0N4\"}"
+          ],
+          "status": "success",
+          "startTime": 1794403966575,
+          "endTime": 1794403966709,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "seeResponseCodeIs",
+          "args": [
+            "404",
+            "404"
+          ],
+          "status": "success",
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "BIHqspUN+IZH4wQSBn8uyKqSwyyWoTUUh12YcpyKvs",
+      "retries": -1,
+      "title": "ST-02: Chu kỳ trạng thái phiên xác thực (LOGGED_OUT -> AUTHENTICATED -> LOGGED_OUT)",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 245,
+      "parent": {
+        "title": "State Transition Testing - Auth, User Lifecycle & Notification"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/notifications"
+          ],
+          "status": "success",
+          "startTime": 1794403966825,
+          "endTime": 1794403966829,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "seeResponseCodeIs",
+          "args": [
+            "404",
+            "404"
+          ],
+          "status": "success",
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendPostRequest",
+          "args": [
+            "/api/auth/login",
+            "{\"email\":\"admin@example.com\",\"password\":\"password123\"}"
+          ],
+          "status": "success",
+          "startTime": 1794403966830,
+          "endTime": 1794403966992,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "seeResponseCodeIs",
+          "args": [
+            "404",
+            "404"
+          ],
+          "status": "success",
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/notifications",
+            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWJmY2FhZjRkMDgwNDRlMTY3YTZiNzIiLCJyb2xlIjoiQWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJpYXQiOjE3OTQ0MDM5NjYsImV4cCI6MTc5NDQwNDg2Nn0.nAQpAX1H0TvicRdC0zDtowaKLLLGG_-woMAVLuO0wKE\"}"
+          ],
+          "status": "success",
+          "startTime": 1794403966994,
+          "endTime": 1794403967061,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "seeResponseCodeIs",
+          "args": [
+            "404",
+            "404"
+          ],
+          "status": "success",
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendPostRequest",
+          "args": [
+            "/api/auth/logout",
+            "{}"
+          ],
+          "status": "success",
+          "startTime": 1794403967063,
+          "endTime": 1794403967066,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "seeResponseCodeIs",
+          "args": [
+            "404",
+            "404"
+          ],
+          "status": "success",
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "UtkV54uGs12EjFe8IH1KAdxTovdUk7bfm_m0ZIiKJI",
+      "retries": -1,
+      "title": "ST-03: Vòng đời trạng thái thông báo (UNREAD -> READ -> DELETED & Negative on DELETED)",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 495,
+      "parent": {
+        "title": "State Transition Testing - Auth, User Lifecycle & Notification"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "sendPostRequest",
+          "args": [
+            "/api/auth/login",
+            "{\"email\":\"magakatest123@gmail.com\",\"password\":\"password123\"}"
+          ],
+          "status": "success",
+          "startTime": 1794403967167,
+          "endTime": 1794403967351,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "seeResponseCodeIs",
+          "args": [
+            "404",
+            "404"
+          ],
+          "status": "success",
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/notifications?is_read=false",
+            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWRmNjljM2E5YWIyYzAyYzMyZWVlMjciLCJyb2xlIjoiTWFuZ2FrYSIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDQwMzk2NywiZXhwIjoxNzk0NDA0ODY3fQ.UYMhdNaIHWSqtUXZS6qP0gxZsSVob9BWvh1vySi4Bh0\"}"
+          ],
+          "status": "success",
+          "startTime": 1794403967353,
+          "endTime": 1794403967421,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "seeResponseCodeIs",
+          "args": [
+            "404",
+            "404"
+          ],
+          "status": "success",
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendPutRequest",
+          "args": [
+            "/api/notifications/6af46b765f958be6bd1f4638/read",
+            "{}",
+            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWRmNjljM2E5YWIyYzAyYzMyZWVlMjciLCJyb2xlIjoiTWFuZ2FrYSIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDQwMzk2NywiZXhwIjoxNzk0NDA0ODY3fQ.UYMhdNaIHWSqtUXZS6qP0gxZsSVob9BWvh1vySi4Bh0\"}"
+          ],
+          "status": "success",
+          "startTime": 1794403967423,
+          "endTime": 1794403967501,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "seeResponseCodeIs",
+          "args": [
+            "404",
+            "404"
+          ],
+          "status": "success",
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendDeleteRequest",
+          "args": [
+            "/api/notifications/6af46b765f958be6bd1f4638",
+            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWRmNjljM2E5YWIyYzAyYzMyZWVlMjciLCJyb2xlIjoiTWFuZ2FrYSIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDQwMzk2NywiZXhwIjoxNzk0NDA0ODY3fQ.UYMhdNaIHWSqtUXZS6qP0gxZsSVob9BWvh1vySi4Bh0\"}"
+          ],
+          "status": "success",
+          "startTime": 1794403967504,
+          "endTime": 1794403967576,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "seeResponseCodeIs",
+          "args": [
+            "404",
+            "404"
+          ],
+          "status": "success",
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendPutRequest",
+          "args": [
+            "/api/notifications/6af46b765f958be6bd1f4638/read",
+            "{}",
+            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWRmNjljM2E5YWIyYzAyYzMyZWVlMjciLCJyb2xlIjoiTWFuZ2FrYSIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDQwMzk2NywiZXhwIjoxNzk0NDA0ODY3fQ.UYMhdNaIHWSqtUXZS6qP0gxZsSVob9BWvh1vySi4Bh0\"}"
+          ],
+          "status": "success",
+          "startTime": 1794403967578,
+          "endTime": 1794403967656,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "seeResponseCodeIs",
+          "args": [
+            "404",
+            "404"
+          ],
+          "status": "success",
+          "startTime": 1794403967656,
+          "endTime": 1794403967656,
           "parent": {}
         }
       ]
