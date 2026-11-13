@@ -1,23 +1,23 @@
 {
   "hasFailed": false,
   "stats": {
-    "passes": 1,
+    "passes": 6,
     "failures": 0,
-    "tests": 1,
+    "tests": 6,
     "pending": 0,
     "failedHooks": 0,
-    "start": "2026-11-08T14:23:21.121Z",
-    "end": "2026-11-08T14:23:23.347Z",
-    "duration": 2226
+    "start": "2026-11-13T17:51:45.720Z",
+    "end": "2026-11-13T17:51:53.067Z",
+    "duration": 7347
   },
-  "duration": 2259,
+  "duration": 7385,
   "tests": [
     {
       "opts": {},
       "tags": [],
-      "uid": "1rWP9Crcweltk4FOs2f8SXiPehigrxy4vXDRPTJ5aQ",
+      "uid": "sTVAnr4Iuvq658SOJXazvKzTHfvhnBHJHzap210hyH",
       "retries": -1,
-      "title": "US-SD-04 / R3: Series không tồn tại bị từ chối cập nhật",
+      "title": "PC-SD-01 / R2: Chapter không có trang nào (C2 = N) bị từ chối 400, giữ nguyên trạng thái",
       "state": "passed",
       "notes": [],
       "meta": {
@@ -26,149 +26,343 @@
         "windowSize": "1280x720"
       },
       "artifacts": [],
-      "duration": 1971,
+      "duration": 152,
       "parent": {
-        "title": "Cập nhật Series — chuyển đổi trạng thái và bảng quyết định"
+        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
       },
       "steps": [
         {
           "opts": {},
-          "title": "amOnPage",
+          "title": "sendPostRequest",
           "args": [
-            "/"
+            "/api/publish/chapter/6a4d33ef5894434e4bba54e1",
+            "{}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794147801385,
-          "endTime": 1794147801883,
+          "startTime": 1794592309751,
+          "endTime": 1794592309901,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "W+DuEo+n82g4pSbNUG3yTKNBPV78S+jzzmDmkLsNNt",
+      "retries": -1,
+      "title": "PC-SD-02 / R3: Có trang nhưng còn trang chưa Approved (C3 = N) bị từ chối 400",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 310,
+      "parent": {
+        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "sendPutRequest",
+          "args": [
+            "/api/pages/approve/6a4a8b5d9cf6ce46267b7a1c",
+            "{\"status\":\"In Progress\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+          ],
+          "status": "success",
+          "startTime": 1794592309978,
+          "endTime": 1794592310133,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "waitForFunction",
+          "title": "sendPostRequest",
           "args": [
-            "",
-            "[]",
-            "15"
+            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794147801884,
-          "endTime": 1794147801888,
+          "startTime": 1794592310134,
+          "endTime": 1794592310286,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "NgyjWqalXw7H9XyIxkulGqZiKmSxLf95A89EnTHCCi",
+      "retries": -1,
+      "title": "PC-SD-03 / R4: Mọi trang Approved nhưng còn Task chưa hoàn thành (C4 = N) bị từ chối 400",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 802,
+      "parent": {
+        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+          ],
+          "status": "success",
+          "startTime": 1794592310356,
+          "endTime": 1794592310525,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "grabNumberOfVisibleElements",
+          "title": "sendPutRequest",
           "args": [
-            "button:has-text(\"Đăng xuất\")"
+            "/api/pages/approve/6a4a8b5d9cf6ce46267b7a1c",
+            "{\"status\":\"Approved\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794147801889,
-          "endTime": 1794147801894,
+          "startTime": 1794592310526,
+          "endTime": 1794592310678,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "executeScript",
+          "title": "sendGetRequest",
           "args": [
-            ""
+            "/api/tasks?page_id=6a4a8b5d9cf6ce46267b7a1c",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794147801894,
-          "endTime": 1794147801896,
+          "startTime": 1794592310678,
+          "endTime": 1794592310850,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "fillField",
+          "title": "sendPatchRequest",
           "args": [
-            "#email",
-            "magakatest123@gmail.com"
+            "/api/tasks/6af7480608dbf3b453ba5405/status",
+            "{\"status\":\"Assigned\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794147801896,
-          "endTime": 1794147802561,
+          "startTime": 1794592310851,
+          "endTime": 1794592310982,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "fillField",
+          "title": "sendPostRequest",
           "args": [
-            "#password",
-            "password123"
+            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794147802561,
-          "endTime": 1794147802883,
+          "startTime": 1794592310982,
+          "endTime": 1794592311156,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "qYxGkPNWUWQWtelMd6JzMWHmEozNEKeepuQXX6gM0m",
+      "retries": -1,
+      "title": "PC-SD-04 / R5: Mọi trang và Task đạt nhưng còn Annotation chưa Resolved (C5 = N) bị từ chối 400",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 896,
+      "parent": {
+        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+          ],
+          "status": "success",
+          "startTime": 1794592311219,
+          "endTime": 1794592311366,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "click",
+          "title": "sendGetRequest",
           "args": [
-            "button[type=\"submit\"]"
+            "/api/tasks?page_id=6a4a8b5d9cf6ce46267b7a1c",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794147802884,
-          "endTime": 1794147803055,
+          "startTime": 1794592311367,
+          "endTime": 1794592311519,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "waitForFunction",
+          "title": "sendPatchRequest",
           "args": [
-            "",
-            "[]",
-            "15"
+            "/api/tasks/6af7480608dbf3b453ba5405/status",
+            "{\"status\":\"Approved\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794147803056,
-          "endTime": 1794147803092,
+          "startTime": 1794592311519,
+          "endTime": 1794592311645,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "executeScript",
+          "title": "sendPostRequest",
           "args": [
-            ""
+            "/api/annotations/page/6a4a8b5d9cf6ce46267b7a1c",
+            "{\"x\":10,\"y\":10,\"content\":\"Unresolved R5\",\"status\":\"Open\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794147803093,
-          "endTime": 1794147803098,
+          "startTime": 1794592311645,
+          "endTime": 1794592311904,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "waitForElement",
+          "title": "sendPostRequest",
           "args": [
-            "button:has-text(\"Đăng xuất\")",
-            "15"
+            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794147803098,
-          "endTime": 1794147803122,
+          "startTime": 1794592311904,
+          "endTime": 1794592312113,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "pqixqcTI_y6XNjBg4eVvCL+K1EvUdwXBRmxulbQ684",
+      "retries": -1,
+      "title": "PC-SD-05 / R1: Đủ cả 5 điều kiện (C1..C5 = Y) chuyển Chapter sang Published và lưu published_at",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 639,
+      "parent": {
+        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/annotations/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+          ],
+          "status": "success",
+          "startTime": 1794592312208,
+          "endTime": 1794592312313,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "executeScript",
+          "title": "sendPatchRequest",
           "args": [
-            ""
+            "/api/annotations/6af74e37eb4b629eb541b6ff",
+            "{\"status\":\"Resolved\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794147803123,
-          "endTime": 1794147803270,
+          "startTime": 1794592312313,
+          "endTime": 1794592312485,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "executeScript",
+          "title": "sendPostRequest",
           "args": [
-            "",
-            "{\"path\":\"/series/000000000000000000000000\",\"method\":\"PUT\",\"body\":{\"title\":\"Missing series update\"},\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWRmNjljM2E5YWIyYzAyYzMyZWVlMjciLCJyb2xlIjoiTWFuZ2FrYSIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDE0NzgwMywiZXhwIjoxNzk0MTQ4NzAzfQ.zp8hWW6oTU"
+            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794147803271,
-          "endTime": 1794147803345,
+          "startTime": 1794592312485,
+          "endTime": 1794592312845,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "PgfZzRHnyOhp9ZvZDPQtFJlJOeb0pYFuTNBJ_DzQ64",
+      "retries": -1,
+      "title": "PC-SD-06 / R6: Chapter không tồn tại hoặc tài khoản không có quyền (C1 = N) bị từ chối 403/404",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 107,
+      "parent": {
+        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "sendPostRequest",
+          "args": [
+            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTI2Zjg1ZjNmMzU5Y2ZlNDFlNzdkNmMiLCJyb2xlIjoiQXNzaXN0YW50Iiwic3RhdHVzIjoiQWN0aXZlIiwiaWF0IjoxNzk0NTkyMzA2LCJleHAiOjE3OTQ1OTMyMDZ9.8YKfmmySzam7Yx2FBPEsFwKAu2oxvt9zYUe2nO0Gckk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794592312959,
+          "endTime": 1794592312998,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendPostRequest",
+          "args": [
+            "/api/publish/chapter/000000000000000000000000",
+            "{}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+          ],
+          "status": "success",
+          "startTime": 1794592312999,
+          "endTime": 1794592313064,
           "parent": {}
         }
       ]
