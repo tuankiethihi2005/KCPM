@@ -247,9 +247,20 @@ Scenario(
     await I.amOnPage(`/mangaka/series/${seriesId}`);
     await waitForTextCaseInsensitive(I, "Need Revision", 15, ".status-badge");
 
-    // Thử bấm nộp lại ngay mà không sửa nội dung
+    // Dọn sạch toast cũ (nếu có) trước khi bấm nút
+    await I.executeScript(() => {
+      document.querySelectorAll(".toast-text").forEach((el) => el.remove());
+    });
+
+    // Thử bấm nộp lại ngay mà không sửa nội dung và chờ цепочка 3 API trả về Toast
+    await I.scrollPageToBottom();
     await I.click("button.btn-success");
-    await I.wait(0.5);
+    await I.waitForFunction(
+      () => document.querySelectorAll(".toast-text").length > 0,
+      [],
+      15,
+    );
+
     const actual = await getUiResult(I);
     assert.ok(
       actual.toasts.length > 0,
@@ -294,9 +305,9 @@ Scenario(
     await signInAs(I, "mangaka");
     const { seriesId } = await createSeriesDraft(I);
 
+    // Đăng nhập sang tài khoản Editorial Board (không gọi lại amOnPage ngay lập tức để tránh đụng độ refresh token)
     await signInAs(I, "editorial");
-    await captureVoteAuthHeader(I);
-    await I.amOnPage("/board/reviews");
+    await I.wait(0.5);
 
     const res = await sendApiRequestWithAuth(
       I,

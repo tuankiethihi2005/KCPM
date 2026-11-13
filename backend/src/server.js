@@ -1,5 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
+const v8 = require("v8");
 
 if (process.env.NODE_ENV !== "production") {
   const dns = require("dns");

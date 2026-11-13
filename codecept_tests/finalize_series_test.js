@@ -261,8 +261,7 @@ Scenario(
     await castBoardVote(I, "Approve");
 
     await signInAs(I, "mangaka");
-    await captureVoteAuthHeader(I);
-    await I.amOnPage(`/mangaka/series/${seriesId}`);
+    await I.wait(0.5); // Chờ trình duyệt ổn định cookie sau khi đăng nhập
 
     const unauthorizedFinalize = await sendApiRequestWithAuth(
       I,
