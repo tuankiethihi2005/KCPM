@@ -4,7 +4,7 @@
     "src/controllers/**/*.js",
     "src/services/**/*.js",
     "src/modules/**/*.js",
-    "src/middlewares/**/*.js",
+    "src/middlewares/**/*.js"
   ],
   "exclude": [
     "src/config/**",
