@@ -1,23 +1,23 @@
 {
-  "hasFailed": false,
+  "hasFailed": true,
   "stats": {
-    "passes": 1,
-    "failures": 0,
-    "tests": 1,
+    "passes": 15,
+    "failures": 1,
+    "tests": 16,
     "pending": 0,
     "failedHooks": 0,
-    "start": "2026-11-08T14:23:21.121Z",
-    "end": "2026-11-08T14:23:23.347Z",
-    "duration": 2226
+    "start": "2026-11-13T00:29:43.085Z",
+    "end": "2026-11-13T00:30:47.975Z",
+    "duration": 64890
   },
-  "duration": 2259,
+  "duration": 64907,
   "tests": [
     {
       "opts": {},
       "tags": [],
-      "uid": "1rWP9Crcweltk4FOs2f8SXiPehigrxy4vXDRPTJ5aQ",
+      "uid": "Rs_r+uRMnhco1KWGikBEc_lhDvAI48pPGY8BRoKawd",
       "retries": -1,
-      "title": "US-SD-04 / R3: Series không tồn tại bị từ chối cập nhật",
+      "title": "CS-01: chấp nhận title tối thiểu và các trường tùy chọn để trống",
       "state": "passed",
       "notes": [],
       "meta": {
@@ -26,11 +26,31 @@
         "windowSize": "1280x720"
       },
       "artifacts": [],
-      "duration": 1971,
+      "duration": 3149,
       "parent": {
-        "title": "Cập nhật Series — chuyển đổi trạng thái và bảng quyết định"
+        "title": "Tạo Series — kiểm thử đầu vào"
       },
       "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529783279,
+          "endTime": 1794529783697,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529783698,
+          "endTime": 1794529783701,
+          "parent": {}
+        },
         {
           "opts": {},
           "title": "amOnPage",
@@ -38,8 +58,8 @@
             "/"
           ],
           "status": "success",
-          "startTime": 1794147801385,
-          "endTime": 1794147801883,
+          "startTime": 1794529783701,
+          "endTime": 1794529783964,
           "parent": {}
         },
         {
@@ -51,8 +71,8 @@
             "15"
           ],
           "status": "success",
-          "startTime": 1794147801884,
-          "endTime": 1794147801888,
+          "startTime": 1794529783965,
+          "endTime": 1794529783968,
           "parent": {}
         },
         {
@@ -62,8 +82,8 @@
             "button:has-text(\"Đăng xuất\")"
           ],
           "status": "success",
-          "startTime": 1794147801889,
-          "endTime": 1794147801894,
+          "startTime": 1794529783968,
+          "endTime": 1794529783971,
           "parent": {}
         },
         {
@@ -73,8 +93,8 @@
             ""
           ],
           "status": "success",
-          "startTime": 1794147801894,
-          "endTime": 1794147801896,
+          "startTime": 1794529783971,
+          "endTime": 1794529783972,
           "parent": {}
         },
         {
@@ -85,8 +105,8 @@
             "magakatest123@gmail.com"
           ],
           "status": "success",
-          "startTime": 1794147801896,
-          "endTime": 1794147802561,
+          "startTime": 1794529783972,
+          "endTime": 1794529784458,
           "parent": {}
         },
         {
@@ -97,8 +117,8 @@
             "password123"
           ],
           "status": "success",
-          "startTime": 1794147802561,
-          "endTime": 1794147802883,
+          "startTime": 1794529784459,
+          "endTime": 1794529784770,
           "parent": {}
         },
         {
@@ -108,8 +128,8 @@
             "button[type=\"submit\"]"
           ],
           "status": "success",
-          "startTime": 1794147802884,
-          "endTime": 1794147803055,
+          "startTime": 1794529784770,
+          "endTime": 1794529784910,
           "parent": {}
         },
         {
@@ -121,8 +141,8 @@
             "15"
           ],
           "status": "success",
-          "startTime": 1794147803056,
-          "endTime": 1794147803092,
+          "startTime": 1794529784910,
+          "endTime": 1794529785011,
           "parent": {}
         },
         {
@@ -132,8 +152,8 @@
             ""
           ],
           "status": "success",
-          "startTime": 1794147803093,
-          "endTime": 1794147803098,
+          "startTime": 1794529785011,
+          "endTime": 1794529785014,
           "parent": {}
         },
         {
@@ -144,8 +164,104 @@
             "15"
           ],
           "status": "success",
-          "startTime": 1794147803098,
-          "endTime": 1794147803122,
+          "startTime": 1794529785014,
+          "endTime": 1794529785033,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529785034,
+          "endTime": 1794529785269,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529785270,
+          "endTime": 1794529785437,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529785438,
+          "endTime": 1794529785440,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529785441,
+          "endTime": 1794529785444,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529785445,
+          "endTime": 1794529785447,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"bi\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529785447,
+          "endTime": 1794529785450,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529785451,
+          "endTime": 1794529785597,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForText",
+          "args": [
+            "Chi tiết series",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529785598,
+          "endTime": 1794529786417,
           "parent": {}
         },
         {
@@ -155,8 +271,227 @@
             ""
           ],
           "status": "success",
-          "startTime": 1794147803123,
-          "endTime": 1794147803270,
+          "startTime": 1794529786418,
+          "endTime": 1794529786420,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "v_8P2b0Yut+b28zJKVnKVHy_Iv5p2VqMrjKa_YJpAY",
+      "retries": -1,
+      "title": "CS-02: chấp nhận dữ liệu hợp lệ ở biên tối đa",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 3266,
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529786482,
+          "endTime": 1794529786874,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529786874,
+          "endTime": 1794529786877,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529786877,
+          "endTime": 1794529787143,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529787144,
+          "endTime": 1794529787149,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1794529787150,
+          "endTime": 1794529787152,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529787152,
+          "endTime": 1794529787153,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1794529787153,
+          "endTime": 1794529787641,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1794529787641,
+          "endTime": 1794529787933,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529787933,
+          "endTime": 1794529788074,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529788075,
+          "endTime": 1794529788205,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529788205,
+          "endTime": 1794529788207,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529788207,
+          "endTime": 1794529788212,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529788212,
+          "endTime": 1794529788524,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529788524,
+          "endTime": 1794529788737,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529788737,
+          "endTime": 1794529788740,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529788741,
+          "endTime": 1794529788744,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529788744,
+          "endTime": 1794529788746,
           "parent": {}
         },
         {
@@ -164,15 +499,3907 @@
           "title": "executeScript",
           "args": [
             "",
-            "{\"path\":\"/series/000000000000000000000000\",\"method\":\"PUT\",\"body\":{\"title\":\"Missing series update\"},\"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWRmNjljM2E5YWIyYzAyYzMyZWVlMjciLCJyb2xlIjoiTWFuZ2FrYSIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDE0NzgwMywiZXhwIjoxNzk0MTQ4NzAzfQ.zp8hWW6oTU"
+            "[\".form-section .form-group > input.neo-input\",\"mwe8pav5xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",false]"
           ],
           "status": "success",
-          "startTime": 1794147803271,
-          "endTime": 1794147803345,
+          "startTime": 1794529788747,
+          "endTime": 1794529788750,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > textarea.textarea-short",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529788750,
+          "endTime": 1794529788753,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > textarea.textarea-short\",\"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          ],
+          "status": "success",
+          "startTime": 1794529788753,
+          "endTime": 1794529788756,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(1) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529788756,
+          "endTime": 1794529788759,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(1) input\",\"gggggggggggggggggggggggggggggggggggggggggggggggggg\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529788759,
+          "endTime": 1794529788761,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(2) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529788761,
+          "endTime": 1794529788763,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(2) input\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529788764,
+          "endTime": 1794529788767,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529788767,
+          "endTime": 1794529788931,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForText",
+          "args": [
+            "Chi tiết series",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529788931,
+          "endTime": 1794529789743,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529789743,
+          "endTime": 1794529789744,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "xMN2Nczi_w9bnwVrcUs+0vfeg+V98MO+T625aXObr9",
+      "retries": -1,
+      "title": "CS-03: từ chối title để trống",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 2891,
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529789803,
+          "endTime": 1794529790211,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529790212,
+          "endTime": 1794529790213,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529790214,
+          "endTime": 1794529790487,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529790487,
+          "endTime": 1794529790493,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1794529790494,
+          "endTime": 1794529790497,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529790498,
+          "endTime": 1794529790499,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1794529790499,
+          "endTime": 1794529791000,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1794529791001,
+          "endTime": 1794529791295,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529791295,
+          "endTime": 1794529791452,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529791452,
+          "endTime": 1794529791571,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529791571,
+          "endTime": 1794529791573,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529791574,
+          "endTime": 1794529791579,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529791580,
+          "endTime": 1794529791847,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529791847,
+          "endTime": 1794529792020,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529792020,
+          "endTime": 1794529792179,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "wait",
+          "args": [
+            "0.5"
+          ],
+          "status": "success",
+          "startTime": 1794529792179,
+          "endTime": 1794529792691,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529792691,
+          "endTime": 1794529792693,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "KslhMQ9stZnHdM9Gw7QrjNNUElUO8RhnuHf6C7RjPi",
+      "retries": -1,
+      "title": "CS-04: từ chối title chỉ có khoảng trắng",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 2958,
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529792758,
+          "endTime": 1794529793166,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529793167,
+          "endTime": 1794529793168,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529793168,
+          "endTime": 1794529793453,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529793453,
+          "endTime": 1794529793457,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1794529793457,
+          "endTime": 1794529793460,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529793460,
+          "endTime": 1794529793461,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1794529793461,
+          "endTime": 1794529793965,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1794529793965,
+          "endTime": 1794529794280,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529794280,
+          "endTime": 1794529794431,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529794432,
+          "endTime": 1794529794536,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529794537,
+          "endTime": 1794529794542,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529794542,
+          "endTime": 1794529794560,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529794561,
+          "endTime": 1794529794826,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529794826,
+          "endTime": 1794529795010,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529795010,
+          "endTime": 1794529795014,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529795015,
+          "endTime": 1794529795019,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529795019,
+          "endTime": 1794529795021,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"   \",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529795022,
+          "endTime": 1794529795026,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529795026,
+          "endTime": 1794529795197,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "wait",
+          "args": [
+            "0.5"
+          ],
+          "status": "success",
+          "startTime": 1794529795198,
+          "endTime": 1794529795711,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529795712,
+          "endTime": 1794529795715,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "AGDrVzoexgSodPwDBTWoZ0btSAJ7uWwqWVfhLbSs2A",
+      "retries": -1,
+      "title": "CS-05: từ chối title dài 1 ký tự",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 2946,
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529795778,
+          "endTime": 1794529796207,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529796207,
+          "endTime": 1794529796209,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529796209,
+          "endTime": 1794529796494,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529796495,
+          "endTime": 1794529796500,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1794529796500,
+          "endTime": 1794529796503,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529796503,
+          "endTime": 1794529796504,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1794529796504,
+          "endTime": 1794529797031,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1794529797032,
+          "endTime": 1794529797335,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529797335,
+          "endTime": 1794529797489,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529797489,
+          "endTime": 1794529797575,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529797575,
+          "endTime": 1794529797578,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529797578,
+          "endTime": 1794529797600,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529797601,
+          "endTime": 1794529797852,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529797852,
+          "endTime": 1794529798026,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529798027,
+          "endTime": 1794529798029,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529798030,
+          "endTime": 1794529798034,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529798034,
+          "endTime": 1794529798036,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"A\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529798036,
+          "endTime": 1794529798040,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529798040,
+          "endTime": 1794529798209,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "wait",
+          "args": [
+            "0.5"
+          ],
+          "status": "success",
+          "startTime": 1794529798209,
+          "endTime": 1794529798719,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529798720,
+          "endTime": 1794529798723,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "B3xiKnOD8eLOR5iEkT5_ZOJCUXX2xky3hWuLy3haxi",
+      "retries": -1,
+      "title": "CS-06: từ chối title dài 101 ký tự",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 2925,
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529798788,
+          "endTime": 1794529799207,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529799208,
+          "endTime": 1794529799209,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529799209,
+          "endTime": 1794529799532,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529799533,
+          "endTime": 1794529799536,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1794529799536,
+          "endTime": 1794529799538,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529799538,
+          "endTime": 1794529799539,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1794529799539,
+          "endTime": 1794529800019,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1794529800019,
+          "endTime": 1794529800323,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529800323,
+          "endTime": 1794529800481,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529800482,
+          "endTime": 1794529800576,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529800577,
+          "endTime": 1794529800582,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529800582,
+          "endTime": 1794529800605,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529800605,
+          "endTime": 1794529800869,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529800870,
+          "endTime": 1794529801032,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529801033,
+          "endTime": 1794529801037,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529801037,
+          "endTime": 1794529801040,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529801040,
+          "endTime": 1794529801042,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529801042,
+          "endTime": 1794529801045,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529801045,
+          "endTime": 1794529801209,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "wait",
+          "args": [
+            "0.5"
+          ],
+          "status": "success",
+          "startTime": 1794529801209,
+          "endTime": 1794529801710,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529801710,
+          "endTime": 1794529801712,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "XZgStj+fmJ+iKoqbxTOIH5QkwKqhuxkYi_VQC90nni",
+      "retries": -1,
+      "title": "CS-07: từ chối title chứa ký tự markup bị cấm",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 2934,
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529801777,
+          "endTime": 1794529802199,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529802199,
+          "endTime": 1794529802201,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529802201,
+          "endTime": 1794529802467,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529802467,
+          "endTime": 1794529802472,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1794529802472,
+          "endTime": 1794529802475,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529802475,
+          "endTime": 1794529802476,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1794529802476,
+          "endTime": 1794529802962,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1794529802962,
+          "endTime": 1794529803273,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529803274,
+          "endTime": 1794529803426,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529803427,
+          "endTime": 1794529803549,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529803550,
+          "endTime": 1794529803554,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529803554,
+          "endTime": 1794529803575,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529803576,
+          "endTime": 1794529803837,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529803838,
+          "endTime": 1794529804009,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529804010,
+          "endTime": 1794529804014,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529804014,
+          "endTime": 1794529804018,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529804018,
+          "endTime": 1794529804021,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Tên <a>Series1</a>\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529804021,
+          "endTime": 1794529804024,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529804024,
+          "endTime": 1794529804199,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "wait",
+          "args": [
+            "0.5"
+          ],
+          "status": "success",
+          "startTime": 1794529804199,
+          "endTime": 1794529804709,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529804709,
+          "endTime": 1794529804711,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "FZrurrvJLGbwpDBXlHUTPNfya+k29ck4wZuGo6JMOg",
+      "retries": -1,
+      "title": "CS-08: từ chối title trùng sau khi trim khoảng trắng",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 6110,
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529804789,
+          "endTime": 1794529805214,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529805215,
+          "endTime": 1794529805218,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1794529805219,
+          "endTime": 1794529805220,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529805221,
+          "endTime": 1794529805221,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1794529805222,
+          "endTime": 1794529805763,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1794529805763,
+          "endTime": 1794529806070,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529806070,
+          "endTime": 1794529806229,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529806230,
+          "endTime": 1794529806320,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529806320,
+          "endTime": 1794529806325,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529806325,
+          "endTime": 1794529806345,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529806346,
+          "endTime": 1794529806646,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529806646,
+          "endTime": 1794529806822,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529806822,
+          "endTime": 1794529806825,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529806825,
+          "endTime": 1794529806830,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529806831,
+          "endTime": 1794529806834,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Duplicate 1794529804788\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529806834,
+          "endTime": 1794529806838,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(1) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529806838,
+          "endTime": 1794529806842,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(1) input\",\"\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529806842,
+          "endTime": 1794529806845,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(2) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529806845,
+          "endTime": 1794529806848,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(2) input\",\"\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529806849,
+          "endTime": 1794529806850,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529806850,
+          "endTime": 1794529807036,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"chi tiết series\"]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529807036,
+          "endTime": 1794529807393,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForValue",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "Duplicate 1794529804788",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529807394,
+          "endTime": 1794529807400,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529807400,
+          "endTime": 1794529807404,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529807406,
+          "endTime": 1794529809483,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".proposal-section textarea.textarea-tall",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529809483,
+          "endTime": 1794529809698,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529809698,
+          "endTime": 1794529809699,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529809699,
+          "endTime": 1794529809980,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529809980,
+          "endTime": 1794529810182,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529810183,
+          "endTime": 1794529810189,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529810189,
+          "endTime": 1794529810197,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529810197,
+          "endTime": 1794529810201,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"  Duplicate 1794529804788  \",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529810201,
+          "endTime": 1794529810206,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529810207,
+          "endTime": 1794529810379,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "wait",
+          "args": [
+            "0.5"
+          ],
+          "status": "success",
+          "startTime": 1794529810379,
+          "endTime": 1794529810893,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529810894,
+          "endTime": 1794529810897,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "13yc41yV8AKSIxyqbMu3QpPVp46CIdasff6jJzvsOX",
+      "retries": -1,
+      "title": "CS-09: chấp nhận title Unicode, chữ số và dấu câu cho phép",
+      "state": "failed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 15810,
+      "err": {
+        "stack": "\n    at Playwright.waitForFunction (node_modules\\codeceptjs\\lib\\helper\\Playwright.js:3762:20)\n\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mFile:\u001b[22m\u001b[22m\u001b[39m\u001b[34m file://F:\\KCPM\\KCPM\\codecept_tests\\create_series_test.js\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mScenario Steps\u001b[22m\u001b[22m\u001b[39m\u001b[34m:\u001b[39m\n\u001b[34m\u001b[1m\u001b[1m×\u001b[22m\u001b[1m I.waitForFunction(() =>\u001b[22m\u001b[39m\r\n\u001b[34m\u001b[1m      window.location.pathname === \"/login\" ||\u001b[22m\u001b[39m\r\n\u001b[34m\u001b[1m      Array.from(document.querySelectorAll(\"button\")).some((button) =>\u001b[22m\u001b[39m\r\n\u001b[34m\u001b[1m        button.textContent.toLowerCase().includes(\"đăng xuất\"),\u001b[22m\u001b[39m\r\n\u001b[34m\u001b[1m      ), [], 15) at signInAs (./codecept_tests/series_test_helpers.js:191:11)\u001b[22m\u001b[39m\n\u001b[34m√ I.amOnPage(\"/\") at signInAs (./codecept_tests/series_test_helpers.js:190:11)\u001b[39m\n\u001b[34m√ I.grabCurrentUrl() at openCreateForm (./codecept_tests/create_series_test.js:17:16)\u001b[39m\n\u001b[34m√ I.amOnPage(\"/mangaka/series/new\") at openCreateForm (./codecept_tests/create_series_test.js:16:11)\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mArtifacts:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n\u001b[34m- screenshot: F:\\KCPM\\KCPM\\codecept_output\\CS-09__chấp_nhận_title_Unicode,_chữ_số_và_dấu_câu_cho_phép.failed.png\u001b[39m\n\u001b[34m\u001b[39m\n\u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mMetadata:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n\u001b[34m- browser: chromium\u001b[39m\n\u001b[34m- browserVersion: 156.0.8078.4\u001b[39m\n\u001b[34m- windowSize: 1280x720\u001b[39m",
+        "message": "\n  page.waitForFunction: Timeout 15000ms exceeded."
+      },
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "failed",
+          "startTime": 1794529811718,
+          "endTime": 1794529826731,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529811392,
+          "endTime": 1794529811718,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529811391,
+          "endTime": 1794529811392,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529810960,
+          "endTime": 1794529811390,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "qePnBtukSIEGHyCJJpitkjK5zOgyLiD1uRuYK2+8Uy",
+      "retries": -1,
+      "title": "CS-10: từ chối description dài 2001 ký tự",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 3024,
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529826837,
+          "endTime": 1794529827265,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529827266,
+          "endTime": 1794529827268,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529827268,
+          "endTime": 1794529827561,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529827562,
+          "endTime": 1794529827568,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1794529827568,
+          "endTime": 1794529827570,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529827570,
+          "endTime": 1794529827571,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1794529827571,
+          "endTime": 1794529828098,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1794529828098,
+          "endTime": 1794529828400,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529828400,
+          "endTime": 1794529828539,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529828540,
+          "endTime": 1794529828654,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529828655,
+          "endTime": 1794529828662,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529828663,
+          "endTime": 1794529828687,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529828687,
+          "endTime": 1794529828948,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529828949,
+          "endTime": 1794529829129,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529829130,
+          "endTime": 1794529829133,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529829133,
+          "endTime": 1794529829136,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529829136,
+          "endTime": 1794529829137,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Description 1794529829129\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529829137,
+          "endTime": 1794529829141,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > textarea.textarea-short",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529829142,
+          "endTime": 1794529829150,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > textarea.textarea-short\",\"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          ],
+          "status": "success",
+          "startTime": 1794529829151,
+          "endTime": 1794529829157,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529829158,
+          "endTime": 1794529829348,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "wait",
+          "args": [
+            "0.5"
+          ],
+          "status": "success",
+          "startTime": 1794529829349,
+          "endTime": 1794529829855,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529829855,
+          "endTime": 1794529829858,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "Gvmrxjj4ClAN5R3LGV48J9OdM+SzLSZPGD0w+EymOP",
+      "retries": -1,
+      "title": "CS-11: từ chối genre dài 1 ký tự",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 2926,
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529829934,
+          "endTime": 1794529830356,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529830357,
+          "endTime": 1794529830359,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529830359,
+          "endTime": 1794529830646,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529830646,
+          "endTime": 1794529830650,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1794529830650,
+          "endTime": 1794529830652,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529830652,
+          "endTime": 1794529830652,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1794529830653,
+          "endTime": 1794529831160,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1794529831160,
+          "endTime": 1794529831481,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529831482,
+          "endTime": 1794529831638,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529831638,
+          "endTime": 1794529831720,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529831720,
+          "endTime": 1794529831723,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529831724,
+          "endTime": 1794529831743,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529831743,
+          "endTime": 1794529832002,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529832002,
+          "endTime": 1794529832171,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529832172,
+          "endTime": 1794529832175,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529832175,
+          "endTime": 1794529832178,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529832178,
+          "endTime": 1794529832180,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Genre short 1794529832171\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529832180,
+          "endTime": 1794529832184,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(1) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529832185,
+          "endTime": 1794529832189,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(1) input\",\"A\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529832189,
+          "endTime": 1794529832198,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529832198,
+          "endTime": 1794529832347,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "wait",
+          "args": [
+            "0.5"
+          ],
+          "status": "success",
+          "startTime": 1794529832348,
+          "endTime": 1794529832855,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529832855,
+          "endTime": 1794529832859,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "HqrHRs0W1lHnScl69QiHY829M_r2jZaSLRw_+TI_ZO",
+      "retries": -1,
+      "title": "CS-12: từ chối genre dài 51 ký tự",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 2964,
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529832927,
+          "endTime": 1794529833343,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529833344,
+          "endTime": 1794529833346,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529833347,
+          "endTime": 1794529833638,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529833638,
+          "endTime": 1794529833641,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1794529833641,
+          "endTime": 1794529833643,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529833643,
+          "endTime": 1794529833644,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1794529833644,
+          "endTime": 1794529834132,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1794529834132,
+          "endTime": 1794529834446,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529834447,
+          "endTime": 1794529834618,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529834618,
+          "endTime": 1794529834721,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529834722,
+          "endTime": 1794529834725,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529834725,
+          "endTime": 1794529834744,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529834744,
+          "endTime": 1794529835029,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529835030,
+          "endTime": 1794529835197,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529835198,
+          "endTime": 1794529835201,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529835201,
+          "endTime": 1794529835205,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529835205,
+          "endTime": 1794529835206,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Genre long 1794529835197\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529835207,
+          "endTime": 1794529835210,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(1) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529835210,
+          "endTime": 1794529835214,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(1) input\",\"ggggggggggggggggggggggggggggggggggggggggggggggggggg\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529835214,
+          "endTime": 1794529835218,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529835218,
+          "endTime": 1794529835383,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "wait",
+          "args": [
+            "0.5"
+          ],
+          "status": "success",
+          "startTime": 1794529835384,
+          "endTime": 1794529835888,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529835888,
+          "endTime": 1794529835890,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "_+uJRAopzKYB7G+Zbrt0slXUwiFZtU+snJnTYcr+Mf",
+      "retries": -1,
+      "title": "CS-13: từ chối target_audience dài 1 ký tự",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 2959,
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529835959,
+          "endTime": 1794529836388,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529836389,
+          "endTime": 1794529836390,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529836390,
+          "endTime": 1794529836667,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529836668,
+          "endTime": 1794529836671,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1794529836671,
+          "endTime": 1794529836673,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529836673,
+          "endTime": 1794529836674,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1794529836674,
+          "endTime": 1794529837163,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1794529837163,
+          "endTime": 1794529837479,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529837480,
+          "endTime": 1794529837631,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529837632,
+          "endTime": 1794529837733,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529837734,
+          "endTime": 1794529837739,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529837739,
+          "endTime": 1794529837763,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529837765,
+          "endTime": 1794529838079,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529838080,
+          "endTime": 1794529838221,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529838222,
+          "endTime": 1794529838224,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529838224,
+          "endTime": 1794529838227,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529838228,
+          "endTime": 1794529838232,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Audience short 1794529838221\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529838232,
+          "endTime": 1794529838237,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(2) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529838237,
+          "endTime": 1794529838240,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(2) input\",\"A\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529838240,
+          "endTime": 1794529838243,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529838243,
+          "endTime": 1794529838401,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "wait",
+          "args": [
+            "0.5"
+          ],
+          "status": "success",
+          "startTime": 1794529838401,
+          "endTime": 1794529838912,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529838913,
+          "endTime": 1794529838916,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "n35d_qhgpA6GX48AclfAVDRf7c45qV6tvMkQq0NYxC",
+      "retries": -1,
+      "title": "CS-14: từ chối target_audience dài 51 ký tự",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 2956,
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529838982,
+          "endTime": 1794529839391,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529839391,
+          "endTime": 1794529839392,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529839393,
+          "endTime": 1794529839684,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529839684,
+          "endTime": 1794529839688,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1794529839688,
+          "endTime": 1794529839690,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529839690,
+          "endTime": 1794529839691,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1794529839691,
+          "endTime": 1794529840195,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1794529840195,
+          "endTime": 1794529840491,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529840491,
+          "endTime": 1794529840642,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529840642,
+          "endTime": 1794529840737,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529840737,
+          "endTime": 1794529840742,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529840742,
+          "endTime": 1794529840765,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529840765,
+          "endTime": 1794529841035,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529841035,
+          "endTime": 1794529841227,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529841228,
+          "endTime": 1794529841235,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529841236,
+          "endTime": 1794529841240,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529841240,
+          "endTime": 1794529841242,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Audience long 1794529841227\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529841242,
+          "endTime": 1794529841246,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .grid-2-cols .form-group:nth-child(2) input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529841247,
+          "endTime": 1794529841250,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .grid-2-cols .form-group:nth-child(2) input\",\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529841251,
+          "endTime": 1794529841254,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529841254,
+          "endTime": 1794529841431,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "wait",
+          "args": [
+            "0.5"
+          ],
+          "status": "success",
+          "startTime": 1794529841432,
+          "endTime": 1794529841934,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529841934,
+          "endTime": 1794529841937,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "BRD6DhZ8ajjotBigQIhUj5qK4g7FnG64YmfRdX+W89",
+      "retries": -1,
+      "title": "CS-15: từ chối editor_id không hợp lệ",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 2939,
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529842001,
+          "endTime": 1794529842410,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529842410,
+          "endTime": 1794529842413,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529842413,
+          "endTime": 1794529842706,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529842706,
+          "endTime": 1794529842708,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1794529842709,
+          "endTime": 1794529842710,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529842710,
+          "endTime": 1794529842711,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1794529842711,
+          "endTime": 1794529843238,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1794529843238,
+          "endTime": 1794529843567,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529843567,
+          "endTime": 1794529843719,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529843720,
+          "endTime": 1794529843801,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529843801,
+          "endTime": 1794529843805,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529843806,
+          "endTime": 1794529843825,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529843826,
+          "endTime": 1794529844080,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529844080,
+          "endTime": 1794529844242,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529844242,
+          "endTime": 1794529844244,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529844245,
+          "endTime": 1794529844248,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529844249,
+          "endTime": 1794529844250,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Invalid editor 1794529844242\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529844250,
+          "endTime": 1794529844256,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529844256,
+          "endTime": 1794529844260,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529844260,
+          "endTime": 1794529844428,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "wait",
+          "args": [
+            "0.5"
+          ],
+          "status": "success",
+          "startTime": 1794529844428,
+          "endTime": 1794529844935,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529844936,
+          "endTime": 1794529844938,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "ZmAbpSQzleidnjHlS0frHcsY6Hgle3PcJ0GUSAQZ8I",
+      "retries": -1,
+      "title": "CS-16: từ chối editor_id không tồn tại",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 2966,
+      "parent": {
+        "title": "Tạo Series — kiểm thử đầu vào"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529845008,
+          "endTime": 1794529845474,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabCurrentUrl",
+          "args": [],
+          "status": "success",
+          "startTime": 1794529845475,
+          "endTime": 1794529845476,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/"
+          ],
+          "status": "success",
+          "startTime": 1794529845476,
+          "endTime": 1794529845786,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529845787,
+          "endTime": 1794529845789,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "grabNumberOfVisibleElements",
+          "args": [
+            "button:has-text(\"Đăng xuất\")"
+          ],
+          "status": "success",
+          "startTime": 1794529845789,
+          "endTime": 1794529845791,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529845791,
+          "endTime": 1794529845792,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#email",
+            "magakatest123@gmail.com"
+          ],
+          "status": "success",
+          "startTime": 1794529845792,
+          "endTime": 1794529846285,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "fillField",
+          "args": [
+            "#password",
+            "password123"
+          ],
+          "status": "success",
+          "startTime": 1794529846285,
+          "endTime": 1794529846593,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529846593,
+          "endTime": 1794529846746,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529846746,
+          "endTime": 1794529846833,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529846834,
+          "endTime": 1794529846838,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForElement",
+          "args": [
+            "button:has-text(\"Đăng xuất\")",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529846838,
+          "endTime": 1794529846857,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "amOnPage",
+          "args": [
+            "/mangaka/series/new"
+          ],
+          "status": "success",
+          "startTime": 1794529846858,
+          "endTime": 1794529847110,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[\".page-title, h1\",\"tạo series mới\"]",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529847111,
+          "endTime": 1794529847275,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForFunction",
+          "args": [
+            "",
+            "[]",
+            "15"
+          ],
+          "status": "success",
+          "startTime": 1794529847275,
+          "endTime": 1794529847278,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529847278,
+          "endTime": 1794529847282,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "waitForVisible",
+          "args": [
+            ".form-section .form-group > input.neo-input",
+            "10"
+          ],
+          "status": "success",
+          "startTime": 1794529847282,
+          "endTime": 1794529847284,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            "",
+            "[\".form-section .form-group > input.neo-input\",\"Unknown editor 1794529847275\",false]"
+          ],
+          "status": "success",
+          "startTime": 1794529847284,
+          "endTime": 1794529847288,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529847288,
+          "endTime": 1794529847291,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "click",
+          "args": [
+            "button[type=\"submit\"]"
+          ],
+          "status": "success",
+          "startTime": 1794529847291,
+          "endTime": 1794529847458,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "wait",
+          "args": [
+            "0.5"
+          ],
+          "status": "success",
+          "startTime": 1794529847458,
+          "endTime": 1794529847971,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "executeScript",
+          "args": [
+            ""
+          ],
+          "status": "success",
+          "startTime": 1794529847971,
+          "endTime": 1794529847973,
           "parent": {}
         }
       ]
     }
   ],
-  "failures": []
+  "failures": [
+    [],
+    [
+      "\u001b[0m  %s) %s:\n\u001b[0m\u001b[31m     %s\u001b[0m\u001b[90m\n%s\n\u001b[0m",
+      1,
+      "Tạo Series — kiểm thử đầu vào\n       CS-09: chấp nhận title Unicode, chữ số và dấu câu cho phép",
+      "\n  page.waitForFunction: Timeout 15000ms exceeded.",
+      "  \n      at Playwright.waitForFunction (node_modules\\codeceptjs\\lib\\helper\\Playwright.js:3762:20)\n  \n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mFile:\u001b[22m\u001b[22m\u001b[39m\u001b[34m file://F:\\KCPM\\KCPM\\codecept_tests\\create_series_test.js\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mScenario Steps\u001b[22m\u001b[22m\u001b[39m\u001b[34m:\u001b[39m\n  \u001b[34m\u001b[1m\u001b[1m×\u001b[22m\u001b[1m I.waitForFunction(() =>\u001b[22m\u001b[39m\r  \n  \u001b[34m\u001b[1m      window.location.pathname === \"/login\" ||\u001b[22m\u001b[39m\r  \n  \u001b[34m\u001b[1m      Array.from(document.querySelectorAll(\"button\")).some((button) =>\u001b[22m\u001b[39m\r  \n  \u001b[34m\u001b[1m        button.textContent.toLowerCase().includes(\"đăng xuất\"),\u001b[22m\u001b[39m\r  \n  \u001b[34m\u001b[1m      ), [], 15) at signInAs (./codecept_tests/series_test_helpers.js:191:11)\u001b[22m\u001b[39m\n  \u001b[34m√ I.amOnPage(\"/\") at signInAs (./codecept_tests/series_test_helpers.js:190:11)\u001b[39m\n  \u001b[34m√ I.grabCurrentUrl() at openCreateForm (./codecept_tests/create_series_test.js:17:16)\u001b[39m\n  \u001b[34m√ I.amOnPage(\"/mangaka/series/new\") at openCreateForm (./codecept_tests/create_series_test.js:16:11)\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mArtifacts:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n  \u001b[34m- screenshot: F:\\KCPM\\KCPM\\codecept_output\\CS-09__chấp_nhận_title_Unicode,_chữ_số_và_dấu_câu_cho_phép.failed.png\u001b[39m\n  \u001b[34m\u001b[39m\n  \u001b[34m\u001b[37m( )\u001b[39m\u001b[34m \u001b[37m\u001b[2m\u001b[1mMetadata:\u001b[22m\u001b[22m\u001b[39m\u001b[34m\u001b[39m\n  \u001b[34m- browser: chromium\u001b[39m\n  \u001b[34m- browserVersion: 156.0.8078.4\u001b[39m\n  \u001b[34m- windowSize: 1280x720\u001b[39m"
+    ]
+  ]
 }
