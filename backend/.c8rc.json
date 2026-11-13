@@ -1,0 +1,15 @@
+{
+  "all": false,
+  "include": [
+    "src/controllers/**/*.js",
+    "src/services/**/*.js",
+    "src/modules/**/*.js",
+    "src/middlewares/**/*.js"
+  ],
+  "exclude": [
+    "src/config/**",
+    "**/*.test.js"
+  ],
+  "reporter": ["text"],
+  "temp-directory": "../.tmp_c8_coverage"
+}
