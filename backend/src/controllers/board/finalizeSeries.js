@@ -3,7 +3,7 @@ const { finalizeSeriesById } = require("../../services/boardFinalizeService");
 exports.finalizeSeries = async (req, res) => {
   try {
     const { id } = req.params;
-    const { approved_schedule } = req.body;
+    const { approved_schedule } = req.body || {};
 
     const result = await finalizeSeriesById(id, { approved_schedule });
 
