@@ -1,5 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
+const v8 = require("v8");
 
 if (process.env.NODE_ENV !== "production") {
   const dns = require("dns");
@@ -21,8 +22,21 @@ const startServer = async () => {
     await connectDB();
     connectCloudinary();
 
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
+    });
+
+    server.prependListener("request", (req, res) => {
+      if (req.url === "/__coverage__/dump") {
+        console.log("\n[c8] Đang ghi dữ liệu V8 Coverage và đóng server...");
+        v8.takeCoverage();
+        res.writeHead(200, { "Content-Type": "application/json", "Connection": "close" });
+        res.end(JSON.stringify({ ok: true }), () => {
+          setTimeout(() => process.exit(0), 100);
+        });
+        // Ngăn Express tiếp tục xử lý request này để không bị đụng độ
+        req.destroy();
+      }
     });
 
     if (process.env.NODE_ENV !== "test") {

@@ -1,23 +1,23 @@
 {
   "hasFailed": false,
   "stats": {
-    "passes": 3,
+    "passes": 6,
     "failures": 0,
-    "tests": 3,
+    "tests": 6,
     "pending": 0,
     "failedHooks": 0,
-    "start": "2026-11-11T13:32:44.969Z",
-    "end": "2026-11-11T13:32:47.663Z",
-    "duration": 2694
+    "start": "2026-11-13T17:51:45.720Z",
+    "end": "2026-11-13T17:51:53.067Z",
+    "duration": 7347
   },
-  "duration": 2837,
+  "duration": 7385,
   "tests": [
     {
       "opts": {},
       "tags": [],
-      "uid": "wPVilkLEu7awST+k3ieIns8Ev5fGt8gTuRy3d6ccHF",
+      "uid": "sTVAnr4Iuvq658SOJXazvKzTHfvhnBHJHzap210hyH",
       "retries": -1,
-      "title": "ST-01: Vòng đời trạng thái tài khoản người dùng (ACTIVE <-> BLOCKED & Negative Transition)",
+      "title": "PC-SD-01 / R2: Chapter không có trang nào (C2 = N) bị từ chối 400, giữ nguyên trạng thái",
       "state": "passed",
       "notes": [],
       "meta": {
@@ -26,205 +26,22 @@
         "windowSize": "1280x720"
       },
       "artifacts": [],
-      "duration": 1393,
+      "duration": 152,
       "parent": {
-        "title": "State Transition Testing - Auth, User Lifecycle & Notification"
+        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
       },
       "steps": [
         {
           "opts": {},
           "title": "sendPostRequest",
           "args": [
-            "/api/auth/login",
-            "{\"email\":\"admin@example.com\",\"password\":\"password123\"}"
+            "/api/publish/chapter/6a4d33ef5894434e4bba54e1",
+            "{}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794403965339,
-          "endTime": 1794403965682,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "seeResponseCodeIs",
-          "args": [
-            "404",
-            "404"
-          ],
-          "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "sendPostRequest",
-          "args": [
-            "/api/users",
-            "{\"name\":\"State Test User 1794403965684\",\"email\":\"state_user_1794403965684@example.com\",\"password\":\"password123\",\"role\":\"Member\"}",
-            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWJmY2FhZjRkMDgwNDRlMTY3YTZiNzIiLCJyb2xlIjoiQWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJpYXQiOjE3OTQ0MDM5NjUsImV4cCI6MTc5NDQwNDg2NX0.oDX4CnNlz5_kB9Yw4sihvAtxu0Gqqvn5vo1KvZFw0N4\"}"
-          ],
-          "status": "success",
-          "startTime": 1794403965685,
-          "endTime": 1794403965935,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "seeResponseCodeIs",
-          "args": [
-            "404",
-            "404"
-          ],
-          "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "sendPatchRequest",
-          "args": [
-            "/api/users/6af46e7d94f137a996008456/status",
-            "{\"status\":\"BLOCKED\"}",
-            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWJmY2FhZjRkMDgwNDRlMTY3YTZiNzIiLCJyb2xlIjoiQWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJpYXQiOjE3OTQ0MDM5NjUsImV4cCI6MTc5NDQwNDg2NX0.oDX4CnNlz5_kB9Yw4sihvAtxu0Gqqvn5vo1KvZFw0N4\"}"
-          ],
-          "status": "success",
-          "startTime": 1794403965937,
-          "endTime": 1794403966086,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "seeResponseCodeIs",
-          "args": [
-            "404",
-            "404"
-          ],
-          "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "sendPostRequest",
-          "args": [
-            "/api/auth/login",
-            "{\"email\":\"state_user_1794403965684@example.com\",\"password\":\"password123\"}"
-          ],
-          "status": "success",
-          "startTime": 1794403966087,
-          "endTime": 1794403966227,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "seeResponseCodeIs",
-          "args": [
-            "404",
-            "404"
-          ],
-          "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "sendPatchRequest",
-          "args": [
-            "/api/users/6af46e7d94f137a996008456/status",
-            "{\"status\":\"ACTIVE\"}",
-            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWJmY2FhZjRkMDgwNDRlMTY3YTZiNzIiLCJyb2xlIjoiQWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJpYXQiOjE3OTQ0MDM5NjUsImV4cCI6MTc5NDQwNDg2NX0.oDX4CnNlz5_kB9Yw4sihvAtxu0Gqqvn5vo1KvZFw0N4\"}"
-          ],
-          "status": "success",
-          "startTime": 1794403966230,
-          "endTime": 1794403966360,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "seeResponseCodeIs",
-          "args": [
-            "404",
-            "404"
-          ],
-          "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "sendPostRequest",
-          "args": [
-            "/api/auth/login",
-            "{\"email\":\"state_user_1794403965684@example.com\",\"password\":\"password123\"}"
-          ],
-          "status": "success",
-          "startTime": 1794403966363,
-          "endTime": 1794403966538,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "seeResponseCodeIs",
-          "args": [
-            "404",
-            "404"
-          ],
-          "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "sendPatchRequest",
-          "args": [
-            "/api/users/6af46e7d94f137a996008456/status",
-            "{\"status\":\"BLOCKED\"}",
-            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWY0NmU3ZDk0ZjEzN2E5OTYwMDg0NTYiLCJyb2xlIjoiTWVtYmVyIiwic3RhdHVzIjoiQWN0aXZlIiwiaWF0IjoxNzk0NDAzOTY2LCJleHAiOjE3OTQ0MDQ4NjZ9.a84sRpdxnZktoo5L4_JnyEciLxGhmnfHlBl4zVJg77o\"}"
-          ],
-          "status": "success",
-          "startTime": 1794403966539,
-          "endTime": 1794403966573,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "seeResponseCodeIs",
-          "args": [
-            "404",
-            "404"
-          ],
-          "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "sendDeleteRequest",
-          "args": [
-            "/api/users/6af46e7d94f137a996008456",
-            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWJmY2FhZjRkMDgwNDRlMTY3YTZiNzIiLCJyb2xlIjoiQWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJpYXQiOjE3OTQ0MDM5NjUsImV4cCI6MTc5NDQwNDg2NX0.oDX4CnNlz5_kB9Yw4sihvAtxu0Gqqvn5vo1KvZFw0N4\"}"
-          ],
-          "status": "success",
-          "startTime": 1794403966575,
-          "endTime": 1794403966709,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "seeResponseCodeIs",
-          "args": [
-            "404",
-            "404"
-          ],
-          "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
+          "startTime": 1794592309751,
+          "endTime": 1794592309901,
           "parent": {}
         }
       ]
@@ -232,9 +49,9 @@
     {
       "opts": {},
       "tags": [],
-      "uid": "BIHqspUN+IZH4wQSBn8uyKqSwyyWoTUUh12YcpyKvs",
+      "uid": "W+DuEo+n82g4pSbNUG3yTKNBPV78S+jzzmDmkLsNNt",
       "retries": -1,
-      "title": "ST-02: Chu kỳ trạng thái phiên xác thực (LOGGED_OUT -> AUTHENTICATED -> LOGGED_OUT)",
+      "title": "PC-SD-02 / R3: Có trang nhưng còn trang chưa Approved (C3 = N) bị từ chối 400",
       "state": "passed",
       "notes": [],
       "meta": {
@@ -243,104 +60,35 @@
         "windowSize": "1280x720"
       },
       "artifacts": [],
-      "duration": 245,
+      "duration": 310,
       "parent": {
-        "title": "State Transition Testing - Auth, User Lifecycle & Notification"
+        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
       },
       "steps": [
         {
           "opts": {},
-          "title": "sendGetRequest",
+          "title": "sendPutRequest",
           "args": [
-            "/api/notifications"
+            "/api/pages/approve/6a4a8b5d9cf6ce46267b7a1c",
+            "{\"status\":\"In Progress\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794403966825,
-          "endTime": 1794403966829,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "seeResponseCodeIs",
-          "args": [
-            "404",
-            "404"
-          ],
-          "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
+          "startTime": 1794592309978,
+          "endTime": 1794592310133,
           "parent": {}
         },
         {
           "opts": {},
           "title": "sendPostRequest",
           "args": [
-            "/api/auth/login",
-            "{\"email\":\"admin@example.com\",\"password\":\"password123\"}"
+            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794403966830,
-          "endTime": 1794403966992,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "seeResponseCodeIs",
-          "args": [
-            "404",
-            "404"
-          ],
-          "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "sendGetRequest",
-          "args": [
-            "/api/notifications",
-            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWJmY2FhZjRkMDgwNDRlMTY3YTZiNzIiLCJyb2xlIjoiQWRtaW4iLCJzdGF0dXMiOiJhY3RpdmUiLCJpYXQiOjE3OTQ0MDM5NjYsImV4cCI6MTc5NDQwNDg2Nn0.nAQpAX1H0TvicRdC0zDtowaKLLLGG_-woMAVLuO0wKE\"}"
-          ],
-          "status": "success",
-          "startTime": 1794403966994,
-          "endTime": 1794403967061,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "seeResponseCodeIs",
-          "args": [
-            "404",
-            "404"
-          ],
-          "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "sendPostRequest",
-          "args": [
-            "/api/auth/logout",
-            "{}"
-          ],
-          "status": "success",
-          "startTime": 1794403967063,
-          "endTime": 1794403967066,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "seeResponseCodeIs",
-          "args": [
-            "404",
-            "404"
-          ],
-          "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
+          "startTime": 1794592310134,
+          "endTime": 1794592310286,
           "parent": {}
         }
       ]
@@ -348,9 +96,9 @@
     {
       "opts": {},
       "tags": [],
-      "uid": "UtkV54uGs12EjFe8IH1KAdxTovdUk7bfm_m0ZIiKJI",
+      "uid": "NgyjWqalXw7H9XyIxkulGqZiKmSxLf95A89EnTHCCi",
       "retries": -1,
-      "title": "ST-03: Vòng đời trạng thái thông báo (UNREAD -> READ -> DELETED & Negative on DELETED)",
+      "title": "PC-SD-03 / R4: Mọi trang Approved nhưng còn Task chưa hoàn thành (C4 = N) bị từ chối 400",
       "state": "passed",
       "notes": [],
       "meta": {
@@ -359,131 +107,262 @@
         "windowSize": "1280x720"
       },
       "artifacts": [],
-      "duration": 495,
+      "duration": 802,
       "parent": {
-        "title": "State Transition Testing - Auth, User Lifecycle & Notification"
+        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
       },
       "steps": [
         {
           "opts": {},
-          "title": "sendPostRequest",
+          "title": "sendGetRequest",
           "args": [
-            "/api/auth/login",
-            "{\"email\":\"magakatest123@gmail.com\",\"password\":\"password123\"}"
+            "/api/pages/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794403967167,
-          "endTime": 1794403967351,
+          "startTime": 1794592310356,
+          "endTime": 1794592310525,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "seeResponseCodeIs",
+          "title": "sendPutRequest",
           "args": [
-            "404",
-            "404"
+            "/api/pages/approve/6a4a8b5d9cf6ce46267b7a1c",
+            "{\"status\":\"Approved\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
+          "startTime": 1794592310526,
+          "endTime": 1794592310678,
           "parent": {}
         },
         {
           "opts": {},
           "title": "sendGetRequest",
           "args": [
-            "/api/notifications?is_read=false",
-            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWRmNjljM2E5YWIyYzAyYzMyZWVlMjciLCJyb2xlIjoiTWFuZ2FrYSIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDQwMzk2NywiZXhwIjoxNzk0NDA0ODY3fQ.UYMhdNaIHWSqtUXZS6qP0gxZsSVob9BWvh1vySi4Bh0\"}"
+            "/api/tasks?page_id=6a4a8b5d9cf6ce46267b7a1c",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794403967353,
-          "endTime": 1794403967421,
+          "startTime": 1794592310678,
+          "endTime": 1794592310850,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "seeResponseCodeIs",
+          "title": "sendPatchRequest",
           "args": [
-            "404",
-            "404"
+            "/api/tasks/6af7480608dbf3b453ba5405/status",
+            "{\"status\":\"Assigned\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
+          "startTime": 1794592310851,
+          "endTime": 1794592310982,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "sendPutRequest",
+          "title": "sendPostRequest",
           "args": [
-            "/api/notifications/6af46b765f958be6bd1f4638/read",
+            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
             "{}",
-            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWRmNjljM2E5YWIyYzAyYzMyZWVlMjciLCJyb2xlIjoiTWFuZ2FrYSIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDQwMzk2NywiZXhwIjoxNzk0NDA0ODY3fQ.UYMhdNaIHWSqtUXZS6qP0gxZsSVob9BWvh1vySi4Bh0\"}"
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794403967423,
-          "endTime": 1794403967501,
+          "startTime": 1794592310982,
+          "endTime": 1794592311156,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "qYxGkPNWUWQWtelMd6JzMWHmEozNEKeepuQXX6gM0m",
+      "retries": -1,
+      "title": "PC-SD-04 / R5: Mọi trang và Task đạt nhưng còn Annotation chưa Resolved (C5 = N) bị từ chối 400",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 896,
+      "parent": {
+        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+          ],
+          "status": "success",
+          "startTime": 1794592311219,
+          "endTime": 1794592311366,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "seeResponseCodeIs",
+          "title": "sendGetRequest",
           "args": [
-            "404",
-            "404"
+            "/api/tasks?page_id=6a4a8b5d9cf6ce46267b7a1c",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
+          "startTime": 1794592311367,
+          "endTime": 1794592311519,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "sendDeleteRequest",
+          "title": "sendPatchRequest",
           "args": [
-            "/api/notifications/6af46b765f958be6bd1f4638",
-            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWRmNjljM2E5YWIyYzAyYzMyZWVlMjciLCJyb2xlIjoiTWFuZ2FrYSIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDQwMzk2NywiZXhwIjoxNzk0NDA0ODY3fQ.UYMhdNaIHWSqtUXZS6qP0gxZsSVob9BWvh1vySi4Bh0\"}"
+            "/api/tasks/6af7480608dbf3b453ba5405/status",
+            "{\"status\":\"Approved\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794403967504,
-          "endTime": 1794403967576,
+          "startTime": 1794592311519,
+          "endTime": 1794592311645,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "seeResponseCodeIs",
+          "title": "sendPostRequest",
           "args": [
-            "404",
-            "404"
+            "/api/annotations/page/6a4a8b5d9cf6ce46267b7a1c",
+            "{\"x\":10,\"y\":10,\"content\":\"Unresolved R5\",\"status\":\"Open\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
+          "startTime": 1794592311645,
+          "endTime": 1794592311904,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "sendPutRequest",
+          "title": "sendPostRequest",
           "args": [
-            "/api/notifications/6af46b765f958be6bd1f4638/read",
+            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
             "{}",
-            "{\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWRmNjljM2E5YWIyYzAyYzMyZWVlMjciLCJyb2xlIjoiTWFuZ2FrYSIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDQwMzk2NywiZXhwIjoxNzk0NDA0ODY3fQ.UYMhdNaIHWSqtUXZS6qP0gxZsSVob9BWvh1vySi4Bh0\"}"
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794403967578,
-          "endTime": 1794403967656,
+          "startTime": 1794592311904,
+          "endTime": 1794592312113,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "pqixqcTI_y6XNjBg4eVvCL+K1EvUdwXBRmxulbQ684",
+      "retries": -1,
+      "title": "PC-SD-05 / R1: Đủ cả 5 điều kiện (C1..C5 = Y) chuyển Chapter sang Published và lưu published_at",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 639,
+      "parent": {
+        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/annotations/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+          ],
+          "status": "success",
+          "startTime": 1794592312208,
+          "endTime": 1794592312313,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "seeResponseCodeIs",
+          "title": "sendPatchRequest",
           "args": [
-            "404",
-            "404"
+            "/api/annotations/6af74e37eb4b629eb541b6ff",
+            "{\"status\":\"Resolved\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
           ],
           "status": "success",
-          "startTime": 1794403967656,
-          "endTime": 1794403967656,
+          "startTime": 1794592312313,
+          "endTime": 1794592312485,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendPostRequest",
+          "args": [
+            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+          ],
+          "status": "success",
+          "startTime": 1794592312485,
+          "endTime": 1794592312845,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "PgfZzRHnyOhp9ZvZDPQtFJlJOeb0pYFuTNBJ_DzQ64",
+      "retries": -1,
+      "title": "PC-SD-06 / R6: Chapter không tồn tại hoặc tài khoản không có quyền (C1 = N) bị từ chối 403/404",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 107,
+      "parent": {
+        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "sendPostRequest",
+          "args": [
+            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTI2Zjg1ZjNmMzU5Y2ZlNDFlNzdkNmMiLCJyb2xlIjoiQXNzaXN0YW50Iiwic3RhdHVzIjoiQWN0aXZlIiwiaWF0IjoxNzk0NTkyMzA2LCJleHAiOjE3OTQ1OTMyMDZ9.8YKfmmySzam7Yx2FBPEsFwKAu2oxvt9zYUe2nO0Gckk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794592312959,
+          "endTime": 1794592312998,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendPostRequest",
+          "args": [
+            "/api/publish/chapter/000000000000000000000000",
+            "{}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+          ],
+          "status": "success",
+          "startTime": 1794592312999,
+          "endTime": 1794592313064,
           "parent": {}
         }
       ]
