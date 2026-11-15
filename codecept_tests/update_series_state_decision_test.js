@@ -48,7 +48,10 @@ Scenario(
     );
     assert.equal(noProposalUpdate.status, 200);
     assert.equal(noProposalUpdate.body.series.status, "Draft");
-    assert.equal((await getSeriesRecord(I, noProposal.seriesId)).proposal, null);
+    assert.equal(
+      (await getSeriesRecord(I, noProposal.seriesId)).proposal,
+      null,
+    );
 
     const draft = await createSeriesDraft(I);
     const draftUpdate = await sendApiRequestWithAuth(
@@ -82,7 +85,10 @@ Scenario(
       { title: `US-SD-02 revision ${Date.now()}` },
     );
     assert.equal(updateSeries.status, 200);
-    assert.equal((await getSeriesRecord(I, seriesId)).proposal.status, "Need Revision");
+    assert.equal(
+      (await getSeriesRecord(I, seriesId)).proposal.status,
+      "Need Revision",
+    );
 
     const saveProposal = await sendApiRequestWithAuth(
       I,
@@ -98,7 +104,12 @@ Scenario(
 Scenario(
   "US-SD-03 / R2: từ chối cập nhật Series và Proposal ở Submitted, Under Review, Approved hoặc Rejected",
   async ({ I }) => {
-    for (const status of ["Submitted", "Under Review", "Approved", "Rejected"]) {
+    for (const status of [
+      "Submitted",
+      "Under Review",
+      "Approved",
+      "Rejected",
+    ]) {
       await signInAs(I, "mangaka");
       const { seriesId } = await createSubmittedSeries(I);
       await setProposalStatus(I, seriesId, status);
@@ -117,9 +128,26 @@ Scenario(
         { summary: `Blocked proposal save ${status} ${Date.now()}` },
       );
 
-      assert.equal(updateSeries.status, 400, `Series update should be blocked in ${status}`);
-      assert.equal(saveProposal.status, 400, `Proposal save should be blocked in ${status}`);
-      assert.equal((await getSeriesRecord(I, seriesId)).proposal.status, status);
+      const expectedSeriesStatus = ["Submitted", "Under Review"].includes(
+        status,
+      )
+        ? 409
+        : 400;
+
+      assert.equal(
+        updateSeries.status,
+        expectedSeriesStatus,
+        `Series update should be blocked in ${status}`,
+      );
+      assert.equal(
+        saveProposal.status,
+        400,
+        `Proposal save should be blocked in ${status}`,
+      );
+      assert.equal(
+        (await getSeriesRecord(I, seriesId)).proposal.status,
+        status,
+      );
     }
   },
 );

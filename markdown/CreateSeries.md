@@ -116,8 +116,6 @@ Các bảng dưới đây mô tả `createSeries` và model hiện tại, không
 
 ### Statement Coverage
 
-### Statement Coverage (`createSeries.js`)
-
 | Mã TC        | Dòng lệnh bao phủ (`createSeries.js`) | Mô tả kịch bản                                                                                                                | Dữ liệu đầu vào                                                                                                                         | Kết quả mong đợi                                                              |
 | :----------- | :------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------- |
 | **CS-ST-01** | Dòng 13–31                            | Thiếu trường bắt buộc `title`                                                                                                 | Đăng nhập `mangaka`; `POST /api/series` với `{ title: "" }`                                                                             | HTTP `400`, `message: "title là bắt buộc"`                                    |
@@ -133,15 +131,19 @@ Các bảng dưới đây mô tả `createSeries` và model hiện tại, không
 
 ### Branch Coverage
 
-| ID       | Nhánh cần chạy                                                     | Dữ liệu / thao tác Codecept                                                                                | Kết quả mong đợi                                                                                                                                      |
-| -------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CS-BC-01 | `!title` là true và false                                          | Gửi request không có title; ca đối chứng gửi title hợp lệ.                                                 | Ca thiếu title HTTP `400`; ca đối chứng tiếp tục xử lý.                                                                                               |
-| CS-BC-02 | Title là chuỗi và có markup / không có markup                      | Gửi title có `<` hoặc `>`; ca đối chứng gửi title mới hợp lệ.                                              | Title có markup HTTP `400`; title hợp lệ đi tiếp.                                                                                                     |
-| CS-BC-03 | `existingSeries` có kết quả và không có kết quả                    | Gửi title đã tồn tại; ca đối chứng gửi title duy nhất.                                                     | Title trùng HTTP `400`; title mới được tạo.                                                                                                           |
-| CS-BC-04 | `if (editor_id)` là false và true                                  | Lần lượt bỏ editor ID và gửi editor ID.                                                                    | Không gửi ID thì bỏ qua tra cứu editor; có ID thì chạy validation editor.                                                                             |
-| CS-BC-05 | Mỗi nhánh validation editor                                        | Gửi ID sai định dạng, ID hợp lệ nhưng không tồn tại, ID của user sai role, và ID của Tantou Editor hợp lệ. | Ba trường hợp đầu HTTP `400`; editor hợp lệ được gán vào Series.                                                                                      |
-| CS-BC-06 | Chuẩn hóa trường tùy chọn nhận giá trị rỗng và giá trị có nội dung | Gửi trường tùy chọn bị bỏ qua; request khác gửi chuỗi chỉ khoảng trắng; request khác gửi chuỗi thường.     | Các request chạy qua các nhánh chuẩn hóa tương ứng; xác nhận dữ liệu lưu theo kết quả API.                                                            |
-| CS-BC-07 | `typeof title === "string"` là false                               | Gửi request API với title kiểu số khác 0.                                                                  | Xác nhận hành vi hiện tại của API/model; nếu yêu cầu phải từ chối kiểu dữ liệu này thì cần bổ sung validation trước khi dùng làm testcase nghiệm thu. |
+| ID           | Nhánh cần chạy (`createSeries.js`)                                                                  | Dữ liệu / thao tác Codecept                                                                             | Kết quả mong đợi                                                                  |
+| :----------- | :-------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------- |
+| **CS-BC-01** | `!title` là `true` và `false`                                                                       | Gửi request không có `title`; ca đối chứng gửi `title` hợp lệ.                                          | Ca thiếu `title` HTTP `400`; ca đối chứng HTTP `201`.                             |
+| **CS-BC-02** | `typeof title === "string" && /[<>]/.test(title)` là `true` và `false`                              | Gửi `title` chứa `<` hoặc `>`; ca đối chứng gửi `title` mới hợp lệ.                                     | Title có markup HTTP `400`; title hợp lệ HTTP `201`.                              |
+| **CS-BC-03** | `existingSeries` truthy và falsy                                                                    | Gửi `title` đã tồn tại; ca đối chứng gửi `title` duy nhất.                                              | Title trùng HTTP `400`; title mới HTTP `201`.                                     |
+| **CS-BC-04** | `if (editor_id)` là `false` và `true` (kiểm tra & thông báo editor)                                 | Lần lượt bỏ qua `editor_id` và gửi `editor_id` của `Tantou Editor` hợp lệ.                              | Không gửi ID thì `editor_id: null`; có ID thì gán editor và gửi thông báo.        |
+| **CS-BC-05** | Các nhánh validation `editor_id` (`!isValidObjectId`, `!editor`, `role !== TANTOU_EDITOR`, hợp lệ)  | Gửi ID sai định dạng, ID không tồn tại, ID user sai role, và ID `Tantou Editor` hợp lệ.                 | Ba trường hợp đầu HTTP `400`; editor hợp lệ HTTP `201`.                           |
+| **CS-BC-06** | `normalizeOptionalText`: non-string, chuỗi khoảng trắng, chuỗi có nội dung                          | Gửi trường tùy chọn bị bỏ qua (`undefined`), chỉ khoảng trắng (`"   "`), và chuỗi thường (`"Fantasy"`). | Hai ca đầu chuẩn hóa thành `undefined`; ca thứ ba giữ nguyên giá trị.             |
+| **CS-BC-07** | `typeof title === "string"` là `false`                                                              | Gửi request API với `title` kiểu số khác `0`.                                                           | Bỏ qua kiểm tra regex chuỗi, ép kiểu chuỗi và tạo thành công HTTP `201`.          |
+| **CS-BC-08** | `req.user.role === ROLES.ADMIN ? author_id \|\| req.user.id : req.user.id`                          | Đăng nhập `Mangaka` tự tạo; đăng nhập `Admin` tạo không truyền `author_id` và có truyền `author_id`.    | Phủ đủ cả 3 nhánh gán `author_id` theo vai trò người tạo.                         |
+| **CS-BC-09** | `normalizedSummary !== undefined && normalizedSummary !== null` (`undefined`, `null`, chuỗi hợp lệ) | Lần lượt bỏ `summary`, gửi `summary: null`, và gửi `summary` hợp lệ.                                    | Hai ca đầu không tạo Proposal (`proposal: null`); ca thứ ba tạo Proposal `Draft`. |
+| **CS-BC-10** | `summaryValidation && summaryValidation.errors.summary` là `true` và `false`                        | Gửi `summary` dài `5001` ký tự và `summary` hợp lệ.                                                     | Summary vượt giới hạn HTTP `400`; summary hợp lệ HTTP `201`.                      |
+| **CS-BC-11** | `err.name === "ValidationError"` trong `catch` là `true` và `false`                                 | Gửi `{ genre: { invalidCast: true } }` và gửi body `"non-json-body"` với `Content-Type: text/plain`.    | `ValidationError` trả HTTP `400`; lỗi runtime khác trả HTTP `500`.                |
 
 ## Phần 2 — Proposal sau khi tạo Series
 
@@ -165,58 +167,14 @@ Các bảng dưới đây mô tả `createSeries` và model hiện tại, không
 
 ### Branch Coverage
 
-| ID       | Nhánh cần chạy                                | Dữ liệu / thao tác Codecept                                                | Kết quả mong đợi                                                                                       |
-| -------- | --------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| PR-BC-01 | Summary là `undefined`, `null`, và có giá trị | Gửi ba request riêng: bỏ summary, gửi `summary: null`, gửi summary hợp lệ. | Hai trường hợp đầu không tạo Proposal; trường hợp có giá trị chạy validation summary.                  |
-| PR-BC-02 | Validation summary thất bại và thành công     | Gửi summary dưới giới hạn; ca đối chứng gửi summary hợp lệ.                | Summary không hợp lệ HTTP `400`; summary hợp lệ tiếp tục tạo Series và Proposal.                       |
-| PR-BC-03 | Điều kiện tạo Proposal là false và true       | Lần lượt bỏ summary và gửi summary hợp lệ.                                 | Ca đầu không tạo Proposal; ca sau tạo Proposal và response trả Proposal.                               |
-| PR-BC-04 | Nhánh thông báo editor là false và true       | Tạo Series không gán editor; ca khác gán Tantou Editor hợp lệ.             | Không có editor thì chỉ xử lý thông báo author; có editor thì xử lý thông báo cho cả author và editor. |
-
-## Phần 3 — Lưu / Cập nhật Proposal (`upsertProposal.js`)
-
-> **Ghi chú phạm vi:** Controller `upsertProposal.js` xử lý `PUT /api/series/:id/proposal`. Dòng 58 (catch lỗi 500) không thể kích hoạt qua API kiểm thử thông thường. Các testcase sau đảm bảo độ phủ tối đa (100% statement và branch khả thi).
-
-### Statement Coverage
-
-| ID       | Dữ liệu / thao tác Codecept                                                                            | Dòng lệnh được phủ | Kết quả mong đợi                                                                     |
-| -------- | ------------------------------------------------------------------------------------------------------ | ------------------ | ------------------------------------------------------------------------------------ |
-| UP-ST-01 | Gửi `PUT /api/series/:id/proposal` với ID Series không tồn tại (`000000000000000000000000`).           | Dòng 11–14         | HTTP `404`; thông báo `"Không tìm thấy series"`.                                     |
-| UP-ST-02 | Gửi cập nhật proposal cho Series đang ở trạng thái `Submitted` (không thuộc nhóm `EDITABLE_STATUSES`). | Dòng 21–25         | HTTP `400`; thông báo từ chối kèm tên trạng thái `"Submitted"`.                      |
-| UP-ST-03 | Gửi cập nhật proposal không có trường `summary` (hoặc `summary: ""`).                                  | Dòng 27–29         | HTTP `400`; thông báo `"summary là bắt buộc"`.                                       |
-| UP-ST-04 | Cập nhật proposal đang ở trạng thái `Draft` với `summary`, `characters`, `art_style` mới hợp lệ.       | Dòng 31–38, 49     | HTTP `200`; thông báo `"Lưu proposal thành công"`; dữ liệu proposal được cập nhật.   |
-| UP-ST-05 | Cập nhật proposal đang ở trạng thái `Need Revision`.                                                   | Dòng 35–37, 38, 49 | HTTP `200`; trạng thái proposal được chuyển về `"Draft"`.                            |
-| UP-ST-06 | Gửi proposal cho Series chưa có proposal nào (tạo proposal mới qua `SeriesProposal.create`).           | Dòng 39–47, 49     | HTTP `200`; tạo proposal mới ở trạng thái `"Draft"`; thông báo thành công.           |
-| UP-ST-07 | Gửi `summary` quá ngắn vi phạm ràng buộc schema (`ValidationError`).                                   | Dòng 51–56         | HTTP `400`; thông báo `"Dữ liệu proposal không hợp lệ"`; response có mảng `details`. |
-
-### Branch Coverage
-
-| ID       | Nhánh cần chạy                                                           | Dữ liệu / thao tác Codecept                                                          | Kết quả mong đợi                                                              |
-| -------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| UP-BC-01 | `!series` là true và false                                               | Gửi ID không tồn tại; ca đối chứng gửi ID Series hợp lệ.                             | ID không tồn tại HTTP `404`; ID hợp lệ tiếp tục xử lý.                        |
-| UP-BC-02 | `proposal && !EDITABLE_STATUSES.includes(proposal.status)` là true/false | Gửi request khi Proposal `Submitted`; ca đối chứng gửi khi Proposal `Draft`.         | Trạng thái không cho phép sửa HTTP `400`; trạng thái cho phép tiếp tục xử lý. |
-| UP-BC-03 | `!summary` là true và false                                              | Gửi body thiếu `summary`; ca đối chứng gửi `summary` hợp lệ.                         | Thiếu summary HTTP `400`; có summary đi tiếp.                                 |
-| UP-BC-04 | `if (proposal)` là true và false                                         | Gửi request cho Series đã có Proposal (`true`) và Series chưa có Proposal (`false`). | Đã có: cập nhật bản ghi hiện tại; chưa có: tạo bản ghi mới qua `create`.      |
-| UP-BC-05 | `proposal.status === "Need Revision"` là true và false                   | Cập nhật proposal `Need Revision` (`true`) và cập nhật proposal `Draft` (`false`).   | `Need Revision` được đổi về `Draft`; `Draft` giữ nguyên trạng thái.           |
-| UP-BC-06 | `err.name === "ValidationError"` trong catch là true                     | Gửi `summary` vi phạm minLength để kích hoạt Mongoose ValidationError.               | HTTP `400` với mảng `details`.                                                |
-
-## Phần 4 — Upload ảnh bìa Proposal (`uploadCover.js`)
-
-> **Ghi chú phạm vi:** Controller `uploadCover.js` xử lý `POST /api/series/:id/proposal/upload-cover`. Dòng 7–10 (`!series`) là defensive code do middleware `requireSeriesScope` đã bảo vệ; dòng 41 (catch 500) không thể kích hoạt qua API thông thường.
-
-### Statement Coverage
-
-| ID       | Dữ liệu / thao tác Codecept                                                                  | Dòng lệnh được phủ | Kết quả mong đợi                                                                              |
-| -------- | -------------------------------------------------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------------- |
-| UC-ST-01 | Gửi request upload không đính kèm file (`!req.file`).                                        | Dòng 12–14         | HTTP `400`; thông báo `"Không có file cover được upload"`.                                    |
-| UC-ST-02 | Gửi upload cover cho Series chưa có proposal nào (`!proposal`).                              | Dòng 20–24         | HTTP `400`; thông báo `"Cần tạo proposal trước khi upload cover"`.                            |
-| UC-ST-03 | Gửi upload cover khi proposal đang ở trạng thái `Submitted` (`!EDITABLE_STATUSES.includes`). | Dòng 26–30         | HTTP `400`; thông báo từ chối chứa `"Submitted"`.                                             |
-| UC-ST-04 | Upload file ảnh PNG hợp lệ cho proposal đang ở trạng thái `Draft`.                           | Dòng 32–39         | HTTP `200`; thông báo `"Upload cover thành công"`; trả về `cover_image` và proposal cập nhật. |
-| UC-ST-05 | Upload file ảnh PNG hợp lệ cho proposal đang ở trạng thái `Need Revision`.                   | Dòng 32–39         | HTTP `200`; thông báo `"Upload cover thành công"`; cover được cập nhật.                       |
-
-### Branch Coverage
-
-| ID       | Nhánh cần chạy                                                  | Dữ liệu / thao tác Codecept                                                                       | Kết quả mong đợi                                                                          |
-| -------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| UC-BC-01 | `!req.file \|\| !req.file.path` là true và false                | Lần lượt gửi request không có file và request có file PNG hợp lệ.                                 | Không có file HTTP `400`; có file tiếp tục xử lý.                                         |
-| UC-BC-02 | `!proposal` là true và false                                    | Gửi upload cho Series chưa có proposal và Series đã có proposal `Draft`.                          | Chưa có proposal HTTP `400`; đã có proposal tiếp tục xử lý.                               |
-| UC-BC-03 | `!EDITABLE_STATUSES.includes(proposal.status)` là true và false | Gửi upload khi Proposal `Submitted` (`true`) và khi Proposal `Draft` / `Need Revision` (`false`). | Trạng thái không cho phép HTTP `400`; trạng thái cho phép cập nhật thành công HTTP `200`. |
+| ID       | Nhánh cần chạy                                                           | Dữ liệu / thao tác Codecept                                                                                | Kết quả mong đợi                                                                          |
+| -------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| UP-BC-01 | `!series` là true và false                                               | Gửi ID không tồn tại; ca đối chứng gửi ID Series hợp lệ.                                                   | ID không tồn tại HTTP `404`; ID hợp lệ tiếp tục xử lý.                                    |
+| UP-BC-02 | `proposal && !EDITABLE_STATUSES.includes(proposal.status)` là true/false | Gửi request khi Proposal `Submitted`; ca đối chứng gửi khi Proposal `Draft`.                               | Trạng thái không cho phép sửa HTTP `400`; trạng thái cho phép tiếp tục xử lý.             |
+| UP-BC-03 | `!summary` là true và false                                              | Gửi body thiếu `summary`; ca đối chứng gửi `summary` hợp lệ.                                               | Thiếu summary HTTP `400`; có summary đi tiếp.                                             |
+| UP-BC-04 | `if (proposal)` là true và false                                         | Gửi request cho Series đã có Proposal (`true`) và Series chưa có Proposal (`false`).                       | Đã có: cập nhật bản ghi hiện tại; chưa có: tạo bản ghi mới qua `create`.                  |
+| UP-BC-05 | `proposal.status === "Need Revision"` là true và false                   | Cập nhật proposal `Need Revision` (`true`) và cập nhật proposal `Draft` (`false`).                         | `Need Revision` được đổi về `Draft`; `Draft` giữ nguyên trạng thái.                       |
+| UP-BC-06 | `err.name === "ValidationError"` trong `catch` là `true` và `false`      | Gửi `summary` vi phạm `minLength` (`"tiny"`) và gửi body `"non-json-body"` với `Content-Type: text/plain`. | `ValidationError` trả HTTP `400` kèm mảng `details`; `TypeError` trả HTTP `500`.          |
+| UC-BC-01 | `!req.file \|\| !req.file.path` là true và false                         | Lần lượt gửi request không có file và request có file PNG hợp lệ.                                          | Không có file HTTP `400`; có file tiếp tục xử lý.                                         |
+| UC-BC-02 | `!proposal` là true và false                                             | Gửi upload cho Series chưa có proposal và Series đã có proposal `Draft`.                                   | Chưa có proposal HTTP `400`; đã có proposal tiếp tục xử lý.                               |
+| UC-BC-03 | `!EDITABLE_STATUSES.includes(proposal.status)` là true và false          | Gửi upload khi Proposal `Submitted` (`true`) và khi Proposal `Draft` / `Need Revision` (`false`).          | Trạng thái không cho phép HTTP `400`; trạng thái cho phép cập nhật thành công HTTP `200`. |

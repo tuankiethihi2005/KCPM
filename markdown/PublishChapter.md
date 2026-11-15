@@ -86,10 +86,6 @@ Các bảng dưới đây mô tả trực tiếp luồng xử lý trong `publish
 
 ### Statement Coverage
 
-### Statement Coverage
-
-### Statement Coverage
-
 | ID           | Dòng lệnh được phủ (`publishChapter.js`) | Dữ liệu / thao tác Codecept                                                                                                                                                | Kết quả mong đợi                                                                                                      |
 | :----------- | :--------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
 | **PC-ST-01** | Dòng 9–20                                | Gửi publish cho Chapter hợp lệ nhưng chưa có trang nào (`pages.length === 0`).                                                                                             | HTTP `400`; thông báo `"Chapter chưa có trang nào"`.                                                                  |
@@ -101,9 +97,11 @@ Các bảng dưới đây mô tả trực tiếp luồng xử lý trong `publish
 
 ### Branch Coverage
 
-| ID       | Nhánh cần bao phủ                                                  | Dữ liệu / thao tác Codecept                                                                        | Kết quả mong đợi                                                          |
-| -------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| PC-BC-01 | Task truy vấn có task được chấp nhận ở trạng thái `Paid`           | Đặt tất cả page là Approved, task là Paid, annotation không có hoặc đều Resolved; gọi publish.     | HTTP `200`; task Paid không bị tính là unfinished.                        |
-| PC-BC-02 | `if (release_issue_id)` sai và đúng                                | Đối chiếu ca publish không gửi ID trong `PC-05` với ca gửi ObjectId hợp lệ trong `PC-ST-11`.       | Ca không gửi ID giữ nguyên liên kết; ca có ID lưu liên kết được gửi lên.  |
-| PC-BC-03 | Các điều kiện page, task, annotation trả cả nhánh đạt và không đạt | Lần lượt gửi chapter có trang chưa duyệt, task chưa xong, annotation chưa đóng, và chapter hợp lệ. | Có dữ liệu cho mỗi điều kiện bị từ chối 400 và được chấp nhận 200.        |
-| PC-BC-04 | `!chapter` là true và false                                        | Gửi ID không tồn tại và ID chapter tồn tại.                                                        | ID không tồn tại HTTP `404`; ID tồn tại tiếp tục xử lý và trả HTTP `200`. |
+| ID           | Nhánh cần bao phủ (`publishChapter.js`)                                                                           | Dữ liệu / thao tác Codecept                                                                                         | Kết quả mong đợi                                                                              |
+| :----------- | :---------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------- |
+| **PC-BC-01** | `status: { $nin: ["Approved", "Paid"] }` chấp nhận `Paid` (`unfinishedTasks.length === 0`)                        | Đặt mọi page `Approved`, task `Paid`, annotation `Resolved`; gọi publish.                                           | HTTP `200`; task `Paid` không bị tính là chưa hoàn thành.                                     |
+| **PC-BC-02** | `if (release_issue_id)` là `false` và `true`                                                                      | Lần lượt gọi publish không truyền `release_issue_id` và có truyền `release_issue_id` hợp lệ.                        | Không gửi ID thì giữ trống; có ID thì lưu liên kết kỳ phát hành.                              |
+| **PC-BC-03** | `unapprovedPages.length > 0`, `unfinishedTasks.length > 0`, `unresolvedAnnotations.length > 0` (`true` & `false`) | Lần lượt đặt page chưa duyệt, task chưa xong, annotation chưa đóng (`400`), sau đó hoàn tất từng điều kiện (`200`). | Mỗi điều kiện chưa đạt trả HTTP `400`; khi đạt hết trả HTTP `200`.                            |
+| **PC-BC-04** | `if (pages.length === 0)` là `true` (`400`) và `false` (`200`)                                                    | Gửi publish cho chapter rỗng chưa có trang (`400`) và chapter đã có trang hợp lệ (`200`).                           | Chapter rỗng trả HTTP `400` (`"Chapter chưa có trang nào"`); chapter có trang trả HTTP `200`. |
+| **PC-BC-05** | `if (series.editor_id)` là `false` (nếu dữ liệu có series không gán editor)                                       | Quét series chưa gán `editor_id` có chapter đủ điều kiện và xuất bản bằng quyền `Admin`.                            | HTTP `200`; chỉ gửi thông báo xuất bản cho tác giả (`author_id`).                             |
+| **PC-BC-06** | Nhánh lỗi ngoại lệ `catch (error)` (dòng 88–92)                                                                   | Gửi `POST /api/publish/chapter/:chapter_id` với `Content-Type: text/plain` và body `"non-json-body"`.               | Bắt `TypeError` trong khối `catch` và trả HTTP `500` (`message: "Lỗi server"`).               |
