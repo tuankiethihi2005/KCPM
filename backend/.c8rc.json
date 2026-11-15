@@ -1,19 +1,8 @@
 {
   "all": false,
-  "include": [
-    "src/controllers/**/*.js",
-    "src/services/**/*.js",
-    "src/modules/**/*.js",
-    "src/middlewares/**/*.js"
-  ],
-  "exclude": [
-    "src/config/**",
-    "**/*.test.js"
-  ],
-  "reporter": [
-    "text",
-    "text-summary"
-  ],
+  "include": ["src/controllers/publish/publishChapter.js"],
+  "exclude": ["src/config/**", "**/*.test.js"],
+  "reporter": ["text", "text-summary"],
   "reporterOptions": {
     "text": {
       "maxCols": 200

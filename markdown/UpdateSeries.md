@@ -65,8 +65,6 @@ Khi lưu Proposal, trạng thái `Need Revision` chỉ chuyển về `Draft` sau
 
 ### Statement Coverage
 
-### Statement Coverage
-
 | ID           | Dòng lệnh được phủ                                         | Dữ liệu / thao tác Codecept                                                                 | Kết quả mong đợi theo code hiện tại                                                         |
 | :----------- | :--------------------------------------------------------- | :------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------ |
 | **US-ST-01** | Dòng 13–21, 157–162                                        | Gửi `PUT /api/series/:id` với body `{}` cho Series đang `Draft`.                            | HTTP `200`; giữ nguyên các trường hiện có.                                                  |
@@ -94,11 +92,13 @@ Khi lưu Proposal, trạng thái `Need Revision` chỉ chuyển về `Draft` sau
 
 ### Branch Coverage
 
-| ID       | Nhánh cần bao phủ                                                          | Dữ liệu / thao tác Codecept                                                              | Kết quả mong đợi                                                               |
-| -------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| US-BC-01 | Trường không được gửi (`field === undefined`) và được gửi với giá trị rỗng | Gửi lần lượt body `{}` và body có `description: ""`, `genre: ""`, `target_audience: ""`. | Request đầu giữ nguyên dữ liệu; request sau xóa các giá trị tương ứng.         |
-| US-BC-02 | `editor_id` không được gửi, là `null`, là chuỗi rỗng và là ID hợp lệ       | Gửi bốn request riêng trên các Series Draft.                                             | Không gửi ID thì giữ editor; `null`/`""` thì bỏ gán; ID hợp lệ thì gán editor. |
-| US-BC-03 | `trimmedDesc`, `trimmedGenre`, `trimmedAudience` lần lượt falsy và truthy  | Với mỗi trường, gửi chuỗi rỗng rồi gửi chuỗi hợp lệ có nội dung.                         | Chuỗi rỗng được bỏ gán; chuỗi hợp lệ được lưu sau trim.                        |
-| US-BC-04 | Nhánh proposal pending status là true/false                                | Sửa series khi proposal `Submitted` (`true`) và khi proposal `Draft` (`false`).          | Chờ duyệt HTTP `409`; bản nháp HTTP `200`.                                     |
-| US-BC-05 | Nhánh validation title (rỗng, ngắn hơn 2, markup HTML)                     | Lần lượt gửi title rỗng, 1 ký tự, và chứa `<script>`.                                    | Mỗi trường hợp đều bị từ chối HTTP `400` với thông báo lỗi cụ thể.             |
-| US-BC-06 | Nhánh format `editor_id` không hợp lệ                                      | Gửi chuỗi không phải ObjectId trong `editor_id`.                                         | HTTP `400`; thông báo `"editor_id không đúng định dạng hợp lệ"`.               |
+| ID       | Nhánh cần bao phủ                                                                     | Dữ liệu / thao tác Codecept                                                                                          | Kết quả mong đợi                                                               |
+| -------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| US-BC-01 | Trường không được gửi (`field === undefined`) và được gửi với giá trị rỗng            | Gửi lần lượt body `{}` và body có `description: ""`, `genre: ""`, `target_audience: ""`.                             | Request đầu giữ nguyên dữ liệu; request sau xóa các giá trị tương ứng.         |
+| US-BC-02 | `editor_id` không được gửi, là `null`, là chuỗi rỗng và là ID hợp lệ                  | Gửi bốn request riêng trên các Series Draft.                                                                         | Không gửi ID thì giữ editor; `null`/`""` thì bỏ gán; ID hợp lệ thì gán editor. |
+| US-BC-03 | `trimmedDesc`, `trimmedGenre`, `trimmedAudience` lần lượt falsy và truthy             | Với mỗi trường, gửi chuỗi rỗng rồi gửi chuỗi hợp lệ có nội dung.                                                     | Chuỗi rỗng được bỏ gán; chuỗi hợp lệ được lưu sau trim.                        |
+| US-BC-04 | Nhánh proposal pending status là true/false                                           | Sửa series khi proposal `Submitted` (`true`) và khi proposal `Draft` (`false`).                                      | Chờ duyệt HTTP `409`; bản nháp HTTP `200`.                                     |
+| US-BC-05 | Nhánh validation title (rỗng, ngắn hơn 2, markup HTML)                                | Lần lượt gửi title rỗng, 1 ký tự, và chứa `<script>`.                                                                | Mỗi trường hợp đều bị từ chối HTTP `400` với thông báo lỗi cụ thể.             |
+| US-BC-06 | Nhánh format `editor_id` không hợp lệ                                                 | Gửi chuỗi không phải ObjectId trong `editor_id`.                                                                     | HTTP `400`; thông báo `"editor_id không đúng định dạng hợp lệ"`.               |
+| US-BC-07 | Các nhánh lỗi `editor_id`: `!isValidObjectId`, `!editorExists`, `role !== tantouRole` | Gửi ID sai định dạng, ID không tồn tại (`000...000`), và ID của user có role `Mangaka`.                              | Cả 3 trường hợp đều trả HTTP `400` với đúng thông báo lỗi từng bước.           |
+| US-BC-08 | `err.name === "ValidationError"` trong `catch` là `true` và `false`                   | Gửi `{ genre: { invalidCast: true } }` (`400`) và gửi body `"non-json-body"` với `Content-Type: text/plain` (`500`). | `ValidationError` trả HTTP `400`; lỗi runtime khác trả HTTP `500`.             |
