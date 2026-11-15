@@ -3,7 +3,11 @@ import path from "path";
 
 /** @type {CodeceptJS.MainConfig} */
 export const config = {
-  tests: "./codecept_tests/*_test.js",
+  tests: [
+    "./codecept_tests/*_test.js",
+    "./codecept_tests/White-box/Statement_Coverage/*_test.js",
+    "./codecept_tests/White-box/Branch_Coverage/*_test.js",
+  ],
   output: "./codecept_output",
   helpers: {
     Playwright: {

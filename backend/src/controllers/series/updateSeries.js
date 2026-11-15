@@ -15,9 +15,6 @@ exports.updateSeries = async (req, res) => {
     const { title, description, genre, target_audience, editor_id } = req.body;
 
     const series = await Series.findById(id);
-    if (!series) {
-      return res.status(404).json({ message: "Không tìm thấy series" });
-    }
 
     // Chỉ cho sửa khi proposal còn ở trạng thái nháp/cần sửa hoặc chưa có proposal.
     const proposal = await SeriesProposal.findOne({ series_id: id }).sort({
@@ -28,7 +25,8 @@ exports.updateSeries = async (req, res) => {
       PENDING_STATUSES.includes(series.status)
     ) {
       return res.status(409).json({
-        message: "Hồ sơ đang ở trạng thái chờ duyệt, không thể cập nhật thông tin.",
+        message:
+          "Hồ sơ đang ở trạng thái chờ duyệt, không thể cập nhật thông tin.",
       });
     }
     if (proposal && !EDITABLE_STATUSES.includes(proposal.status)) {
@@ -37,7 +35,7 @@ exports.updateSeries = async (req, res) => {
       });
     }
 
-    // 1. Validate title (US-05, US-06: chuẩn hóa NFC, trim, không phân biệt hoa-thường)
+    // 1. Validate title (chuẩn hóa NFC, trim, không phân biệt hoa-thường)
     if (title !== undefined) {
       const trimmedTitle =
         typeof title === "string" ? title.normalize("NFC").trim() : title;
@@ -81,7 +79,7 @@ exports.updateSeries = async (req, res) => {
       series.title = trimmedTitle;
     }
 
-    // 2. Validate description (SCRUM-87 / US-07)
+    // 2. Validate description
     if (description !== undefined) {
       const trimmedDesc =
         typeof description === "string" ? description.trim() : description;
@@ -98,7 +96,7 @@ exports.updateSeries = async (req, res) => {
       series.description = trimmedDesc || undefined;
     }
 
-    // 3. Validate genre (SCRUM-87 / US-07)
+    // 3. Validate genre
     if (genre !== undefined) {
       const trimmedGenre = typeof genre === "string" ? genre.trim() : genre;
       if (trimmedGenre && trimmedGenre.length < 2) {
@@ -114,7 +112,7 @@ exports.updateSeries = async (req, res) => {
       series.genre = trimmedGenre || undefined;
     }
 
-    // 4. Validate target_audience (SCRUM-87 / US-07)
+    // 4. Validate target_audience
     if (target_audience !== undefined) {
       const trimmedAudience =
         typeof target_audience === "string"
@@ -133,7 +131,7 @@ exports.updateSeries = async (req, res) => {
       series.target_audience = trimmedAudience || undefined;
     }
 
-    // 5. Validate editor_id (SCRUM-88 / US-08)
+    // 5. Validate editor_id
     if (editor_id !== undefined) {
       if (editor_id === null || editor_id === "") {
         series.editor_id = null;
@@ -161,28 +159,6 @@ exports.updateSeries = async (req, res) => {
 
         series.editor_id = editorExists._id;
       }
-    }
-
-    // Kiểm tra concurrency trước khi lưu (Optimistic Concurrency Check):
-    // Đảm bảo trạng thái Series/Proposal không bị chuyển sang chờ duyệt trong quá trình xử lý cập nhật
-    const latestProposal = await SeriesProposal.findOne({ series_id: id }).sort({
-      createdAt: -1,
-    });
-    const latestSeries = await Series.findById(id).select("status");
-
-    if (
-      (latestProposal && PENDING_STATUSES.includes(latestProposal.status)) ||
-      (latestSeries && PENDING_STATUSES.includes(latestSeries.status))
-    ) {
-      return res.status(409).json({
-        message: "Hồ sơ đang ở trạng thái chờ duyệt, không thể cập nhật thông tin.",
-      });
-    }
-
-    if (latestProposal && !EDITABLE_STATUSES.includes(latestProposal.status)) {
-      return res.status(400).json({
-        message: `Không thể sửa thông tin series khi proposal ở trạng thái ${latestProposal.status}`,
-      });
     }
 
     await series.save();

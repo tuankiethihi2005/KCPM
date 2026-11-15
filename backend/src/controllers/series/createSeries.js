@@ -44,10 +44,6 @@ exports.createSeries = async (req, res) => {
     const resolvedAuthorId =
       req.user.role === ROLES.ADMIN ? author_id || req.user.id : req.user.id;
 
-    if (!resolvedAuthorId) {
-      return res.status(400).json({ message: "author_id là bắt buộc" });
-    }
-
     if (normalizedSummary !== undefined && normalizedSummary !== null) {
       const summaryValidation = new SeriesProposal({
         summary: normalizedSummary,

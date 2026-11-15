@@ -39,12 +39,8 @@ const applyFinalizeDecision = async ({
   } else if (decision === "Reject") {
     proposal.status = "Rejected";
     series.status = "Draft";
-  } else if (decision === "Need Revision") {
-    proposal.status = "Need Revision";
   } else {
-    const error = new Error("Quyết định vote không hợp lệ");
-    error.status = 400;
-    throw error;
+    proposal.status = "Need Revision";
   }
 
   await proposal.save();

@@ -12,10 +12,6 @@ exports.publishChapter = async (req, res) => {
 
     const chapter = await Chapter.findById(chapter_id);
 
-    // kiểm tra xem chapter có tồn tại không
-    if (!chapter) {
-      return res.status(404).json({ message: "Không tìm thấy chapter" });
-    }
     // kiểm tra xem chapter đã có trang nào hay chưa
     const pages = await Page.find({ chapter_id });
 
