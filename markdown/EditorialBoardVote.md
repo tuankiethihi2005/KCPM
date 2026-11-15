@@ -36,27 +36,58 @@ Các bảng dưới đây phản ánh `castVote`, route Board và các enum củ
 
 ### Bảng chuyển đổi trạng thái
 
-| Test case | Trạng thái Proposal đầu | Sự kiện / đầu vào | Trạng thái Proposal cuối / kết quả |
-| --- | --- | --- | --- |
-| 1 | `Submitted` | Gửi một trong `Approve`, `Reject`, `Need Revision`; chưa có phiếu của thành viên cho Series ở `initial_review` | Tạo phiếu; Proposal chuyển thành `Under Review`. |
-| 2 | `Under Review` | Gửi lựa chọn hợp lệ; chưa có phiếu hiện hành của thành viên | Tạo phiếu; Proposal giữ `Under Review`. |
-| 3 | `Submitted` hoặc `Under Review` | Thành viên đã có phiếu hiện hành gửi lựa chọn khác hoặc cập nhật comment | Cập nhật phiếu hiện có; Proposal giữ nguyên trạng thái. |
-| 4 | `Draft`, trạng thái khác hoặc không có Proposal | Gửi phiếu | Request bị từ chối; không ghi nhận phiếu mới. |
+| Test case | Trạng thái Proposal đầu                         | Sự kiện / đầu vào                                                                                              | Trạng thái Proposal cuối / kết quả                      |
+| --------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| 1         | `Submitted`                                     | Gửi một trong `Approve`, `Reject`, `Need Revision`; chưa có phiếu của thành viên cho Series ở `initial_review` | Tạo phiếu; Proposal chuyển thành `Under Review`.        |
+| 2         | `Under Review`                                  | Gửi lựa chọn hợp lệ; chưa có phiếu hiện hành của thành viên                                                    | Tạo phiếu; Proposal giữ `Under Review`.                 |
+| 3         | `Submitted` hoặc `Under Review`                 | Thành viên đã có phiếu hiện hành gửi lựa chọn khác hoặc cập nhật comment                                       | Cập nhật phiếu hiện có; Proposal giữ nguyên trạng thái. |
+| 4         | `Draft`, trạng thái khác hoặc không có Proposal | Gửi phiếu                                                                                                      | Request bị từ chối; không ghi nhận phiếu mới.           |
 
 ### Bảng quyết định
 
 `Y` = có/đúng; `N` = không/sai; `-` = không ảnh hưởng.
 
-| Điều kiện / hành động | R1 | R2 | R3 | R4 | R5 | R6 |
-| --- | --- | --- | --- | --- | --- | --- |
-| C1: Series và Proposal gần nhất tồn tại | Y | Y | Y | Y | Y | N |
-| C2: Proposal ở `Submitted` hoặc `Under Review` | Y | Y | Y | Y | N | - |
-| C3: Vote thuộc `Approve`, `Reject`, `Need Revision` | Y | Y | Y | N | - | - |
-| C4: Đã có phiếu thành viên đó trong `initial_review` | N | N | Y | - | - | - |
-| C5: Proposal đang ở `Submitted` | Y | N | - | - | - | - |
-| A1: Tạo phiếu mới | X | X | - | - | - | - |
-| A2: Cập nhật phiếu hiện có | - | - | X | - | - | - |
-| A3: Nếu Proposal là `Submitted`, chuyển thành `Under Review` | X | - | - | - | - | - |
-| A4: Từ chối request | - | - | - | X | X | X |
+| Điều kiện / hành động                                        | R1  | R2  | R3  | R4  | R5  | R6  |
+| ------------------------------------------------------------ | --- | --- | --- | --- | --- | --- |
+| C1: Series và Proposal gần nhất tồn tại                      | Y   | Y   | Y   | Y   | Y   | N   |
+| C2: Proposal ở `Submitted` hoặc `Under Review`               | Y   | Y   | Y   | Y   | N   | -   |
+| C3: Vote thuộc `Approve`, `Reject`, `Need Revision`          | Y   | Y   | Y   | N   | -   | -   |
+| C4: Đã có phiếu thành viên đó trong `initial_review`         | N   | N   | Y   | -   | -   | -   |
+| C5: Proposal đang ở `Submitted`                              | Y   | N   | -   | -   | -   | -   |
+| A1: Tạo phiếu mới                                            | X   | X   | -   | -   | -   | -   |
+| A2: Cập nhật phiếu hiện có                                   | -   | -   | X   | -   | -   | -   |
+| A3: Nếu Proposal là `Submitted`, chuyển thành `Under Review` | X   | -   | -   | -   | -   | -   |
+| A4: Từ chối request                                          | -   | -   | -   | X   | X   | X   |
 
 Route chỉ cho phép role Editorial Board hoặc Admin. Phiếu được tìm theo Series, thành viên và `vote_context: initial_review`; model không lưu mã vòng xét duyệt hoặc lịch sử các giá trị phiếu trước đó.
+
+# White-box
+
+### Statement Coverage
+
+### Statement Coverage
+
+| ID            | Dòng lệnh được phủ (`castVote.js`) | Dữ liệu / thao tác Codecept                                                                                                   | Kết quả mong đợi                                                            |
+| :------------ | :--------------------------------- | :---------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------- |
+| **EBV-ST-01** | Dòng 67–83                         | Đăng nhập bằng Admin; gửi vote hợp lệ đến `POST /api/board/series/:id/vote` cho Proposal `Submitted` chưa có phiếu của Admin. | HTTP `201`; tạo phiếu của Admin; Proposal chuyển sang `Under Review`.       |
+| **EBV-ST-02** | Dòng 14–16                         | Gửi request không có trường `vote` (body `{}`).                                                                               | HTTP `400`; thông báo `"vote là bắt buộc"`.                                 |
+| **EBV-ST-03** | Dòng 18–22                         | Gửi giá trị `vote` ngoài danh sách cho phép (ví dụ `InvalidChoice`).                                                          | HTTP `400`; thông báo `"vote phải là: Approve, Reject, Need Revision"`.     |
+| **EBV-ST-04** | Dòng 24–27                         | Gửi vote tới ID series không tồn tại (`000000000000000000000000`).                                                            | HTTP `404`; thông báo `"Không tìm thấy series"`.                            |
+| **EBV-ST-05** | Dòng 29–37                         | Gửi vote cho Series chưa có proposal nào.                                                                                     | HTTP `400`; thông báo `"Series chưa có proposal để bỏ phiếu"`.              |
+| **EBV-ST-06** | Dòng 39–43                         | Gửi vote cho Series có proposal đang ở trạng thái `Draft`.                                                                    | HTTP `400`; thông báo `"Proposal không có trạng thái hợp lệ"`.              |
+| **EBV-ST-07** | Dòng 45–49                         | Gửi vote cho Series có proposal đã finalize (`Approved`), không còn ở trạng thái chờ duyệt.                                   | HTTP `400`; thông báo `"Series không ở trạng thái chờ duyệt"`.              |
+| **EBV-ST-08** | Dòng 51–65                         | Cùng một thành viên đã bỏ phiếu, gửi request vote tiếp theo kèm comment mới.                                                  | HTTP `200`; thông báo `"Cập nhật phiếu bầu thành công"`; cập nhật phiếu cũ. |
+| **EBV-ST-09** | Dòng 84–86                         | Gửi vote tới `id` sai định dạng ObjectId (`"invalid-object-id"`) để kích hoạt lỗi `CastError` trong khối `catch`.             | HTTP `500`; `error: "Lỗi server"`.                                          |
+
+### Branch Coverage
+
+| ID        | Nhánh cần bao phủ                                                    | Dữ liệu / thao tác Codecept                                                                                                       | Kết quả mong đợi                                                                  |
+| --------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| EBV-BC-01 | Middleware cho phép role Admin                                       | Thực hiện request bỏ phiếu bằng tài khoản Admin; đối chiếu với ca Mangaka bị từ chối 403.                                         | Admin HTTP `201`; Mangaka HTTP `403`.                                             |
+| EBV-BC-02 | Proposal `Submitted` và `Under Review`; chưa có phiếu và đã có phiếu | Lần đầu bỏ phiếu (`existingVote` = null) và lần hai bỏ phiếu (`existingVote` != null).                                            | Lần đầu HTTP `201` tạo phiếu mới; lần hai HTTP `200` cập nhật phiếu.              |
+| EBV-BC-14 | Vote hợp lệ và không hợp lệ                                          | Lần lượt gửi body `{}` (`!vote`), `{ vote: "Unsupported" }` (`!INITIAL_VOTES.includes`), và `{ vote: "Reject" }`.                 | Thiếu/sai vote HTTP `400`; vote hợp lệ HTTP `201`.                                |
+| EBV-BC-03 | `!series` là true và false                                           | Gửi ID không tồn tại và ID tồn tại hợp lệ.                                                                                        | ID không tồn tại HTTP `404`; tồn tại tiếp tục xử lý.                              |
+| EBV-BC-04 | `!proposal` là true và false                                         | Gửi vote cho series không có proposal và series có proposal.                                                                      | Không có proposal HTTP `400`; có proposal tiếp tục xử lý.                         |
+| EBV-BC-05 | `proposal.status === "Draft"` là true và false                       | Gửi vote khi proposal ở `Draft` và khi proposal ở `Submitted`.                                                                    | `Draft` HTTP `400`; `Submitted` đi tiếp.                                          |
+| EBV-BC-06 | `!VOTABLE_PROPOSAL_STATUSES.includes(proposal.status)` là true/false | Gửi vote sau khi proposal đã finalize `Approved` (`true`) và khi proposal `Submitted` (`false`).                                  | `Approved` HTTP `400`; `Submitted` đi tiếp.                                       |
+| EBV-BC-07 | `proposal.status === "Submitted"` là true và false                   | Vote lần đầu trên proposal `Submitted` (chuyển sang `Under Review`); vote lần hai của member khác khi proposal đã `Under Review`. | Lần đầu chuyển trạng thái sang `Under Review`; lần hai giữ nguyên `Under Review`. |

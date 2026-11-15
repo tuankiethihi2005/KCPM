@@ -5,17 +5,18 @@ const EDITABLE_STATUSES = ["Draft", "Need Revision"];
 exports.uploadCover = async (req, res) => {
   try {
     const series = req.authz?.series;
-    if (!series) {
-      return res.status(404).json({ message: "Không tìm thấy series" });
-    }
 
     if (!req.file || !req.file.path) {
-      return res.status(400).json({ message: "Không có file cover được upload" });
+      return res
+        .status(400)
+        .json({ message: "Không có file cover được upload" });
     }
 
-    let proposal = await SeriesProposal.findOne({ series_id: series._id }).sort({
-      createdAt: -1,
-    });
+    let proposal = await SeriesProposal.findOne({ series_id: series._id }).sort(
+      {
+        createdAt: -1,
+      },
+    );
 
     if (!proposal) {
       return res.status(400).json({

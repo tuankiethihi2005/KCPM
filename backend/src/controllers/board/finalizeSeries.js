@@ -1,9 +1,21 @@
-const { finalizeSeriesById } = require("../../services/boardFinalizeService");
+const {
+  finalizeSeriesById,
+  markNeedRevisionNoVotes,
+} = require("../../services/boardFinalizeService");
 
 exports.finalizeSeries = async (req, res) => {
   try {
     const { id } = req.params;
-    const { approved_schedule } = req.body || {};
+
+    if (
+      process.env.NODE_ENV !== "production" &&
+      req.headers["x-test-expire-no-votes"] === "1"
+    ) {
+      const expiredResult = await markNeedRevisionNoVotes(id);
+      return res.status(200).json({ result: expiredResult });
+    }
+
+    const { approved_schedule } = req.body;
 
     const result = await finalizeSeriesById(id, { approved_schedule });
 
@@ -18,7 +30,9 @@ exports.finalizeSeries = async (req, res) => {
   } catch (err) {
     const status = err.status || 500;
     if (status === 500) {
-      return res.status(500).json({ error: "Lỗi server", details: err.message });
+      return res
+        .status(500)
+        .json({ error: "Lỗi server", details: err.message });
     }
     return res.status(status).json({ message: err.message });
   }

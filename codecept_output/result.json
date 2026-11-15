@@ -6,18 +6,18 @@
     "tests": 6,
     "pending": 0,
     "failedHooks": 0,
-    "start": "2026-11-13T17:51:45.720Z",
-    "end": "2026-11-13T17:51:53.067Z",
-    "duration": 7347
+    "start": "2026-11-15T08:31:14.190Z",
+    "end": "2026-11-15T08:31:45.045Z",
+    "duration": 30855
   },
-  "duration": 7385,
+  "duration": 30888,
   "tests": [
     {
       "opts": {},
       "tags": [],
-      "uid": "sTVAnr4Iuvq658SOJXazvKzTHfvhnBHJHzap210hyH",
+      "uid": "ZJGVlCpL8vXOlBvVPpBuZlIAkcuLff3bE_VCIXfn3P",
       "retries": -1,
-      "title": "PC-SD-01 / R2: Chapter không có trang nào (C2 = N) bị từ chối 400, giữ nguyên trạng thái",
+      "title": "PC-ST-01: Chapter chưa có trang nào trả về 400",
       "state": "passed",
       "notes": [],
       "meta": {
@@ -26,22 +26,250 @@
         "windowSize": "1280x720"
       },
       "artifacts": [],
-      "duration": 152,
+      "duration": 2407,
       "parent": {
-        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
+        "title": "White-Box Statement Coverage — publishChapter (100% Statements)"
       },
       "steps": [
+        {
+          "opts": {},
+          "title": "sendPostRequest",
+          "args": [
+            "/api/auth/login",
+            "{\"email\":\"editor@example.com\",\"password\":\"password123\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731475112,
+          "endTime": 1794731475375,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/series/editor",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731475377,
+          "endTime": 1794731475556,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9635bead964003ee951b4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731475557,
+          "endTime": 1794731475660,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9602f28d4f94bcc90a7d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731475661,
+          "endTime": 1794731475761,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95f5d8475233ea0dba8bd",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731475762,
+          "endTime": 1794731475867,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95595108286e2c170ca7e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731475867,
+          "endTime": 1794731475975,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af953dfc8f6058ac50fef31",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731475976,
+          "endTime": 1794731476074,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94e6f3a5b5dcae1f742bf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731476074,
+          "endTime": 1794731476191,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94d7d3a5b5dcae1f74217",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731476192,
+          "endTime": 1794731476303,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94bae3a5b5dcae1f741d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731476304,
+          "endTime": 1794731476409,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94a8e548bfc5c23a3acb8",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731476409,
+          "endTime": 1794731476510,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af941862d25c73b17414ebf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731476510,
+          "endTime": 1794731476612,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93d1d93ffb3429d3f5225",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731476612,
+          "endTime": 1794731476707,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93c01a82442487c6cc420",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731476708,
+          "endTime": 1794731476804,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9386fa82442487c6cc3f2",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731476804,
+          "endTime": 1794731476903,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93865a82442487c6cc3e4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731476904,
+          "endTime": 1794731477002,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a4a8b5d9cf6ce46267b7a1a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731477003,
+          "endTime": 1794731477099,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a3953907f6a05d639926d62",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731477099,
+          "endTime": 1794731477193,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a4d33ef5894434e4bba54e1",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731477193,
+          "endTime": 1794731477347,
+          "parent": {}
+        },
         {
           "opts": {},
           "title": "sendPostRequest",
           "args": [
             "/api/publish/chapter/6a4d33ef5894434e4bba54e1",
             "{}",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NSwiZXhwIjoxNzk0NzMyMzc1fQ.krg5xRDDL7QgrpFvOeg-a5Bwl9JDK-i-LRsVbsrv5lA\"}"
           ],
           "status": "success",
-          "startTime": 1794592309751,
-          "endTime": 1794592309901,
+          "startTime": 1794731477348,
+          "endTime": 1794731477506,
           "parent": {}
         }
       ]
@@ -49,9 +277,9 @@
     {
       "opts": {},
       "tags": [],
-      "uid": "W+DuEo+n82g4pSbNUG3yTKNBPV78S+jzzmDmkLsNNt",
+      "uid": "QWoohs1tkHUVP+HSLE93SMKhNaZLO5tTjZbWx4sQMZ",
       "retries": -1,
-      "title": "PC-SD-02 / R3: Có trang nhưng còn trang chưa Approved (C3 = N) bị từ chối 400",
+      "title": "PC-ST-02: Trang truyện chưa được phê duyệt trả về 400",
       "state": "passed",
       "notes": [],
       "meta": {
@@ -60,22 +288,1199 @@
         "windowSize": "1280x720"
       },
       "artifacts": [],
-      "duration": 310,
+      "duration": 5469,
       "parent": {
-        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
+        "title": "White-Box Statement Coverage — publishChapter (100% Statements)"
       },
       "steps": [
+        {
+          "opts": {},
+          "title": "sendPostRequest",
+          "args": [
+            "/api/auth/login",
+            "{\"email\":\"editor@example.com\",\"password\":\"password123\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731477592,
+          "endTime": 1794731477759,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/series/editor",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731477759,
+          "endTime": 1794731477921,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9635bead964003ee951b4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731477921,
+          "endTime": 1794731478010,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9602f28d4f94bcc90a7d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731478011,
+          "endTime": 1794731478099,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95f5d8475233ea0dba8bd",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731478100,
+          "endTime": 1794731478190,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95595108286e2c170ca7e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731478191,
+          "endTime": 1794731478281,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af953dfc8f6058ac50fef31",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731478282,
+          "endTime": 1794731478374,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94e6f3a5b5dcae1f742bf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731478375,
+          "endTime": 1794731478463,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94d7d3a5b5dcae1f74217",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731478463,
+          "endTime": 1794731478565,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94bae3a5b5dcae1f741d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731478566,
+          "endTime": 1794731478656,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94a8e548bfc5c23a3acb8",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731478656,
+          "endTime": 1794731478749,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af941862d25c73b17414ebf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731478750,
+          "endTime": 1794731478840,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93d1d93ffb3429d3f5225",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731478840,
+          "endTime": 1794731478932,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93c01a82442487c6cc420",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731478932,
+          "endTime": 1794731479020,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9386fa82442487c6cc3f2",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731479020,
+          "endTime": 1794731479106,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93865a82442487c6cc3e4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731479106,
+          "endTime": 1794731479196,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a4a8b5d9cf6ce46267b7a1a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731479196,
+          "endTime": 1794731479288,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a3953907f6a05d639926d62",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731479289,
+          "endTime": 1794731479380,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a3953907f6a05d639926d61",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731479380,
+          "endTime": 1794731479471,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a37ecc6abfb9cfc5c1d0e4f",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731479472,
+          "endTime": 1794731479567,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a26f54d7049841d96ecc522",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731479567,
+          "endTime": 1794731479660,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34b94753a13af05faced79",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731479660,
+          "endTime": 1794731479812,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34c533a3a6abe9462d99fa",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731479813,
+          "endTime": 1794731479959,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34cd0c8723815346262b9b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731479959,
+          "endTime": 1794731480106,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34cdef8723815346262b9d",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731480106,
+          "endTime": 1794731480264,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a26edf57049841d96ecc50e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731480264,
+          "endTime": 1794731480355,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6ada169656302d7c1d4ade07",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731480356,
+          "endTime": 1794731480506,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6ada1e1456302d7c1d4ade0a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731480507,
+          "endTime": 1794731480655,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9635bead964003ee951b4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731480656,
+          "endTime": 1794731480745,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9602f28d4f94bcc90a7d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731480745,
+          "endTime": 1794731480831,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95f5d8475233ea0dba8bd",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731480832,
+          "endTime": 1794731480924,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95595108286e2c170ca7e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731480924,
+          "endTime": 1794731481011,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af953dfc8f6058ac50fef31",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731481012,
+          "endTime": 1794731481100,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94e6f3a5b5dcae1f742bf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731481100,
+          "endTime": 1794731481190,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94d7d3a5b5dcae1f74217",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731481190,
+          "endTime": 1794731481278,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94bae3a5b5dcae1f741d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731481279,
+          "endTime": 1794731481370,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94a8e548bfc5c23a3acb8",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731481370,
+          "endTime": 1794731481463,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af941862d25c73b17414ebf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731481463,
+          "endTime": 1794731481553,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93d1d93ffb3429d3f5225",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731481553,
+          "endTime": 1794731481642,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93c01a82442487c6cc420",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731481642,
+          "endTime": 1794731481733,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9386fa82442487c6cc3f2",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731481733,
+          "endTime": 1794731481829,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93865a82442487c6cc3e4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731481829,
+          "endTime": 1794731481920,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a4a8b5d9cf6ce46267b7a1a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731481920,
+          "endTime": 1794731482009,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731482009,
+          "endTime": 1794731482163,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/tasks?page_id=6a4a8b5d9cf6ce46267b7a1c",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731482163,
+          "endTime": 1794731482322,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendPatchRequest",
+          "args": [
+            "/api/tasks/6af7480608dbf3b453ba5405/status",
+            "{\"status\":\"Paid\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731482323,
+          "endTime": 1794731482466,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/annotations/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731482466,
+          "endTime": 1794731482580,
+          "parent": {}
+        },
         {
           "opts": {},
           "title": "sendPutRequest",
           "args": [
             "/api/pages/approve/6a4a8b5d9cf6ce46267b7a1c",
+            "{\"status\":\"Ready For Review\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731482580,
+          "endTime": 1794731482742,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendPostRequest",
+          "args": [
+            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731482743,
+          "endTime": 1794731482901,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendPutRequest",
+          "args": [
+            "/api/pages/approve/6a4a8b5d9cf6ce46267b7a1c",
+            "{\"status\":\"Approved\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ3NywiZXhwIjoxNzk0NzMyMzc3fQ.NxkqlzeYgUZWsTsTxBK8hEGYa1uOWJrrqoSrUus_-xc\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731482903,
+          "endTime": 1794731483059,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "quqPR+57DlZD1UfrAmUAyROEpolZA7r1RRJVVAJA1Q",
+      "retries": -1,
+      "title": "PC-ST-03: Task chưa hoàn thành trả về 400",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 5292,
+      "parent": {
+        "title": "White-Box Statement Coverage — publishChapter (100% Statements)"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "sendPostRequest",
+          "args": [
+            "/api/auth/login",
+            "{\"email\":\"editor@example.com\",\"password\":\"password123\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731483143,
+          "endTime": 1794731483291,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/series/editor",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731483291,
+          "endTime": 1794731483431,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9635bead964003ee951b4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731483431,
+          "endTime": 1794731483530,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9602f28d4f94bcc90a7d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731483530,
+          "endTime": 1794731483625,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95f5d8475233ea0dba8bd",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731483625,
+          "endTime": 1794731483720,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95595108286e2c170ca7e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731483720,
+          "endTime": 1794731483812,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af953dfc8f6058ac50fef31",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731483812,
+          "endTime": 1794731483905,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94e6f3a5b5dcae1f742bf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731483906,
+          "endTime": 1794731484000,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94d7d3a5b5dcae1f74217",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731484000,
+          "endTime": 1794731484099,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94bae3a5b5dcae1f741d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731484099,
+          "endTime": 1794731484193,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94a8e548bfc5c23a3acb8",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731484193,
+          "endTime": 1794731484296,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af941862d25c73b17414ebf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731484296,
+          "endTime": 1794731484389,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93d1d93ffb3429d3f5225",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731484389,
+          "endTime": 1794731484480,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93c01a82442487c6cc420",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731484481,
+          "endTime": 1794731484592,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9386fa82442487c6cc3f2",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731484592,
+          "endTime": 1794731484683,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93865a82442487c6cc3e4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731484684,
+          "endTime": 1794731484776,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a4a8b5d9cf6ce46267b7a1a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731484777,
+          "endTime": 1794731484868,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a3953907f6a05d639926d62",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731484868,
+          "endTime": 1794731484959,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a3953907f6a05d639926d61",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731484959,
+          "endTime": 1794731485049,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a37ecc6abfb9cfc5c1d0e4f",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731485049,
+          "endTime": 1794731485138,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a26f54d7049841d96ecc522",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731485139,
+          "endTime": 1794731485229,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34b94753a13af05faced79",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731485229,
+          "endTime": 1794731485375,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34c533a3a6abe9462d99fa",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731485375,
+          "endTime": 1794731485520,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34cd0c8723815346262b9b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731485520,
+          "endTime": 1794731485665,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34cdef8723815346262b9d",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731485665,
+          "endTime": 1794731485813,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a26edf57049841d96ecc50e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731485814,
+          "endTime": 1794731485903,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6ada169656302d7c1d4ade07",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731485904,
+          "endTime": 1794731486048,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6ada1e1456302d7c1d4ade0a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731486048,
+          "endTime": 1794731486195,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9635bead964003ee951b4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731486195,
+          "endTime": 1794731486284,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9602f28d4f94bcc90a7d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731486284,
+          "endTime": 1794731486373,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95f5d8475233ea0dba8bd",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731486374,
+          "endTime": 1794731486461,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95595108286e2c170ca7e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731486462,
+          "endTime": 1794731486552,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af953dfc8f6058ac50fef31",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731486552,
+          "endTime": 1794731486642,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94e6f3a5b5dcae1f742bf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731486642,
+          "endTime": 1794731486732,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94d7d3a5b5dcae1f74217",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731486732,
+          "endTime": 1794731486820,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94bae3a5b5dcae1f741d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731486820,
+          "endTime": 1794731486907,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94a8e548bfc5c23a3acb8",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731486908,
+          "endTime": 1794731487006,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af941862d25c73b17414ebf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731487006,
+          "endTime": 1794731487115,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93d1d93ffb3429d3f5225",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731487116,
+          "endTime": 1794731487204,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93c01a82442487c6cc420",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731487204,
+          "endTime": 1794731487292,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9386fa82442487c6cc3f2",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731487293,
+          "endTime": 1794731487384,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93865a82442487c6cc3e4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731487384,
+          "endTime": 1794731487472,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a4a8b5d9cf6ce46267b7a1a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731487472,
+          "endTime": 1794731487562,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731487562,
+          "endTime": 1794731487712,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/tasks?page_id=6a4a8b5d9cf6ce46267b7a1c",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731487712,
+          "endTime": 1794731487865,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/annotations/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731487866,
+          "endTime": 1794731487968,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendPatchRequest",
+          "args": [
+            "/api/tasks/6af7480608dbf3b453ba5405/status",
             "{\"status\":\"In Progress\"}",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
           ],
           "status": "success",
-          "startTime": 1794592309978,
-          "endTime": 1794592310133,
+          "startTime": 1794731487969,
+          "endTime": 1794731488101,
           "parent": {}
         },
         {
@@ -84,11 +1489,24 @@
           "args": [
             "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
             "{}",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
           ],
           "status": "success",
-          "startTime": 1794592310134,
-          "endTime": 1794592310286,
+          "startTime": 1794731488101,
+          "endTime": 1794731488287,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendPatchRequest",
+          "args": [
+            "/api/tasks/6af7480608dbf3b453ba5405/status",
+            "{\"status\":\"Paid\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4MywiZXhwIjoxNzk0NzMyMzgzfQ.tz9bzo8ydNY8xehTdOyA3dFWD9zJ5HKRhkFHQ7iHPBk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731488287,
+          "endTime": 1794731488434,
           "parent": {}
         }
       ]
@@ -96,9 +1514,9 @@
     {
       "opts": {},
       "tags": [],
-      "uid": "NgyjWqalXw7H9XyIxkulGqZiKmSxLf95A89EnTHCCi",
+      "uid": "0V3FoC4QEDy8prcGstk3nNjW2wM3ibL+u2v2rW1Wg1",
       "retries": -1,
-      "title": "PC-SD-03 / R4: Mọi trang Approved nhưng còn Task chưa hoàn thành (C4 = N) bị từ chối 400",
+      "title": "PC-ST-04: Annotation chưa được giải quyết trả về 400",
       "state": "passed",
       "notes": [],
       "meta": {
@@ -107,105 +1525,537 @@
         "windowSize": "1280x720"
       },
       "artifacts": [],
-      "duration": 802,
+      "duration": 5453,
       "parent": {
-        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
+        "title": "White-Box Statement Coverage — publishChapter (100% Statements)"
       },
       "steps": [
-        {
-          "opts": {},
-          "title": "sendGetRequest",
-          "args": [
-            "/api/pages/chapter/6a4a8b5d9cf6ce46267b7a1b",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
-          ],
-          "status": "success",
-          "startTime": 1794592310356,
-          "endTime": 1794592310525,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "sendPutRequest",
-          "args": [
-            "/api/pages/approve/6a4a8b5d9cf6ce46267b7a1c",
-            "{\"status\":\"Approved\"}",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
-          ],
-          "status": "success",
-          "startTime": 1794592310526,
-          "endTime": 1794592310678,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "sendGetRequest",
-          "args": [
-            "/api/tasks?page_id=6a4a8b5d9cf6ce46267b7a1c",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
-          ],
-          "status": "success",
-          "startTime": 1794592310678,
-          "endTime": 1794592310850,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "sendPatchRequest",
-          "args": [
-            "/api/tasks/6af7480608dbf3b453ba5405/status",
-            "{\"status\":\"Assigned\"}",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
-          ],
-          "status": "success",
-          "startTime": 1794592310851,
-          "endTime": 1794592310982,
-          "parent": {}
-        },
         {
           "opts": {},
           "title": "sendPostRequest",
           "args": [
-            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
-            "{}",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+            "/api/auth/login",
+            "{\"email\":\"editor@example.com\",\"password\":\"password123\"}"
           ],
           "status": "success",
-          "startTime": 1794592310982,
-          "endTime": 1794592311156,
+          "startTime": 1794731488497,
+          "endTime": 1794731488647,
           "parent": {}
-        }
-      ]
-    },
-    {
-      "opts": {},
-      "tags": [],
-      "uid": "qYxGkPNWUWQWtelMd6JzMWHmEozNEKeepuQXX6gM0m",
-      "retries": -1,
-      "title": "PC-SD-04 / R5: Mọi trang và Task đạt nhưng còn Annotation chưa Resolved (C5 = N) bị từ chối 400",
-      "state": "passed",
-      "notes": [],
-      "meta": {
-        "browser": "chromium",
-        "browserVersion": "156.0.8078.4",
-        "windowSize": "1280x720"
-      },
-      "artifacts": [],
-      "duration": 896,
-      "parent": {
-        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
-      },
-      "steps": [
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/series/editor",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731488647,
+          "endTime": 1794731488787,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9635bead964003ee951b4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731488787,
+          "endTime": 1794731488877,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9602f28d4f94bcc90a7d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731488877,
+          "endTime": 1794731488966,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95f5d8475233ea0dba8bd",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731488967,
+          "endTime": 1794731489056,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95595108286e2c170ca7e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731489056,
+          "endTime": 1794731489149,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af953dfc8f6058ac50fef31",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731489149,
+          "endTime": 1794731489239,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94e6f3a5b5dcae1f742bf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731489239,
+          "endTime": 1794731489328,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94d7d3a5b5dcae1f74217",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731489328,
+          "endTime": 1794731489419,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94bae3a5b5dcae1f741d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731489420,
+          "endTime": 1794731489515,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94a8e548bfc5c23a3acb8",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731489515,
+          "endTime": 1794731489612,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af941862d25c73b17414ebf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731489613,
+          "endTime": 1794731489704,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93d1d93ffb3429d3f5225",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731489704,
+          "endTime": 1794731489795,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93c01a82442487c6cc420",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731489795,
+          "endTime": 1794731489894,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9386fa82442487c6cc3f2",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731489895,
+          "endTime": 1794731489986,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93865a82442487c6cc3e4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731489986,
+          "endTime": 1794731490076,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a4a8b5d9cf6ce46267b7a1a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731490076,
+          "endTime": 1794731490166,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a3953907f6a05d639926d62",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731490167,
+          "endTime": 1794731490258,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a3953907f6a05d639926d61",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731490259,
+          "endTime": 1794731490347,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a37ecc6abfb9cfc5c1d0e4f",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731490347,
+          "endTime": 1794731490436,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a26f54d7049841d96ecc522",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731490436,
+          "endTime": 1794731490527,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34b94753a13af05faced79",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731490527,
+          "endTime": 1794731490687,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34c533a3a6abe9462d99fa",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731490687,
+          "endTime": 1794731490834,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34cd0c8723815346262b9b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731490835,
+          "endTime": 1794731490990,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34cdef8723815346262b9d",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731490990,
+          "endTime": 1794731491135,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a26edf57049841d96ecc50e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731491136,
+          "endTime": 1794731491224,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6ada169656302d7c1d4ade07",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731491225,
+          "endTime": 1794731491373,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6ada1e1456302d7c1d4ade0a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731491373,
+          "endTime": 1794731491523,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9635bead964003ee951b4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731491524,
+          "endTime": 1794731491615,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9602f28d4f94bcc90a7d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731491615,
+          "endTime": 1794731491704,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95f5d8475233ea0dba8bd",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731491705,
+          "endTime": 1794731491793,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95595108286e2c170ca7e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731491793,
+          "endTime": 1794731491880,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af953dfc8f6058ac50fef31",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731491880,
+          "endTime": 1794731491967,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94e6f3a5b5dcae1f742bf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731491968,
+          "endTime": 1794731492059,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94d7d3a5b5dcae1f74217",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731492060,
+          "endTime": 1794731492159,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94bae3a5b5dcae1f741d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731492159,
+          "endTime": 1794731492254,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94a8e548bfc5c23a3acb8",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731492254,
+          "endTime": 1794731492352,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af941862d25c73b17414ebf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731492352,
+          "endTime": 1794731492443,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93d1d93ffb3429d3f5225",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731492444,
+          "endTime": 1794731492537,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93c01a82442487c6cc420",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731492537,
+          "endTime": 1794731492628,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9386fa82442487c6cc3f2",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731492628,
+          "endTime": 1794731492718,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93865a82442487c6cc3e4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731492719,
+          "endTime": 1794731492805,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a4a8b5d9cf6ce46267b7a1a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731492806,
+          "endTime": 1794731492894,
+          "parent": {}
+        },
         {
           "opts": {},
           "title": "sendGetRequest",
           "args": [
             "/api/pages/chapter/6a4a8b5d9cf6ce46267b7a1b",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
           ],
           "status": "success",
-          "startTime": 1794592311219,
-          "endTime": 1794592311366,
+          "startTime": 1794731492895,
+          "endTime": 1794731493048,
           "parent": {}
         },
         {
@@ -213,24 +2063,23 @@
           "title": "sendGetRequest",
           "args": [
             "/api/tasks?page_id=6a4a8b5d9cf6ce46267b7a1c",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
           ],
           "status": "success",
-          "startTime": 1794592311367,
-          "endTime": 1794592311519,
+          "startTime": 1794731493048,
+          "endTime": 1794731493201,
           "parent": {}
         },
         {
           "opts": {},
-          "title": "sendPatchRequest",
+          "title": "sendGetRequest",
           "args": [
-            "/api/tasks/6af7480608dbf3b453ba5405/status",
-            "{\"status\":\"Approved\"}",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+            "/api/annotations/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
           ],
           "status": "success",
-          "startTime": 1794592311519,
-          "endTime": 1794592311645,
+          "startTime": 1794731493201,
+          "endTime": 1794731493302,
           "parent": {}
         },
         {
@@ -238,12 +2087,12 @@
           "title": "sendPostRequest",
           "args": [
             "/api/annotations/page/6a4a8b5d9cf6ce46267b7a1c",
-            "{\"x\":10,\"y\":10,\"content\":\"Unresolved R5\",\"status\":\"Open\"}",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+            "{\"x\":10,\"y\":10,\"content\":\"Unresolved annotation statement test\",\"status\":\"Open\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
           ],
           "status": "success",
-          "startTime": 1794592311645,
-          "endTime": 1794592311904,
+          "startTime": 1794731493302,
+          "endTime": 1794731493572,
           "parent": {}
         },
         {
@@ -252,70 +2101,24 @@
           "args": [
             "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
             "{}",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
           ],
           "status": "success",
-          "startTime": 1794592311904,
-          "endTime": 1794592312113,
-          "parent": {}
-        }
-      ]
-    },
-    {
-      "opts": {},
-      "tags": [],
-      "uid": "pqixqcTI_y6XNjBg4eVvCL+K1EvUdwXBRmxulbQ684",
-      "retries": -1,
-      "title": "PC-SD-05 / R1: Đủ cả 5 điều kiện (C1..C5 = Y) chuyển Chapter sang Published và lưu published_at",
-      "state": "passed",
-      "notes": [],
-      "meta": {
-        "browser": "chromium",
-        "browserVersion": "156.0.8078.4",
-        "windowSize": "1280x720"
-      },
-      "artifacts": [],
-      "duration": 639,
-      "parent": {
-        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
-      },
-      "steps": [
-        {
-          "opts": {},
-          "title": "sendGetRequest",
-          "args": [
-            "/api/annotations/chapter/6a4a8b5d9cf6ce46267b7a1b",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
-          ],
-          "status": "success",
-          "startTime": 1794592312208,
-          "endTime": 1794592312313,
+          "startTime": 1794731493573,
+          "endTime": 1794731493788,
           "parent": {}
         },
         {
           "opts": {},
           "title": "sendPatchRequest",
           "args": [
-            "/api/annotations/6af74e37eb4b629eb541b6ff",
+            "/api/annotations/6af96de5d46d8d6577962c1b",
             "{\"status\":\"Resolved\"}",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ4OCwiZXhwIjoxNzk0NzMyMzg4fQ.JKrrzseYkOptKZFx_FFbFgmKMQY6_-rTMfxg5B-w7GU\"}"
           ],
           "status": "success",
-          "startTime": 1794592312313,
-          "endTime": 1794592312485,
-          "parent": {}
-        },
-        {
-          "opts": {},
-          "title": "sendPostRequest",
-          "args": [
-            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
-            "{}",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
-          ],
-          "status": "success",
-          "startTime": 1794592312485,
-          "endTime": 1794592312845,
+          "startTime": 1794731493788,
+          "endTime": 1794731493948,
           "parent": {}
         }
       ]
@@ -323,9 +2126,9 @@
     {
       "opts": {},
       "tags": [],
-      "uid": "PgfZzRHnyOhp9ZvZDPQtFJlJOeb0pYFuTNBJ_DzQ64",
+      "uid": "bTdRJOG4vayy_uDOStAZRoo0OoXUxszJdwvRyJVBsV",
       "retries": -1,
-      "title": "PC-SD-06 / R6: Chapter không tồn tại hoặc tài khoản không có quyền (C1 = N) bị từ chối 403/404",
+      "title": "PC-ST-05: Xuất bản chapter đủ điều kiện kèm release_issue_id trả về 200",
       "state": "passed",
       "notes": [],
       "meta": {
@@ -334,35 +2137,1220 @@
         "windowSize": "1280x720"
       },
       "artifacts": [],
-      "duration": 107,
+      "duration": 5314,
       "parent": {
-        "title": "Publish Chapter — chuyển đổi trạng thái và bảng quyết định"
+        "title": "White-Box Statement Coverage — publishChapter (100% Statements)"
       },
       "steps": [
         {
           "opts": {},
           "title": "sendPostRequest",
           "args": [
-            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
-            "{}",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YTI2Zjg1ZjNmMzU5Y2ZlNDFlNzdkNmMiLCJyb2xlIjoiQXNzaXN0YW50Iiwic3RhdHVzIjoiQWN0aXZlIiwiaWF0IjoxNzk0NTkyMzA2LCJleHAiOjE3OTQ1OTMyMDZ9.8YKfmmySzam7Yx2FBPEsFwKAu2oxvt9zYUe2nO0Gckk\"}"
+            "/api/auth/login",
+            "{\"email\":\"editor@example.com\",\"password\":\"password123\"}"
           ],
           "status": "success",
-          "startTime": 1794592312959,
-          "endTime": 1794592312998,
+          "startTime": 1794731494012,
+          "endTime": 1794731494164,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/series/editor",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731494165,
+          "endTime": 1794731494309,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9635bead964003ee951b4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731494310,
+          "endTime": 1794731494405,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9602f28d4f94bcc90a7d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731494406,
+          "endTime": 1794731494500,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95f5d8475233ea0dba8bd",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731494501,
+          "endTime": 1794731494594,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95595108286e2c170ca7e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731494595,
+          "endTime": 1794731494695,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af953dfc8f6058ac50fef31",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731494695,
+          "endTime": 1794731494789,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94e6f3a5b5dcae1f742bf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731494790,
+          "endTime": 1794731494883,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94d7d3a5b5dcae1f74217",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731494883,
+          "endTime": 1794731494978,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94bae3a5b5dcae1f741d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731494978,
+          "endTime": 1794731495073,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94a8e548bfc5c23a3acb8",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731495074,
+          "endTime": 1794731495169,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af941862d25c73b17414ebf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731495170,
+          "endTime": 1794731495265,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93d1d93ffb3429d3f5225",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731495266,
+          "endTime": 1794731495364,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93c01a82442487c6cc420",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731495365,
+          "endTime": 1794731495463,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9386fa82442487c6cc3f2",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731495464,
+          "endTime": 1794731495556,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93865a82442487c6cc3e4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731495556,
+          "endTime": 1794731495653,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a4a8b5d9cf6ce46267b7a1a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731495653,
+          "endTime": 1794731495749,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a3953907f6a05d639926d62",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731495749,
+          "endTime": 1794731495846,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a3953907f6a05d639926d61",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731495847,
+          "endTime": 1794731495941,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a37ecc6abfb9cfc5c1d0e4f",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731495941,
+          "endTime": 1794731496035,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a26f54d7049841d96ecc522",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731496035,
+          "endTime": 1794731496131,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34b94753a13af05faced79",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731496131,
+          "endTime": 1794731496287,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34c533a3a6abe9462d99fa",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731496288,
+          "endTime": 1794731496442,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34cd0c8723815346262b9b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731496443,
+          "endTime": 1794731496594,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34cdef8723815346262b9d",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731496594,
+          "endTime": 1794731496751,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a26edf57049841d96ecc50e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731496751,
+          "endTime": 1794731496843,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6ada169656302d7c1d4ade07",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731496844,
+          "endTime": 1794731497002,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6ada1e1456302d7c1d4ade0a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731497003,
+          "endTime": 1794731497153,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9635bead964003ee951b4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731497153,
+          "endTime": 1794731497242,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9602f28d4f94bcc90a7d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731497243,
+          "endTime": 1794731497335,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95f5d8475233ea0dba8bd",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731497336,
+          "endTime": 1794731497428,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95595108286e2c170ca7e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731497429,
+          "endTime": 1794731497522,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af953dfc8f6058ac50fef31",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731497523,
+          "endTime": 1794731497614,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94e6f3a5b5dcae1f742bf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731497615,
+          "endTime": 1794731497706,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94d7d3a5b5dcae1f74217",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731497706,
+          "endTime": 1794731497798,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94bae3a5b5dcae1f741d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731497798,
+          "endTime": 1794731497892,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94a8e548bfc5c23a3acb8",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731497892,
+          "endTime": 1794731497984,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af941862d25c73b17414ebf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731497984,
+          "endTime": 1794731498074,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93d1d93ffb3429d3f5225",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731498074,
+          "endTime": 1794731498165,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93c01a82442487c6cc420",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731498166,
+          "endTime": 1794731498256,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9386fa82442487c6cc3f2",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731498256,
+          "endTime": 1794731498348,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93865a82442487c6cc3e4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731498349,
+          "endTime": 1794731498447,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a4a8b5d9cf6ce46267b7a1a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731498447,
+          "endTime": 1794731498542,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731498542,
+          "endTime": 1794731498705,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/tasks?page_id=6a4a8b5d9cf6ce46267b7a1c",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731498706,
+          "endTime": 1794731498867,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/annotations/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731498868,
+          "endTime": 1794731498979,
           "parent": {}
         },
         {
           "opts": {},
           "title": "sendPostRequest",
           "args": [
-            "/api/publish/chapter/000000000000000000000000",
-            "{}",
-            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDU5MjMwNiwiZXhwIjoxNzk0NTkzMjA2fQ.IYHBP1-hijIpJq7eQYxZUPsNIAgYcqlBUTnMfJw7BdY\"}"
+            "/api/publish/chapter/6a4a8b5d9cf6ce46267b7a1b",
+            "{\"release_issue_id\":\"000000000000000000000001\"}",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5NCwiZXhwIjoxNzk0NzMyMzk0fQ.xhVKUFV53GQ89TVgE0DVoq4_2fSabrgC4AFhieKOOvI\"}"
           ],
           "status": "success",
-          "startTime": 1794592312999,
-          "endTime": 1794592313064,
+          "startTime": 1794731498980,
+          "endTime": 1794731499325,
+          "parent": {}
+        }
+      ]
+    },
+    {
+      "opts": {},
+      "tags": [],
+      "uid": "970dqE3STUOyTTifx55gI+7Lvt7Hx+qoT+IRVRlalA",
+      "retries": -1,
+      "title": "PC-ST-06: Lỗi runtime khi body không phải JSON trả về 500",
+      "state": "passed",
+      "notes": [],
+      "meta": {
+        "browser": "chromium",
+        "browserVersion": "156.0.8078.4",
+        "windowSize": "1280x720"
+      },
+      "artifacts": [],
+      "duration": 5648,
+      "parent": {
+        "title": "White-Box Statement Coverage — publishChapter (100% Statements)"
+      },
+      "steps": [
+        {
+          "opts": {},
+          "title": "sendPostRequest",
+          "args": [
+            "/api/auth/login",
+            "{\"email\":\"editor@example.com\",\"password\":\"password123\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731499395,
+          "endTime": 1794731499538,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/series/editor",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731499539,
+          "endTime": 1794731499683,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9635bead964003ee951b4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731499684,
+          "endTime": 1794731499789,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9602f28d4f94bcc90a7d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731499790,
+          "endTime": 1794731499882,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95f5d8475233ea0dba8bd",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731499883,
+          "endTime": 1794731499977,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95595108286e2c170ca7e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731499978,
+          "endTime": 1794731500071,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af953dfc8f6058ac50fef31",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731500072,
+          "endTime": 1794731500166,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94e6f3a5b5dcae1f742bf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731500166,
+          "endTime": 1794731500259,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94d7d3a5b5dcae1f74217",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731500260,
+          "endTime": 1794731500362,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94bae3a5b5dcae1f741d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731500363,
+          "endTime": 1794731500459,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94a8e548bfc5c23a3acb8",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731500459,
+          "endTime": 1794731500556,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af941862d25c73b17414ebf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731500556,
+          "endTime": 1794731500647,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93d1d93ffb3429d3f5225",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731500648,
+          "endTime": 1794731500741,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93c01a82442487c6cc420",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731500741,
+          "endTime": 1794731500834,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9386fa82442487c6cc3f2",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731500834,
+          "endTime": 1794731500926,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93865a82442487c6cc3e4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731500927,
+          "endTime": 1794731501019,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a4a8b5d9cf6ce46267b7a1a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731501019,
+          "endTime": 1794731501111,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a3953907f6a05d639926d62",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731501111,
+          "endTime": 1794731501200,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a3953907f6a05d639926d61",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731501201,
+          "endTime": 1794731501290,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a37ecc6abfb9cfc5c1d0e4f",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731501290,
+          "endTime": 1794731501383,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a26f54d7049841d96ecc522",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731501383,
+          "endTime": 1794731501475,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34b94753a13af05faced79",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731501476,
+          "endTime": 1794731501628,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34c533a3a6abe9462d99fa",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731501629,
+          "endTime": 1794731501781,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34cd0c8723815346262b9b",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731501781,
+          "endTime": 1794731501932,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a34cdef8723815346262b9d",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731501932,
+          "endTime": 1794731502080,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a26edf57049841d96ecc50e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731502080,
+          "endTime": 1794731502170,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6ada169656302d7c1d4ade07",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731502170,
+          "endTime": 1794731502317,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6ada1e1456302d7c1d4ade0a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731502317,
+          "endTime": 1794731502463,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9635bead964003ee951b4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731502464,
+          "endTime": 1794731502556,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9602f28d4f94bcc90a7d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731502557,
+          "endTime": 1794731502651,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95f5d8475233ea0dba8bd",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731502651,
+          "endTime": 1794731502745,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af95595108286e2c170ca7e",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731502745,
+          "endTime": 1794731502834,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af953dfc8f6058ac50fef31",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731502835,
+          "endTime": 1794731502924,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94e6f3a5b5dcae1f742bf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731502925,
+          "endTime": 1794731503013,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94d7d3a5b5dcae1f74217",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731503014,
+          "endTime": 1794731503105,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94bae3a5b5dcae1f741d5",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731503106,
+          "endTime": 1794731503194,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af94a8e548bfc5c23a3acb8",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731503194,
+          "endTime": 1794731503282,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af941862d25c73b17414ebf",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731503282,
+          "endTime": 1794731503371,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93d1d93ffb3429d3f5225",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731503371,
+          "endTime": 1794731503476,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93c01a82442487c6cc420",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731503477,
+          "endTime": 1794731503566,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af9386fa82442487c6cc3f2",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731503567,
+          "endTime": 1794731503658,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6af93865a82442487c6cc3e4",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731503658,
+          "endTime": 1794731503748,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a4a8b5d9cf6ce46267b7a1a",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731503749,
+          "endTime": 1794731503841,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a3953907f6a05d639926d62",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731503841,
+          "endTime": 1794731503933,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a3953907f6a05d639926d61",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731503934,
+          "endTime": 1794731504079,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a37ecc6abfb9cfc5c1d0e4f",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731504080,
+          "endTime": 1794731504212,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/chapters/series/6a26f54d7049841d96ecc522",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731504212,
+          "endTime": 1794731504354,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/pages/chapter/6a26f54d7049841d96ecc523",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731504355,
+          "endTime": 1794731504559,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/tasks?page_id=6a26f54e7049841d96ecc524",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731504560,
+          "endTime": 1794731504628,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/tasks?page_id=6a26f54e7049841d96ecc525",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731504629,
+          "endTime": 1794731504808,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendGetRequest",
+          "args": [
+            "/api/annotations/chapter/6a26f54d7049841d96ecc523",
+            "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731504809,
+          "endTime": 1794731504944,
+          "parent": {}
+        },
+        {
+          "opts": {},
+          "title": "sendPostRequest",
+          "args": [
+            "/api/publish/chapter/6a26f54d7049841d96ecc523",
+            "non-json-body",
+            "{\"Content-Type\":\"text/plain\",\"Authorization\":\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWViMTQzYTljMzc0YjIwZjM0MDcxNmEiLCJyb2xlIjoiVGFudG91IEVkaXRvciIsInN0YXR1cyI6IkFjdGl2ZSIsImlhdCI6MTc5NDczMTQ5OSwiZXhwIjoxNzk0NzMyMzk5fQ.ReJDtn4-lqWbpyNYA_z4s6CLfZB_NLYHHDuC5eVidFk\"}"
+          ],
+          "status": "success",
+          "startTime": 1794731504944,
+          "endTime": 1794731505042,
           "parent": {}
         }
       ]
