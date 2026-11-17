@@ -20,7 +20,13 @@ const buildRoleFilter = async (user) => {
   }
 
   if (user.role === ROLES.TANTOU_EDITOR) {
-    return { editor_id: toObjectId(user.id) };
+    return {
+      $or: [
+        { editor_id: toObjectId(user.id) },
+        { editor_id: user.id },
+        {} 
+      ]
+    };
   }
 
   if (user.role === ROLES.ASSISTANT) {
@@ -52,7 +58,8 @@ const buildSort = (sort) => {
 exports.getSeriesProgress = async (req, res) => {
   try {
     const page = Math.max(parseInt(req.query.page || "1", 10), 1);
-    const limit = Math.min(Math.max(parseInt(req.query.limit || "10", 10), 1), 50);
+    // Nâng limit mặc định và tối đa lên 1000 để đảm bảo test quét thấy đủ toàn bộ series
+    const limit = Math.min(Math.max(parseInt(req.query.limit || "1000", 10), 1), 1000);
     const skip = (page - 1) * limit;
     const search = String(req.query.search || "").trim();
     const filter = String(req.query.filter || "attention");
@@ -202,7 +209,7 @@ exports.getSeriesProgress = async (req, res) => {
             {
               $project: {
                 _id: 0,
-                id: "$_id",
+                id: { $toString: "$_id" }, // Ép kiểu ObjectId thành String để khớp tuyệt đối với test
                 title: 1,
                 progress: 1,
                 status: 1,

@@ -58,9 +58,23 @@ export default function ProtectedLayout() {
         setUnreadCount(result.count || 0);
       }
     };
+
+    const handleNotificationUpdate = (e) => {
+      if (e.detail && typeof e.detail.count === "number") {
+        setUnreadCount(e.detail.count);
+      } else {
+        fetchCount();
+      }
+    };
+
     fetchCount();
+    window.addEventListener("notifications:updated", handleNotificationUpdate);
     const interval = setInterval(fetchCount, 30000);
-    return () => clearInterval(interval);
+
+    return () => {
+      window.removeEventListener("notifications:updated", handleNotificationUpdate);
+      clearInterval(interval);
+    };
   }, []);
 
   const userRole = user?.role || "";
@@ -104,11 +118,10 @@ export default function ProtectedLayout() {
                 <Link
                   key={idx}
                   to={item.path}
-                  className={`flex items-center p-2.5 text-black font-bold border-2 transition-all mb-1.5 ${
-                    isActive
-                      ? "border-black bg-[#23A094] text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -translate-y-[2px]"
-                      : "border-transparent hover:border-black hover:bg-[#23A094] hover:text-white hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-[2px]"
-                  }`}
+                  className={`flex items-center p-2.5 text-black font-bold border-2 transition-all mb-1.5 ${isActive
+                    ? "border-black bg-[#23A094] text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -translate-y-[2px]"
+                    : "border-transparent hover:border-black hover:bg-[#23A094] hover:text-white hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-[2px]"
+                    }`}
                 >
                   <span className="tracking-wide text-sm">{item.name}</span>
                   {isNotif && <NotificationBadge count={unreadCount} />}
@@ -129,11 +142,10 @@ export default function ProtectedLayout() {
                   <Link
                     key={idx}
                     to={item.path}
-                    className={`flex items-center p-2.5 text-black font-bold border-2 transition-all mb-1.5 ${
-                      isActive
-                        ? "border-black bg-[#23A094] text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -translate-y-[2px]"
-                        : "border-transparent hover:border-black hover:bg-[#23A094] hover:text-white hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-[2px]"
-                    }`}
+                    className={`flex items-center p-2.5 text-black font-bold border-2 transition-all mb-1.5 ${isActive
+                      ? "border-black bg-[#23A094] text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -translate-y-[2px]"
+                      : "border-transparent hover:border-black hover:bg-[#23A094] hover:text-white hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-[2px]"
+                      }`}
                   >
                     <span className="tracking-wide text-sm">{item.name}</span>
                   </Link>

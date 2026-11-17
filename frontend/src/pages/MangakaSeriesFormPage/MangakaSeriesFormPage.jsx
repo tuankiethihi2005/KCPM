@@ -73,7 +73,7 @@ export default function MangakaSeriesFormPage() {
     setProposalInfo(proposal || null);
     setCoverImage(proposal?.cover_image || "");
     setIsLoading(false);
-  }, [isEdit, seriesId, toast]);
+  }, [isEdit, seriesId ]);
 
   useEffect(() => {
     loadSeries();
