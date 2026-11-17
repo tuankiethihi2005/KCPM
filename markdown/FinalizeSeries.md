@@ -4,37 +4,37 @@
 
 > Quy tắc cần Editorial/Product phê duyệt: quorum, ngưỡng thắng, tie-break. Đề xuất mặc định: quorum trên 50% cử tri đủ tư cách; một lựa chọn phải đạt trên 50% phiếu hợp lệ; hòa hoặc không có lựa chọn quá bán thì chuyển xử lý tiếp, không tự động Reject.
 
-| Điều kiện | Phân vùng hợp lệ | Tag | Phân vùng không hợp lệ | Tag | Giá trị biên / dữ liệu kiểm thử | Tag |
-| --- | --- | --- | --- | --- | --- | --- |
-| **Quyền chốt** |  Người được ủy quyền chốt quyết định Editorial Board | V1 |  Cử tri không có quyền chốt<br> Role ngoài hội đồng<br> Chưa đăng nhập | X1, X2, X3 |  Người được ủy quyền<br> Board member thường<br> Mangaka<br> Phiên đăng xuất | B1, B2, B3, B4 |
-| **Quorum** |  Phiếu hợp lệ từ hơn một nửa cử tri đủ tư cách<br> Danh sách cử tri được xác định khi mở vòng | V2, V3 |  Chưa đủ quorum<br> Phiếu từ người không đủ tư cách | X4, X5 |  Với 5 cử tri: 2, 3, 4 phiếu | B5, B6, B7 |
-| **Phiếu dùng để tính kết quả** |  Tối đa một phiếu cuối cùng mỗi cử tri<br> Phiếu thuộc đúng vòng xét duyệt | V4, V5 |  Phiếu trùng<br> Phiếu đã rút/không hợp lệ<br> Phiếu thuộc vòng cũ | X6, X7, X8 |  Đổi phiếu<br> Gửi lặp<br> Có phiếu vòng trước | B8, B9, B10 |
-| **Ngưỡng quyết định** |  Một lựa chọn đạt quá bán phiếu hợp lệ<br> Kỳ biểu quyết đã đóng | V6, V7 |  Không lựa chọn nào quá bán<br> Hòa phiếu | X9, X10 |  2/4 phiếu<br> 3/5 phiếu<br> Hòa hai bên<br> Hòa ba bên | B11, B12, B13, B14 |
-| **Kết quả và trạng thái** |  `Approve`<br> `Reject`<br> `Need Revision`<br> Trạng thái tương ứng với quyết định | V8, V9, V10, V11 |  Quyết định không hợp lệ<br> Trạng thái không tương thích | X11, X12 |  Mỗi kết quả<br> Proposal đã chốt<br> Series đã hủy | B15, B16, B17 |
-| **Lịch phát hành** |  Khi `Approve`: chọn weekly<br> Khi `Approve`: chọn monthly<br> Khi `Approve`: chọn one-shot<br> Khi `Approve`: chọn online-only | V12, V13, V14, V15 |  Thiếu lịch bắt buộc<br> Lịch ngoài danh sách<br> Gán lịch khi không Approve | X13, X14, X15 |  Mỗi lựa chọn hợp lệ<br> Bỏ trống<br> Giá trị lạ | B18, B19, B20 |
-| **Thông báo và lưu vết** |  Lưu người chốt và thời điểm<br> Lưu tally và quyết định<br> Lưu lịch và lý do/biên bản | V16, V17, V18 |  Không truy vết được kết quả<br> Thông báo khác kết quả đã lưu | X16, X17 |  Chốt thành công<br> Lỗi gửi thông báo<br> Retry request | B21, B22, B23 |
-| **Tính nguyên tử** |  Quyết định được lưu<br> Trạng thái Series được cập nhật<br> Lịch và lịch sử được lưu đồng bộ | V19, V20, V21 |  Chỉ một phần được cập nhật khi có lỗi | X18 |  Lỗi ở từng bước lưu<br> Request lặp<br> Hai người chốt đồng thời | B24, B25, B26 |
+| Điều kiện                      | Phân vùng hợp lệ                                                                                                                | Tag                | Phân vùng không hợp lệ                                                      | Tag           | Giá trị biên / dữ liệu kiểm thử                                             | Tag                |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- | ------------------ | --------------------------------------------------------------------------- | ------------- | --------------------------------------------------------------------------- | ------------------ |
+| **Quyền chốt**                 | Người được ủy quyền chốt quyết định Editorial Board                                                                             | V1                 | Cử tri không có quyền chốt<br> Role ngoài hội đồng<br> Chưa đăng nhập       | X1, X2, X3    | Người được ủy quyền<br> Board member thường<br> Mangaka<br> Phiên đăng xuất | B1, B2, B3, B4     |
+| **Quorum**                     | Phiếu hợp lệ từ hơn một nửa cử tri đủ tư cách<br> Danh sách cử tri được xác định khi mở vòng                                    | V2, V3             | Chưa đủ quorum<br> Phiếu từ người không đủ tư cách                          | X4, X5        | Với 5 cử tri: 2, 3, 4 phiếu                                                 | B5, B6, B7         |
+| **Phiếu dùng để tính kết quả** | Tối đa một phiếu cuối cùng mỗi cử tri<br> Phiếu thuộc đúng vòng xét duyệt                                                       | V4, V5             | Phiếu trùng<br> Phiếu đã rút/không hợp lệ<br> Phiếu thuộc vòng cũ           | X6, X7, X8    | Đổi phiếu<br> Gửi lặp<br> Có phiếu vòng trước                               | B8, B9, B10        |
+| **Ngưỡng quyết định**          | Một lựa chọn đạt quá bán phiếu hợp lệ<br> Kỳ biểu quyết đã đóng                                                                 | V6, V7             | Không lựa chọn nào quá bán<br> Hòa phiếu                                    | X9, X10       | 2/4 phiếu<br> 3/5 phiếu<br> Hòa hai bên<br> Hòa ba bên                      | B11, B12, B13, B14 |
+| **Kết quả và trạng thái**      | `Approve`<br> `Reject`<br> `Need Revision`<br> Trạng thái tương ứng với quyết định                                              | V8, V9, V10, V11   | Quyết định không hợp lệ<br> Trạng thái không tương thích                    | X11, X12      | Mỗi kết quả<br> Proposal đã chốt<br> Series đã hủy                          | B15, B16, B17      |
+| **Lịch phát hành**             | Khi `Approve`: chọn weekly<br> Khi `Approve`: chọn monthly<br> Khi `Approve`: chọn one-shot<br> Khi `Approve`: chọn online-only | V12, V13, V14, V15 | Thiếu lịch bắt buộc<br> Lịch ngoài danh sách<br> Gán lịch khi không Approve | X13, X14, X15 | Mỗi lựa chọn hợp lệ<br> Bỏ trống<br> Giá trị lạ                             | B18, B19, B20      |
+| **Thông báo và lưu vết**       | Lưu người chốt và thời điểm<br> Lưu tally và quyết định<br> Lưu lịch và lý do/biên bản                                          | V16, V17, V18      | Không truy vết được kết quả<br> Thông báo khác kết quả đã lưu               | X16, X17      | Chốt thành công<br> Lỗi gửi thông báo<br> Retry request                     | B21, B22, B23      |
+| **Tính nguyên tử**             | Quyết định được lưu<br> Trạng thái Series được cập nhật<br> Lịch và lịch sử được lưu đồng bộ                                    | V19, V20, V21      | Chỉ một phần được cập nhật khi có lỗi                                       | X18           | Lỗi ở từng bước lưu<br> Request lặp<br> Hai người chốt đồng thời            | B24, B25, B26      |
 
 ## Test case
 
-| ID | Dữ liệu nhập / thao tác | Kết quả mong đợi |
-| --- | --- | --- |
-| FS-01 | Đóng kỳ biểu quyết với quorum đạt; một lựa chọn có quá bán phiếu hợp lệ. | Chốt đúng lựa chọn thắng; lưu tổng phiếu, người chốt, thời điểm và vòng xét duyệt. |
-| FS-02 | Có 5 cử tri đủ tư cách và 3 phiếu hợp lệ; một lựa chọn đạt quá bán số phiếu. | Quorum đạt; cho phép chốt quyết định thắng. |
-| FS-03 | Có 5 cử tri đủ tư cách nhưng chỉ 2 phiếu hợp lệ. | Không chốt; proposal tiếp tục chờ quyết định; không đổi trạng thái Series hoặc lịch. |
-| FS-04 | Có 5 cử tri đủ tư cách và 4 phiếu hợp lệ; một lựa chọn nhận đúng 2 phiếu. | Quorum đạt nhưng không có lựa chọn quá bán; không chốt tự động; yêu cầu tiếp tục biểu quyết hoặc xử lý hòa phiếu đã phê duyệt. |
-| FS-05 | Có quorum; hai lựa chọn hòa phiếu cao nhất hoặc cả ba lựa chọn hòa. | Không tự động kết luận Reject/Approve; giữ trạng thái chờ và yêu cầu xử lý hòa phiếu. |
-| FS-06 | Có phiếu trùng, phiếu không hợp lệ hoặc vote thuộc vòng xét duyệt cũ. | Chỉ tính phiếu cuối cùng hợp lệ của đúng vòng; kết quả và tally có thể đối chiếu được. |
-| FS-07 | `Approve` đạt điều kiện; người có quyền chọn lần lượt từng lịch hỗ trợ. | Mỗi lượt lưu đúng lịch; trạng thái proposal là `Approved`, Series được kích hoạt theo quyết định. |
-| FS-08 | `Approve` đạt điều kiện nhưng không chọn lịch hoặc chọn lịch ngoài danh sách. | Không chốt; không tạo trạng thái Approved khi thiếu lịch bắt buộc; trả lỗi rõ trường cần sửa. |
-| FS-09 | `Reject` đạt điều kiện. | Chốt `Rejected`; lưu lý do/biên bản nếu chính sách yêu cầu; không gán lịch phát hành. |
-| FS-10 | `Need Revision` đạt điều kiện. | Chốt yêu cầu chỉnh sửa; thông báo cho Mangaka nội dung/nhận xét cần sửa; giữ hồ sơ có thể sửa và nộp lại theo chính sách. |
-| FS-11 | Người không được ủy quyền thử chốt kết quả. | Từ chối; không sửa phiếu, tally, trạng thái, lịch hoặc lịch sử. |
-| FS-12 | Chốt proposal đã có kết quả cuối cùng. | Từ chối chốt lần hai; không ghi đè quyết định hoặc lịch đã được phê duyệt. |
-| FS-13 | Lỗi xảy ra khi lưu một phần quyết định/trạng thái/lịch. | Rollback toàn bộ; không xuất hiện kết quả nửa vời; lỗi được ghi nhận và có thể đối soát. |
-| FS-14 | Hai người có quyền gửi yêu cầu chốt đồng thời. | Chỉ một quyết định được commit; request còn lại nhận trạng thái đã chốt, không ghi đè. |
-| FS-15 | Gửi lại request sau timeout khi lần chốt đầu đã thành công. | Không tạo quyết định/thông báo trùng; phản hồi thể hiện kết quả đã chốt. |
-| FS-16 | Lưu quyết định thành công nhưng dịch vụ thông báo lỗi. | Kết quả đã chốt vẫn chính xác; lỗi thông báo được ghi nhận và có thể gửi lại; không trả thông báo thành công sai nội dung. |
+| ID    | Dữ liệu nhập / thao tác                                                       | Kết quả mong đợi                                                                                                               |
+| ----- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| FS-01 | Đóng kỳ biểu quyết với quorum đạt; một lựa chọn có quá bán phiếu hợp lệ.      | Chốt đúng lựa chọn thắng; lưu tổng phiếu, người chốt, thời điểm và vòng xét duyệt.                                             |
+| FS-02 | Có 5 cử tri đủ tư cách và 3 phiếu hợp lệ; một lựa chọn đạt quá bán số phiếu.  | Quorum đạt; cho phép chốt quyết định thắng.                                                                                    |
+| FS-03 | Có 5 cử tri đủ tư cách nhưng chỉ 2 phiếu hợp lệ.                              | Không chốt; proposal tiếp tục chờ quyết định; không đổi trạng thái Series hoặc lịch.                                           |
+| FS-04 | Có 5 cử tri đủ tư cách và 4 phiếu hợp lệ; một lựa chọn nhận đúng 2 phiếu.     | Quorum đạt nhưng không có lựa chọn quá bán; không chốt tự động; yêu cầu tiếp tục biểu quyết hoặc xử lý hòa phiếu đã phê duyệt. |
+| FS-05 | Có quorum; hai lựa chọn hòa phiếu cao nhất hoặc cả ba lựa chọn hòa.           | Không tự động kết luận Reject/Approve; giữ trạng thái chờ và yêu cầu xử lý hòa phiếu.                                          |
+| FS-06 | Có phiếu trùng, phiếu không hợp lệ hoặc vote thuộc vòng xét duyệt cũ.         | Chỉ tính phiếu cuối cùng hợp lệ của đúng vòng; kết quả và tally có thể đối chiếu được.                                         |
+| FS-07 | `Approve` đạt điều kiện; người có quyền chọn lần lượt từng lịch hỗ trợ.       | Mỗi lượt lưu đúng lịch; trạng thái proposal là `Approved`, Series được kích hoạt theo quyết định.                              |
+| FS-08 | `Approve` đạt điều kiện nhưng không chọn lịch hoặc chọn lịch ngoài danh sách. | Không chốt; không tạo trạng thái Approved khi thiếu lịch bắt buộc; trả lỗi rõ trường cần sửa.                                  |
+| FS-09 | `Reject` đạt điều kiện.                                                       | Chốt `Rejected`; lưu lý do/biên bản nếu chính sách yêu cầu; không gán lịch phát hành.                                          |
+| FS-10 | `Need Revision` đạt điều kiện.                                                | Chốt yêu cầu chỉnh sửa; thông báo cho Mangaka nội dung/nhận xét cần sửa; giữ hồ sơ có thể sửa và nộp lại theo chính sách.      |
+| FS-11 | Người không được ủy quyền thử chốt kết quả.                                   | Từ chối; không sửa phiếu, tally, trạng thái, lịch hoặc lịch sử.                                                                |
+| FS-12 | Chốt proposal đã có kết quả cuối cùng.                                        | Từ chối chốt lần hai; không ghi đè quyết định hoặc lịch đã được phê duyệt.                                                     |
+| FS-13 | Lỗi xảy ra khi lưu một phần quyết định/trạng thái/lịch.                       | Rollback toàn bộ; không xuất hiện kết quả nửa vời; lỗi được ghi nhận và có thể đối soát.                                       |
+| FS-14 | Hai người có quyền gửi yêu cầu chốt đồng thời.                                | Chỉ một quyết định được commit; request còn lại nhận trạng thái đã chốt, không ghi đè.                                         |
+| FS-15 | Gửi lại request sau timeout khi lần chốt đầu đã thành công.                   | Không tạo quyết định/thông báo trùng; phản hồi thể hiện kết quả đã chốt.                                                       |
+| FS-16 | Lưu quyết định thành công nhưng dịch vụ thông báo lỗi.                        | Kết quả đã chốt vẫn chính xác; lỗi thông báo được ghi nhận và có thể gửi lại; không trả thông báo thành công sai nội dung.     |
 
 ## Bảng chuyển đổi trạng thái và bảng quyết định theo chức năng hiện có
 
@@ -42,28 +42,58 @@ Các bảng dưới đây mô tả `finalizeSeriesById` và model hiện tại. 
 
 ### Bảng chuyển đổi trạng thái
 
-| Test case | Trạng thái Proposal đầu | Sự kiện / đầu vào | Trạng thái Proposal cuối / trạng thái Series |
-| --- | --- | --- | --- |
-| 1 | `Submitted` hoặc `Under Review` | `Approve` là lựa chọn cao nhất duy nhất; lịch phát hành hợp lệ hoặc để mặc định | Proposal `Approved`; Series `Active`; lưu lịch được chọn, mặc định `weekly`. |
-| 2 | `Submitted` hoặc `Under Review` | `Reject` cao hơn hoặc bằng cả hai lựa chọn còn lại | Proposal `Rejected`; Series chuyển về `Draft`. |
-| 3 | `Submitted` hoặc `Under Review` | `Need Revision` cao hơn `Approve` và `Reject`, hoặc hòa cao nhất mà `Reject` không cùng đạt cao nhất | Proposal `Need Revision`; trạng thái Series giữ nguyên. |
-| 4 | `Submitted` hoặc `Under Review` | Không có phiếu, Proposal không tồn tại/không chờ xử lý, hoặc lịch `Approve` không hợp lệ | Request bị từ chối; không áp dụng quyết định. |
-| 5 | `Submitted` hoặc `Under Review` | Hết hạn mà không có phiếu, qua luồng tự động riêng | Proposal chuyển thành `Need Revision`; trạng thái Series giữ nguyên. |
+| Test case | Trạng thái Proposal đầu         | Sự kiện / đầu vào                                                                                    | Trạng thái Proposal cuối / trạng thái Series                                 |
+| --------- | ------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| 1         | `Submitted` hoặc `Under Review` | `Approve` là lựa chọn cao nhất duy nhất; lịch phát hành hợp lệ hoặc để mặc định                      | Proposal `Approved`; Series `Active`; lưu lịch được chọn, mặc định `weekly`. |
+| 2         | `Submitted` hoặc `Under Review` | `Reject` cao hơn hoặc bằng cả hai lựa chọn còn lại                                                   | Proposal `Rejected`; Series chuyển về `Draft`.                               |
+| 3         | `Submitted` hoặc `Under Review` | `Need Revision` cao hơn `Approve` và `Reject`, hoặc hòa cao nhất mà `Reject` không cùng đạt cao nhất | Proposal `Need Revision`; trạng thái Series giữ nguyên.                      |
+| 4         | `Submitted` hoặc `Under Review` | Không có phiếu, Proposal không tồn tại/không chờ xử lý, hoặc lịch `Approve` không hợp lệ             | Request bị từ chối; không áp dụng quyết định.                                |
+| 5         | `Submitted` hoặc `Under Review` | Hết hạn mà không có phiếu, qua luồng tự động riêng                                                   | Proposal chuyển thành `Need Revision`; trạng thái Series giữ nguyên.         |
 
 ### Bảng quyết định
 
 `Y` = có/đúng; `N` = không/sai; `-` = không ảnh hưởng.
 
-| Điều kiện / hành động | R1 | R2 | R3 | R4 | R5 |
-| --- | --- | --- | --- | --- | --- |
-| C1: Proposal gần nhất đang `Submitted` hoặc `Under Review` | Y | Y | Y | N | Y |
-| C2: Có ít nhất một phiếu | Y | Y | Y | - | Y |
-| C3: `Approve` nhiều hơn cả `Reject` và `Need Revision` | Y | N | N | - | Y |
-| C4: `Reject` lớn hơn hoặc bằng `Approve` và `Need Revision` | - | Y | N | - | - |
-| C5: Với quyết định `Approve`, lịch thuộc `weekly`, `monthly`, `one-shot`, `online only` | Y | - | - | - | N |
-| A1: Quyết định `Approve`; Proposal `Approved`, Series `Active` và lưu lịch | X | - | - | - | - |
-| A2: Quyết định `Reject`; Proposal `Rejected`, Series `Draft` | - | X | - | - | - |
-| A3: Quyết định `Need Revision`; Proposal `Need Revision` | - | - | X | - | - |
-| A4: Từ chối finalize | - | - | - | X | X |
+| Điều kiện / hành động                                                                   | R1  | R2  | R3  | R4  | R5  |
+| --------------------------------------------------------------------------------------- | --- | --- | --- | --- | --- |
+| C1: Proposal gần nhất đang `Submitted` hoặc `Under Review`                              | Y   | Y   | Y   | N   | Y   |
+| C2: Có ít nhất một phiếu                                                                | Y   | Y   | Y   | -   | Y   |
+| C3: `Approve` nhiều hơn cả `Reject` và `Need Revision`                                  | Y   | N   | N   | -   | Y   |
+| C4: `Reject` lớn hơn hoặc bằng `Approve` và `Need Revision`                             | -   | Y   | N   | -   | -   |
+| C5: Với quyết định `Approve`, lịch thuộc `weekly`, `monthly`, `one-shot`, `online only` | Y   | -   | -   | -   | N   |
+| A1: Quyết định `Approve`; Proposal `Approved`, Series `Active` và lưu lịch              | X   | -   | -   | -   | -   |
+| A2: Quyết định `Reject`; Proposal `Rejected`, Series `Draft`                            | -   | X   | -   | -   | -   |
+| A3: Quyết định `Need Revision`; Proposal `Need Revision`                                | -   | -   | X   | -   | -   |
+| A4: Từ chối finalize                                                                    | -   | -   | -   | X   | X   |
 
 Nếu `Approve` thắng nhưng lịch không hợp lệ thì finalize bị từ chối. Quyết định `Reject` được chọn khi là lựa chọn cao nhất, kể cả khi hòa; các hòa còn lại rơi vào `Need Revision`. Kết quả được tính từ các phiếu `initial_review` của Series, còn route finalize chỉ cho phép role Editorial Board hoặc Admin.
+
+# White-box
+
+### Statement Coverage
+
+| ID           | Dòng lệnh được phủ                                                                               | Dữ liệu / thao tác Codecept                                                                                                                              | Kết quả mong đợi                                                                                       |
+| :----------- | :----------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------- |
+| **FS-ST-01** | `finalizeSeries.js` dòng 6–29; `boardFinalizeService.js` dòng 11–14, 21–36, 44–62, 64–70, 91–113 | Proposal có 1 phiếu `Approve` hợp lệ; gửi `POST /api/board/series/:id/finalize` với `{ approved_schedule: "" }`.                                         | HTTP `200`; quyết định `Approve`; lịch đặt về mặc định `weekly`; Proposal `Approved`, Series `Active`. |
+| **FS-ST-02** | `boardFinalizeService.js` dòng 15–17, 37–39                                                      | Proposal có phiếu `Reject` cao nhất; gửi `POST /api/board/series/:id/finalize` với `{}`.                                                                 | HTTP `200`; quyết định `Reject`; Proposal `Rejected`, Series `Draft`.                                  |
+| **FS-ST-03** | `boardFinalizeService.js` dòng 18, 40–42                                                         | Proposal có kết quả `Need Revision`; gửi `POST /api/board/series/:id/finalize` với `{}`.                                                                 | HTTP `200`; quyết định `Need Revision`; Proposal `Need Revision`.                                      |
+| **FS-ST-04** | `finalizeSeries.js` dòng 30–31, 35; `boardFinalizeService.js` dòng 91–98                         | Finalize series đã nộp (`Submitted`) khi chưa có phiếu bầu nào.                                                                                          | HTTP `400`; thông báo `"Chưa có phiếu bầu nào"`.                                                       |
+| **FS-ST-05** | `boardFinalizeService.js` dòng 71–75                                                             | Finalize series với ID không tồn tại (`000000000000000000000000`).                                                                                       | HTTP `404`; thông báo `"Không tìm thấy series"`.                                                       |
+| **FS-ST-06** | `boardFinalizeService.js` dòng 29–34                                                             | Finalize khi `Approve` thắng nhưng gửi `{ approved_schedule: "invalid_schedule_choice" }`.                                                               | HTTP `400`; thông báo `"Approve cần approved_schedule: ..."`.                                          |
+| **FS-ST-07** | `boardFinalizeService.js` dòng 77–83                                                             | Finalize series hợp lệ nhưng chưa từng tạo proposal nào.                                                                                                 | HTTP `404`; thông báo `"Không tìm thấy proposal"`.                                                     |
+| **FS-ST-08** | `boardFinalizeService.js` dòng 85–89                                                             | Finalize series có proposal đang ở trạng thái `Draft` (chưa nộp xét duyệt).                                                                              | HTTP `400`; thông báo `"Proposal đã được xử lý"`.                                                      |
+| **FS-ST-09** | `finalizeSeries.js` dòng 30–34                                                                   | Gửi `POST /api/board/series/:id/finalize` với `Content-Type: text/plain` và body `"non-json-body"`.                                                      | HTTP `500`; `error: "Lỗi server"`.                                                                     |
+| **FS-ST-10** | `finalizeSeries.js` dòng 10–16; `boardFinalizeService.js` dòng 115–142                           | Gửi request kèm header `x-test-expire-no-votes: 1` lần lượt cho series không tồn tại, series chưa có proposal, proposal `Draft` và proposal `Submitted`. | HTTP `200`; trả về `null` cho 3 ca đầu và chuyển proposal `Submitted` sang `Need Revision` ở ca thứ 4. |
+
+### Branch Coverage
+
+| ID           | Nhánh cần bao phủ (`finalizeSeries.js` & `boardFinalizeService.js`)                                        | Dữ liệu / thao tác Codecept                                                                                                    | Kết quả mong đợi                                                                                   |
+| :----------- | :--------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------- |
+| **FS-BC-01** | `tally.Approve > tally.Reject` (`true`) && `tally.Approve > tally["Need Revision"]` (`false`)              | Hai thành viên Board/Admin lần lượt bỏ phiếu `Approve` và `Need Revision`; sau đó finalize.                                    | HTTP `200`; quyết định `Need Revision`; Proposal chuyển `Need Revision`.                           |
+| **FS-BC-02** | `approved_schedule \|\| DEFAULT_APPROVED_SCHEDULE` (falsy vs truthy)                                       | Có phiếu `Approve` thắng; gửi `approved_schedule: ""` (falsy).                                                                 | HTTP `200`; lịch lưu tự động áp dụng mặc định `weekly`.                                            |
+| **FS-BC-03** | Phân quyền route finalize (`Admin` được phép vs `Mangaka` bị chặn)                                         | Gửi request finalize bằng tài khoản `Mangaka` (`403`) và tài khoản `Admin` (`200`).                                            | `Mangaka` bị từ chối HTTP `403`; `Admin` chốt thành công HTTP `200`.                               |
+| **FS-BC-04** | Các nhánh quyết định `Approve`, `Reject`, `Need Revision` và điều kiện `computeDecision`                   | Chạy lần lượt 3 kịch bản: `Approve` thắng, `Reject` thắng và `Need Revision` thắng.                                            | Phủ đủ cả 3 nhánh quyết định và cập nhật đúng trạng thái Proposal/Series.                          |
+| **FS-BC-05** | `!series` (`404`), `!proposal` (`404`), `!PENDING_PROPOSAL_STATUSES` (`400`), `votes.length === 0` (`400`) | Lần lượt gọi finalize cho ID không tồn tại, Series chưa có proposal, Proposal `Draft` và Proposal `Submitted` chưa có phiếu.   | Cả 4 trường hợp đều bị từ chối với đúng mã HTTP (`404`/`400`) và thông báo lỗi tương ứng.          |
+| **FS-BC-06** | `!SCHEDULE_VALUES.includes(schedule)` là `true` (`400`) và `false` (`200`)                                 | Gửi `approved_schedule: "unsupported_schedule"` (`true`) và `approved_schedule: "monthly"` (`false`).                          | Schedule sai trả HTTP `400`; schedule đúng trả HTTP `200`.                                         |
+| **FS-BC-07** | `req.headers["x-test-expire-no-votes"] === "1"` và 4 nhánh của `markNeedRevisionNoVotes`                   | Gửi header `x-test-expire-no-votes: "1"` cho Series không tồn tại, chưa có proposal, proposal `Draft` và proposal `Submitted`. | Trả về `result: null` cho 3 ca đầu và chuyển proposal `Submitted` sang `Need Revision` ở ca thứ 4. |
+| **FS-BC-08** | `err.status \|\| 500` và `if (status === 500)` là `true` trong khối `catch`                                | Gửi `POST /api/board/series/invalid-object-id/finalize` để kích hoạt `CastError` không có `err.status`.                        | Bắt ngoại lệ trong khối `catch` và trả HTTP `500` (`error: "Lỗi server"`).                         |

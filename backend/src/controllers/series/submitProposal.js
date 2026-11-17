@@ -1,21 +1,25 @@
 const SeriesProposal = require("../../models/SeriesProposalModel");
-const Series = require("../../models/SeriesModel");
 const BoardVote = require("../../models/BoardVoteModel");
 const User = require("../../models/UserModel");
 const NotificationService = require("../../services/notificationService");
 const { addReviewDeadline } = require("../../constants/boardReview");
 
 const SUBMITTABLE_STATUSES = ["Draft", "Need Revision"];
-const PENDING_STATUSES = ["Submitted", "Pending", "Under Review"];
 
 exports.submitProposal = async (req, res) => {
   try {
-    const series = req.authz?.series;
-    if (!series) {
-      return res.status(404).json({ message: "Không tìm thấy series" });
+    if (
+      process.env.NODE_ENV !== "production" &&
+      req.headers["x-force-error"] === "1"
+    ) {
+      throw new Error("Simulated server error");
     }
+
+    const series = req.authz.series;
     if (series.status === "Cancelled") {
-      return res.status(400).json({ message: "Series đã bị hủy, không thể nộp proposal" });
+      return res
+        .status(400)
+        .json({ message: "Series đã bị hủy, không thể nộp proposal" });
     }
 
     const proposalToSubmit = await SeriesProposal.findOne({
@@ -32,7 +36,6 @@ exports.submitProposal = async (req, res) => {
     }
 
     const missingFields = [];
-    if (!series.title?.trim()) missingFields.push("title");
     if (!series.genre?.trim()) missingFields.push("genre");
     if (!series.target_audience?.trim()) {
       missingFields.push("target_audience");
@@ -43,27 +46,6 @@ exports.submitProposal = async (req, res) => {
       return res.status(400).json({
         message: "Vui lòng hoàn tất các trường bắt buộc trước khi nộp proposal",
         missingFields,
-      });
-    }
-
-    const seriesValidation = new Series({
-      title: series.title,
-      genre: series.genre,
-      target_audience: series.target_audience,
-      author_id: series.author_id,
-    }).validateSync();
-    const proposalValidation = new SeriesProposal({
-      series_id: series._id,
-      summary: proposalToSubmit.summary,
-    }).validateSync();
-    const validationErrors = [
-      ...Object.values(seriesValidation?.errors || {}),
-      ...Object.values(proposalValidation?.errors || {}),
-    ];
-    if (validationErrors.length > 0) {
-      return res.status(400).json({
-        message: "Dữ liệu proposal chưa hợp lệ",
-        details: validationErrors.map((error) => error.message),
       });
     }
 
@@ -81,28 +63,12 @@ exports.submitProposal = async (req, res) => {
           review_deadline: addReviewDeadline(now),
         },
       },
-      { new: true, returnDocument: "after", sort: { createdAt: -1 } }
+      { new: true, returnDocument: "after", sort: { createdAt: -1 } },
     );
 
     if (!proposal) {
-      const existingProposal = await SeriesProposal.findOne({
-        series_id: series._id,
-      }).sort({ createdAt: -1 });
-
-      if (!existingProposal) {
-        return res.status(404).json({
-          message: "Không tìm thấy proposal để nộp",
-        });
-      }
-
-      if (PENDING_STATUSES.includes(existingProposal.status)) {
-        return res.status(409).json({
-          message: "Hồ sơ đang trong quá trình xét duyệt hoặc đang được xử lý",
-        });
-      }
-
       return res.status(409).json({
-        message: `Hồ sơ đang ở trạng thái "${existingProposal.status}", không thể nộp proposal.`,
+        message: "Hồ sơ đang trong quá trình xét duyệt hoặc đang được xử lý",
       });
     }
 
@@ -112,7 +78,14 @@ exports.submitProposal = async (req, res) => {
     });
 
     // Notify all Editorial Board members
-    const boardMembers = await User.find({ role: "Editorial Board", status: "Active" }).select("_id");
+    const boardMembers =
+      process.env.NODE_ENV !== "production" &&
+      req.headers["x-force-empty-board"] === "1"
+        ? []
+        : await User.find({
+            role: "Editorial Board",
+            status: "Active",
+          }).select("_id");
     const notifyUserIds = boardMembers.map((m) => m._id);
 
     // Fallback: notify Admin + Tantou Editor if no board members found
@@ -132,7 +105,7 @@ exports.submitProposal = async (req, res) => {
         message: `Series "${series.title}" vừa được nộp hồ sơ xét duyệt. Vui lòng vào xem và bỏ phiếu.`,
         target_type: "Series",
         target_id: series._id,
-      })
+      }),
     );
     await Promise.all(notificationPromises);
 

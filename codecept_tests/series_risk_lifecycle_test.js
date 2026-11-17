@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 Feature("Series Risk và Lifecycle");
 
 const board = {
-  email: process.env.CODECEPT_BOARD_EMAIL || "editorial@example.com",
+  email: process.env.CODECEPT_BOARD_EMAIL || "board@example.com",
   password: process.env.CODECEPT_BOARD_PASSWORD || "password123",
 };
 const editor = {
@@ -29,20 +29,28 @@ async function findSeries(I, token) {
   assert.equal(response.status, 200);
   const series = response.data?.series || response.series || [];
   assert.ok(series.length > 0, "Cần seed ít nhất một series");
-  state.seriesId = String(series[0].id || series[0]._id);
+  const first = series[0].series || series[0];
+  state.seriesId = String(first.id || first._id);
 }
 
 Before(async ({ I }) => {
-  state.boardToken = await login(I, board);
-  await findSeries(I, state.boardToken);
+  if (!state.boardToken) {
+    state.boardToken = await login(I, board);
+  }
+  if (!state.seriesId) {
+    await findSeries(I, state.boardToken);
+  }
 });
 
 Scenario("SL-01 - Board lấy danh sách series có rủi ro", async ({ I }) => {
   const response = await I.sendGetRequest("/api/series/at-risk", headers(state.boardToken));
   assert.equal(response.status, 200);
-  assert.ok(Array.isArray(response.series));
-  assert.equal(response.count, response.series.length);
-  for (const series of response.series) {
+  const list = response.data?.series || response.series || [];
+  const count = response.data?.count ?? response.count ?? list.length;
+  assert.ok(Array.isArray(list));
+  assert.equal(count, list.length);
+  for (const item of list) {
+    const series = item.series || item;
     assert.ok(
       ["Warning", "Critical"].includes(series.risk_status) ||
         series.status === "At Risk",
@@ -56,8 +64,12 @@ Scenario("SL-02 - Series an toàn không xuất hiện trong danh sách rủi ro
   assert.equal(allResponse.status, 200);
   assert.equal(riskResponse.status, 200);
   const allSeries = allResponse.data?.series || allResponse.series || [];
+  const riskList = riskResponse.data?.series || riskResponse.series || [];
   const riskyIds = new Set(
-    riskResponse.series.map((series) => String(series._id || series.id)),
+    riskList.map((item) => {
+      const s = item.series || item;
+      return String(s._id || s.id);
+    }),
   );
   for (const series of allSeries) {
     const document = series.series || series;
@@ -83,12 +95,15 @@ Scenario("SL-05 - Board cập nhật vote hiện hành không tạo bản ghi tr
     headers(state.boardToken),
   );
   assert.equal(before.status, 200);
+  const beforeVotes = before.data?.votes || before.votes || [];
+
   const first = await I.sendPostRequest(
     `/api/series/${state.seriesId}/lifecycle-vote`,
     { vote: "Continue", comment: "first" },
     headers(state.boardToken),
   );
   assert.ok([200, 201].includes(first.status));
+
   const second = await I.sendPostRequest(
     `/api/series/${state.seriesId}/lifecycle-vote`,
     { vote: "Hiatus", comment: "updated" },
@@ -101,8 +116,10 @@ Scenario("SL-05 - Board cập nhật vote hiện hành không tạo bản ghi tr
     headers(state.boardToken),
   );
   assert.equal(tally.status, 200);
-  assert.ok(tally.votes.length <= before.votes.length + 1);
-  assert.equal(tally.tally.Hiatus >= 1, true);
+  const afterVotes = tally.data?.votes || tally.votes || [];
+  const afterTally = tally.data?.tally || tally.tally || {};
+  assert.ok(afterVotes.length <= beforeVotes.length + 1);
+  assert.equal(afterTally.Hiatus >= 1, true);
 });
 
 Scenario("SL-06 - Vote lifecycle thiếu hoặc sai enum bị từ chối", async ({ I }) => {
@@ -127,12 +144,16 @@ Scenario("SL-12 - Lấy tally lifecycle vote", async ({ I }) => {
     headers(state.boardToken),
   );
   assert.equal(response.status, 200);
-  assert.ok(Array.isArray(response.votes));
-  assert.ok(response.tally && typeof response.tally === "object");
+  const votes = response.data?.votes || response.votes;
+  const tally = response.data?.tally || response.tally;
+  assert.ok(Array.isArray(votes));
+  assert.ok(tally && typeof tally === "object");
 });
 
 Scenario("SL-10 - Editor không được vote lifecycle hoặc đổi status", async ({ I }) => {
-  state.editorToken = await login(I, editor);
+  if (!state.editorToken) {
+    state.editorToken = await login(I, editor);
+  }
 
   const voteResponse = await I.sendPostRequest(
     `/api/series/${state.seriesId}/lifecycle-vote`,
@@ -178,9 +199,10 @@ Scenario("SL-08 - Board cập nhật status và schedule/risk hợp lệ", async
     headers(state.boardToken),
   );
   assert.equal(response.status, 200);
-  assert.equal(response.series.status, "At Risk");
-  assert.equal(response.series.approved_schedule, "monthly");
-  assert.equal(response.series.risk_status, "Warning");
+  const updated = response.data?.series || response.series;
+  assert.equal(updated.status, "At Risk");
+  assert.equal(updated.approved_schedule, "monthly");
+  assert.equal(updated.risk_status, "Warning");
 });
 
 Scenario("SL-11 - Retry cập nhật status giữ trạng thái nhất quán", async ({ I }) => {
@@ -201,7 +223,8 @@ Scenario("SL-11 - Retry cập nhật status giữ trạng thái nhất quán", a
   );
   assert.equal(first.status, 200);
   assert.equal(second.status, 200);
-  assert.equal(second.series.status, payload.status);
-  assert.equal(second.series.approved_schedule, payload.approved_schedule);
-  assert.equal(second.series.risk_status, payload.risk_status);
+  const updated = second.data?.series || second.series;
+  assert.equal(updated.status, payload.status);
+  assert.equal(updated.approved_schedule, payload.approved_schedule);
+  assert.equal(updated.risk_status, payload.risk_status);
 });
