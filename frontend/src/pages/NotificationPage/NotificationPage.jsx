@@ -75,20 +75,42 @@ export default function NotificationPage() {
   };
 
   const handleMarkAsRead = async (id) => {
+    // Cập nhật giao diện ngay lập tức
+    setNotifications((prev) =>
+      prev.map((n) => (n._id === id ? { ...n, is_read: true } : n))
+    );
+    setUnreadCount((prev) => Math.max(0, prev - 1));
+    window.dispatchEvent(new Event("notifications:updated"));
+
     await markAsReadApi(id);
-    fetchNotifications(pagination.page);
     fetchUnreadCount();
   };
 
   const handleMarkAllAsRead = async () => {
-    await markAllAsReadApi();
-    fetchNotifications(pagination.page);
-    fetchUnreadCount();
+    // Cập nhật giao diện & Badge ngay lập tức về 0
+    setNotifications((prev) => prev.map((n) => ({ ...n, is_read: true })));
+    setUnreadCount(0);
+    window.dispatchEvent(
+      new CustomEvent("notifications:updated", { detail: { count: 0 } })
+    );
+
+    const res = await markAllAsReadApi();
+    if (res?.success === false) {
+      // Nếu API lỗi thì tải lại dữ liệu thật
+      fetchNotifications(pagination.page);
+      fetchUnreadCount();
+    }
   };
 
   const handleDelete = async (id) => {
+    const target = notifications.find((n) => n._id === id);
+    setNotifications((prev) => prev.filter((n) => n._id !== id));
+    if (target && !target.is_read) {
+      setUnreadCount((prev) => Math.max(0, prev - 1));
+      window.dispatchEvent(new Event("notifications:updated"));
+    }
+
     await deleteNotificationApi(id);
-    fetchNotifications(pagination.page);
     fetchUnreadCount();
   };
 
@@ -134,10 +156,9 @@ export default function NotificationPage() {
             key={tab.key}
             onClick={() => handleFilterChange(tab.key)}
             className={`px-4 py-2 text-sm font-bold border-2 border-black transition-all
-              ${
-                activeFilter === tab.key
-                  ? "bg-[#23A094] text-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] -translate-y-[1px]"
-                  : "bg-white text-black hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-[1px]"
+              ${activeFilter === tab.key
+                ? "bg-[#23A094] text-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] -translate-y-[1px]"
+                : "bg-white text-black hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-[1px]"
               }
               active:shadow-none active:translate-y-0`}
           >
@@ -213,14 +234,14 @@ export default function NotificationPage() {
           )}
         </>)}
 
-        {/* Detail Modal */}
-        {selectedNotification && (
-          <NotificationDetailModal
-            notification={selectedNotification}
-            onClose={handleCloseDetail}
-            onMarkRead={handleMarkAsRead}
-          />
-        )}
-      </div>
+      {/* Detail Modal */}
+      {selectedNotification && (
+        <NotificationDetailModal
+          notification={selectedNotification}
+          onClose={handleCloseDetail}
+          onMarkRead={handleMarkAsRead}
+        />
+      )}
+    </div>
   );
 }

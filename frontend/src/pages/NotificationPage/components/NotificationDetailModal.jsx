@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../../stores/authStore";
 import { getNotificationPath, getActionLabel } from "../utils/notificationLinks";
 
 const TYPE_CONFIG = {
@@ -22,8 +23,9 @@ function formatFullTime(dateString) {
 
 export default function NotificationDetailModal({ notification, onClose, onMarkRead }) {
   const navigate = useNavigate();
+  const userRole = useAuthStore((s) => s.user?.role);
   const config = TYPE_CONFIG[notification.type] || TYPE_CONFIG.System;
-  const linkPath = getNotificationPath(notification);
+  const linkPath = getNotificationPath(notification, userRole);
 
   const handleGo = () => {
     onMarkRead(notification._id);
