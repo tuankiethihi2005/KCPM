@@ -14,9 +14,13 @@ const annotationService = require("../../services/annotationService");
 // ─────────────────────────────────────────────────────────────
 // Helper: phân loại HTTP status code từ thông báo lỗi
 // ─────────────────────────────────────────────────────────────
-const resolveErrorStatus = (message) => {
+const resolveErrorStatus = (message, error) => {
+  // Fix EF-04: Bắt chuẩn lỗi Mongoose CastError / ValidationError trả về 400
+  if (error && (error.name === "ValidationError" || error.name === "CastError" || error.code === 11000)) {
+    return 400;
+  }
   if (!message) return 500;
-  if (message.includes("không có quyền")) return 403;
+  if (message.includes("không có quyền") || message.includes("Bạn không có quyền")) return 403;
   if (
     message.includes("Không tìm thấy") ||
     message.includes("Thiếu") ||
@@ -73,7 +77,7 @@ exports.createAnnotation = async (req, res) => {
       annotation,
     });
   } catch (error) {
-    return res.status(resolveErrorStatus(error.message)).json({
+    return res.status(resolveErrorStatus(error.message, error)).json({
       success: false,
       message: error.message,
     });
@@ -103,7 +107,7 @@ exports.getAnnotationsByPage = async (req, res) => {
       annotations,
     });
   } catch (error) {
-    return res.status(500).json({
+    return res.status(resolveErrorStatus(error.message, error)).json({
       success: false,
       message: error.message,
     });
@@ -132,7 +136,7 @@ exports.getAnnotationsByChapter = async (req, res) => {
       annotations,
     });
   } catch (error) {
-    return res.status(500).json({
+    return res.status(resolveErrorStatus(error.message, error)).json({
       success: false,
       message: error.message,
     });
@@ -175,7 +179,7 @@ exports.updateAnnotation = async (req, res) => {
       annotation,
     });
   } catch (error) {
-    return res.status(resolveErrorStatus(error.message)).json({
+    return res.status(resolveErrorStatus(error.message, error)).json({
       success: false,
       message: error.message,
     });
@@ -212,7 +216,7 @@ exports.deleteAnnotation = async (req, res) => {
       message: "Đã xóa góp ý thành công",
     });
   } catch (error) {
-    return res.status(500).json({
+    return res.status(resolveErrorStatus(error.message, error)).json({
       success: false,
       message: error.message,
     });
@@ -231,7 +235,7 @@ exports.restoreAnnotation = async (req, res) => {
       data: annotation,
     });
   } catch (error) {
-    return res.status(500).json({
+    return res.status(resolveErrorStatus(error.message, error)).json({
       success: false,
       message: error.message,
     });

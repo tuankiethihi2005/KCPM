@@ -30,26 +30,30 @@ class AnnotationRepository {
   }
 
   /**
-   * Lấy danh sách Annotation theo PageId
+   * Lấy danh sách Annotation theo PageId (Đã thêm lọc isDeleted để fix EF-09)
    * @param {string} pageId - ObjectId của page
    * @returns {Promise<Document[]>}
    */
   async findByPage(pageId) {
     return await Annotation.find({
       page_id: pageId,
+      isDeleted: { $ne: true }, // Fix EF-09: Lọc bỏ các bản ghi đã xóa mềm
     })
       .populate("created_by", "full_name avatar role")
       .sort({ createdAt: -1 });
   }
 
   /**
-   * Lấy danh sách Annotation theo ChapterId
+   * Lấy danh sách Annotation theo ChapterId (Đã thêm lọc isDeleted để fix EF-09)
    * @param {string} chapterId - ObjectId của chapter
    * @returns {Promise<Document[]>}
    */
   async findByChapter(chapterId) {
+    const pages = await Annotation.find({ chapter_id: chapterId }); // Hoặc model Page tùy nhóm
+    const pageIds = pages.map((p) => p.page_id);
     return await Annotation.find({
       chapter_id: chapterId,
+      isDeleted: { $ne: true }, // Fix EF-09: Lọc bỏ các bản ghi đã xóa mềm
     })
       .populate("created_by", "name email role avatar")
       .populate("page_id", "page_number current_preview_url")
@@ -69,12 +73,11 @@ class AnnotationRepository {
   }
 
   /**
-   * Xóa Annotation theo ID
+   * Xóa Annotation theo ID (Soft delete với isDeleted)
    * @param {string} id - ObjectId của annotation cần xóa
    * @returns {Promise<Document|null>} Document vừa bị xóa
    */
   async delete(id) {
-    // THAY VÌ: return await Annotation.findByIdAndDelete(id);
     return await Annotation.findByIdAndUpdate(
       id,
       { isDeleted: true },
@@ -82,11 +85,16 @@ class AnnotationRepository {
     );
   }
 
+  /**
+   * Khôi phục Annotation (Đưa isDeleted về false)
+   * @param {string} id - ObjectId của annotation cần khôi phục
+   * @returns {Promise<Document|null>}
+   */
   async restore(id) {
     return await Annotation.findByIdAndUpdate(
       id,
       { isDeleted: false },
-      { returnDocument: "after" }, // Dùng returnDocument để tránh warning Mongoose
+      { returnDocument: "after" },
     )
       .populate("created_by", "name email role avatar")
       .populate("page_id", "page_number current_preview_url");

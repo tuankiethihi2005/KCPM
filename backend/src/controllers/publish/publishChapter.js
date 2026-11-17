@@ -4,11 +4,17 @@ const Task = require("../../models/TaskModel");
 const Annotation = require("../../models/AnnotationModel");
 const Series = require("../../models/SeriesModel");
 const NotificationService = require("../../services/notificationService");
+const mongoose = require("mongoose"); // <-- Thêm thư viện mongoose để check ObjectId
 
 exports.publishChapter = async (req, res) => {
   try {
     const { chapter_id } = req.params;
     const { release_issue_id } = req.body;
+
+    // 1. Kiểm tra xem chapter_id có đúng định dạng MongoDB ObjectId hay không
+    if (!mongoose.Types.ObjectId.isValid(chapter_id)) {
+      return res.status(400).json({ message: "Chapter ID không đúng định dạng hợp lệ" });
+    }
 
     const chapter = await Chapter.findById(chapter_id);
 

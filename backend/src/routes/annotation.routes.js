@@ -28,7 +28,7 @@ router.use(requireAuth);
 
 // ─────────────────────────────────────────────────────────────
 // GET /api/annotations/page/:page_id
-// Lấy danh sách annotation theo trang truyện
+// Lấy danh sách annotation theo trang truyện (Đã gắn scope read)
 // ─────────────────────────────────────────────────────────────
 router.get(
   "/page/:page_id",
@@ -39,6 +39,7 @@ router.get(
     ROLES.ADMIN,
     ROLES.ASSISTANT,
   ),
+  requirePageScope("page_id", "read"),
   annotationController.getAnnotationsByPage,
 );
 
