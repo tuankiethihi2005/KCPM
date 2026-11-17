@@ -1,0 +1,51 @@
+@reference "../../index.css";
+
+.overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 font-sans;
+}
+
+.dialog {
+    @apply w-full max-w-md bg-white border-4 border-black p-6;
+    box-shadow: 8px 8px 0px 0px #000;
+}
+
+.header {
+    @apply border-b-4 border-black pb-3 mb-4;
+}
+
+.title {
+    @apply m-0 text-xl font-black uppercase tracking-tight text-black;
+}
+
+.message {
+    @apply m-0 mb-6 text-sm font-bold text-gray-800 leading-relaxed;
+}
+
+.actions {
+    @apply flex justify-end gap-3;
+}
+
+.btn {
+    @apply px-5 py-2.5 font-black uppercase text-xs tracking-widest border-4 border-black hover:-translate-y-0.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none cursor-pointer;
+    box-shadow: 4px_4px_0px_0px_rgba(0, 0, 0, 1);
+}
+
+.btn-cancel {
+    @apply bg-white text-black hover:bg-gray-100;
+}
+
+.btn-primary {
+    @apply bg-[#23A094] text-white hover:bg-[#1a7f75];
+}
+
+.btn-success {
+    @apply bg-[#00E599] text-black hover:bg-[#00cc88];
+}
+
+.btn-warning {
+    @apply bg-[#FF90E8] text-black hover:bg-[#ff7ae2];
+}
+
+.btn-danger {
+    @apply bg-[#FF4545] text-white hover:bg-[#e03535];
+}

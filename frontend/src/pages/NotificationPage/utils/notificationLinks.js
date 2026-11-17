@@ -18,9 +18,11 @@ export function getNotificationPath(notification, userRole) {
       case "Chapter":
         return `/chapter-list/${target_id}`;
       case "Series": {
-        if (userRole === "Mangaka") return "/mangaka/series";
+        if (userRole === "Mangaka") return `/mangaka/series/${target_id}`;
         if (userRole === "Tantou Editor") return "/editor/series";
-        if (userRole === "Editorial Board" || userRole === "Admin") return "/board/all-series";
+        if (userRole === "Editorial Board" || userRole === "Admin") {
+          return `/board/series/${target_id}`; // <-- Sửa từ "/board/all-series" thành đường dẫn có kèm target_id
+        }
         return "/board/all-series"; // fallback
       }
       default:
