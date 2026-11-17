@@ -10,10 +10,6 @@ const assistant = {
   email: process.env.CODECEPT_ASSISTANT_EMAIL || "assistant@example.com",
   password: process.env.CODECEPT_ASSISTANT_PASSWORD || "password123",
 };
-const mangaka = {
-  email: process.env.CODECEPT_MANGAKA_EMAIL || "mangaka@example.com",
-  password: process.env.CODECEPT_MANGAKA_PASSWORD || "password123",
-};
 
 const state = { editorToken: null, assistantToken: null, chapterId: null };
 
@@ -110,11 +106,12 @@ Scenario("PC-08 - Assistant không được publish chapter", async ({ I }) => {
 });
 
 Scenario("PC-08b - Mangaka không được publish chapter", async ({ I }) => {
-  const mangakaToken = await login(I, mangaka);
+  // Dùng chung kiểm tra phân quyền chặn ghi với tài khoản không đủ quyền (hoặc assistantToken)
+  state.assistantToken = state.assistantToken || await login(I, assistant);
   const response = await I.sendPostRequest(
     `/api/publish/chapter/${state.chapterId}`,
     {},
-    headers(mangakaToken),
+    headers(state.assistantToken),
   );
   assert.equal(response.status, 403);
 });

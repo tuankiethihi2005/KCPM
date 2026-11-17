@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const { ROLES } = require("../constants/roles");
 const { requireAuth } = require("../modules/auth/middlewares/requireAuth");
 const {
@@ -12,9 +13,17 @@ const publishChapter = require("../controllers/publish/publishChapter");
 const router = express.Router();
 
 router.use(requireAuth);
+
 router.post(
   "/chapter/:chapter_id",
   requireRole(ROLES.TANTOU_EDITOR, ROLES.EDITORIAL_BOARD, ROLES.ADMIN),
+  // Middleware kiểm tra nhanh format ObjectId trước khi qua các bước check database
+  (req, res, next) => {
+    if (!mongoose.Types.ObjectId.isValid(req.params.chapter_id)) {
+      return res.status(400).json({ message: "Chapter ID không đúng định dạng hợp lệ" });
+    }
+    next();
+  },
   requireChapterScope("chapter_id", "write"),
   publishChapter.publishChapter,
 );

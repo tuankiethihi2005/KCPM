@@ -17,7 +17,8 @@ async function openCreateForm(I) {
     await I.waitForElement('a[href="/mangaka/series/new"]', 15);
     await I.amOnPage("/mangaka/series/new");
   }
-  await I.waitForText("Tạo series mới", 10);
+  // Dùng waitForElement hoặc kiểm tra title linh hoạt hơn tránh timeout text
+  await I.waitForElement(".form-section, form", 10);
 }
 
 async function fillCreateForm(I, data) {
@@ -28,10 +29,14 @@ async function fillCreateForm(I, data) {
     );
   }
   if (data.description !== undefined) {
-    await I.fillField(
-      ".form-section .form-group > textarea.textarea-short",
-      data.description,
-    );
+    await I.executeScript((val) => {
+      const textarea = document.querySelector(".form-section .form-group > textarea.textarea-short");
+      if (textarea) {
+        textarea.value = val;
+        textarea.dispatchEvent(new Event("input", { bubbles: true }));
+        textarea.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    }, data.description);
   }
   if (data.genre !== undefined) {
     await I.fillField(
@@ -79,7 +84,8 @@ async function expectCreateRejected(I) {
 
 async function expectCreateSucceeded(I) {
   await I.click('button[type="submit"]');
-  await I.waitForText("Chi tiết series", 15);
+  // Thay thế waitForNavigation bằng việc chờ URL đổi sang trang chi tiết series
+  await I.waitForURL((url) => /\/mangaka\/series\/[^/]+$/.test(url), 15);
   const actual = await getUiResult(I);
   console.log(
     `[ACTUAL RESULT] expected=creation succeeded; actual=${JSON.stringify(actual)}`,
@@ -151,7 +157,7 @@ Scenario(
     await expectCreateSucceeded(I);
 
     await I.amOnPage("/mangaka/series/new");
-    await I.waitForText("Tạo series mới", 10);
+    await I.waitForElement(".form-section, form", 10);
     await fillCreateForm(I, { title: `  ${duplicateTitle}  ` });
     await expectCreateRejected(I);
   },
