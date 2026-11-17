@@ -11,6 +11,7 @@ import {
   getProposalReviewDeadline,
 } from "../../utils/reviewDeadline";
 import "./BoardSeriesReviewPage.css"; // Import file CSS mới
+import ConfirmActionModal from "../../common/ConfirmActionModal/ConfirmActionModal";
 
 const SCHEDULE_OPTIONS = [
   { value: "weekly", label: "Hàng tuần" },
@@ -31,6 +32,92 @@ export default function BoardSeriesReviewPage() {
   const [isVoting, setIsVoting] = useState(false);
   const [changingVote, setChangingVote] = useState(false);
 
+  const [confirmState, setConfirmState] = useState({
+    isOpen: false,
+    actionType: null, // 'vote' | 'finalize'
+    voteValue: null,
+    title: "",
+    message: "",
+    confirmText: "Xác nhận",
+    variant: "primary",
+  });
+
+  const openVoteConfirm = (vote) => {
+    const voteConfig = {
+      Approve: {
+        title: "Xác nhận duyệt (Approve)",
+        confirmText: "Bỏ phiếu Approve",
+        variant: "success",
+      },
+      Reject: {
+        title: "Xác nhận từ chối (Reject)",
+        confirmText: "Bỏ phiếu Reject",
+        variant: "danger",
+      },
+      "Need Revision": {
+        title: "Yêu cầu chỉnh sửa",
+        confirmText: "Gửi yêu cầu sửa",
+        variant: "warning",
+      },
+    }[vote] || {
+      title: "Xác nhận bỏ phiếu",
+      confirmText: "Xác nhận",
+      variant: "primary",
+    };
+
+    setConfirmState({
+      isOpen: true,
+      actionType: "vote",
+      voteValue: vote,
+      title: voteConfig.title,
+      message: `Xác nhận bỏ phiếu "${vote}" cho series "${series.title}"?`,
+      confirmText: voteConfig.confirmText,
+      variant: voteConfig.variant,
+    });
+  };
+
+  const openFinalizeConfirm = () => {
+    setConfirmState({
+      isOpen: true,
+      actionType: "finalize",
+      voteValue: null,
+      title: "Chốt quyết định (Finalize)",
+      message:
+        "Tổng hợp kết quả bỏ phiếu và chốt quyết định chính thức cho series. Bạn có chắc chắn muốn tiếp tục?",
+      confirmText: "Chốt kết quả",
+      variant: "primary",
+    });
+  };
+
+  const handleConfirmAction = async () => {
+    const { actionType, voteValue } = confirmState;
+    setIsVoting(true);
+
+    if (actionType === "vote") {
+      const result = await castVote(seriesId, { vote: voteValue, comment });
+      if (result.success === false) {
+        toast.error(result.message);
+      } else {
+        toast.success(result.message || "Bỏ phiếu thành công!");
+        setChangingVote(false);
+        await loadDetail();
+      }
+    } else if (actionType === "finalize") {
+      const result = await finalizeSeries(seriesId, {
+        approved_schedule: approvedSchedule,
+      });
+      if (result.success === false) {
+        toast.error(result.message);
+      } else {
+        toast.success(`Kết quả: ${result.decision}`);
+        await loadDetail();
+      }
+    }
+
+    setIsVoting(false);
+    setConfirmState((prev) => ({ ...prev, isOpen: false }));
+  };
+
   const loadDetail = useCallback(async () => {
     setIsLoading(true);
     const result = await getBoardSeriesDetail(seriesId);
@@ -41,48 +128,11 @@ export default function BoardSeriesReviewPage() {
       setData(result);
     }
     setIsLoading(false);
-  }, [seriesId, toast]);
+  }, [seriesId]);
 
   useEffect(() => {
     loadDetail();
   }, [loadDetail]);
-
-  const handleVote = async (vote) => {
-    if (!window.confirm(`Xác nhận bỏ phiếu "${vote}" cho series này?`)) {
-      return;
-    }
-    setIsVoting(true);
-    const result = await castVote(seriesId, { vote, comment });
-    if (result.success === false) {
-      toast.error(result.message);
-    } else {
-      toast.success(result.message || "Bỏ phiếu thành công!");
-      setChangingVote(false);
-      await loadDetail();
-    }
-    setIsVoting(false);
-  };
-
-  const handleFinalize = async () => {
-    if (
-      !window.confirm(
-        "Tổng hợp kết quả sẽ chốt quyết định cho series và không thể hoàn tác. Tiếp tục?",
-      )
-    ) {
-      return;
-    }
-    setIsVoting(true);
-    const result = await finalizeSeries(seriesId, {
-      approved_schedule: approvedSchedule,
-    });
-    if (result.success === false) {
-      toast.error(result.message);
-    } else {
-      toast.success(`Kết quả: ${result.decision}`);
-      await loadDetail();
-    }
-    setIsVoting(false);
-  };
 
   if (isLoading) {
     return <Loading text="Đang tải hồ sơ series..." />;
@@ -221,7 +271,7 @@ export default function BoardSeriesReviewPage() {
                 <button
                   type="button"
                   disabled={isVoting}
-                  onClick={() => handleVote("Approve")}
+                  onClick={() => openVoteConfirm("Approve")}
                   className="btn-approve"
                 >
                   Approve
@@ -229,7 +279,7 @@ export default function BoardSeriesReviewPage() {
                 <button
                   type="button"
                   disabled={isVoting}
-                  onClick={() => handleVote("Reject")}
+                  onClick={() => openVoteConfirm("Reject")}
                   className="btn-reject"
                 >
                   Reject
@@ -237,7 +287,7 @@ export default function BoardSeriesReviewPage() {
                 <button
                   type="button"
                   disabled={isVoting}
-                  onClick={() => handleVote("Need Revision")}
+                  onClick={() => openVoteConfirm("Need Revision")}
                   className="btn-revise"
                 >
                   Need Revision
@@ -275,7 +325,7 @@ export default function BoardSeriesReviewPage() {
             <button
               type="button"
               disabled={isVoting || votes.length === 0}
-              onClick={handleFinalize}
+              onClick={openFinalizeConfirm}
               className="btn-finalize"
             >
               Tổng hợp kết quả (Finalize)
@@ -284,6 +334,17 @@ export default function BoardSeriesReviewPage() {
             {votes.length === 0 && (
               <p className="warning-text">Cần bỏ phiếu trước khi finalize.</p>
             )}
+
+            <ConfirmActionModal
+              isOpen={confirmState.isOpen}
+              title={confirmState.title}
+              message={confirmState.message}
+              confirmText={confirmState.confirmText}
+              variant={confirmState.variant}
+              isLoading={isVoting}
+              onConfirm={handleConfirmAction}
+              onClose={() => setConfirmState((prev) => ({ ...prev, isOpen: false }))}
+            />
           </div>
         </section>
       )}
