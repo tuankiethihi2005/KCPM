@@ -184,29 +184,18 @@ Scenario(
 );
 
 // ---------------------------------------------------------------------------
-// FS-ST-09: Lỗi TypeError (body không phải JSON) rơi vào catch status 500
+// FS-ST-09: ObjectId không hợp lệ gây CastError, rơi vào catch status 500
 // ---------------------------------------------------------------------------
 Scenario(
-  "FS-ST-09: Lỗi runtime khi body không phải JSON trả về 500",
+  "FS-ST-09: ObjectId không hợp lệ trả về 500",
   async ({ I }) => {
     await signInAsAdmin(I);
-    const token = await refreshAccessToken(I);
-
-    const response = await I.executeScript(async (accessToken) => {
-      const res = await fetch(
-        "http://localhost:5000/api/board/series/000000000000000000000000/finalize",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "text/plain",
-          },
-          body: "non-json-body",
-        },
-      );
-      return { status: res.status, body: await res.json() };
-    }, token);
+    const response = await sendApiRequestWithAuth(
+      I,
+      "/board/series/not-a-valid-object-id/finalize",
+      "POST",
+      {},
+    );
 
     assert.equal(response.status, 500);
     assert.equal(response.body.error, "Lỗi server");

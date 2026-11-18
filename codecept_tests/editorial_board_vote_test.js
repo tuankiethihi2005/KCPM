@@ -55,6 +55,11 @@ Scenario(
 
     // 3. Thay vì waitForElement với class sai, ta dùng trực tiếp clickByTextCaseInsensitive để bấm "Need Revision"
     await clickByTextCaseInsensitive(I, "Need Revision", "button");
+    await clickByTextCaseInsensitive(
+      I,
+      "Gửi yêu cầu sửa",
+      ".overlay .actions button",
+    );
 
     await waitForVoteDisplayed(I, "Need Revision");
     const actualVotes = await I.executeScript(() =>
@@ -114,9 +119,14 @@ Scenario(
     const wrongTypeVote = await sendVoteRequest(I, seriesId, {
       vote: 12345,
     });
+    const tooLongComment = await sendVoteRequest(I, seriesId, {
+      vote: "Approve",
+      comment: "x".repeat(2001),
+    });
     assert.equal(missingVote.status, 400);
     assert.equal(unsupportedVote.status, 400);
     assert.equal(wrongTypeVote.status, 400);
+    assert.equal(tooLongComment.status, 400);
     await I.seeNumberOfElements(".vote-item", 1);
     await waitForVoteDisplayed(I, "Approve");
   },
@@ -156,6 +166,11 @@ Scenario("EBV-07: đổi lựa chọn khi kỳ biểu quyết còn mở", async 
     window.confirm = () => true;
   });
   await clickByTextCaseInsensitive(I, "Approve", ".vote-actions button");
+  await clickByTextCaseInsensitive(
+    I,
+    "Bỏ phiếu Approve",
+    ".overlay .actions button",
+  );
   await expectToastCaseInsensitive(I, "Cập nhật phiếu bầu thành công", 15);
   await waitForVoteDisplayed(I, "Approve");
   const actualVotes = await I.executeScript(() =>
@@ -262,6 +277,11 @@ Scenario(
       window.confirm = () => true;
     });
     await clickByTextCaseInsensitive(I, "Approve", ".vote-actions button");
+    await clickByTextCaseInsensitive(
+      I,
+      "Bỏ phiếu Approve",
+      ".overlay .actions button",
+    );
     await expectToastCaseInsensitive(I, "Cập nhật phiếu bầu thành công", 15);
     await waitForVoteDisplayed(I, "APPROVE");
     await I.seeNumberOfElements(".vote-item", 1);

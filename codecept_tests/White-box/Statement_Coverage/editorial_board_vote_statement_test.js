@@ -197,3 +197,23 @@ Scenario(
     assert.equal(response.body.error, "Lỗi server");
   },
 );
+// ---------------------------------------------------------------------------
+// EBV-ST-10: Comment vượt quá 2000 ký tự (hoặc sai kiểu dữ liệu) → 400
+// Phủ dòng: dòng 18-26 if (req.body.comment !== undefined && ...)
+// ---------------------------------------------------------------------------
+Scenario("EBV-ST-10: Comment vượt quá 2000 ký tự trả về 400", async ({ I }) => {
+  await signInAs(I, "mangaka");
+  const { seriesId } = await createSubmittedSeries(I);
+
+  await signInAsAdmin(I);
+  const response = await sendVoteRequest(I, seriesId, {
+    vote: "Approve",
+    comment: "a".repeat(2001),
+  });
+
+  assert.equal(response.status, 400);
+  assert.equal(
+    response.body.message,
+    "comment phải là chuỗi không vượt quá 2000 ký tự",
+  );
+});

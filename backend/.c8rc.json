@@ -1,6 +1,6 @@
 {
   "all": false,
-  "include": ["src/controllers/publish/publishChapter.js"],
+  "include": ["src/controllers/board/castVote.js"],
   "exclude": ["src/config/**", "**/*.test.js"],
   "reporter": ["text", "text-summary"],
   "reporterOptions": {
