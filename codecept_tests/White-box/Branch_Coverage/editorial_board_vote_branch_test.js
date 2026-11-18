@@ -24,7 +24,12 @@ Scenario(
     const { seriesId } = await createSubmittedSeries(I);
     await signInAs(I, "editorial");
 
-    for (const invalidBody of [{}, { vote: "Unsupported" }]) {
+    for (const invalidBody of [
+      {},
+      { vote: "Unsupported" },
+      { vote: "Reject", comment: 123 },
+      { vote: "Reject", comment: "x".repeat(2001) },
+    ]) {
       const rejected = await sendVoteRequest(I, seriesId, invalidBody);
       assert.equal(rejected.status, 400);
     }

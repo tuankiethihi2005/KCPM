@@ -46,7 +46,7 @@ Scenario(
 );
 
 // ---------------------------------------------------------------------------
-// FS-BC-02: Nhánh approved_schedule || DEFAULT_APPROVED_SCHEDULE (rỗng & mặc định)
+// FS-BC-02: Nhánh approved_schedule || DEFAULT_APPROVED_SCHEDULE (rỗng -> mặc định)
 // ---------------------------------------------------------------------------
 Scenario(
   "FS-BC-02: Gửi approved_schedule rỗng áp dụng lịch mặc định weekly (200)",
@@ -56,6 +56,7 @@ Scenario(
     await openBoardReview(I, seriesId);
     await castBoardVote(I, "Approve");
 
+    await signInAsAdmin(I);
     const response = await sendApiRequestWithAuth(
       I,
       `/board/series/${seriesId}/finalize`,
@@ -119,6 +120,7 @@ Scenario(
       await openBoardReview(I, seriesId);
       await castBoardVote(I, vote);
 
+      await signInAsAdmin(I);
       const response = await sendApiRequestWithAuth(
         I,
         `/board/series/${seriesId}/finalize`,
@@ -207,6 +209,8 @@ Scenario(
     const { seriesId } = await createSubmittedSeries(I);
     await openBoardReview(I, seriesId);
     await castBoardVote(I, "Approve");
+
+    await signInAsAdmin(I);
 
     // true: schedule không nằm trong SCHEDULE_VALUES -> 400
     const invalidRes = await sendApiRequestWithAuth(
@@ -305,5 +309,42 @@ Scenario(
 
     assert.equal(errorRes.status, 500);
     assert.equal(errorRes.body.error, "Lỗi server");
+  },
+);
+
+// ---------------------------------------------------------------------------
+// FS-BC-09: Nhánh fallback req.body || {} khi gửi request không có JSON body
+// ---------------------------------------------------------------------------
+Scenario(
+  "FS-BC-09: Gửi request finalize không kèm body (req.body undefined) kích hoạt fallback {}",
+  async ({ I }) => {
+    await signInAs(I, "mangaka");
+    const { seriesId } = await createSubmittedSeries(I);
+    await openBoardReview(I, seriesId);
+    await castBoardVote(I, "Approve");
+
+    await signInAsAdmin(I);
+    const token = await refreshAccessToken(I);
+
+    const response = await I.executeScript(
+      async ({ id, accessToken }) => {
+        const res = await fetch(
+          `http://localhost:5000/api/board/series/${id}/finalize`,
+          {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          },
+        );
+        return { status: res.status, body: await res.json() };
+      },
+      { id: seriesId, accessToken: token },
+    );
+
+    assert.equal(response.status, 200);
+    assert.equal(response.body.decision, "Approve");
+    assert.equal(response.body.series.approved_schedule, "weekly");
   },
 );

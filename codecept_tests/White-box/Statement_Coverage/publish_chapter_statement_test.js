@@ -4,6 +4,8 @@ import {
   prepareReadyChapter,
   publishHeaders,
 } from "./publish_chapter_coverage_helper.js";
+import { refreshAccessToken } from "../../series_test_helpers.js";
+import { signInAsAdmin } from "../coverage_helpers.js";
 
 Feature("White-Box Statement Coverage — publishChapter (100% Statements)");
 
@@ -118,10 +120,15 @@ Scenario(
       },
       headers,
     );
+    assert.equal(created.status, 201);
     const annotationId =
       created.data?.data?._id ||
       created.data?.annotation?._id ||
       created.data?._id;
+    assert.ok(
+      annotationId,
+      "Annotation cần được tạo để kiểm tra nhánh chưa xử lý",
+    );
 
     const response = await I.sendPostRequest(
       `/api/publish/chapter/${chapterId}`,
@@ -133,19 +140,17 @@ Scenario(
       response.data.message.includes("Vẫn còn annotation chưa được giải quyết"),
     );
 
-    if (annotationId) {
-      await I.sendPatchRequest(
-        `/api/annotations/${annotationId}`,
-        { status: "Resolved" },
-        headers,
-      );
-    }
+    await I.sendPatchRequest(
+      `/api/annotations/${annotationId}`,
+      { status: "Resolved" },
+      headers,
+    );
   },
 );
 
 // ---------------------------------------------------------------------------
 // PC-ST-05: Xuất bản chapter đủ điều kiện kèm release_issue_id → 200
-// Phủ dòng: dòng 63-89 (cập nhật Published, release_issue_id, gửi thông báo)
+// Phủ dòng: cập nhật Published, release_issue_id, gửi thông báo
 // ---------------------------------------------------------------------------
 Scenario(
   "PC-ST-05: Xuất bản chapter đủ điều kiện kèm release_issue_id trả về 200",
@@ -153,11 +158,37 @@ Scenario(
     const { chapterId, token } = await prepareReadyChapter(I, {
       reserve: true,
     });
-    const releaseIssueId = "000000000000000000000001";
+    const headers = publishHeaders(token);
+    await signInAsAdmin(I);
+    const adminHeaders = publishHeaders(await refreshAccessToken(I));
+    const customId = `PC-ST-05-${Date.now()}`;
+    const createIssueRes = await I.sendPostRequest(
+      "/api/issues",
+      {
+        id: customId,
+        name: `Issue Test PC-ST-05 ${Date.now()}`,
+        releaseDate: "2027-12-31",
+        type: "Weekly",
+      },
+      adminHeaders,
+    );
+    assert.equal(
+      createIssueRes.status,
+      201,
+      `Tạo ReleaseIssue thất bại: ${JSON.stringify(createIssueRes.data)}`,
+    );
+
+    const issuesRes = await I.sendGetRequest("/api/issues", adminHeaders);
+    assert.equal(issuesRes.status, 200);
+    const createdIssue = (issuesRes.data?.data || []).find(
+      (issue) => issue.custom_id === customId,
+    );
+    assert.ok(createdIssue?._id, "Cần lấy Mongo _id của ReleaseIssue vừa tạo");
+
     const response = await I.sendPostRequest(
       `/api/publish/chapter/${chapterId}`,
-      { release_issue_id: releaseIssueId },
-      publishHeaders(token),
+      { release_issue_id: String(createdIssue._id) },
+      headers,
     );
 
     assert.equal(response.status, 200);
@@ -166,7 +197,7 @@ Scenario(
     assert.ok(response.data.chapter.published_at);
     assert.equal(
       String(response.data.chapter.release_issue_id),
-      releaseIssueId,
+      String(createdIssue._id),
     );
   },
 );
@@ -192,5 +223,85 @@ Scenario(
 
     assert.equal(response.status, 500);
     assert.equal(response.data.message, "Lỗi server");
+  },
+);
+
+// // PC-ST-07: chapter_id sai định dạng ObjectId → 400 (Dùng Admin để đi qua middleware scope)
+// Scenario(
+//   "PC-ST-07: chapter_id sai định dạng ObjectId trả về 400",
+//   async ({ I }) => {
+//     await signInAsAdmin(I);
+//     const adminToken = await refreshAccessToken(I);
+
+//     const response = await I.sendPostRequest(
+//       "/api/publish/chapter/invalid-object-id",
+//       {},
+//       publishHeaders(adminToken),
+//     );
+
+//     assert.equal(response.status, 400);
+//     assert.equal(
+//       response.data.message,
+//       "Chapter ID không đúng định dạng hợp lệ",
+//     );
+//   },
+// );
+
+// // PC-ST-08: Không tìm thấy chapter → 404 (Dùng Admin để đi qua middleware scope)
+// Scenario("PC-ST-08: chapter_id không tồn tại trả về 404", async ({ I }) => {
+//   await signInAsAdmin(I);
+//   const adminToken = await refreshAccessToken(I);
+
+//   const response = await I.sendPostRequest(
+//     "/api/publish/chapter/000000000000000000000000",
+//     {},
+//     publishHeaders(adminToken),
+//   );
+
+//   assert.equal(response.status, 404);
+//   assert.equal(response.data.message, "Không tìm thấy chapter");
+// });
+// ---------------------------------------------------------------------------
+// PC-ST-09: release_issue_id sai định dạng ObjectId → 400
+// Phủ dòng: dòng 27-31 if (!mongoose.Types.ObjectId.isValid(release_issue_id))
+// ---------------------------------------------------------------------------
+Scenario(
+  "PC-ST-07: release_issue_id sai định dạng ObjectId trả về 400",
+  async ({ I }) => {
+    const { chapterId, token } = await prepareReadyChapter(I, {
+      reserve: false,
+    });
+    const response = await I.sendPostRequest(
+      `/api/publish/chapter/${chapterId}`,
+      { release_issue_id: "invalid-issue-id" },
+      publishHeaders(token),
+    );
+
+    assert.equal(response.status, 400);
+    assert.equal(
+      response.data.message,
+      "release_issue_id không đúng định dạng hợp lệ",
+    );
+  },
+);
+
+// ---------------------------------------------------------------------------
+// PC-ST-10: Không tìm thấy kỳ phát hành (release_issue_id không tồn tại) → 404
+// Phủ dòng: dòng 32-36 if (!releaseIssue) (giúp đạt 100% Branch Coverage)
+// ---------------------------------------------------------------------------
+Scenario(
+  "PC-ST-08: release_issue_id không tồn tại trả về 404",
+  async ({ I }) => {
+    const { chapterId, token } = await prepareReadyChapter(I, {
+      reserve: false,
+    });
+    const response = await I.sendPostRequest(
+      `/api/publish/chapter/${chapterId}`,
+      { release_issue_id: "000000000000000000000000" },
+      publishHeaders(token),
+    );
+
+    assert.equal(response.status, 404);
+    assert.equal(response.data.message, "Không tìm thấy kỳ phát hành");
   },
 );

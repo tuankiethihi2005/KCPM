@@ -15,7 +15,7 @@ exports.finalizeSeries = async (req, res) => {
       return res.status(200).json({ result: expiredResult });
     }
 
-    const { approved_schedule } = req.body;
+    const { approved_schedule } = req.body || {};
 
     const result = await finalizeSeriesById(id, { approved_schedule });
 

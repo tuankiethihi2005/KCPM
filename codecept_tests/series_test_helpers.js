@@ -453,10 +453,14 @@ export async function castBoardVote(I, vote, comment = "") {
   if (comment) {
     await I.fillField(".neo-textarea", comment);
   }
-  await I.executeScript(() => {
-    window.confirm = () => true;
-  });
   await clickByTextCaseInsensitive(I, vote, ".vote-actions button");
+  const confirmationText =
+    vote === "Need Revision" ? "Gửi yêu cầu sửa" : `Bỏ phiếu ${vote}`;
+  await clickByTextCaseInsensitive(
+    I,
+    confirmationText,
+    ".overlay .actions button",
+  );
   await I.waitForFunction(
     () => document.querySelectorAll(".vote-item").length >= 1,
     [],
@@ -574,6 +578,11 @@ export async function finalizeBoardReview(I, expectedDecision) {
     I,
     "Tổng hợp kết quả (Finalize)",
     "button.btn-finalize",
+  );
+  await clickByTextCaseInsensitive(
+    I,
+    "Chốt kết quả",
+    ".overlay .actions button",
   );
   await waitForTextCaseInsensitive(
     I,

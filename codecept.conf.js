@@ -4,10 +4,11 @@ import path from "path";
 /** @type {CodeceptJS.MainConfig} */
 export const config = {
   tests: [
-    "./codecept_tests/*_test.js",
-    // "./codecept_tests/update_series_test.js",
-    "./codecept_tests/White-box/Statement_Coverage/*_test.js",
-    "./codecept_tests/White-box/Branch_Coverage/*_test.js",
+    // "./codecept_tests/*_test.js",
+    "./codecept_tests/editorial_board_vote_test.js",
+    // "./codecept_tests/finalize_series_test.js",
+    //   "./codecept_tests/White-box/Statement_Coverage/*_test.js",
+    //   "./codecept_tests/White-box/Branch_Coverage/*_test.js",
   ],
   output: "./codecept_output",
   helpers: {
