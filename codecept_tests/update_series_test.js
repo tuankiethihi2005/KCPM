@@ -126,18 +126,33 @@ Scenario(
   "US-03: cho phép cập nhật hợp lệ khi proposal ở trạng thái Need Revision",
   async ({ I }) => {
     await signInAs(I, "mangaka");
-    const { seriesId } = await createSubmittedSeries(I);
+    const { seriesId, title } = await createSubmittedSeries(I);
     await openBoardReview(I, seriesId);
     await castBoardVote(I, "Need Revision", "Please revise the proposal.");
     await finalizeBoardReview(I, "Need Revision");
 
     await signInAs(I, "mangaka");
+    const updatedTitle = `Revised series title ${Date.now()}`;
+    const updateRes = await sendApiRequestWithAuth(
+      I,
+      `/series/${seriesId}`,
+      "PUT",
+      { title: updatedTitle },
+    );
+    assert.equal(updateRes.status, 200);
+
+    const detailRes = await sendApiRequestWithAuth(
+      I,
+      `/series/${seriesId}`,
+      "GET",
+    );
+    assert.equal(detailRes.status, 200);
+    assert.equal(detailRes.body.series.title, updatedTitle);
+    assert.equal(detailRes.body.proposal.status, "Need Revision");
+    assert.notEqual(detailRes.body.series.title, title);
+
     await I.amOnPage(`/mangaka/series/${seriesId}`);
     await waitForTextCaseInsensitive(I, "Need Revision", 15, ".status-badge");
-    await saveSeriesDraft(I, {
-      summary: `Updated after review with valid length ${Date.now()}`,
-    });
-    await seeTextCaseInsensitive(I, "Draft", ".status-badge");
   },
 );
 
@@ -350,7 +365,7 @@ Scenario(
     await captureVoteAuthHeader(I);
     const { seriesId, title } = await createSubmittedSeries(I);
 
-    // Trên UI các ô input và nút Lưu bị vô hiệu hóa khi ở trạng thái Submitted
+    // Submitted: input bị disable và API trực tiếp bị từ chối.
     const isInputDisabled = await I.executeScript(
       () =>
         document.querySelector(".form-section .form-group > input.neo-input")
@@ -362,22 +377,81 @@ Scenario(
       "Input phải bị disable khi proposal đang Submitted",
     );
 
-    // Gọi trực tiếp API PUT /api/series/:id khi đang Submitted bị chặn 409 (Conflict) hoặc 400
     const resSubmitted = await sendApiRequestWithAuth(
       I,
       `/series/${seriesId}`,
       "PUT",
       { title: "Cannot Edit While Submitted" },
     );
-    assert.ok(
-      [400, 409].includes(resSubmitted.status),
-      `Expected 400 or 409 when updating Submitted series, got ${resSubmitted.status}`,
-    );
+    assert.ok([400, 409].includes(resSubmitted.status));
 
-    // Chốt Reject rồi thử sửa lại
-    await openBoardReview(I, seriesId);
-    await castBoardVote(I, "Reject", "Reject for US-10");
-    await finalizeBoardReview(I, "Reject");
+    // Under Review: phiếu đầu tiên chuyển Submitted sang Under Review.
+    await signInAs(I, "editorial");
+    const underReviewVote = await sendApiRequestWithAuth(
+      I,
+      `/board/series/${seriesId}/vote`,
+      "POST",
+      { vote: "Approve", comment: "Move US-10 to Under Review" },
+    );
+    assert.ok([201, 200].includes(underReviewVote.status));
+
+    await signInAs(I, "mangaka");
+    const resUnderReview = await sendApiRequestWithAuth(
+      I,
+      `/series/${seriesId}`,
+      "PUT",
+      { title: "Cannot Edit Under Review" },
+    );
+    assert.equal(resUnderReview.status, 409);
+
+    // Approved: chốt Approve bằng hồ sơ riêng rồi thử cập nhật.
+    await signInAs(I, "mangaka");
+    const approved = await createSubmittedSeries(I);
+    await signInAs(I, "editorial");
+    const approvedVote = await sendApiRequestWithAuth(
+      I,
+      `/board/series/${approved.seriesId}/vote`,
+      "POST",
+      { vote: "Approve", comment: "Approve US-10" },
+    );
+    assert.ok([201, 200].includes(approvedVote.status));
+
+    const approvedFinalize = await sendApiRequestWithAuth(
+      I,
+      `/board/series/${approved.seriesId}/finalize`,
+      "POST",
+      { approved_schedule: "weekly" },
+    );
+    assert.equal(approvedFinalize.status, 200);
+
+    await signInAs(I, "mangaka");
+    await I.amOnPage(`/mangaka/series/${approved.seriesId}`);
+    await waitForTextCaseInsensitive(I, "Approved", 15, ".status-badge");
+
+    const resApproved = await sendApiRequestWithAuth(
+      I,
+      `/series/${approved.seriesId}`,
+      "PUT",
+      { title: "Cannot Edit After Approved" },
+    );
+    assert.equal(resApproved.status, 400);
+
+    // Rejected: chốt Reject bằng hồ sơ Submitted ban đầu.
+    await signInAs(I, "editorial");
+    const rejectedVote = await sendApiRequestWithAuth(
+      I,
+      `/board/series/${seriesId}/vote`,
+      "POST",
+      { vote: "Reject", comment: "Reject for US-10" },
+    );
+    assert.ok([200, 201].includes(rejectedVote.status));
+
+    const rejectedFinalize = await sendApiRequestWithAuth(
+      I,
+      `/board/series/${seriesId}/finalize`,
+      "POST",
+    );
+    assert.equal(rejectedFinalize.status, 200);
 
     await signInAs(I, "mangaka");
     await captureVoteAuthHeader(I);

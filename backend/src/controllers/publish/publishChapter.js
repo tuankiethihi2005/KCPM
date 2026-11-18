@@ -3,6 +3,7 @@ const Page = require("../../models/PageModel");
 const Task = require("../../models/TaskModel");
 const Annotation = require("../../models/AnnotationModel");
 const Series = require("../../models/SeriesModel");
+const ReleaseIssue = require("../../models/ReleaseIssueModel");
 const NotificationService = require("../../services/notificationService");
 const mongoose = require("mongoose"); // <-- Thêm thư viện mongoose để check ObjectId
 
@@ -17,6 +18,23 @@ exports.publishChapter = async (req, res) => {
     }
 
     const chapter = await Chapter.findById(chapter_id);
+    if (!chapter) {
+      return res.status(404).json({ message: "Không tìm thấy chapter" });
+    }
+
+    if (release_issue_id) {
+      if (!mongoose.Types.ObjectId.isValid(release_issue_id)) {
+        return res.status(400).json({
+          message: "release_issue_id không đúng định dạng hợp lệ",
+        });
+      }
+      const releaseIssue = await ReleaseIssue.findById(release_issue_id);
+      if (!releaseIssue) {
+        return res.status(404).json({
+          message: "Không tìm thấy kỳ phát hành",
+        });
+      }
+    }
 
     // kiểm tra xem chapter đã có trang nào hay chưa
     const pages = await Page.find({ chapter_id });
@@ -55,6 +73,7 @@ exports.publishChapter = async (req, res) => {
     const unresolvedAnnotations = await Annotation.find({
       page_id: { $in: pageIds },
       status: { $ne: "Resolved" },
+      isDeleted: { $ne: true },
     });
 
     if (unresolvedAnnotations.length > 0) {

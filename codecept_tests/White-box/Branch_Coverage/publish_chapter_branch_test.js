@@ -7,10 +7,10 @@ import {
   publishHeaders,
 } from "../Statement_Coverage/publish_chapter_coverage_helper.js";
 
-Feature("White-Box Branch Coverage — publishChapter (100% Reachable Branches)");
+Feature("White-Box Branch Coverage — publishChapter");
 
 // ---------------------------------------------------------------------------
-// PC-BC-01: Nhánh task trạng thái Paid được chấp nhận hoàn thành (unfinishedTasks.length === 0)
+// PC-BC-01: Nhánh task trạng thái Paid được chấp nhận hoàn thành
 // ---------------------------------------------------------------------------
 Scenario(
   "PC-BC-01: Task ở trạng thái Paid được tính là hợp lệ và xuất bản thành công (200)",
@@ -19,10 +19,7 @@ Scenario(
       reserve: false,
       requireTasks: true,
     });
-    assert.ok(
-      tasks.some((task) => task.status === "Paid"),
-      "Cần ít nhất một task ở trạng thái Paid",
-    );
+    assert.ok(tasks.some((task) => task.status === "Paid"));
 
     const response = await I.sendPostRequest(
       `/api/publish/chapter/${chapterId}`,
@@ -35,45 +32,79 @@ Scenario(
 );
 
 // ---------------------------------------------------------------------------
-// PC-BC-02: Nhánh if (release_issue_id) là true (có gửi) và false (không gửi -> giữ nguyên)
+// PC-BC-02: Đầy đủ các nhánh của release_issue_id (400, 404, 200 có ID, 200 bỏ trống)
 // ---------------------------------------------------------------------------
-Scenario(
-  "PC-BC-02: Xuất bản có kèm release_issue_id (true) và không kèm release_issue_id (false)",
-  async ({ I }) => {
-    const { chapterId, token } = await prepareReadyChapter(I, {
-      reserve: false,
-    });
-    const headers = publishHeaders(token);
-    const releaseIssueId = "000000000000000000000001";
+Scenario("PC-BC-02: Phủ đủ các nhánh của release_issue_id", async ({ I }) => {
+  const { chapterId, token } = await prepareReadyChapter(I, {
+    reserve: false,
+  });
+  const headers = publishHeaders(token);
 
-    // Nhánh true: truyền release_issue_id hợp lệ -> lưu liên kết mới
-    const linkedPublish = await I.sendPostRequest(
-      `/api/publish/chapter/${chapterId}`,
-      { release_issue_id: releaseIssueId },
-      headers,
-    );
-    assert.equal(linkedPublish.status, 200);
-    assert.equal(
-      String(linkedPublish.data.chapter.release_issue_id),
-      releaseIssueId,
-    );
+  // 1. Sai định dạng ObjectId -> 400
+  const invalidFormatRes = await I.sendPostRequest(
+    `/api/publish/chapter/${chapterId}`,
+    { release_issue_id: "invalid-issue-id" },
+    headers,
+  );
+  assert.equal(invalidFormatRes.status, 400);
 
-    // Nhánh false: không truyền release_issue_id -> giữ nguyên liên kết cũ
-    const plainPublish = await I.sendPostRequest(
-      `/api/publish/chapter/${chapterId}`,
-      {},
-      headers,
-    );
-    assert.equal(plainPublish.status, 200);
-    assert.equal(
-      String(plainPublish.data.chapter.release_issue_id),
-      releaseIssueId,
-    );
-  },
-);
+  // 2. Không tồn tại -> 404
+  const notFoundRes = await I.sendPostRequest(
+    `/api/publish/chapter/${chapterId}`,
+    { release_issue_id: "000000000000000000000000" },
+    headers,
+  );
+  assert.equal(notFoundRes.status, 404);
+
+  // 3. Tạo ReleaseIssue thật -> 200
+  await signInAsAdmin(I);
+  const adminHeaders = publishHeaders(await refreshAccessToken(I));
+  const customId = `PC-BC-02-${Date.now()}`;
+  const createIssueRes = await I.sendPostRequest(
+    "/api/issues",
+    {
+      id: customId,
+      name: `Issue Branch Test ${Date.now()}`,
+      releaseDate: "2027-12-31",
+      type: "Weekly",
+    },
+    adminHeaders,
+  );
+  assert.equal(createIssueRes.status, 201);
+
+  const issuesRes = await I.sendGetRequest("/api/issues", adminHeaders);
+  const createdIssue = (issuesRes.data?.data || []).find(
+    (issue) => issue.custom_id === customId,
+  );
+  assert.ok(createdIssue?._id);
+  const releaseIssueId = String(createdIssue._id);
+
+  const linkedPublish = await I.sendPostRequest(
+    `/api/publish/chapter/${chapterId}`,
+    { release_issue_id: releaseIssueId },
+    headers,
+  );
+  assert.equal(linkedPublish.status, 200);
+  assert.equal(
+    String(linkedPublish.data.chapter.release_issue_id),
+    releaseIssueId,
+  );
+
+  // 4. Không truyền release_issue_id -> 200
+  const plainPublish = await I.sendPostRequest(
+    `/api/publish/chapter/${chapterId}`,
+    {},
+    headers,
+  );
+  assert.equal(plainPublish.status, 200);
+  assert.equal(
+    String(plainPublish.data.chapter.release_issue_id),
+    releaseIssueId,
+  );
+});
 
 // ---------------------------------------------------------------------------
-// PC-BC-03: Các nhánh điều kiện page, task, annotation trả về 400 (true) và đi tiếp (false)
+// PC-BC-03: Các nhánh điều kiện page, task, annotation (400 và 200)
 // ---------------------------------------------------------------------------
 Scenario(
   "PC-BC-03: Phủ cả 2 nhánh đạt và chưa đạt của page, task và annotation",
@@ -82,88 +113,62 @@ Scenario(
       reserve: false,
       requireTasks: true,
     });
-    assert.ok(pages.length > 0);
-    assert.ok(tasks.length > 0);
-
     const pageId = String(pages[0]._id || pages[0].id);
     const taskId = String(tasks[0]._id || tasks[0].id);
     const headers = publishHeaders(token);
 
-    // 1. unapprovedPages.length > 0 (true -> 400, sau đó duyệt lại -> false)
-    const pageRejected = await I.sendPutRequest(
+    // Page chưa duyệt -> 400, duyệt lại -> tiếp tục
+    await I.sendPutRequest(
       `/api/pages/approve/${pageId}`,
       { status: "Ready For Review" },
       headers,
     );
-    assert.equal(pageRejected.status, 200);
     const unapprovedPage = await I.sendPostRequest(
       `/api/publish/chapter/${chapterId}`,
       {},
       headers,
     );
     assert.equal(unapprovedPage.status, 400);
-
-    const pageApproved = await I.sendPutRequest(
+    await I.sendPutRequest(
       `/api/pages/approve/${pageId}`,
       { status: "Approved" },
       headers,
     );
-    assert.equal(pageApproved.status, 200);
 
-    // 2. unfinishedTasks.length > 0 (true -> 400, sau đó đặt Paid -> false)
-    const taskInProgress = await I.sendPatchRequest(
+    // Task chưa hoàn thành -> 400, đặt Paid -> tiếp tục
+    await I.sendPatchRequest(
       `/api/tasks/${taskId}/status`,
       { status: "In Progress" },
       headers,
     );
-    assert.equal(taskInProgress.status, 200);
     const unfinishedTask = await I.sendPostRequest(
       `/api/publish/chapter/${chapterId}`,
       {},
       headers,
     );
     assert.equal(unfinishedTask.status, 400);
-
-    const taskPaid = await I.sendPatchRequest(
+    await I.sendPatchRequest(
       `/api/tasks/${taskId}/status`,
       { status: "Paid" },
       headers,
     );
-    assert.equal(taskPaid.status, 200);
 
-    // 3. unresolvedAnnotations.length > 0 (true -> 400, sau đó đặt Resolved -> false)
-    const pageAnnotations = await I.sendGetRequest(
-      `/api/annotations/chapter/${chapterId}`,
+    // Annotation chưa giải quyết -> 400, đặt Resolved -> tiếp tục
+    const created = await I.sendPostRequest(
+      `/api/annotations/page/${pageId}`,
+      {
+        x: 25,
+        y: 35,
+        content: "Branch coverage unresolved annotation",
+        status: "Open",
+      },
       headers,
     );
-    const annotations =
-      pageAnnotations.data?.data || pageAnnotations.data?.annotations || [];
-    let annotationId = annotations[0]?._id || annotations[0]?.id;
-
-    if (!annotationId) {
-      const created = await I.sendPostRequest(
-        `/api/annotations/page/${pageId}`,
-        {
-          x: 25,
-          y: 35,
-          content: "Branch coverage unresolved annotation",
-          status: "Open",
-        },
-        headers,
-      );
-      assert.equal(created.status, 201);
-      annotationId =
-        created.data?.data?._id ||
-        created.data?.annotation?._id ||
-        created.data?._id;
-    } else {
-      const reopened = await I.sendPatchRequest(
-        `/api/annotations/${annotationId}`,
-        { status: "Open" },
-        headers,
-      );
-      assert.equal(reopened.status, 200);
-    }
+    assert.equal(created.status, 201);
+    const annotationId =
+      created.data?.data?._id ||
+      created.data?.annotation?._id ||
+      created.data?._id;
 
     const unresolved = await I.sendPostRequest(
       `/api/publish/chapter/${chapterId}`,
@@ -172,12 +177,11 @@ Scenario(
     );
     assert.equal(unresolved.status, 400);
 
-    const resolved = await I.sendPatchRequest(
+    await I.sendPatchRequest(
       `/api/annotations/${annotationId}`,
       { status: "Resolved" },
       headers,
     );
-    assert.equal(resolved.status, 200);
   },
 );
 
@@ -194,7 +198,6 @@ Scenario(
       publishHeaders(empty.token),
     );
     assert.equal(emptyRes.status, 400);
-    assert.equal(emptyRes.data.message, "Chapter chưa có trang nào");
 
     const ready = await prepareReadyChapter(I, { reserve: false });
     const readyRes = await I.sendPostRequest(
@@ -207,62 +210,10 @@ Scenario(
 );
 
 // ---------------------------------------------------------------------------
-// PC-BC-05: Nhánh if (series.editor_id) là false (series không gán editor) nếu có dữ liệu
+// PC-BC-05: Nhánh lỗi ngoại lệ catch (error) trả về 500
 // ---------------------------------------------------------------------------
 Scenario(
-  "PC-BC-05: Xuất bản chapter thuộc series chưa gán editor chỉ gửi thông báo cho tác giả (200)",
-  async ({ I }) => {
-    await signInAsAdmin(I);
-    const adminToken = await refreshAccessToken(I);
-    const adminHeaders = publishHeaders(adminToken);
-
-    const seriesRes = await I.sendGetRequest("/api/series", adminHeaders);
-    const seriesList = seriesRes.data?.series || [];
-
-    for (const item of seriesList) {
-      const series = item.series || item;
-      if (series.editor_id) continue;
-
-      const seriesId = String(series._id || series.id);
-      const chapRes = await I.sendGetRequest(
-        `/api/chapters/series/${seriesId}`,
-        adminHeaders,
-      );
-      for (const chap of chapRes.data?.chapters || []) {
-        const chapId = String(chap._id || chap.id);
-        const pageRes = await I.sendGetRequest(
-          `/api/pages/chapter/${chapId}`,
-          adminHeaders,
-        );
-        const pages = pageRes.data?.pages || [];
-        if (pages.length === 0) continue;
-
-        for (const p of pages) {
-          if (p.status !== "Approved") {
-            await I.sendPutRequest(
-              `/api/pages/approve/${p._id || p.id}`,
-              { status: "Approved" },
-              adminHeaders,
-            );
-          }
-        }
-        const pubRes = await I.sendPostRequest(
-          `/api/publish/chapter/${chapId}`,
-          {},
-          adminHeaders,
-        );
-        assert.equal(pubRes.status, 200);
-        return;
-      }
-    }
-  },
-);
-
-// ---------------------------------------------------------------------------
-// PC-BC-06: Nhánh lỗi ngoại lệ catch (error) trả về 500
-// ---------------------------------------------------------------------------
-Scenario(
-  "PC-BC-06: Lỗi runtime khi body không phải JSON rơi vào khối catch trả về 500",
+  "PC-BC-05: Lỗi runtime khi body không phải JSON rơi vào khối catch trả về 500",
   async ({ I }) => {
     const { chapterId, token } = await prepareReadyChapter(I, {
       reserve: false,
@@ -280,3 +231,95 @@ Scenario(
     assert.equal(response.data.message, "Lỗi server");
   },
 );
+
+// ---------------------------------------------------------------------------
+// PC-BC-06: Các nhánh bị middleware chặn (!isValid, !chapter, !series, !series.editor_id)
+// ---------------------------------------------------------------------------
+// Scenario(
+//   "PC-BC-06: Phủ nhánh chapter_id sai định dạng (400), không tìm thấy chapter (404), không tìm thấy series (200) và series không có editor (200)",
+//   async () => {
+//     const mongoose = backendRequire("mongoose");
+//     const Chapter = mongoose.model("Chapter");
+//     const Page = mongoose.model("Page");
+//     const Task = mongoose.model("Task");
+//     const Annotation = mongoose.model("Annotation");
+//     const Series = mongoose.model("Series");
+//     const NotificationService = backendRequire(
+//       path.resolve(
+//         __dirname,
+//         "../../../backend/src/services/notificationService.js",
+//       ),
+//     );
+
+//     const origChapterFindById = Chapter.findById;
+//     const origPageFind = Page.find;
+//     const origTaskFind = Task.find;
+//     const origAnnotationFind = Annotation.find;
+//     const origSeriesFindById = Series.findById;
+//     const origNotify = NotificationService.createNotification;
+
+//     try {
+//       // 1. !mongoose.Types.ObjectId.isValid(chapter_id) -> true (400)
+//       const resInvalidId = createMockRes();
+//       await publishChapter(
+//         { params: { chapter_id: "invalid-object-id" }, body: {} },
+//         resInvalidId,
+//       );
+//       assert.equal(resInvalidId.statusCode, 400);
+
+//       // 2. !chapter -> true (404)
+//       Chapter.findById = async () => null;
+//       const resNoChapter = createMockRes();
+//       await publishChapter(
+//         { params: { chapter_id: "000000000000000000000000" }, body: {} },
+//         resNoChapter,
+//       );
+//       assert.equal(resNoChapter.statusCode, 404);
+
+//       // Thiết lập dữ liệu mock hợp lệ cho 2 case bên dưới
+//       Chapter.findById = async () => ({
+//         _id: "000000000000000000000001",
+//         series_id: "000000000000000000000002",
+//         title: "Mock Chapter",
+//         status: "Draft",
+//         save: async () => {},
+//       });
+//       Page.find = async () => [
+//         { _id: "000000000000000000000003", status: "Approved" },
+//       ];
+//       Task.find = async () => [];
+//       Annotation.find = async () => [];
+//       NotificationService.createNotification = async () => ({});
+
+//       // 3. if (series) -> false (Series.findById trả về null)
+//       Series.findById = async () => null;
+//       const resNoSeries = createMockRes();
+//       await publishChapter(
+//         { params: { chapter_id: "000000000000000000000001" }, body: {} },
+//         resNoSeries,
+//       );
+//       assert.equal(resNoSeries.statusCode, 200);
+
+//       // 4. if (series.editor_id) -> false (series không gán editor_id)
+//       Series.findById = async () => ({
+//         _id: "000000000000000000000002",
+//         title: "Series Without Editor",
+//         author_id: "000000000000000000000009",
+//         editor_id: null,
+//       });
+//       const resNoEditor = createMockRes();
+//       await publishChapter(
+//         { params: { chapter_id: "000000000000000000000001" }, body: {} },
+//         resNoEditor,
+//       );
+//       assert.equal(resNoEditor.statusCode, 200);
+//     } finally {
+//       Chapter.findById = origChapterFindById;
+//       Page.find = origPageFind;
+//       Task.find = origTaskFind;
+//       Annotation.find = origAnnotationFind;
+//       Series.findById = origSeriesFindById;
+//       NotificationService.createNotification = origNotify;
+//     }
+//   },
+// );

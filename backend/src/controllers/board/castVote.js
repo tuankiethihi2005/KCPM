@@ -15,6 +15,16 @@ exports.castVote = async (req, res) => {
       return res.status(400).json({ message: "vote là bắt buộc" });
     }
 
+    if (
+      req.body.comment !== undefined &&
+      (typeof req.body.comment !== "string" ||
+        req.body.comment.length > 2000)
+    ) {
+      return res.status(400).json({
+        message: "comment phải là chuỗi không vượt quá 2000 ký tự",
+      });
+    }
+
     if (!INITIAL_VOTES.includes(vote)) {
       return res.status(400).json({
         message: `vote phải là: ${INITIAL_VOTES.join(", ")}`,

@@ -324,6 +324,39 @@ Scenario(
 Scenario(
   "PC-05 & PC-06 - Xuất bản thành công (200 OK) khi mọi Page Approved, Task Approved và Annotation Resolved",
   async ({ I }) => {
+    // PC-05: đưa mọi điều kiện sang trạng thái đạt.
+    const pagesRes = await I.sendGetRequest(
+      `/api/pages/chapter/${state.workflowChapterId}`,
+      headers(state.editorToken),
+    );
+    const pages = pagesRes.data?.pages || [];
+    assert.ok(pages.length > 0, "Chapter phải có ít nhất 1 trang");
+
+    for (const page of pages) {
+      const pageId = String(page._id || page.id);
+      const approveRes = await I.sendPutRequest(
+        `/api/pages/approve/${pageId}`,
+        { status: "Approved" },
+        headers(state.editorToken),
+      );
+      assert.ok([200, 201].includes(approveRes.status));
+
+      const tasksRes = await I.sendGetRequest(
+        `/api/tasks?page_id=${pageId}`,
+        headers(state.editorToken),
+      );
+      for (const task of tasksRes.data?.tasks || []) {
+        if (!["Approved", "Paid"].includes(task.status)) {
+          const taskRes = await I.sendPatchRequest(
+            `/api/tasks/${task._id}/status`,
+            { status: "Approved" },
+            headers(state.editorToken),
+          );
+          assert.ok([200, 201].includes(taskRes.status));
+        }
+      }
+    }
+
     // 1. Giải quyết toàn bộ Annotation của chapter sang Resolved
     const annsRes = await I.sendGetRequest(
       `/api/annotations/chapter/${state.workflowChapterId}`,
@@ -332,18 +365,45 @@ Scenario(
     const annotations = annsRes.data?.data || annsRes.data?.annotations || [];
     for (const ann of annotations) {
       if (ann.status !== "Resolved") {
-        await I.sendPatchRequest(
+        const updateRes = await I.sendPatchRequest(
           `/api/annotations/${ann._id}`,
           { status: "Resolved" },
           headers(state.editorToken),
         );
+        assert.equal(updateRes.status, 200);
       }
     }
+
+    const unresolvedRes = await I.sendGetRequest(
+      `/api/annotations/chapter/${state.workflowChapterId}`,
+      headers(state.editorToken),
+    );
+    const unresolvedAnnotations = (
+      unresolvedRes.data?.data ||
+      unresolvedRes.data?.annotations ||
+      []
+    ).filter((ann) => ann.status !== "Resolved");
+    assert.equal(unresolvedAnnotations.length, 0);
+
+    // PC-06: lấy một kỳ phát hành tồn tại và gắn vào publish.
+    const adminLogin = await I.sendPostRequest(
+      "/api/auth/login",
+      { email: "admin@example.com", password: "password123" },
+    );
+    assert.equal(adminLogin.status, 200);
+    const issuesRes = await I.sendGetRequest(
+      "/api/issues",
+      headers(adminLogin.data.accessToken),
+    );
+    assert.equal(issuesRes.status, 200);
+    const issues = issuesRes.data?.data || [];
+    assert.ok(issues.length > 0, "Cần có ít nhất một kỳ phát hành hợp lệ");
+    const releaseIssueId = String(issues[0]._id);
 
     // 2. Gọi Publish Chapter thành công (chạy hết dòng 68 -> 95 trong publishChapter.js)
     const response = await I.sendPostRequest(
       `/api/publish/chapter/${state.workflowChapterId}`,
-      {},
+      { release_issue_id: releaseIssueId },
       headers(state.editorToken),
     );
 
@@ -354,6 +414,10 @@ Scenario(
     );
     assert.equal(response.data?.chapter?.status, "Published");
     assert.ok(response.data?.chapter?.published_at, "Phải lưu thời điểm published_at");
+    assert.equal(
+      String(response.data?.chapter?.release_issue_id),
+      releaseIssueId,
+    );
   },
 );
 

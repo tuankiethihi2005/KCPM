@@ -76,6 +76,7 @@ Route chỉ cho phép role Editorial Board hoặc Admin. Phiếu được tìm t
 | **EBV-ST-07** | Dòng 45–49                         | Gửi vote cho Series có proposal đã finalize (`Approved`), không còn ở trạng thái chờ duyệt.                                   | HTTP `400`; thông báo `"Series không ở trạng thái chờ duyệt"`.              |
 | **EBV-ST-08** | Dòng 51–65                         | Cùng một thành viên đã bỏ phiếu, gửi request vote tiếp theo kèm comment mới.                                                  | HTTP `200`; thông báo `"Cập nhật phiếu bầu thành công"`; cập nhật phiếu cũ. |
 | **EBV-ST-09** | Dòng 84–86                         | Gửi vote tới `id` sai định dạng ObjectId (`"invalid-object-id"`) để kích hoạt lỗi `CastError` trong khối `catch`.             | HTTP `500`; `error: "Lỗi server"`.                                          |
+| **EBV-ST-10** | Dòng 18–26                         | Gửi vote hợp lệ kèm `comment` dài 2001 ký tự (hoặc sai kiểu dữ liệu).                                                         | HTTP `400`; thông báo `"comment phải là chuỗi không vượt quá 2000 ký tự"`.  |
 
 ### Branch Coverage
 
